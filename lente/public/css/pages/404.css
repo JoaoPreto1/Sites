@@ -1,0 +1,20 @@
+.not-found {
+  padding-block: clamp(80px, 12vw, 160px);
+}
+
+.not-found h1 {
+  margin: 24px 0;
+}
+
+.not-found__text {
+  font-size: 18px;
+  color: var(--ink-2);
+  max-width: 480px;
+}
+
+.not-found__actions {
+  display: flex;
+  gap: 8px;
+  flex-wrap: wrap;
+  margin-top: 32px;
+}
