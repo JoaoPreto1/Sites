@@ -1,0 +1,56 @@
+<!doctype html>
+<html lang="pt">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Trabalho · Lente Studio</title>
+  <meta name="description" content="Campanhas de moda, capas de álbum, editoriais, hotelaria e marcas fotografadas pelo Lente Studio, no Porto.">
+  <link rel="icon" href="/favicon.svg">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@62..125,400..900&family=JetBrains+Mono:wght@400;500&display=swap">
+  <link rel="stylesheet" href="/css/base.css">
+  <link rel="stylesheet" href="/css/layout.css">
+  <link rel="stylesheet" href="/css/components.css">
+  <link rel="stylesheet" href="/css/pages/trabalho.css">
+  <script type="module" src="/js/layout.js"></script>
+  <script type="module" src="/js/pages/trabalho.js"></script>
+</head>
+<body>
+  <header data-header></header>
+
+  <main>
+    <section class="page-head">
+      <span class="mono" data-count>(01) Trabalho</span>
+      <div class="page-head__row">
+        <h1>Trabalho<span class="red">.</span></h1>
+        <p>Moda, música, editorial, marcas e hotelaria. Uma seleção dos projetos que mais gostámos de fazer nos últimos dois anos.</p>
+      </div>
+    </section>
+
+    <div class="toolbar">
+      <div class="filters" data-filters></div>
+      <div class="view-toggle mono" role="group" aria-label="Vista">
+        <button type="button" class="is-active" data-view="grid">Grelha</button>
+        <button type="button" data-view="list">Lista</button>
+      </div>
+    </div>
+
+    <section class="section work-list">
+      <div class="works" data-works></div>
+      <div class="index" data-list hidden></div>
+    </section>
+
+    <section class="custom-band">
+      <div>
+        <span class="mono red">(À medida)</span>
+        <h2>Não vê o seu tipo de projeto?</h2>
+      </div>
+      <p>Também fazemos retrato corporativo, catálogos de produto, eventos e conteúdo para redes. Conte-nos o que precisa.</p>
+      <a class="btn btn--red" href="/orcamento">Pedir orçamento ↗</a>
+    </section>
+  </main>
+
+  <footer data-footer></footer>
+</body>
+</html>
