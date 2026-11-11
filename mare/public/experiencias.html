@@ -1,0 +1,56 @@
+<!doctype html>
+<html lang="pt">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Experiências · Maré</title>
+  <meta name="description" content="Passeios de barco às grutas, kayak, surf, vinhos e chef em casa. Junte experiências à sua estadia em Lagos.">
+  <link rel="icon" href="/favicon.svg">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Inter:wght@400;500;600&display=swap">
+  <link rel="stylesheet" href="/css/base.css">
+  <link rel="stylesheet" href="/css/layout.css">
+  <link rel="stylesheet" href="/css/components.css">
+  <link rel="stylesheet" href="/css/pages/experiencias.css">
+  <script type="module" src="/js/layout.js"></script>
+  <script type="module" src="/js/pages/experiencias.js"></script>
+</head>
+<body>
+  <header data-header></header>
+
+  <main>
+    <section class="page-hero container">
+      <p class="eyebrow muted">Experiências</p>
+      <h1 class="exp-title">Os dias também<br><em>se reservam.</em></h1>
+      <p>Escolhemos parceiros locais em quem confiamos. Junte-os à reserva e pague tudo de uma vez, sem filas nem telefonemas.</p>
+    </section>
+
+    <section class="container">
+      <div class="section-head">
+        <div class="chips" data-filters>
+          <button class="chip is-active" type="button" data-category="">Todas</button>
+          <button class="chip" type="button" data-category="Mar">Mar</button>
+          <button class="chip" type="button" data-category="Desporto">Desporto</button>
+          <button class="chip" type="button" data-category="Gastronomia">Gastronomia</button>
+        </div>
+      </div>
+      <div class="exp-grid" data-experiences></div>
+    </section>
+
+    <section class="section container">
+      <div class="how">
+        <h2>Como <em>funciona</em></h2>
+        <ol>
+          <li><strong>Reserve a casa</strong><span>Na página de confirmação aparecem todas as experiências disponíveis.</span></li>
+          <li><strong>Escolha o que quer fazer</strong><span>Indique quantas pessoas vão. O preço junta-se ao total da estadia.</span></li>
+          <li><strong>Combinamos a data</strong><span>Falamos com o parceiro e confirmamos o dia e a hora antes de chegar.</span></li>
+        </ol>
+        <a class="btn" href="/alojamentos">Escolher a casa</a>
+      </div>
+    </section>
+  </main>
+
+  <footer data-footer></footer>
+</body>
+</html>

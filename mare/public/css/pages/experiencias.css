@@ -1,0 +1,134 @@
+.exp-title {
+  font-size: clamp(48px, 7vw, 100px);
+  margin-top: 14px;
+}
+
+.exp-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 28px;
+}
+
+@media (max-width: 1000px) {
+  .exp-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+@media (max-width: 640px) {
+  .exp-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+.exp-card {
+  display: flex;
+  flex-direction: column;
+  background: #fff;
+  border-radius: var(--radius-lg);
+  overflow: hidden;
+}
+
+.exp-card__media {
+  position: relative;
+  aspect-ratio: 4 / 3;
+}
+
+.exp-card__media img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.exp-card__media .tag {
+  position: absolute;
+  top: 14px;
+  left: 14px;
+}
+
+.exp-card__body {
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+  padding: 22px 24px 24px;
+}
+
+.exp-card__body p {
+  color: var(--mute);
+  margin: 8px 0 20px;
+  font-size: 15px;
+}
+
+.exp-card__footer {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  margin-top: auto;
+  padding-top: 16px;
+  border-top: 1px solid var(--line);
+  font-size: 14px;
+  color: var(--mute);
+}
+
+.exp-card__footer strong {
+  font-size: 22px;
+  color: var(--ink);
+}
+
+.how {
+  display: grid;
+  grid-template-columns: 1fr 1.4fr;
+  gap: 32px 64px;
+  align-items: start;
+  background: var(--ink);
+  color: #fff;
+  border-radius: 32px;
+  padding: clamp(32px, 5vw, 64px);
+}
+
+.how h2 em {
+  color: #9fd3d8;
+}
+
+.how ol {
+  list-style: none;
+  counter-reset: step;
+  display: grid;
+  gap: 22px;
+}
+
+.how li {
+  counter-increment: step;
+  display: grid;
+  grid-template-columns: 44px 1fr;
+  gap: 4px 16px;
+}
+
+.how li::before {
+  content: counter(step);
+  grid-row: span 2;
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  display: grid;
+  place-items: center;
+  font-family: var(--serif);
+  font-size: 22px;
+}
+
+.how li span {
+  color: #b9c4bf;
+}
+
+.how .btn {
+  background: #fff;
+  color: var(--ink);
+  justify-self: start;
+}
+
+@media (max-width: 860px) {
+  .how {
+    grid-template-columns: 1fr;
+  }
+}
