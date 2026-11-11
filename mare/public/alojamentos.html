@@ -1,0 +1,75 @@
+<!doctype html>
+<html lang="pt">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Alojamentos · Maré</title>
+  <meta name="description" content="Casas de férias em Lagos com vista mar, piscina ou no centro histórico. Veja a disponibilidade e reserve direto.">
+  <link rel="icon" href="/favicon.svg">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Inter:wght@400;500;600&display=swap">
+  <link rel="stylesheet" href="/css/base.css">
+  <link rel="stylesheet" href="/css/layout.css">
+  <link rel="stylesheet" href="/css/components.css">
+  <link rel="stylesheet" href="/css/pages/alojamentos.css">
+  <script type="module" src="/js/layout.js"></script>
+  <script type="module" src="/js/pages/alojamentos.js"></script>
+</head>
+<body>
+  <header data-header></header>
+
+  <main>
+    <section class="page-hero container">
+      <p class="eyebrow muted">Alojamentos</p>
+      <h1 class="listing-title">Escolha a casa,<br><em>nós tratamos do resto.</em></h1>
+    </section>
+
+    <form class="filters" data-filters>
+      <div class="container filters__inner">
+        <div class="filters__dates">
+          <div class="field">
+            <label for="checkIn">Check-in</label>
+            <input class="input" id="checkIn" name="checkIn" type="date">
+          </div>
+          <div class="field">
+            <label for="checkOut">Check-out</label>
+            <input class="input" id="checkOut" name="checkOut" type="date">
+          </div>
+          <div class="field">
+            <label for="guests">Hóspedes</label>
+            <select class="select" id="guests" name="guests">
+              <option value="">Qualquer</option>
+              <option value="1">1</option>
+              <option value="2">2</option>
+              <option value="3">3</option>
+              <option value="4">4</option>
+              <option value="5">5</option>
+              <option value="6">6</option>
+              <option value="7">7</option>
+              <option value="8">8</option>
+            </select>
+          </div>
+        </div>
+        <div class="chips" data-tags>
+          <button class="chip is-active" type="button" data-tag="">Todas</button>
+          <button class="chip" type="button" data-tag="vista-mar">Vista mar</button>
+          <button class="chip" type="button" data-tag="piscina">Com piscina</button>
+          <button class="chip" type="button" data-tag="familias">Famílias</button>
+          <button class="chip" type="button" data-tag="casais">Casais</button>
+        </div>
+      </div>
+    </form>
+
+    <section class="container listing">
+      <div class="listing__summary">
+        <p data-summary>A procurar casas…</p>
+        <button class="link muted" type="button" data-clear hidden>Limpar filtros</button>
+      </div>
+      <div class="property-grid" data-results></div>
+    </section>
+  </main>
+
+  <footer data-footer></footer>
+</body>
+</html>

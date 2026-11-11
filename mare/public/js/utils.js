@@ -2,12 +2,17 @@ const moneyFormat = new Intl.NumberFormat('pt-PT', { style: 'currency', currency
 
 export const money = (value) => moneyFormat.format(value);
 
-export function formatDate(iso, options = { day: 'numeric', month: 'short', year: 'numeric' }) {
+const MONTHS = ['jan', 'fev', 'mar', 'abr', 'mai', 'jun', 'jul', 'ago', 'set', 'out', 'nov', 'dez'];
+const WEEKDAYS = ['dom', 'seg', 'ter', 'qua', 'qui', 'sex', 'sáb'];
+
+export function formatDate(iso, { year = true, weekday = false } = {}) {
   if (!iso) return '';
-  return new Date(`${iso.slice(0, 10)}T12:00:00`).toLocaleDateString('pt-PT', options);
+  const date = new Date(`${iso.slice(0, 10)}T12:00:00`);
+  const text = `${date.getDate()} ${MONTHS[date.getMonth()]}${year ? ` ${date.getFullYear()}` : ''}`;
+  return weekday ? `${WEEKDAYS[date.getDay()]}, ${text}` : text;
 }
 
-export const shortDate = (iso) => formatDate(iso, { day: 'numeric', month: 'short' });
+export const shortDate = (iso) => formatDate(iso, { year: false });
 
 export function toIsoDate(date) {
   const local = new Date(date.getTime() - date.getTimezoneOffset() * 60000);
