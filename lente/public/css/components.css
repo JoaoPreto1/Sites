@@ -355,6 +355,7 @@
 /* Perguntas frequentes */
 .faq {
   border-top: 1px solid var(--line);
+  overflow: hidden;
 }
 
 .faq details {

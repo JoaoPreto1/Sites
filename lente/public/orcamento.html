@@ -1,0 +1,100 @@
+<!doctype html>
+<html lang="pt">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Pedir orçamento · Lente Studio</title>
+  <meta name="description" content="Conte-nos o seu projeto de fotografia ou vídeo. Respondemos com uma proposta em até dois dias úteis.">
+  <link rel="icon" href="/favicon.svg">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@62..125,400..900&family=JetBrains+Mono:wght@400;500&display=swap">
+  <link rel="stylesheet" href="/css/base.css">
+  <link rel="stylesheet" href="/css/layout.css">
+  <link rel="stylesheet" href="/css/components.css">
+  <link rel="stylesheet" href="/css/pages/orcamento.css">
+  <script type="module" src="/js/layout.js"></script>
+  <script type="module" src="/js/pages/orcamento.js"></script>
+</head>
+<body>
+  <header data-header></header>
+
+  <main>
+    <section class="page-head">
+      <span class="mono">(05) Orçamento</span>
+      <div class="page-head__row">
+        <h1>Vamos criar<br>algo <span class="red">forte.</span></h1>
+        <p>Quanto mais nos contar, mais certa será a proposta. Respondemos sempre em até dois dias úteis, mesmo que seja para dizer que não estamos disponíveis.</p>
+      </div>
+    </section>
+
+    <div class="quote">
+      <form class="quote__form" data-quote novalidate>
+        <fieldset class="field">
+          <legend class="label">01 — O que precisa?</legend>
+          <div class="options" data-services></div>
+        </fieldset>
+
+        <div class="form-grid form-grid--two">
+          <div class="field">
+            <label for="name">02 — Nome</label>
+            <input class="input" id="name" name="name" autocomplete="name" placeholder="Ana Costa">
+          </div>
+          <div class="field">
+            <label for="email">03 — Email</label>
+            <input class="input" id="email" name="email" type="email" autocomplete="email" placeholder="ana@marca.pt">
+          </div>
+          <div class="field">
+            <label for="company">04 — Marca ou empresa</label>
+            <input class="input" id="company" name="company" autocomplete="organization" placeholder="Opcional">
+          </div>
+          <div class="field">
+            <label for="date">05 — Data prevista</label>
+            <input class="input" id="date" name="date" type="date">
+          </div>
+        </div>
+
+        <fieldset class="field">
+          <legend class="label">06 — Orçamento aproximado</legend>
+          <div class="options" data-budgets></div>
+        </fieldset>
+
+        <div class="field">
+          <label for="message">07 — Conte-nos o projeto</label>
+          <textarea class="textarea" id="message" name="message" placeholder="Que marca é, o que querem comunicar, onde vão ser usadas as imagens…"></textarea>
+        </div>
+
+        <p class="notice notice--error" data-error hidden></p>
+        <button class="quote__send" type="submit"><span>Enviar pedido</span><span>→</span></button>
+      </form>
+
+      <div class="quote__sent" data-sent hidden>
+        <span class="mono red">(Pedido enviado)</span>
+        <h2>Obrigado. Falamos <span class="red">em breve.</span></h2>
+        <p data-sent-text></p>
+        <a class="btn btn--line" href="/trabalho">Entretanto, ver trabalho ↗</a>
+      </div>
+
+      <aside class="quote__aside">
+        <div>
+          <span class="mono">O que acontece a seguir</span>
+          <ol class="next-steps">
+            <li><strong>Lemos tudo</strong><span>O Tomás responde pessoalmente em até 2 dias úteis.</span></li>
+            <li><strong>Falamos 30 minutos</strong><span>Por videochamada ou no estúdio, com café.</span></li>
+            <li><strong>Enviamos a proposta</strong><span>Com moodboard, equipa, prazos e preço fechado.</span></li>
+          </ol>
+        </div>
+        <div class="aside-contacts">
+          <span class="mono">Prefere falar já?</span>
+          <a href="mailto:ola@lente.studio">ola@lente.studio</a>
+          <a href="tel:+351220000000">+351 220 000 000</a>
+          <span class="muted">Rua do Almada 300, Porto · Seg–Sex, 10h–19h</span>
+        </div>
+        <img src="https://images.unsplash.com/photo-1495121553079-4c61bcce1894?w=800&h=800&q=75&auto=format&fit=crop" alt="Câmara de médio formato sobre fundo claro" loading="lazy">
+      </aside>
+    </div>
+  </main>
+
+  <footer data-footer></footer>
+</body>
+</html>
