@@ -1,0 +1,43 @@
+<!doctype html>
+<html lang="pt">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Galeria · Lente Studio</title>
+  <meta name="robots" content="noindex">
+  <link rel="icon" href="/favicon.svg">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@62..125,400..900&family=JetBrains+Mono:wght@400;500&display=swap">
+  <link rel="stylesheet" href="/css/base.css">
+  <link rel="stylesheet" href="/css/layout.css">
+  <link rel="stylesheet" href="/css/components.css">
+  <link rel="stylesheet" href="/css/lightbox.css">
+  <link rel="stylesheet" href="/css/pages/galerias.css">
+  <script type="module" src="/js/layout.js"></script>
+  <script type="module" src="/js/pages/galeria.js"></script>
+</head>
+<body>
+  <header data-header></header>
+
+  <main data-gallery>
+    <div class="skeleton gallery-skeleton gallery-skeleton--page"></div>
+  </main>
+
+  <dialog class="lightbox" data-lightbox>
+    <div class="lightbox__bar mono">
+      <span data-lightbox-count></span>
+      <div class="lightbox__actions">
+        <button type="button" data-lightbox-fav>♡ Favorita</button>
+        <button type="button" data-lightbox-download>↓ Descarregar</button>
+        <button type="button" data-close>Fechar ✕</button>
+      </div>
+    </div>
+    <img alt="">
+    <button class="lightbox__arrow lightbox__arrow--prev" type="button" data-step="-1" aria-label="Anterior">←</button>
+    <button class="lightbox__arrow lightbox__arrow--next" type="button" data-step="1" aria-label="Seguinte">→</button>
+  </dialog>
+
+  <footer data-footer></footer>
+</body>
+</html>

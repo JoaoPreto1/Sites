@@ -1,0 +1,244 @@
+.gallery-skeleton {
+  height: 420px;
+}
+
+.gallery-cards {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 24px;
+}
+
+@media (max-width: 760px) {
+  .gallery-cards {
+    grid-template-columns: 1fr;
+  }
+}
+
+.gcard {
+  display: block;
+  border: 1px solid var(--ink);
+  background: var(--white);
+  transition: transform 0.3s;
+}
+
+.gcard:hover {
+  transform: translateY(-4px);
+}
+
+.gcard__media {
+  position: relative;
+  aspect-ratio: 16 / 10;
+  overflow: hidden;
+  border-bottom: 1px solid var(--ink);
+}
+
+.gcard__media img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.gcard__media .tag {
+  position: absolute;
+  top: 12px;
+  left: 12px;
+}
+
+.gcard.is-expired .gcard__media img {
+  filter: grayscale(1);
+  opacity: 0.6;
+}
+
+.gcard__body {
+  display: grid;
+  gap: 14px;
+  padding: 20px;
+}
+
+.gcard__body h3 {
+  font-size: clamp(22px, 2vw, 30px);
+  font-weight: 700;
+  font-stretch: 110%;
+}
+
+.gcard__stats {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  border-top: 1px solid var(--line-soft);
+}
+
+.gcard__stats div {
+  padding-top: 12px;
+}
+
+.gcard__stats strong {
+  display: block;
+  font-size: 22px;
+}
+
+.gcard__stats .mono {
+  color: var(--mute);
+}
+
+.how-it-works {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  border-top: 1px solid var(--line);
+}
+
+.how-it-works > div {
+  display: grid;
+  gap: 8px;
+  padding: 28px var(--gutter);
+  border-left: 1px solid var(--line);
+}
+
+.how-it-works > div:first-child {
+  border-left: 0;
+}
+
+.how-it-works strong {
+  font-size: 26px;
+  font-weight: 800;
+  font-stretch: 115%;
+}
+
+.how-it-works p {
+  color: var(--ink-2);
+}
+
+@media (max-width: 860px) {
+  .how-it-works {
+    grid-template-columns: 1fr 1fr;
+  }
+
+  .how-it-works > div:nth-child(3) {
+    border-left: 0;
+  }
+
+  .how-it-works > div:nth-child(n + 3) {
+    border-top: 1px solid var(--line);
+  }
+}
+
+/* Galeria aberta */
+.gallery-head {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto;
+  gap: 24px;
+  align-items: end;
+  padding: clamp(32px, 5vw, 56px) var(--gutter) 28px;
+  border-bottom: 1px solid var(--line);
+}
+
+.gallery-head h1 {
+  font-size: clamp(36px, 5.5vw, 88px);
+  margin: 14px 0 18px;
+}
+
+.gallery-head__meta {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px 24px;
+  color: var(--mute);
+}
+
+.gallery-head__actions {
+  display: flex;
+  gap: 8px;
+  flex-wrap: wrap;
+}
+
+@media (max-width: 860px) {
+  .gallery-head {
+    grid-template-columns: 1fr;
+  }
+}
+
+.gallery-bar {
+  position: sticky;
+  top: 69px;
+  z-index: 20;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 16px;
+  flex-wrap: wrap;
+  padding: 12px var(--gutter);
+  background: rgba(239, 237, 232, 0.94);
+  backdrop-filter: blur(10px);
+  border-bottom: 1px solid var(--line);
+}
+
+.notice-bar {
+  padding: 12px var(--gutter);
+  background: var(--ink);
+  color: var(--paper);
+  font-size: 14px;
+}
+
+.photo-grid {
+  columns: 4 260px;
+  column-gap: 12px;
+  padding: 20px var(--gutter) 80px;
+}
+
+.photo {
+  position: relative;
+  break-inside: avoid;
+  margin-bottom: 12px;
+  background: var(--paper-2);
+}
+
+.photo > button {
+  display: block;
+  width: 100%;
+}
+
+.photo img {
+  width: 100%;
+}
+
+.photo__bar {
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px 12px;
+  background: linear-gradient(transparent, rgba(0, 0, 0, 0.6));
+  color: #fff;
+  opacity: 0;
+  transition: opacity 0.25s;
+}
+
+.photo:hover .photo__bar,
+.photo.is-favorite .photo__bar {
+  opacity: 1;
+}
+
+.photo__bar button {
+  display: grid;
+  place-items: center;
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.15);
+  color: #fff;
+}
+
+.photo.is-favorite .photo__fav {
+  background: var(--red);
+}
+
+@media (hover: none) {
+  .photo__bar {
+    opacity: 1;
+  }
+}
+
+.gallery-skeleton--page {
+  margin: 24px var(--gutter);
+}
