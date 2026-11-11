@@ -20,14 +20,21 @@
   <header data-header></header>
 
   <main>
-    <section class="page-hero container">
-      <p class="eyebrow muted">Experiências</p>
-      <h1 class="exp-title">Os dias também<br><em>se reservam.</em></h1>
-      <p>Escolhemos parceiros locais em quem confiamos. Junte-os à reserva e pague tudo de uma vez, sem filas nem telefonemas.</p>
+    <section class="banner">
+      <img src="https://images.unsplash.com/photo-1608649944716-228404a0a8bb?w=2400&h=1000&q=75&auto=format&fit=crop" alt="Barcos junto às falésias de Lagos">
+      <div class="container">
+        <nav class="crumbs"><a href="/">Início</a> / <span>Experiências</span></nav>
+        <h1>Os dias também <em>se reservam.</em></h1>
+        <p>Escolhemos parceiros locais em quem confiamos. Junte-os à reserva e trate de tudo num só sítio, sem filas nem telefonemas.</p>
+      </div>
     </section>
 
-    <section class="container">
+    <section class="section container">
       <div class="section-head">
+        <div>
+          <p class="eyebrow muted">Escolha o seu dia</p>
+          <h2>Mar, desporto <em>e mesa.</em></h2>
+        </div>
         <div class="chips" data-filters>
           <button class="chip is-active" type="button" data-category="">Todas</button>
           <button class="chip" type="button" data-category="Mar">Mar</button>
@@ -35,18 +42,51 @@
           <button class="chip" type="button" data-category="Gastronomia">Gastronomia</button>
         </div>
       </div>
+      <div data-featured></div>
       <div class="exp-grid" data-experiences></div>
     </section>
 
-    <section class="section container">
-      <div class="how">
-        <h2>Como <em>funciona</em></h2>
-        <ol>
+    <section class="section section--ink">
+      <div class="container how">
+        <div class="how__intro">
+          <p class="eyebrow">Como funciona</p>
+          <h2>Três passos, <em>zero filas.</em></h2>
+          <p>Trate das experiências ao mesmo tempo que reserva a casa, ou mais tarde na sua área pessoal.</p>
+          <a class="btn btn--light" href="/alojamentos">Escolher a casa</a>
+        </div>
+        <ol class="how__steps">
           <li><strong>Reserve a casa</strong><span>Na página de confirmação aparecem todas as experiências disponíveis.</span></li>
           <li><strong>Escolha o que quer fazer</strong><span>Indique quantas pessoas vão. O preço junta-se ao total da estadia.</span></li>
           <li><strong>Combinamos a data</strong><span>Falamos com o parceiro e confirmamos o dia e a hora antes de chegar.</span></li>
         </ol>
-        <a class="btn" href="/alojamentos">Escolher a casa</a>
+      </div>
+    </section>
+
+    <section class="section container">
+      <div class="partners">
+        <div class="partners__quote">
+          <p class="eyebrow muted">Parceiros locais</p>
+          <blockquote>“Levamos os hóspedes da Maré às grutas há oito anos. Conhecemos cada rocha pelo nome.”</blockquote>
+          <p class="partners__who"><span class="avatar">JS</span><span><strong>João Silva</strong>Skipper, passeios às grutas</span></p>
+        </div>
+        <ul class="partners__list">
+          <li data-icon="shield"><strong>Seguro incluído</strong><span>Todos os parceiros têm seguro de acidentes pessoais.</span></li>
+          <li data-icon="users"><strong>Grupos pequenos</strong><span>No máximo 8 pessoas por passeio de barco ou kayak.</span></li>
+          <li data-icon="calendar"><strong>Remarcação grátis</strong><span>Se o mar não deixar, mudamos para outro dia sem custos.</span></li>
+          <li data-icon="heart"><strong>Gente da terra</strong><span>Só trabalhamos com empresas de Lagos e arredores.</span></li>
+        </ul>
+      </div>
+    </section>
+
+    <section class="final-cta">
+      <img src="https://images.unsplash.com/photo-1526761122248-c31c93f8b2b9?w=2400&h=1000&q=75&auto=format&fit=crop" alt="Veleiro ao pôr do sol" loading="lazy">
+      <div class="container final-cta__inner">
+        <h2>Primeiro a casa, <em>depois o mar.</em></h2>
+        <p>Escolha onde ficar e junte as experiências no mesmo passo.</p>
+        <div class="final-cta__actions">
+          <a class="btn btn--light" href="/alojamentos">Ver alojamentos</a>
+          <a class="btn btn--outline-light" href="/contactos">Tenho uma pergunta</a>
+        </div>
       </div>
     </section>
   </main>
