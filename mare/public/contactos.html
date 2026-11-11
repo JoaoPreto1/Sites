@@ -1,0 +1,68 @@
+<!doctype html>
+<html lang="pt">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Contactos · Maré</title>
+  <meta name="description" content="Fale connosco sobre reservas, grupos ou estadias longas em Lagos. Respondemos em menos de 24 horas.">
+  <link rel="icon" href="/favicon.svg">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Inter:wght@400;500;600&display=swap">
+  <link rel="stylesheet" href="/css/base.css">
+  <link rel="stylesheet" href="/css/layout.css">
+  <link rel="stylesheet" href="/css/components.css">
+  <link rel="stylesheet" href="/css/pages/contactos.css">
+  <script type="module" src="/js/layout.js"></script>
+  <script type="module" src="/js/pages/contactos.js"></script>
+</head>
+<body>
+  <header data-header></header>
+
+  <main class="container contact">
+    <section class="contact__intro">
+      <p class="eyebrow muted">Contactos</p>
+      <h1>Fale com <em>a Rita.</em></h1>
+      <p class="muted">Grupos grandes, estadias de um mês, uma dúvida sobre a casa ou só uma sugestão de restaurante. Respondemos em menos de 24 horas.</p>
+
+      <ul class="contact__list">
+        <li><span>Telefone e WhatsApp</span><a href="tel:+351282000000">+351 282 000 000</a></li>
+        <li><span>Email</span><a href="mailto:ola@mare.pt">ola@mare.pt</a></li>
+        <li><span>Escritório</span>Rua da Barroca 12, 8600-315 Lagos</li>
+        <li><span>Horário</span>Todos os dias, das 9h às 20h</li>
+      </ul>
+    </section>
+
+    <form class="card form-grid contact__form" data-contact novalidate>
+      <div class="form-grid form-grid--two">
+        <div class="field">
+          <label for="name">Nome</label>
+          <input class="input" id="name" name="name" autocomplete="name">
+        </div>
+        <div class="field">
+          <label for="email">Email</label>
+          <input class="input" id="email" name="email" type="email" autocomplete="email">
+        </div>
+      </div>
+      <div class="field">
+        <label for="subject">Assunto</label>
+        <input class="input" id="subject" name="subject" placeholder="Ex.: grupo de 10 pessoas em setembro">
+      </div>
+      <div class="field">
+        <label for="message">Mensagem</label>
+        <textarea class="textarea" id="message" name="message"></textarea>
+      </div>
+      <p class="notice notice--error" data-error hidden></p>
+      <button class="btn btn--sea" type="submit">Enviar mensagem</button>
+    </form>
+
+    <div class="contact__sent card" data-sent hidden>
+      <h2>Mensagem <em>enviada.</em></h2>
+      <p class="muted" data-sent-text></p>
+      <a class="btn btn--ghost" href="/alojamentos">Entretanto, ver as casas</a>
+    </div>
+  </main>
+
+  <footer data-footer></footer>
+</body>
+</html>
