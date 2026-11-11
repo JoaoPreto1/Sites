@@ -1,0 +1,160 @@
+.region-intro {
+  display: grid;
+  grid-template-columns: 1.4fr 1fr;
+  gap: 32px 64px;
+  align-items: end;
+}
+
+.region-intro h1 {
+  font-size: clamp(46px, 6vw, 88px);
+  margin-top: 14px;
+}
+
+.region-intro > p {
+  margin: 0;
+}
+
+@media (max-width: 860px) {
+  .region-intro {
+    grid-template-columns: 1fr;
+  }
+}
+
+.region-banner {
+  width: 100%;
+  height: clamp(280px, 40vw, 560px);
+  object-fit: cover;
+  border-radius: 32px;
+}
+
+.beaches {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 24px;
+}
+
+.beaches img {
+  width: 100%;
+  aspect-ratio: 4 / 5;
+  object-fit: cover;
+  border-radius: var(--radius-lg);
+  margin-bottom: 16px;
+}
+
+.beaches p {
+  color: var(--mute);
+  margin-top: 6px;
+  font-size: 15px;
+}
+
+@media (max-width: 1000px) {
+  .beaches {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+@media (max-width: 520px) {
+  .beaches {
+    grid-template-columns: 1fr;
+  }
+}
+
+.food {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: clamp(32px, 6vw, 96px);
+  align-items: center;
+}
+
+.food img {
+  width: 100%;
+  height: 560px;
+  object-fit: cover;
+  border-radius: 32px;
+}
+
+.food h2 {
+  margin: 14px 0 28px;
+}
+
+.food__list {
+  list-style: none;
+}
+
+.food__list li {
+  display: grid;
+  gap: 2px;
+  padding: 16px 0;
+  border-top: 1px solid var(--line);
+}
+
+.food__list span {
+  color: var(--mute);
+}
+
+@media (max-width: 860px) {
+  .food {
+    grid-template-columns: 1fr;
+  }
+
+  .food img {
+    height: 320px;
+  }
+}
+
+.practical {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 24px;
+}
+
+.practical > div {
+  background: #fff;
+  border-radius: var(--radius-lg);
+  padding: 28px;
+}
+
+.practical h3 {
+  margin-bottom: 16px;
+}
+
+.practical ul {
+  list-style: none;
+}
+
+.practical li {
+  display: flex;
+  justify-content: space-between;
+  gap: 12px;
+  padding: 12px 0;
+  border-top: 1px solid var(--line);
+  font-size: 15px;
+}
+
+.practical li span:last-child {
+  color: var(--mute);
+  text-align: right;
+}
+
+.practical .practical__cta {
+  background: var(--sea);
+  color: #fff;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+}
+
+.practical__cta p {
+  color: #d3e6e7;
+  margin-bottom: 24px;
+}
+
+.practical__cta .btn {
+  margin-top: auto;
+}
+
+@media (max-width: 960px) {
+  .practical {
+    grid-template-columns: 1fr;
+  }
+}
