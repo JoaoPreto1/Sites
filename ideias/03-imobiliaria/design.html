@@ -1,0 +1,83 @@
+<!doctype html>
+<html lang="pt">
+<head>
+<meta charset="utf-8">
+<title>Morada</title>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+body{width:1440px;height:820px;background:#f6f8fa;color:#0d1b2a;font-family:'Plus Jakarta Sans',sans-serif;overflow:hidden}
+nav{display:flex;justify-content:space-between;align-items:center;padding:24px 64px;background:#fff;border-bottom:1px solid #e6ebf0}
+.logo{font-weight:800;font-size:24px;display:flex;align-items:center;gap:10px}
+.logo i{width:30px;height:30px;border-radius:8px;background:#0f766e;display:inline-block;clip-path:polygon(50% 8%,95% 45%,95% 95%,5% 95%,5% 45%)}
+.links{display:flex;gap:34px;font-size:15px;color:#51606f;font-weight:500}
+.btn{background:#0f766e;color:#fff;padding:12px 22px;border-radius:10px;font-weight:600;font-size:14px}
+header{padding:48px 64px 0}
+h1{font-size:54px;font-weight:800;letter-spacing:-1.5px;line-height:1.05}
+h1 span{color:#0f766e}
+.search{margin-top:28px;background:#fff;border-radius:16px;box-shadow:0 10px 30px rgba(13,27,42,.08);display:grid;grid-template-columns:1.4fr 1fr 1fr 1fr auto;align-items:center;padding:10px}
+.sf{padding:12px 20px;border-right:1px solid #eef1f4}
+.sf small{display:block;font-size:12px;color:#8695a4;font-weight:600}
+.sf b{font-size:15px;font-weight:600}
+.search .btn{padding:18px 30px;border-radius:12px}
+.chips{display:flex;gap:10px;margin-top:20px}
+.chip{background:#fff;border:1px solid #e1e7ed;padding:8px 14px;border-radius:999px;font-size:13px;font-weight:500}
+.chip.on{background:#0d1b2a;color:#fff;border-color:#0d1b2a}
+.grid{display:grid;grid-template-columns:2fr 1fr;gap:28px;padding:28px 64px}
+.list{display:grid;grid-template-columns:1fr 1fr;gap:22px}
+.card{background:#fff;border-radius:16px;overflow:hidden;border:1px solid #e6ebf0}
+.ph{height:210px;position:relative}
+.h1{background:linear-gradient(180deg,#9ec9e8 0 55%,#e8dccb 55%),#ccc}
+.h2{background:linear-gradient(180deg,#f3c7a5 0 50%,#d9e2d0 50%)}
+.h3{background:linear-gradient(180deg,#b9d7cf 0 60%,#efe7d9 60%)}
+.h4{background:linear-gradient(180deg,#c9c3e6 0 52%,#ece4d6 52%)}
+.ph::after{content:"";position:absolute;left:28%;bottom:18%;width:44%;height:52%;background:#fff;clip-path:polygon(50% 0,100% 35%,100% 100%,0 100%,0 35%);box-shadow:0 0 0 1px #000}
+.tag{position:absolute;top:12px;left:12px;background:#fff;padding:5px 10px;border-radius:6px;font-size:12px;font-weight:700;z-index:1}
+.fav{position:absolute;top:12px;right:12px;width:32px;height:32px;border-radius:50%;background:#fff;display:grid;place-items:center;color:#e11d48;z-index:1;font-size:16px}
+.ci{padding:16px 18px}
+.price{font-size:22px;font-weight:800}
+.addr{color:#51606f;font-size:14px;margin:4px 0 12px}
+.feat{display:flex;gap:16px;font-size:13px;color:#51606f;font-weight:500}
+.map{border-radius:16px;position:relative;overflow:hidden;background:
+ linear-gradient(90deg,transparent 48%,#fff 48% 52%,transparent 52%),
+ linear-gradient(0deg,transparent 30%,#fff 30% 33%,transparent 33%),
+ linear-gradient(30deg,transparent 62%,#fff 62% 64%,transparent 64%),
+ radial-gradient(circle at 75% 80%,#bfe3d2 0 14%,transparent 15%),
+ #e4ecef}
+.pin{position:absolute;background:#0d1b2a;color:#fff;font-size:12px;font-weight:700;padding:6px 10px;border-radius:8px}
+.pin.g{background:#0f766e}
+.agent{position:absolute;left:16px;right:16px;bottom:16px;background:#fff;border-radius:12px;padding:14px;display:flex;align-items:center;gap:12px;font-size:13px}
+.agent i{width:40px;height:40px;border-radius:50%;background:linear-gradient(135deg,#0f766e,#5eead4)}
+</style>
+</head>
+<body>
+<nav>
+ <div class="logo"><i></i>Morada</div>
+ <div class="links"><span>Comprar</span><span>Arrendar</span><span>Vender</span><span>Agentes</span><span>Favoritos</span></div>
+ <span class="btn">Área do agente</span>
+</nav>
+<header>
+ <h1>Encontre a casa onde<br>vai <span>querer ficar.</span></h1>
+ <div class="search">
+  <div class="sf"><small>Localização</small><b>Porto, Matosinhos</b></div>
+  <div class="sf"><small>Tipo</small><b>Apartamento</b></div>
+  <div class="sf"><small>Tipologia</small><b>T2 – T3</b></div>
+  <div class="sf" style="border:0"><small>Preço máx.</small><b>350 000 €</b></div>
+  <span class="btn">Pesquisar</span>
+ </div>
+ <div class="chips"><span class="chip on">Comprar</span><span class="chip">Garagem</span><span class="chip">Varanda</span><span class="chip">Novo</span><span class="chip">Perto do metro</span></div>
+</header>
+<div class="grid">
+ <div class="list">
+  <div class="card"><div class="ph h1"><span class="tag">NOVO</span><span class="fav">♥</span></div><div class="ci"><div class="price">295 000 €</div><div class="addr">T2 · Rua de Brito Capelo, Matosinhos</div><div class="feat"><span>2 quartos</span><span>2 WC</span><span>98 m²</span></div></div></div>
+  <div class="card"><div class="ph h2"><span class="tag">EXCLUSIVO</span><span class="fav">♡</span></div><div class="ci"><div class="price">340 000 €</div><div class="addr">T3 · Boavista, Porto</div><div class="feat"><span>3 quartos</span><span>2 WC</span><span>124 m²</span></div></div></div>
+ </div>
+ <div class="map">
+  <span class="pin" style="left:22%;top:18%">295k</span>
+  <span class="pin g" style="left:58%;top:30%">340k</span>
+  <span class="pin" style="left:36%;top:50%">310k</span>
+  <div class="agent"><i></i><div><b>Ana Ribeiro</b><br><span style="color:#51606f">Agente · responde em 1h</span></div></div>
+ </div>
+</div>
+</body>
+</html>

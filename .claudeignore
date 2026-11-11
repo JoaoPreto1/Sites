@@ -1,0 +1,35 @@
+# Dependências e builds
+node_modules/
+**/node_modules/
+dist/
+build/
+coverage/
+.cache/
+
+# Segredos
+.env
+.env.*
+!.env.example
+*.pem
+*.key
+
+# Dados locais e logs
+data/*.json
+*.log
+
+# Ficheiros pesados / binários
+*.png
+*.jpg
+*.jpeg
+*.webp
+*.gif
+*.mp4
+*.zip
+package-lock.json
+
+# Sistema / editor
+.git/
+.DS_Store
+Thumbs.db
+.vscode/
+.idea/

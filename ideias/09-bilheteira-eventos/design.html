@@ -1,0 +1,108 @@
+<!doctype html>
+<html lang="pt">
+<head>
+<meta charset="utf-8">
+<title>Palco</title>
+<link href="https://fonts.googleapis.com/css2?family=Unbounded:wght@400;600;800&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+:root{--bg:#08070d;--card:#13111c;--line:#25212f;--pink:#ff3d8b;--violet:#7c5cff;--mute:#8d88a3}
+body{width:1440px;background:var(--bg);color:#fff;font-family:Inter,sans-serif}
+.un{font-family:Unbounded,sans-serif}
+nav{display:flex;align-items:center;gap:40px;padding:24px 56px}
+.logo{font-family:Unbounded;font-weight:800;font-size:26px;background:linear-gradient(90deg,var(--pink),var(--violet));-webkit-background-clip:text;color:transparent}
+.search{flex:1;background:var(--card);border:1px solid var(--line);border-radius:14px;padding:13px 18px;color:var(--mute);font-size:14px}
+.links{display:flex;gap:28px;font-size:14px;color:var(--mute)}
+.btn{background:linear-gradient(90deg,var(--pink),var(--violet));padding:13px 22px;border-radius:12px;font-weight:600;font-size:14px}
+.top{display:grid;grid-template-columns:1fr 400px;gap:24px;padding:10px 56px}
+.feat{position:relative;height:560px;border-radius:28px;overflow:hidden}
+.feat img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
+.feat::after{content:"";position:absolute;inset:0;background:linear-gradient(90deg,rgba(8,7,13,.92) 10%,rgba(8,7,13,.2) 70%)}
+.fc{position:absolute;z-index:1;left:48px;bottom:48px;max-width:620px}
+.pill{display:inline-block;border:1px solid rgba(255,255,255,.3);padding:7px 14px;border-radius:999px;font-size:12px;letter-spacing:1px;text-transform:uppercase}
+.fc h1{font-family:Unbounded;font-weight:800;font-size:72px;line-height:.95;margin:18px 0;letter-spacing:-2px}
+.fc p{color:#cfcae0;font-size:17px}
+.cd{display:flex;gap:10px;margin:26px 0}
+.cd div{background:rgba(255,255,255,.08);backdrop-filter:blur(10px);border:1px solid rgba(255,255,255,.12);border-radius:14px;padding:12px 16px;text-align:center;min-width:76px}
+.cd b{font-family:Unbounded;font-size:26px;display:block}
+.cd small{font-size:11px;color:var(--mute);text-transform:uppercase}
+.buy{background:var(--card);border:1px solid var(--line);border-radius:28px;padding:28px}
+.buy h3{font-family:Unbounded;font-size:20px;font-weight:600}
+.buy .sub{color:var(--mute);font-size:13px;margin:6px 0 20px}
+.tk{border:1px solid var(--line);border-radius:16px;padding:16px;margin-bottom:10px;display:flex;justify-content:space-between;align-items:center}
+.tk.on{border-color:var(--pink);background:rgba(255,61,139,.08)}
+.tk b{font-size:15px}
+.tk small{display:block;color:var(--mute);font-size:12px;margin-top:3px}
+.q{display:flex;align-items:center;gap:12px;font-weight:600}
+.q span{width:30px;height:30px;border-radius:9px;background:#221e2e;display:grid;place-items:center}
+.tot{display:flex;justify-content:space-between;margin:20px 0 16px;font-size:15px}
+.tot b{font-family:Unbounded;font-size:22px}
+.buy .btn{display:block;text-align:center;padding:16px}
+.sec{padding:50px 56px 20px}
+.sh{display:flex;justify-content:space-between;align-items:center;margin-bottom:24px}
+.sh h2{font-family:Unbounded;font-size:32px;font-weight:600}
+.cats{display:flex;gap:8px}
+.cats span{padding:9px 16px;border-radius:999px;background:var(--card);border:1px solid var(--line);font-size:13px}
+.cats span.on{background:#fff;color:#000}
+.grid{display:grid;grid-template-columns:repeat(4,1fr);gap:20px}
+.e .im{height:250px;border-radius:20px;overflow:hidden;position:relative}
+.e img{width:100%;height:100%;object-fit:cover}
+.date{position:absolute;top:12px;left:12px;background:#fff;color:#000;border-radius:12px;padding:6px 10px;text-align:center;line-height:1.1}
+.date b{font-family:Unbounded;font-size:20px;display:block}
+.date small{font-size:11px;font-weight:600}
+.e h4{font-size:18px;margin-top:14px;font-weight:600}
+.e p{color:var(--mute);font-size:13px;margin-top:4px}
+.e .pr{margin-top:10px;font-size:14px}
+.e .pr b{color:var(--pink)}
+.mine{margin:30px 56px 60px;display:grid;grid-template-columns:1fr 1fr;gap:20px}
+.ticket{display:grid;grid-template-columns:1fr 150px;background:linear-gradient(135deg,#1c1530,#2a1230);border-radius:24px;overflow:hidden}
+.ticket .l{padding:26px;border-right:2px dashed rgba(255,255,255,.2)}
+.ticket small{color:var(--mute);font-size:11px;text-transform:uppercase;letter-spacing:1px}
+.ticket h4{font-family:Unbounded;font-size:22px;margin:6px 0 16px}
+.ticket .row{display:flex;gap:28px;font-size:14px}
+.ticket .row span b{display:block;font-size:11px;color:var(--mute);font-weight:500}
+.qr{margin:22px;background:#fff;border-radius:10px;background-image:repeating-linear-gradient(90deg,#000 0 6px,transparent 6px 10px,#000 10px 13px,transparent 13px 20px),repeating-linear-gradient(0deg,#fff 0 5px,transparent 5px 9px);background-color:#fff;border:8px solid #fff}
+</style>
+</head>
+<body>
+<nav>
+ <div class="logo">palco</div>
+ <div class="search">Pesquisar artistas, eventos, salas…</div>
+ <div class="links"><span>Concertos</span><span>Festivais</span><span>Teatro</span><span>Stand-up</span></div>
+ <span class="btn">Os meus bilhetes</span>
+</nav>
+<section class="top">
+ <div class="feat">
+  <img src="https://images.unsplash.com/photo-1514525253161-7a46d19cd819?w=1800&fit=crop">
+  <div class="fc">
+   <span class="pill">Destaque · Esgota em breve</span>
+   <h1>Festival Atlântico 2027</h1>
+   <p>3 dias · 40 artistas · Passeio Marítimo de Algés</p>
+   <div class="cd"><div><b>214</b><small>dias</small></div><div><b>08</b><small>horas</small></div><div><b>37</b><small>min</small></div></div>
+  </div>
+ </div>
+ <aside class="buy">
+  <h3>Escolher bilhete</h3>
+  <p class="sub">9–11 Jul 2027 · Lisboa</p>
+  <div class="tk"><div><b>Diário</b><small>Escolhe o dia</small></div><span>59 €</span></div>
+  <div class="tk on"><div><b>Passe 3 dias</b><small>Acesso a todos os palcos</small></div><div class="q"><span>−</span>2<span>+</span></div></div>
+  <div class="tk"><div><b>VIP 3 dias</b><small>Zona VIP + bar aberto</small></div><span>249 €</span></div>
+  <div class="tot"><span>Total (2 bilhetes)</span><b>258 €</b></div>
+  <span class="btn">Comprar agora</span>
+ </aside>
+</section>
+<section class="sec">
+ <div class="sh"><h2>Esta semana</h2><div class="cats"><span class="on">Tudo</span><span>Lisboa</span><span>Porto</span><span>Coimbra</span><span>Faro</span></div></div>
+ <div class="grid">
+  <div class="e"><div class="im"><img src="https://images.unsplash.com/photo-1758550445758-165aeab5b26e?w=700&h=560&fit=crop"><div class="date"><b>14</b><small>NOV</small></div></div><h4>Neon Waves Tour</h4><p>MEO Arena · Lisboa</p><div class="pr">desde <b>32 €</b></div></div>
+  <div class="e"><div class="im"><img src="https://images.unsplash.com/photo-1470229722913-7c0e2dbbafd3?w=700&h=560&fit=crop"><div class="date"><b>15</b><small>NOV</small></div></div><h4>Lua Cheia ao Vivo</h4><p>Coliseu · Porto</p><div class="pr">desde <b>25 €</b></div></div>
+  <div class="e"><div class="im"><img src="https://images.unsplash.com/photo-1429962714451-bb934ecdc4ec?w=700&h=560&fit=crop"><div class="date"><b>16</b><small>NOV</small></div></div><h4>Indie Night Sessions</h4><p>Musicbox · Lisboa</p><div class="pr">desde <b>15 €</b></div></div>
+  <div class="e"><div class="im"><img src="https://images.unsplash.com/photo-1506157786151-b8491531f063?w=700&h=560&fit=crop"><div class="date"><b>18</b><small>NOV</small></div></div><h4>Techno Underground</h4><p>Lux Frágil · Lisboa</p><div class="pr">desde <b>20 €</b></div></div>
+ </div>
+</section>
+<section class="mine">
+ <div class="ticket"><div class="l"><small>O teu próximo evento</small><h4>Neon Waves Tour</h4><div class="row"><span><b>DATA</b>14 Nov · 21:00</span><span><b>PORTA</b>B</span><span><b>LUGAR</b>Plateia 112</span></div></div><div class="qr"></div></div>
+ <div class="ticket" style="background:linear-gradient(135deg,#13221f,#152a30)"><div class="l"><small>Revenda segura</small><h4>Tens um bilhete a mais?</h4><div class="row"><span><b>PREÇO MÁX.</b>Valor original</span><span><b>TRANSFERÊNCIA</b>Instantânea</span></div></div><div class="qr" style="opacity:.25"></div></div>
+</section>
+</body>
+</html>

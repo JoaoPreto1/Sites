@@ -1,0 +1,101 @@
+<!doctype html>
+<html lang="pt">
+<head>
+<meta charset="utf-8">
+<title>Fornada</title>
+<link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Inter+Tight:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+:root{--dark:#1a120c;--crust:#c98a4b;--cream:#f3e9dc;--mute:#a8988a}
+body{width:1440px;background:var(--dark);color:var(--cream);font-family:'Inter Tight',sans-serif}
+.serif{font-family:'Instrument Serif',serif;font-weight:400}
+.hero{display:grid;grid-template-columns:640px 1fr;height:820px}
+.hero .ph{position:relative}
+.hero .ph img{width:100%;height:100%;object-fit:cover}
+.stamp{position:absolute;right:-70px;bottom:80px;width:140px;height:140px;border-radius:50%;background:var(--crust);color:var(--dark);display:grid;place-items:center;text-align:center;font-family:'Instrument Serif';font-size:22px;line-height:1;transform:rotate(-12deg)}
+.side{padding:30px 64px 0 120px;display:flex;flex-direction:column}
+nav{display:flex;justify-content:space-between;align-items:center;font-size:15px}
+.logo{font-family:'Instrument Serif';font-size:38px}
+.nl{display:flex;gap:30px;color:var(--mute)}
+.bag{border:1px solid #4a3a2c;padding:11px 18px;border-radius:999px}
+.side h1{font-family:'Instrument Serif';font-weight:400;font-size:112px;line-height:.92;margin-top:120px;letter-spacing:-2px}
+.side h1 i{color:var(--crust)}
+.side p{color:var(--mute);font-size:19px;line-height:1.6;max-width:460px;margin:28px 0 36px}
+.cta{display:flex;gap:14px;align-items:center}
+.btn{background:var(--crust);color:var(--dark);padding:16px 28px;border-radius:999px;font-weight:600}
+.link{border-bottom:1px solid var(--cream);padding-bottom:3px}
+.hours{margin-top:auto;margin-bottom:40px;display:flex;gap:46px;font-size:14px;color:var(--mute)}
+.hours b{display:block;color:var(--cream);font-weight:500;font-size:16px;margin-top:4px}
+.order{display:grid;grid-template-columns:1fr 380px;gap:40px;padding:80px 64px}
+.oh{display:flex;justify-content:space-between;align-items:end;margin-bottom:30px}
+.oh h2{font-family:'Instrument Serif';font-weight:400;font-size:62px;line-height:1}
+.oh h2 i{color:var(--crust)}
+.tabs{display:flex;gap:8px;font-size:14px}
+.tabs span{padding:9px 16px;border-radius:999px;border:1px solid #3d2f24}
+.tabs span.on{background:var(--cream);color:var(--dark)}
+.prods{display:grid;grid-template-columns:repeat(3,1fr);gap:22px}
+.p .im{height:260px;border-radius:20px;overflow:hidden}
+.p img{width:100%;height:100%;object-fit:cover}
+.p .r{display:flex;justify-content:space-between;align-items:center;margin-top:14px}
+.p h3{font-family:'Instrument Serif';font-weight:400;font-size:28px}
+.p small{color:var(--mute);font-size:13px}
+.st{display:flex;align-items:center;gap:10px;border:1px solid #3d2f24;border-radius:999px;padding:5px}
+.st span{width:28px;height:28px;border-radius:50%;background:#2a1e15;display:grid;place-items:center}
+.st span.a{background:var(--crust);color:var(--dark)}
+.cart{background:var(--cream);color:var(--dark);border-radius:28px;padding:30px;align-self:start}
+.cart h3{font-family:'Instrument Serif';font-weight:400;font-size:34px}
+.cart .s{color:#7a6a5c;font-size:14px;margin-bottom:18px}
+.li{display:flex;justify-content:space-between;padding:12px 0;border-bottom:1px solid #dccdbb;font-size:15px}
+.lbl{font-size:12px;letter-spacing:1.5px;text-transform:uppercase;color:#7a6a5c;margin:20px 0 10px}
+.slots{display:grid;grid-template-columns:repeat(3,1fr);gap:8px}
+.slots span{text-align:center;padding:10px 0;border:1px solid #d3c2ad;border-radius:12px;font-size:14px}
+.slots span.on{background:var(--dark);color:var(--cream);border-color:var(--dark)}
+.tt{display:flex;justify-content:space-between;margin:22px 0 16px;font-size:18px;font-weight:600}
+.cart .btn{display:block;text-align:center;background:var(--dark);color:var(--cream)}
+.sub{margin:0 64px 70px;border:1px solid #3d2f24;border-radius:28px;display:grid;grid-template-columns:1fr 1fr 1fr 1fr;overflow:hidden}
+.sub>div{padding:28px;border-right:1px solid #3d2f24}
+.sub>div:last-child{border:0;background:var(--crust);color:var(--dark)}
+.sub h4{font-family:'Instrument Serif';font-weight:400;font-size:30px}
+.sub p{color:var(--mute);font-size:14px;margin-top:6px}
+.sub>div:last-child p{color:#4a3424}
+</style>
+</head>
+<body>
+<section class="hero">
+ <div class="ph"><img src="https://images.unsplash.com/photo-1549413468-cd78edb7e75c?w=1300&h=1640&fit=crop"><div class="stamp">desde<br>1987</div></div>
+ <div class="side">
+  <nav><span class="logo">Fornada</span><div class="nl"><span>Pão</span><span>Pastelaria</span><span>Café</span><span>Cabazes</span></div><span class="bag">Saco · 4</span></nav>
+  <h1>Pão lento,<br><i>feito de madrugada.</i></h1>
+  <p>Massa-mãe com 48 horas de fermentação, café de especialidade e pastelaria do dia. Encomende hoje e levante amanhã quentinho.</p>
+  <div class="cta"><span class="btn">Encomendar para amanhã</span><span class="link">Ver cabazes semanais</span></div>
+  <div class="hours"><span>Seg — Sex<b>07:00 – 19:00</b></span><span>Sáb — Dom<b>07:30 – 14:00</b></span><span>Morada<b>R. das Flores 21, Porto</b></span></div>
+ </div>
+</section>
+<section class="order">
+ <div>
+  <div class="oh"><h2>Saído do <i>forno</i></h2><div class="tabs"><span class="on">Pão</span><span>Doces</span><span>Café</span></div></div>
+  <div class="prods">
+   <div class="p"><div class="im"><img src="https://images.unsplash.com/photo-1509440159596-0249088772ff?w=700&h=560&fit=crop"></div><div class="r"><div><h3>Massa-mãe rústica</h3><small>800 g · 4,80 €</small></div><div class="st"><span>−</span>2<span class="a">+</span></div></div></div>
+   <div class="p"><div class="im"><img src="https://images.unsplash.com/photo-1608198093002-ad4e005484ec?w=700&h=560&fit=crop"></div><div class="r"><div><h3>Croissants</h3><small>Manteiga · 1,60 €</small></div><div class="st"><span>−</span>4<span class="a">+</span></div></div></div>
+   <div class="p"><div class="im"><img src="https://images.unsplash.com/photo-1760175445000-0e01e193d1cd?w=700&h=560&fit=crop"></div><div class="r"><div><h3>Flat white</h3><small>Etiópia · 3,20 €</small></div><div class="st"><span>−</span>0<span class="a">+</span></div></div></div>
+  </div>
+ </div>
+ <aside class="cart">
+  <h3>A sua encomenda</h3>
+  <p class="s">Levantamento amanhã, sexta</p>
+  <div class="li"><span>2× Massa-mãe rústica</span><span>9,60 €</span></div>
+  <div class="li"><span>4× Croissants</span><span>6,40 €</span></div>
+  <div class="lbl">Hora de levantamento</div>
+  <div class="slots"><span>07:30</span><span class="on">08:00</span><span>08:30</span><span>09:00</span><span>12:00</span><span>17:00</span></div>
+  <div class="tt"><span>Total</span><span>16,00 €</span></div>
+  <span class="btn">Confirmar encomenda</span>
+ </aside>
+</section>
+<section class="sub">
+ <div><h4>Cabaz Pequeno</h4><p>2 pães por semana · 8 €</p></div>
+ <div><h4>Cabaz Família</h4><p>4 pães + 6 doces · 22 €</p></div>
+ <div><h4>Café em casa</h4><p>250 g de grão por mês · 12 €</p></div>
+ <div><h4>Subscrever →</h4><p>Pausa ou cancela quando quiseres na tua conta.</p></div>
+</section>
+</body>
+</html>

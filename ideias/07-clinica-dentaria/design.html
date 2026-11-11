@@ -1,0 +1,108 @@
+<!doctype html>
+<html lang="pt">
+<head>
+<meta charset="utf-8">
+<title>Lumen Dental</title>
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,400;12..96,600;12..96,700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+:root{--ink:#0b2a2f;--mint:#d9f2ec;--teal:#0e8f7e;--soft:#f3f8f7;--mute:#5d7376}
+body{width:1440px;background:#fff;color:var(--ink);font-family:Inter,sans-serif}
+h1,h2,h3,.logo{font-family:'Bricolage Grotesque',sans-serif}
+nav{display:flex;align-items:center;justify-content:space-between;padding:26px 64px}
+.logo{font-size:26px;font-weight:700;display:flex;align-items:center;gap:10px}
+.logo i{width:34px;height:34px;border-radius:12px;background:var(--teal);position:relative}
+.logo i::after{content:"";position:absolute;inset:9px;border-radius:50%;border:3px solid #fff;border-top-color:transparent}
+.links{display:flex;gap:36px;font-size:15px;color:var(--mute);font-weight:500}
+.nr{display:flex;gap:14px;align-items:center;font-size:14px;font-weight:600}
+.btn{background:var(--ink);color:#fff;padding:14px 24px;border-radius:999px;font-weight:600;font-size:15px}
+.btn.t{background:var(--teal)}
+.hero{display:grid;grid-template-columns:1fr 1fr;gap:48px;padding:30px 64px 70px;align-items:center}
+.badge{display:inline-flex;gap:8px;align-items:center;background:var(--mint);color:var(--teal);font-weight:600;font-size:13px;padding:8px 14px;border-radius:999px}
+.badge b{width:8px;height:8px;border-radius:50%;background:var(--teal)}
+h1{font-size:86px;line-height:.98;letter-spacing:-3px;font-weight:600;margin:24px 0}
+h1 span{color:var(--teal)}
+.lead{font-size:19px;line-height:1.6;color:var(--mute);max-width:520px}
+.chips{display:flex;gap:10px;margin:30px 0}
+.chip{border:1px solid #d7e5e3;padding:10px 16px;border-radius:999px;font-size:14px;font-weight:500}
+.cta{display:flex;gap:22px;align-items:center}
+.rev{display:flex;align-items:center;gap:12px;font-size:14px;color:var(--mute)}
+.av{display:flex}
+.av img{width:40px;height:40px;border-radius:50%;object-fit:cover;border:3px solid #fff;margin-left:-10px}
+.av img:first-child{margin:0}
+.ph{position:relative;height:640px}
+.ph .main{width:100%;height:100%;object-fit:cover;border-radius:40px}
+.float{position:absolute;background:#fff;border-radius:22px;box-shadow:0 24px 60px rgba(11,42,47,.18);padding:18px 20px}
+.f1{left:-40px;bottom:70px;width:290px}
+.f1 small{color:var(--mute);font-size:12px;font-weight:600;text-transform:uppercase;letter-spacing:1px}
+.f1 b{display:block;font-family:'Bricolage Grotesque';font-size:24px;margin:4px 0 12px}
+.slots{display:flex;gap:8px}
+.slots span{flex:1;text-align:center;padding:8px 0;border-radius:10px;background:var(--soft);font-size:13px;font-weight:600}
+.slots span.on{background:var(--teal);color:#fff}
+.f2{right:24px;top:28px;display:flex;align-items:center;gap:12px}
+.f2 b{font-family:'Bricolage Grotesque';font-size:30px}
+.f2 small{font-size:12px;color:var(--mute);line-height:1.3}
+.sec{background:var(--soft);padding:80px 64px;border-radius:48px 48px 0 0}
+.sh{display:flex;justify-content:space-between;align-items:end;margin-bottom:36px}
+.sh h2{font-size:56px;letter-spacing:-2px;font-weight:600;line-height:1}
+.sh p{max-width:380px;color:var(--mute);line-height:1.6}
+.bento{display:grid;grid-template-columns:1.25fr 1fr 1fr;grid-template-rows:280px 280px;gap:20px}
+.b{background:#fff;border-radius:30px;padding:28px;position:relative;overflow:hidden}
+.b h3{font-size:26px;font-weight:600;letter-spacing:-.5px}
+.b p{color:var(--mute);font-size:14px;margin-top:8px;line-height:1.55}
+.big{grid-row:span 2;padding:0;color:#fff}
+.big img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
+.big::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,transparent 40%,rgba(11,42,47,.85))}
+.big div{position:absolute;left:30px;right:30px;bottom:30px;z-index:1}
+.big h3{font-size:38px}
+.big p{color:#d6e7e4;font-size:15px}
+.big .btn{display:inline-block;margin-top:18px;background:#fff;color:var(--ink)}
+.price{position:absolute;right:28px;bottom:26px;font-family:'Bricolage Grotesque';font-size:30px;font-weight:600}
+.price small{font-size:14px;color:var(--mute);font-weight:400}
+.ico{width:52px;height:52px;border-radius:16px;background:var(--mint);margin-bottom:22px;display:grid;place-items:center;color:var(--teal);font-weight:700;font-size:20px;font-family:'Bricolage Grotesque'}
+.dark{background:var(--ink);color:#fff}
+.dark p{color:#9fb9b6}
+.mini{margin-top:18px;display:grid;gap:10px}
+.mini div{display:flex;justify-content:space-between;align-items:center;background:rgba(255,255,255,.07);padding:12px 14px;border-radius:14px;font-size:14px}
+.mini em{font-style:normal;font-size:12px;background:var(--teal);padding:4px 10px;border-radius:999px}
+.mini em.g{background:rgba(255,255,255,.15)}
+.clin{padding:0}
+.clin img{width:100%;height:100%;object-fit:cover}
+.clin span{position:absolute;left:18px;bottom:18px;background:#fff;padding:10px 14px;border-radius:14px;font-size:13px;font-weight:600}
+</style>
+</head>
+<body>
+<nav>
+ <div class="logo"><i></i>Lumen Dental</div>
+ <div class="links"><span>Tratamentos</span><span>Equipa</span><span>Preços</span><span>Acordos</span><span>Contactos</span></div>
+ <div class="nr"><span>253 000 000</span><span class="btn">Área do paciente</span></div>
+</nav>
+<section class="hero">
+ <div>
+  <span class="badge"><b></b>Vagas disponíveis esta semana</span>
+  <h1>Sorrisos saudáveis, <span>sem stress.</span></h1>
+  <p class="lead">Medicina dentária moderna, com marcação online, lembretes automáticos e o seu plano de tratamento sempre à mão.</p>
+  <div class="chips"><span class="chip">Implantes</span><span class="chip">Alinhadores invisíveis</span><span class="chip">Branqueamento</span><span class="chip">Higiene oral</span></div>
+  <div class="cta">
+   <span class="btn t">Marcar consulta</span>
+   <div class="rev"><div class="av"><img src="https://images.unsplash.com/photo-1662850886700-4ec19bd30d11?w=120&h=120&fit=crop"><img src="https://images.unsplash.com/photo-1607569708758-0270aa4651bd?w=120&h=120&fit=crop"><img src="https://images.unsplash.com/photo-1630939687530-241d630735df?w=120&h=120&fit=crop"></div><span><b style="color:var(--ink)">+3.400</b> pacientes felizes</span></div>
+  </div>
+ </div>
+ <div class="ph">
+  <img class="main" src="https://images.unsplash.com/photo-1611695434369-a8f5d76ceb7b?w=1200&h=1300&fit=crop&crop=faces">
+  <div class="float f2"><b>4.9</b><small>★★★★★<br>1.200 avaliações</small></div>
+  <div class="float f1"><small>Próxima vaga</small><b>Hoje, quinta</b><div class="slots"><span>14:00</span><span class="on">16:30</span><span>18:00</span></div></div>
+ </div>
+</section>
+<section class="sec">
+ <div class="sh"><h2>Tudo o que o seu<br>sorriso precisa.</h2><p>Tratamentos com preços transparentes e acompanhamento online em cada etapa.</p></div>
+ <div class="bento">
+  <div class="b big"><img src="https://images.unsplash.com/photo-1777331903190-341a3dd0441b?w=1000&h=1200&fit=crop"><div><h3>Primeira consulta gratuita</h3><p>Avaliação completa, raio-X e plano de tratamento personalizado.</p><span class="btn">Reservar agora</span></div></div>
+  <div class="b"><div class="ico">01</div><h3>Alinhadores invisíveis</h3><p>Corrija o sorriso sem aparelho fixo.</p><div class="price">1.900 € <small>/ total</small></div></div>
+  <div class="b dark"><h3>Área do paciente</h3><p>Consultas, faturas e plano de tratamento.</p><div class="mini"><div>Destartarização · 22 Nov<em>Confirmada</em></div><div>Fatura #2291 · 45 €<em class="g">Paga</em></div></div></div>
+  <div class="b"><div class="ico">02</div><h3>Branqueamento</h3><p>Resultados visíveis numa sessão.</p><div class="price">190 € <small>/ sessão</small></div></div>
+  <div class="b clin"><img src="https://images.unsplash.com/photo-1598256989800-fe5f95da9787?w=800&h=600&fit=crop"><span>📍 Clínica de Braga · Seg–Sáb</span></div>
+ </div>
+</section>
+</body>
+</html>

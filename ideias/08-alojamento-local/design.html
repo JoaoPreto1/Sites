@@ -1,0 +1,91 @@
+<!doctype html>
+<html lang="pt">
+<head>
+<meta charset="utf-8">
+<title>Maré</title>
+<link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+:root{--sand:#f5efe6;--ink:#14231f;--sea:#1d5c63;--mute:#6f7a74}
+body{width:1440px;background:var(--sand);color:var(--ink);font-family:Inter,sans-serif}
+.serif{font-family:'Instrument Serif',serif;font-weight:400}
+.hero{position:relative;height:860px;color:#fff}
+.hero>img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
+.hero::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,rgba(0,0,0,.35),transparent 30%,transparent 55%,rgba(0,0,0,.55))}
+nav{position:relative;z-index:2;display:flex;justify-content:space-between;align-items:center;padding:30px 64px}
+.logo{font-family:'Instrument Serif';font-size:40px}
+.links{display:flex;gap:38px;font-size:15px}
+.ghost{border:1px solid rgba(255,255,255,.6);padding:12px 22px;border-radius:999px;font-size:14px;backdrop-filter:blur(6px)}
+.ht{position:relative;z-index:2;padding:120px 64px 0}
+.ht small{letter-spacing:4px;text-transform:uppercase;font-size:13px}
+.ht h1{font-family:'Instrument Serif';font-weight:400;font-size:132px;line-height:.92;margin-top:18px;letter-spacing:-2px}
+.ht h1 i{font-style:italic}
+.book{position:absolute;z-index:2;left:64px;right:64px;bottom:48px;display:grid;grid-template-columns:repeat(4,1fr) auto;background:rgba(255,255,255,.16);backdrop-filter:blur(18px);border:1px solid rgba(255,255,255,.3);border-radius:24px;padding:10px}
+.bf{padding:14px 22px;border-right:1px solid rgba(255,255,255,.25)}
+.bf small{display:block;font-size:12px;opacity:.8;margin-bottom:4px}
+.bf b{font-size:17px;font-weight:500}
+.go{background:#fff;color:var(--ink);border-radius:16px;padding:0 40px;display:grid;place-items:center;font-weight:600}
+.sec{padding:90px 64px 40px}
+.sh{display:flex;justify-content:space-between;align-items:end;margin-bottom:40px}
+.sh h2{font-family:'Instrument Serif';font-weight:400;font-size:68px;line-height:1}
+.sh h2 i{color:var(--sea)}
+.tabs{display:flex;gap:8px}
+.tabs span{padding:10px 18px;border-radius:999px;border:1px solid #d9cfbf;font-size:14px}
+.tabs span.on{background:var(--ink);color:#fff;border-color:var(--ink)}
+.cards{display:grid;grid-template-columns:repeat(3,1fr);gap:28px}
+.c .im{height:420px;border-radius:24px;overflow:hidden;position:relative}
+.c img{width:100%;height:100%;object-fit:cover}
+.c .tag{position:absolute;top:16px;left:16px;background:#fff;padding:6px 12px;border-radius:999px;font-size:12px;font-weight:600}
+.c .fav{position:absolute;top:14px;right:14px;width:36px;height:36px;border-radius:50%;background:rgba(255,255,255,.9);display:grid;place-items:center}
+.c .r{display:flex;justify-content:space-between;margin-top:18px}
+.c h3{font-family:'Instrument Serif';font-weight:400;font-size:32px}
+.c p{color:var(--mute);font-size:14px;margin-top:4px}
+.c .pr{text-align:right;font-size:14px;color:var(--mute)}
+.c .pr b{display:block;font-size:22px;color:var(--ink)}
+.exp{margin:60px 64px 80px;display:grid;grid-template-columns:1fr 1fr;background:var(--ink);color:#fff;border-radius:32px;overflow:hidden;height:420px}
+.exp img{width:100%;height:100%;object-fit:cover}
+.exp .t{padding:56px}
+.exp h2{font-family:'Instrument Serif';font-weight:400;font-size:56px;line-height:1}
+.exp p{color:#b9c4bf;margin:18px 0 28px;line-height:1.6;max-width:440px}
+.list{display:grid;gap:10px}
+.list div{display:flex;justify-content:space-between;border-top:1px solid rgba(255,255,255,.15);padding-top:12px;font-size:15px}
+</style>
+</head>
+<body>
+<section class="hero">
+ <img src="https://images.unsplash.com/photo-1560242374-cef61d4d5db6?w=2400&q=80&fit=crop">
+ <nav>
+  <div class="logo">Maré</div>
+  <div class="links"><span>Alojamentos</span><span>Experiências</span><span>A região</span><span>Contactos</span></div>
+  <span class="ghost">Entrar · Reservas</span>
+ </nav>
+ <div class="ht">
+  <small>Casas de férias · Lagos, Algarve</small>
+  <h1>Onde o Atlântico<br><i>encontra a calma.</i></h1>
+ </div>
+ <div class="book">
+  <div class="bf"><small>Check-in</small><b>12 Jun 2027</b></div>
+  <div class="bf"><small>Check-out</small><b>19 Jun 2027</b></div>
+  <div class="bf"><small>Hóspedes</small><b>2 adultos, 1 criança</b></div>
+  <div class="bf" style="border:0"><small>Alojamento</small><b>Qualquer</b></div>
+  <span class="go">Ver disponibilidade</span>
+ </div>
+</section>
+<section class="sec">
+ <div class="sh"><h2>Seis casas,<br><i>um só mar.</i></h2><div class="tabs"><span class="on">Todas</span><span>Vista mar</span><span>Com piscina</span><span>Famílias</span></div></div>
+ <div class="cards">
+  <div class="c"><div class="im"><img src="https://images.unsplash.com/photo-1557122764-dc9f8447fafb?w=900&h=1000&fit=crop"><span class="tag">Vista mar</span><span class="fav">♡</span></div><div class="r"><div><h3>Casa Farol</h3><p>2 quartos · 4 hóspedes · ★ 4.96</p></div><div class="pr"><b>145 €</b>/ noite</div></div></div>
+  <div class="c"><div class="im"><img src="https://images.unsplash.com/photo-1667125095636-dce94dcbdd96?w=900&h=1000&fit=crop"><span class="tag">Família</span><span class="fav">♡</span></div><div class="r"><div><h3>Casa Azulejo</h3><p>3 quartos · 6 hóspedes · ★ 4.91</p></div><div class="pr"><b>180 €</b>/ noite</div></div></div>
+  <div class="c"><div class="im"><img src="https://images.unsplash.com/photo-1790419683322-b08a7050c424?w=900&h=1000&fit=crop"><span class="tag">Novo</span><span class="fav">♡</span></div><div class="r"><div><h3>Estúdio Cal</h3><p>1 quarto · 2 hóspedes · ★ 5.0</p></div><div class="pr"><b>95 €</b>/ noite</div></div></div>
+ </div>
+</section>
+<section class="exp">
+ <img src="https://images.unsplash.com/photo-1608649944716-228404a0a8bb?w=1200&h=900&fit=crop">
+ <div class="t">
+  <h2>Experiências<br>para juntar à estadia.</h2>
+  <p>Adicione passeios à sua reserva e gira tudo na sua área pessoal: datas, pagamentos e check-in online.</p>
+  <div class="list"><div><span>Passeio de barco às grutas</span><span>35 €</span></div><div><span>Aula de surf · 2h</span><span>40 €</span></div><div><span>Prova de vinhos do Algarve</span><span>28 €</span></div></div>
+ </div>
+</section>
+</body>
+</html>

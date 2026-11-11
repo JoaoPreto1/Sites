@@ -1,0 +1,80 @@
+<!doctype html>
+<html lang="pt">
+<head>
+<meta charset="utf-8">
+<title>Navalha & Co.</title>
+<link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+body{width:1440px;height:950px;background:#0f0e0c;color:#efe8dc;font-family:Inter,sans-serif;overflow:hidden}
+nav{display:flex;justify-content:space-between;align-items:center;padding:28px 72px;border-bottom:1px solid #2a2620}
+.logo{font-family:'DM Serif Display',serif;font-size:28px;letter-spacing:.5px}
+.logo span{color:#c9a46a}
+.links{display:flex;gap:40px;font-size:14px;color:#a89f90}
+.btn{background:#c9a46a;color:#0f0e0c;padding:12px 22px;border-radius:2px;font-weight:600;font-size:14px}
+.ghost{border:1px solid #3a342b;padding:11px 20px;font-size:14px;border-radius:2px}
+main{display:grid;grid-template-columns:1.15fr .85fr;gap:56px;padding:72px}
+.eyebrow{color:#c9a46a;font-size:13px;letter-spacing:4px;text-transform:uppercase}
+h1{font-family:'DM Serif Display',serif;font-size:96px;line-height:.95;margin:22px 0 28px;font-weight:400}
+h1 em{color:#c9a46a}
+p.lead{color:#a89f90;font-size:18px;line-height:1.6;max-width:520px}
+.cta{display:flex;gap:16px;margin-top:40px}
+.photo{margin-top:54px;height:250px;border-radius:2px;background:
+ radial-gradient(circle at 30% 40%,#3d3326 0,transparent 55%),
+ radial-gradient(circle at 75% 70%,#2b241b 0,transparent 50%),
+ linear-gradient(120deg,#1c1915,#2a241c);position:relative;display:flex;align-items:flex-end;padding:24px;gap:40px}
+.photo .stat b{font-family:'DM Serif Display',serif;font-size:40px;color:#c9a46a;display:block;font-weight:400}
+.photo .stat{font-size:13px;color:#a89f90}
+.pole{position:absolute;right:40px;top:30px;width:34px;height:190px;border-radius:17px;background:repeating-linear-gradient(135deg,#c9a46a 0 14px,#efe8dc 14px 28px,#7a2e2e 28px 42px,#efe8dc 42px 56px);opacity:.85}
+.card{background:#17150f;border:1px solid #2a2620;padding:36px;border-radius:4px}
+.card h3{font-family:'DM Serif Display',serif;font-weight:400;font-size:30px;margin-bottom:6px}
+.card small{color:#a89f90}
+.label{font-size:12px;letter-spacing:2px;text-transform:uppercase;color:#7d7466;margin:26px 0 12px}
+.svc{display:flex;justify-content:space-between;padding:14px 16px;border:1px solid #2a2620;margin-bottom:8px;font-size:15px}
+.svc.on{border-color:#c9a46a;background:#211d16}
+.svc span{color:#c9a46a}
+.barbers{display:flex;gap:12px}
+.b{flex:1;text-align:center;padding:14px 0;border:1px solid #2a2620;font-size:13px}
+.b i{display:block;width:44px;height:44px;border-radius:50%;margin:0 auto 8px;background:linear-gradient(135deg,#5b4a33,#2b241b)}
+.b.on{border-color:#c9a46a}
+.slots{display:grid;grid-template-columns:repeat(4,1fr);gap:8px}
+.s{text-align:center;padding:10px 0;border:1px solid #2a2620;font-size:14px}
+.s.on{background:#c9a46a;color:#0f0e0c;font-weight:600;border-color:#c9a46a}
+.s.off{color:#4a443a;text-decoration:line-through}
+.confirm{margin-top:26px;display:block;text-align:center;background:#c9a46a;color:#0f0e0c;padding:16px;font-weight:600}
+</style>
+</head>
+<body>
+<nav>
+ <div class="logo">Navalha <span>&</span> Co.</div>
+ <div class="links"><span>Serviços</span><span>Barbeiros</span><span>Preços</span><span>Galeria</span><span>Contactos</span></div>
+ <div style="display:flex;gap:12px"><span class="ghost">Entrar</span><span class="btn">Marcar corte</span></div>
+</nav>
+<main>
+ <section>
+  <div class="eyebrow">Barbearia clássica · Lisboa</div>
+  <h1>O corte certo,<br><em>à hora certa.</em></h1>
+  <p class="lead">Marque online em menos de um minuto, escolha o seu barbeiro e receba lembrete antes da hora. Sem filas, sem chamadas.</p>
+  <div class="cta"><span class="btn">Marcar agora</span><span class="ghost">Ver serviços</span></div>
+  <div class="photo">
+   <div class="stat"><b>12</b>anos de casa</div>
+   <div class="stat"><b>4.9</b>avaliação média</div>
+   <div class="stat"><b>18k</b>cortes feitos</div>
+   <div class="pole"></div>
+  </div>
+ </section>
+ <aside class="card">
+  <h3>Nova marcação</h3>
+  <small>Passo 2 de 3 · Sexta, 14 Nov</small>
+  <div class="label">Serviço</div>
+  <div class="svc on">Corte + Barba <span>22 €</span></div>
+  <div class="svc">Corte clássico <span>14 €</span></div>
+  <div class="label">Barbeiro</div>
+  <div class="barbers"><div class="b on"><i></i>Rui</div><div class="b"><i></i>Tiago</div><div class="b"><i></i>Marco</div></div>
+  <div class="label">Horário</div>
+  <div class="slots"><div class="s">10:00</div><div class="s off">10:30</div><div class="s on">11:00</div><div class="s">11:30</div><div class="s off">14:00</div><div class="s">14:30</div><div class="s">15:00</div><div class="s">15:30</div></div>
+  <span class="confirm">Confirmar marcação</span>
+ </aside>
+</main>
+</body>
+</html>
