@@ -27,13 +27,19 @@ Cada site vive na sua própria pasta e já traz login com JWT, rotas, validaçã
       <p>✅ <strong>Pronto</strong></p>
     </td>
   </tr>
+  <tr>
+    <td width="50%"><a href="lente/"><img src="lente/docs/capa.jpg" alt="Lente Studio" width="100%"></a></td>
+    <td>
+      <h3><a href="lente/">Lente Studio</a></h3>
+      <p>Estúdio de fotografia e vídeo no Porto, com portefólio, pedidos de orçamento, galerias privadas para clientes com favoritas e download, e painel do estúdio.</p>
+      <p>✅ <strong>Pronto</strong></p>
+    </td>
+  </tr>
 </table>
 
 ### ⏳ Lista de espera
 
-| # | Site | Tipo |
-|---|---|---|
-| 1 | **Lente Studio** | Portefólio de fotografia com galerias privadas para clientes |
+Ainda nenhum — o próximo site entra aqui.
 
 ## 🧰 Base comum
 
