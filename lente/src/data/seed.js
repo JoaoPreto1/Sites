@@ -65,7 +65,7 @@ export const projects = [
     cover: photo('1603189343302-e603f7add05a'),
     gallery: [photo('1613915617430-8ab0fd7c6baf'), photo('1659522761084-79196b64abe4'), photo('1653040321630-698cfc09254e'), photo('1574015974293-817f0ebebb74')],
     team: ['Tomás Reis — fotografia', 'Marta Sá — retoque'],
-    featured: true,
+    featured: false,
     published: true,
   },
   {

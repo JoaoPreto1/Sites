@@ -1,0 +1,118 @@
+<!doctype html>
+<html lang="pt">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Lente Studio · Fotografia e vídeo no Porto</title>
+  <meta name="description" content="Estúdio de fotografia e vídeo no Porto para marcas de moda, música e editorial. Galerias privadas para clientes.">
+  <link rel="icon" href="/favicon.svg">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@62..125,400..900&family=JetBrains+Mono:wght@400;500&display=swap">
+  <link rel="stylesheet" href="/css/base.css">
+  <link rel="stylesheet" href="/css/layout.css">
+  <link rel="stylesheet" href="/css/components.css">
+  <link rel="stylesheet" href="/css/pages/home.css">
+  <script type="module" src="/js/layout.js"></script>
+  <script type="module" src="/js/pages/home.js"></script>
+</head>
+<body>
+  <header data-header></header>
+
+  <main>
+    <section class="hero">
+      <h1 class="hero__word" aria-label="Lente Studio">LENTE<sup>®</sup></h1>
+      <div class="hero__row">
+        <div><span class="mono">(01) Estúdio</span><p>Fotografia e vídeo para marcas de moda, música e editorial.</p></div>
+        <div><span class="mono">(02) Clientes</span><p>Galerias privadas com login para escolher e descarregar o material final.</p></div>
+        <div><span class="mono">(03) Disponível</span><p>A aceitar projetos para janeiro a março de 2027.</p></div>
+        <div><span class="mono">(04) Contacto</span><p><a class="link" href="mailto:ola@lente.studio">ola@lente.studio</a><br>+351 220 000 000</p></div>
+      </div>
+    </section>
+
+    <section class="featured wrap" data-featured>
+      <div class="skeleton featured__skeleton"></div>
+    </section>
+
+    <div class="marquee" aria-label="Clientes">
+      <div class="marquee__track">
+        <span>Atelier Nove</span><span>Revista Ápice</span><span>Casa Mar Hotel</span><span>Âmbar Lisboa</span><span>Os Lobos</span><span>Onda Norte</span><span>Companhia Norte</span><span>Oficina Terra</span>
+        <span>Atelier Nove</span><span>Revista Ápice</span><span>Casa Mar Hotel</span><span>Âmbar Lisboa</span><span>Os Lobos</span><span>Onda Norte</span><span>Companhia Norte</span><span>Oficina Terra</span>
+      </div>
+    </div>
+
+    <section class="section">
+      <div class="label-row mono"><span>Índice de projetos</span><a class="link" href="/trabalho">Ver tudo ↗</a></div>
+      <div class="index" data-index></div>
+      <img class="index__preview" data-preview alt="" hidden>
+    </section>
+
+    <section class="section section--line">
+      <div class="section-head">
+        <h2>O que <span class="red">fazemos.</span></h2>
+        <p>Do conceito à entrega final. Trabalhamos com equipas pequenas e dedicadas, de um dia de estúdio a campanhas de várias semanas.</p>
+      </div>
+      <div class="services" data-services></div>
+    </section>
+
+    <section class="numbers">
+      <div><strong>12</strong><span class="mono">Anos de estúdio</span></div>
+      <div><strong>140+</strong><span class="mono">Projetos entregues</span></div>
+      <div><strong>38</strong><span class="mono">Marcas e artistas</span></div>
+      <div><strong>220<small>m²</small></strong><span class="mono">De estúdio no Porto</span></div>
+    </section>
+
+    <section class="section studio-teaser">
+      <div class="studio-teaser__images">
+        <img src="https://images.unsplash.com/photo-1471341971476-ae15ff5dd4ea?w=1200&h=900&q=75&auto=format&fit=crop" alt="Estúdio com fundo branco e luzes" loading="lazy">
+        <img src="https://images.unsplash.com/photo-1536293283170-b4604bbe272f?w=700&h=900&q=75&auto=format&fit=crop" alt="Sessão de moda com fundo vermelho" loading="lazy">
+      </div>
+      <div class="studio-teaser__text">
+        <span class="mono red">(Estúdio)</span>
+        <h2>Um ciclorama branco no centro do Porto.</h2>
+        <p>220 m² com pé-direito de seis metros, ciclorama de 8 metros, luz natural e equipamento Profoto. Usamos para os nossos projetos e alugamos à hora a outros fotógrafos.</p>
+        <ul class="studio-teaser__list mono">
+          <li><span>Meio dia</span><span>160 €</span></li>
+          <li><span>Dia inteiro</span><span>280 €</span></li>
+          <li><span>Por hora</span><span>45 €</span></li>
+        </ul>
+        <a class="btn" href="/estudio">Conhecer o estúdio ↗</a>
+      </div>
+    </section>
+
+    <section class="quote-block">
+      <span class="mono">(Cliente)</span>
+      <blockquote>“Perceberam a coleção melhor do que nós. A campanha de verão vendeu o dobro da anterior e as fotografias ainda estão em todas as nossas lojas.”</blockquote>
+      <p class="mono">Sofia Almeida — Diretora criativa, Atelier Nove</p>
+    </section>
+
+    <section class="section section--ink client-area">
+      <div class="client-area__text">
+        <span class="mono red">(Área de cliente)</span>
+        <h2>As suas fotografias, num só sítio.</h2>
+        <p>Cada cliente recebe uma galeria privada protegida por login. Pode ver as imagens em alta, marcar favoritas para retoque e descarregar o material final quando estiver aprovado.</p>
+        <ul class="client-area__list">
+          <li data-icon="lock">Acesso privado com email e palavra-passe</li>
+          <li data-icon="heart">Favoritas para escolher o que vai a retoque</li>
+          <li data-icon="download">Download em alta resolução</li>
+          <li data-icon="clock">Disponível durante 60 dias</li>
+        </ul>
+        <a class="btn btn--light" href="/entrar">Entrar na área de cliente ↗</a>
+      </div>
+      <div class="client-area__mock" aria-hidden="true">
+        <div class="mock__bar mono"><span>Campanha SS27 — seleção final</span><span>10 fotos · 2 ♥</span></div>
+        <div class="mock__grid">
+          <img src="https://images.unsplash.com/photo-1562151270-c7d22ceb586a?w=400&h=500&q=70&auto=format&fit=crop" alt="" loading="lazy">
+          <img src="https://images.unsplash.com/photo-1718563072717-db22ef0c9434?w=400&h=500&q=70&auto=format&fit=crop" alt="" loading="lazy">
+          <img src="https://images.unsplash.com/photo-1572251328767-e59f06f13ba1?w=400&h=500&q=70&auto=format&fit=crop" alt="" loading="lazy">
+          <img src="https://images.unsplash.com/photo-1653152707179-125e4e184a0b?w=400&h=500&q=70&auto=format&fit=crop" alt="" loading="lazy">
+          <img src="https://images.unsplash.com/photo-1629511565591-a1d494ad6c58?w=400&h=500&q=70&auto=format&fit=crop" alt="" loading="lazy">
+          <img src="https://images.unsplash.com/photo-1664515226058-03952a19bd76?w=400&h=500&q=70&auto=format&fit=crop" alt="" loading="lazy">
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer data-footer></footer>
+</body>
+</html>
