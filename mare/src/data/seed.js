@@ -28,6 +28,11 @@ export const properties = [
     name: 'Casa Farol',
     tagline: 'Acordar com o mar à janela',
     area: 'Ponta da Piedade',
+    nearby: [
+      { place: 'Farol da Ponta da Piedade', distance: '5 min a pé' },
+      { place: 'Praia do Camilo', distance: '8 min a pé' },
+      { place: 'Centro de Lagos', distance: '5 min de carro' },
+    ],
     description:
       'Uma casa térrea virada a sul, a cinco minutos a pé do farol da Ponta da Piedade. A sala abre-se para um terraço com vista para o mar, perfeito para o pequeno-almoço ao sol ou para um copo de vinho ao fim do dia. Os dois quartos têm casa de banho própria.',
     bedrooms: 2,
@@ -62,6 +67,11 @@ export const properties = [
     name: 'Casa Azulejo',
     tagline: 'Uma casa antiga cheia de cor, no centro histórico',
     area: 'Centro histórico',
+    nearby: [
+      { place: 'Praça do Infante', distance: '2 min a pé' },
+      { place: 'Praia da Batata', distance: '10 min a pé' },
+      { place: 'Mercado de Lagos', distance: '5 min a pé' },
+    ],
     description:
       'Casa tradicional recuperada dentro das muralhas, com azulejos originais, tetos altos e um pátio interior com laranjeira. Fica a dois minutos da Praça do Infante e a dez da praia da Batata. Ideal para famílias: há berço, cadeira de bebé e jogos para os mais novos.',
     bedrooms: 3,
@@ -95,6 +105,11 @@ export const properties = [
     name: 'Estúdio Cal',
     tagline: 'Pequeno, luminoso e feito para dois',
     area: 'Rua da Barroca',
+    nearby: [
+      { place: 'Restaurantes e bares', distance: 'à porta' },
+      { place: 'Praia do Pinhão', distance: '10 min a pé' },
+      { place: 'Marina de Lagos', distance: '12 min a pé' },
+    ],
     description:
       'Um estúdio branco e simples, com cama de casal, pequena cozinha e um banco de alvenaria junto à janela. Fica numa das ruas mais bonitas de Lagos, com restaurantes e bares à porta, e a praia do Pinhão a dez minutos a pé.',
     bedrooms: 1,
@@ -127,6 +142,11 @@ export const properties = [
     name: 'Vila Barlavento',
     tagline: 'Piscina privada para a família inteira',
     area: 'Porto de Mós',
+    nearby: [
+      { place: 'Praia de Porto de Mós', distance: '6 min a pé' },
+      { place: 'Supermercado', distance: '3 min de carro' },
+      { place: 'Centro de Lagos', distance: '7 min de carro' },
+    ],
     description:
       'Moradia com quatro quartos, piscina privada e jardim, numa zona tranquila acima da praia de Porto de Mós. A sala e a cozinha abrem-se para o alpendre e para a piscina. Há espaço para oito pessoas e ainda sobra lugar para o churrasco.',
     bedrooms: 4,
@@ -160,6 +180,11 @@ export const properties = [
     name: 'Casa do Pátio',
     tagline: 'Sombra, piscina e silêncio na Luz',
     area: 'Praia da Luz',
+    nearby: [
+      { place: 'Praia da Luz', distance: '600 m' },
+      { place: 'Cafés e esplanadas', distance: '5 min a pé' },
+      { place: 'Centro de Lagos', distance: '10 min de carro' },
+    ],
     description:
       'Casa de dois quartos com um pátio coberto de buganvílias e uma piscina partilhada só com mais uma casa. A praia da Luz fica a 600 metros, com cafés e esplanadas pelo caminho.',
     bedrooms: 2,
@@ -191,6 +216,11 @@ export const properties = [
     name: 'Refúgio da Ponta',
     tagline: 'Por cima da praia do Camilo',
     area: 'Praia do Camilo',
+    nearby: [
+      { place: 'Praia do Camilo', distance: '3 min a pé' },
+      { place: 'Ponta da Piedade', distance: '10 min a pé' },
+      { place: 'Centro de Lagos', distance: '6 min de carro' },
+    ],
     description:
       'Casa de três quartos com janelas de chão ao teto sobre o Atlântico. Desce-se à praia do Camilo pelos famosos 200 degraus. Tem uma sala ampla, lareira para as noites de inverno e uma varanda onde se vê o pôr do sol todos os dias.',
     bedrooms: 3,

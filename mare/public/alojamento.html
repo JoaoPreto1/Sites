@@ -1,0 +1,37 @@
+<!doctype html>
+<html lang="pt">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Alojamento · Maré</title>
+  <meta name="description" content="Casa de férias em Lagos, Algarve. Veja fotografias, disponibilidade e preços, e reserve direto.">
+  <link rel="icon" href="/favicon.svg">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Inter:wght@400;500;600&display=swap">
+  <link rel="stylesheet" href="/css/base.css">
+  <link rel="stylesheet" href="/css/layout.css">
+  <link rel="stylesheet" href="/css/components.css">
+  <link rel="stylesheet" href="/css/calendar.css">
+  <link rel="stylesheet" href="/css/pages/alojamento.css">
+  <script type="module" src="/js/layout.js"></script>
+  <script type="module" src="/js/pages/alojamento.js"></script>
+</head>
+<body>
+  <header data-header></header>
+
+  <main class="container property" data-property>
+    <div class="skeleton property-loading"></div>
+  </main>
+
+  <dialog class="lightbox" data-lightbox>
+    <button class="lightbox__close" type="button" data-close aria-label="Fechar">×</button>
+    <button class="lightbox__arrow lightbox__arrow--prev" type="button" data-step="-1" aria-label="Anterior">←</button>
+    <img alt="">
+    <button class="lightbox__arrow lightbox__arrow--next" type="button" data-step="1" aria-label="Seguinte">→</button>
+    <p class="lightbox__count"></p>
+  </dialog>
+
+  <footer data-footer></footer>
+</body>
+</html>
