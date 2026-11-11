@@ -1,42 +1,70 @@
-.contact {
+.banner--contact {
+  padding-bottom: 120px;
+}
+
+.channels {
+  position: relative;
+  z-index: 5;
   display: grid;
-  grid-template-columns: 1fr 1.1fr;
-  gap: clamp(32px, 6vw, 96px);
-  align-items: start;
-  padding-block: clamp(48px, 7vw, 96px) 110px;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 16px;
+  margin-top: -72px;
 }
 
-.contact h1 {
-  font-size: clamp(52px, 7vw, 100px);
-  margin: 14px 0 20px;
-}
-
-.contact__intro > p.muted {
-  font-size: 18px;
-  max-width: 460px;
-}
-
-.contact__list {
-  list-style: none;
-  margin-top: 40px;
-}
-
-.contact__list li {
+.channel {
   display: grid;
-  gap: 2px;
-  padding: 16px 0;
-  border-top: 1px solid var(--line);
+  gap: 4px;
+  padding: 26px;
+  border-radius: var(--radius-lg);
+  background: #fff;
+  box-shadow: var(--shadow);
+  transition: transform 0.25s;
+}
+
+a.channel:hover {
+  transform: translateY(-3px);
+}
+
+.channel .icon {
+  width: 48px;
+  height: 48px;
+  padding: 12px;
+  margin-bottom: 12px;
+  border-radius: 14px;
+  background: var(--sea-soft);
+  color: var(--sea);
+}
+
+.channel strong {
   font-size: 17px;
 }
 
-.contact__list span {
+.channel small {
+  margin-top: 6px;
+  color: var(--sea);
   font-size: 13px;
-  color: var(--mute);
+}
+
+@media (max-width: 860px) {
+  .channels {
+    grid-template-columns: 1fr;
+  }
+}
+
+.contact {
+  display: grid;
+  grid-template-columns: minmax(0, 1.2fr) minmax(0, 1fr);
+  gap: clamp(24px, 4vw, 56px);
+  align-items: start;
 }
 
 .contact__form,
 .contact__sent {
-  padding: clamp(24px, 3vw, 40px);
+  padding: clamp(24px, 3vw, 44px);
+}
+
+.contact__form h2 {
+  margin-bottom: 6px;
 }
 
 .contact__sent {
@@ -45,7 +73,54 @@
   justify-items: start;
 }
 
-@media (max-width: 860px) {
+.contact__side {
+  display: grid;
+  gap: 16px;
+}
+
+.map {
+  position: relative;
+  border-radius: var(--radius-lg);
+  overflow: hidden;
+}
+
+.map img {
+  width: 100%;
+  aspect-ratio: 4 / 3;
+  object-fit: cover;
+}
+
+.map__pin {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 10px 16px 10px 10px;
+  border-radius: 999px;
+  background: #fff;
+  box-shadow: var(--shadow);
+  font-size: 13px;
+  white-space: nowrap;
+}
+
+.map__pin .icon {
+  width: 34px;
+  height: 34px;
+  padding: 8px;
+  border-radius: 50%;
+  background: var(--sea);
+  color: #fff;
+}
+
+.map__pin strong {
+  display: block;
+  font-size: 14px;
+}
+
+@media (max-width: 960px) {
   .contact {
     grid-template-columns: 1fr;
   }

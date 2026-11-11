@@ -19,48 +19,94 @@
 <body>
   <header data-header></header>
 
-  <main class="container contact">
-    <section class="contact__intro">
-      <p class="eyebrow muted">Contactos</p>
-      <h1>Fale com <em>a Rita.</em></h1>
-      <p class="muted">Grupos grandes, estadias de um mês, uma dúvida sobre a casa ou só uma sugestão de restaurante. Respondemos em menos de 24 horas.</p>
-
-      <ul class="contact__list">
-        <li><span>Telefone e WhatsApp</span><a href="tel:+351282000000">+351 282 000 000</a></li>
-        <li><span>Email</span><a href="mailto:ola@mare.pt">ola@mare.pt</a></li>
-        <li><span>Escritório</span>Rua da Barroca 12, 8600-315 Lagos</li>
-        <li><span>Horário</span>Todos os dias, das 9h às 20h</li>
-      </ul>
+  <main>
+    <section class="banner banner--contact">
+      <img src="https://images.unsplash.com/photo-1579550229847-676fa238ec46?w=2400&h=1000&q=75&auto=format&fit=crop" alt="Rochedos e mar azul na costa de Lagos">
+      <div class="container">
+        <nav class="crumbs"><a href="/">Início</a> / <span>Contactos</span></nav>
+        <h1>Fale com <em>a Rita.</em></h1>
+        <p>Grupos grandes, estadias de um mês, uma dúvida sobre a casa ou só uma sugestão de restaurante. Estamos aqui.</p>
+      </div>
     </section>
 
-    <form class="card form-grid contact__form" data-contact novalidate>
-      <div class="form-grid form-grid--two">
-        <div class="field">
-          <label for="name">Nome</label>
-          <input class="input" id="name" name="name" autocomplete="name">
+    <div class="container">
+      <div class="channels">
+        <a class="channel" href="tel:+351282000000">
+          <span data-icon="phone"></span>
+          <strong>Telefone e WhatsApp</strong>
+          <span class="muted">+351 282 000 000</span>
+          <small>Todos os dias, 9h–20h</small>
+        </a>
+        <a class="channel" href="mailto:ola@mare.pt">
+          <span data-icon="mail"></span>
+          <strong>Email</strong>
+          <span class="muted">ola@mare.pt</span>
+          <small>Resposta em menos de 24 horas</small>
+        </a>
+        <div class="channel">
+          <span data-icon="pin"></span>
+          <strong>Escritório</strong>
+          <span class="muted">Rua da Barroca 12, Lagos</span>
+          <small>Seg–Sex, 10h–18h</small>
         </div>
-        <div class="field">
-          <label for="email">Email</label>
-          <input class="input" id="email" name="email" type="email" autocomplete="email">
-        </div>
       </div>
-      <div class="field">
-        <label for="subject">Assunto</label>
-        <input class="input" id="subject" name="subject" placeholder="Ex.: grupo de 10 pessoas em setembro">
-      </div>
-      <div class="field">
-        <label for="message">Mensagem</label>
-        <textarea class="textarea" id="message" name="message"></textarea>
-      </div>
-      <p class="notice notice--error" data-error hidden></p>
-      <button class="btn btn--sea" type="submit">Enviar mensagem</button>
-    </form>
-
-    <div class="contact__sent card" data-sent hidden>
-      <h2>Mensagem <em>enviada.</em></h2>
-      <p class="muted" data-sent-text></p>
-      <a class="btn btn--ghost" href="/alojamentos">Entretanto, ver as casas</a>
     </div>
+
+    <section class="section container contact">
+      <form class="card form-grid contact__form" data-contact novalidate>
+        <div>
+          <h2>Envie uma <em>mensagem.</em></h2>
+          <p class="muted">Diga-nos datas e número de pessoas, se já souber.</p>
+        </div>
+        <div class="form-grid form-grid--two">
+          <div class="field">
+            <label for="name">Nome</label>
+            <input class="input" id="name" name="name" autocomplete="name">
+          </div>
+          <div class="field">
+            <label for="email">Email</label>
+            <input class="input" id="email" name="email" type="email" autocomplete="email">
+          </div>
+        </div>
+        <div class="field">
+          <label for="subject">Assunto</label>
+          <input class="input" id="subject" name="subject" placeholder="Ex.: grupo de 10 pessoas em setembro">
+        </div>
+        <div class="field">
+          <label for="message">Mensagem</label>
+          <textarea class="textarea" id="message" name="message"></textarea>
+        </div>
+        <p class="notice notice--error" data-error hidden></p>
+        <button class="btn btn--sea" type="submit">Enviar mensagem</button>
+      </form>
+
+      <div class="contact__sent card" data-sent hidden>
+        <h2>Mensagem <em>enviada.</em></h2>
+        <p class="muted" data-sent-text></p>
+        <a class="btn btn--ghost" href="/alojamentos">Entretanto, ver as casas</a>
+      </div>
+
+      <aside class="contact__side">
+        <div class="map">
+          <img src="https://images.unsplash.com/photo-1569406829354-eb0cc9e653e8?w=900&h=700&q=75&auto=format&fit=crop" alt="Vista de Lagos e da costa" loading="lazy">
+          <div class="map__pin" data-icon="pin"><span><strong>Maré</strong>Rua da Barroca 12</span></div>
+        </div>
+        <div class="faq__list">
+          <details>
+            <summary>Posso visitar a casa antes de reservar?</summary>
+            <p>Sim, se estiver livre. Marque connosco com um dia de antecedência.</p>
+          </details>
+          <details>
+            <summary>Recebem grupos e eventos?</summary>
+            <p>Grupos sim, até 20 pessoas juntando casas. Festas e eventos não.</p>
+          </details>
+          <details>
+            <summary>Emitem fatura com NIF?</summary>
+            <p>Sempre. Indique o NIF ao reservar ou envie-nos por email.</p>
+          </details>
+        </div>
+      </aside>
+    </section>
   </main>
 
   <footer data-footer></footer>
