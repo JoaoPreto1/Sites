@@ -14,7 +14,7 @@ const user = currentUser();
 const path = window.location.pathname;
 
 function accountMarkup() {
-  if (!user) return `<a class="nav-login" href="/entrar">${icon('lock', 16)} Área de cliente</a>`;
+  if (!user) return `<a class="nav-login" href="/entrar" aria-label="Área de cliente">${icon('lock', 16)}<span>Área de cliente</span></a>`;
 
   return `
     <div class="account">

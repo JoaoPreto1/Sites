@@ -497,3 +497,13 @@
     grid-template-columns: 1fr;
   }
 }
+
+.nav-login {
+  white-space: nowrap;
+}
+
+@media (max-width: 560px) {
+  .nav-login span {
+    display: none;
+  }
+}
