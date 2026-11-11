@@ -1,0 +1,140 @@
+<!doctype html>
+<html lang="pt">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Maré · Casas de férias em Lagos, Algarve</title>
+  <meta name="description" content="Seis casas de férias em Lagos, no Algarve. Reserve direto, sem comissões, e junte passeios e experiências à sua estadia.">
+  <link rel="icon" href="/favicon.svg">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Inter:wght@400;500;600&display=swap">
+  <link rel="stylesheet" href="/css/base.css">
+  <link rel="stylesheet" href="/css/layout.css">
+  <link rel="stylesheet" href="/css/components.css">
+  <link rel="stylesheet" href="/css/pages/home.css">
+  <script type="module" src="/js/layout.js"></script>
+  <script type="module" src="/js/pages/home.js"></script>
+</head>
+<body class="has-hero">
+  <header data-header></header>
+
+  <main>
+    <section class="hero">
+      <img class="hero__image" src="https://images.unsplash.com/photo-1560242374-cef61d4d5db6?w=2400&q=80&auto=format&fit=crop" alt="Barcos entre as falésias da Ponta da Piedade, em Lagos">
+      <div class="container hero__content">
+        <p class="eyebrow">Casas de férias · Lagos, Algarve</p>
+        <h1>Onde o Atlântico<br><em>encontra a calma.</em></h1>
+      </div>
+
+      <form class="container search" action="/alojamentos" method="get">
+        <div class="search__field">
+          <label for="checkIn">Check-in</label>
+          <input id="checkIn" name="checkIn" type="date" required>
+        </div>
+        <div class="search__field">
+          <label for="checkOut">Check-out</label>
+          <input id="checkOut" name="checkOut" type="date" required>
+        </div>
+        <div class="search__field">
+          <label for="guests">Hóspedes</label>
+          <select id="guests" name="guests">
+            <option value="1">1 hóspede</option>
+            <option value="2" selected>2 hóspedes</option>
+            <option value="3">3 hóspedes</option>
+            <option value="4">4 hóspedes</option>
+            <option value="5">5 hóspedes</option>
+            <option value="6">6 hóspedes</option>
+            <option value="7">7 hóspedes</option>
+            <option value="8">8 hóspedes</option>
+          </select>
+        </div>
+        <button class="btn btn--light search__submit" type="submit">Ver disponibilidade</button>
+      </form>
+    </section>
+
+    <section class="perks container">
+      <div>
+        <span class="perks__number">01</span>
+        <h3>Reserva direta</h3>
+        <p class="muted">Sem comissões de plataformas. O preço que vê é o preço que paga.</p>
+      </div>
+      <div>
+        <span class="perks__number">02</span>
+        <h3>Check-in online</h3>
+        <p class="muted">Diga-nos a hora de chegada e encontra a chave à sua espera.</p>
+      </div>
+      <div>
+        <span class="perks__number">03</span>
+        <h3>Anfitriã local</h3>
+        <p class="muted">A Rita vive em Lagos e responde a qualquer dúvida, a qualquer hora.</p>
+      </div>
+    </section>
+
+    <section class="section container" id="casas">
+      <div class="section-head">
+        <h2>Seis casas,<br><em>um só mar.</em></h2>
+        <div class="chips" data-filters>
+          <button class="chip is-active" type="button" data-tag="">Todas</button>
+          <button class="chip" type="button" data-tag="vista-mar">Vista mar</button>
+          <button class="chip" type="button" data-tag="piscina">Com piscina</button>
+          <button class="chip" type="button" data-tag="familias">Famílias</button>
+        </div>
+      </div>
+      <div class="property-grid" data-properties>
+        <div class="skeleton property-skeleton"></div>
+        <div class="skeleton property-skeleton"></div>
+        <div class="skeleton property-skeleton"></div>
+      </div>
+    </section>
+
+    <section class="container">
+      <div class="experiences-band">
+        <img src="https://images.unsplash.com/photo-1608649944716-228404a0a8bb?w=1200&h=1000&q=75&auto=format&fit=crop" alt="Costa de Lagos vista de cima" loading="lazy">
+        <div class="experiences-band__text">
+          <h2>Experiências<br>para juntar à estadia.</h2>
+          <p>Adicione passeios à sua reserva e gira tudo na sua área pessoal: datas, pagamentos e check-in online.</p>
+          <ul class="experiences-band__list" data-experiences></ul>
+          <a class="btn btn--light" href="/experiencias">Ver todas as experiências</a>
+        </div>
+      </div>
+    </section>
+
+    <section class="section container region-teaser">
+      <div class="region-teaser__text">
+        <p class="eyebrow muted">A região</p>
+        <h2>Praias douradas, <em>vila com alma.</em></h2>
+        <p class="muted">Lagos tem algumas das praias mais bonitas da Europa, um centro histórico cheio de vida e o melhor peixe grelhado do Algarve. Preparámos um guia com os nossos sítios preferidos.</p>
+        <a class="link" href="/regiao">Ler o guia de Lagos</a>
+      </div>
+      <div class="region-teaser__mosaic">
+        <img src="https://images.unsplash.com/photo-1779487281695-0dce89c7462a?w=800&h=1000&q=75&auto=format&fit=crop" alt="Praia de Lagos com falésias" loading="lazy">
+        <img src="https://images.unsplash.com/photo-1591107576521-87091dc07797?w=600&h=480&q=75&auto=format&fit=crop" alt="Pastéis de nata" loading="lazy">
+        <img src="https://images.unsplash.com/photo-1759881585824-87f187cd4cb1?w=600&h=480&q=75&auto=format&fit=crop" alt="Praia com rochedos" loading="lazy">
+      </div>
+    </section>
+
+    <section class="quotes">
+      <div class="container">
+        <p class="eyebrow muted">O que dizem os hóspedes</p>
+        <div class="quotes__grid">
+          <figure>
+            <blockquote>“O terraço é ainda melhor do que nas fotos. A Rita deixou-nos dicas de praias que nunca teríamos encontrado.”</blockquote>
+            <figcaption>Marta S. · Casa Farol</figcaption>
+          </figure>
+          <figure>
+            <blockquote>“A vista da sala é de cortar a respiração. Já reservámos outra vez para o próximo ano.”</blockquote>
+            <figcaption>Beatriz L. · Refúgio da Ponta</figcaption>
+          </figure>
+          <figure>
+            <blockquote>“Os miúdos adoraram o pátio. Tudo perto a pé, nem tirámos o carro da garagem.”</blockquote>
+            <figcaption>Família Rocha · Casa Azulejo</figcaption>
+          </figure>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer data-footer></footer>
+</body>
+</html>
