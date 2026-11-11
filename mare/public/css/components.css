@@ -431,3 +431,252 @@
   gap: 10px;
   margin-top: 24px;
 }
+
+/* Fundos de secção */
+.section--sand-dark {
+  background: #efe6d8;
+}
+
+.section--ink {
+  background: var(--ink);
+  color: #fff;
+}
+
+.section--ink h2 em {
+  color: #9fd3d8;
+}
+
+.center-cta {
+  display: flex;
+  justify-content: center;
+  margin-top: 40px;
+}
+
+.btn--outline-light {
+  background: transparent;
+  color: #fff;
+  border-color: rgba(255, 255, 255, 0.6);
+}
+
+.btn--outline-light:hover {
+  background: rgba(255, 255, 255, 0.12);
+}
+
+/* Testemunhos */
+.reviews-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 20px;
+}
+
+.quote-card {
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+  background: #fff;
+  border-radius: var(--radius-lg);
+  padding: 28px;
+}
+
+.quote-card__stars {
+  display: flex;
+  gap: 2px;
+  color: #e0a93b;
+}
+
+.quote-card blockquote {
+  font-family: var(--serif);
+  font-size: 25px;
+  line-height: 1.25;
+}
+
+.quote-card figcaption {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-top: auto;
+  font-size: 14px;
+  color: var(--mute);
+}
+
+.quote-card figcaption strong {
+  display: block;
+  color: var(--ink);
+}
+
+.quote-card--sea {
+  background: var(--sea);
+  color: #fff;
+}
+
+.quote-card--sea .quote-card__stars {
+  color: #f5c76b;
+}
+
+.quote-card--sea figcaption,
+.quote-card--sea figcaption strong {
+  color: #fff;
+}
+
+.quote-card--sea .avatar {
+  background: #fff;
+  color: var(--sea);
+}
+
+@media (max-width: 960px) {
+  .reviews-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* Perguntas frequentes */
+.faq {
+  display: grid;
+  grid-template-columns: minmax(0, 0.8fr) minmax(0, 1.2fr);
+  gap: clamp(32px, 6vw, 96px);
+  align-items: start;
+}
+
+.faq__help {
+  margin-top: 32px;
+  padding: 24px;
+  border-radius: var(--radius-lg);
+  background: #fff;
+  display: grid;
+  gap: 8px;
+  justify-items: start;
+}
+
+.faq__help .btn {
+  margin-top: 8px;
+}
+
+.faq__list {
+  display: grid;
+  gap: 10px;
+}
+
+.faq__list details {
+  background: #fff;
+  border-radius: var(--radius);
+  padding: 0 24px;
+}
+
+.faq__list summary {
+  list-style: none;
+  cursor: pointer;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 16px;
+  padding: 20px 0;
+  font-weight: 600;
+}
+
+.faq__list summary::-webkit-details-marker {
+  display: none;
+}
+
+.faq__list summary::after {
+  content: '+';
+  display: grid;
+  place-items: center;
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  background: var(--sand);
+  font-weight: 400;
+  font-size: 20px;
+  flex: none;
+  transition: transform 0.25s;
+}
+
+.faq__list details[open] summary::after {
+  transform: rotate(45deg);
+  background: var(--sea);
+  color: #fff;
+}
+
+.faq__list details p {
+  padding-bottom: 20px;
+  color: var(--mute);
+  max-width: 640px;
+}
+
+@media (max-width: 860px) {
+  .faq {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* Chamada final com fotografia */
+.final-cta {
+  position: relative;
+  isolation: isolate;
+  overflow: hidden;
+  color: #fff;
+  text-align: center;
+  padding-block: clamp(96px, 12vw, 160px);
+}
+
+.final-cta > img {
+  position: absolute;
+  inset: 0;
+  z-index: -2;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.final-cta::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  background: rgba(10, 20, 18, 0.45);
+}
+
+.final-cta h2 {
+  font-size: clamp(42px, 6vw, 84px);
+}
+
+.final-cta p {
+  margin: 18px auto 32px;
+  max-width: 520px;
+  font-size: 18px;
+  color: rgba(255, 255, 255, 0.88);
+}
+
+.final-cta__actions {
+  display: flex;
+  justify-content: center;
+  gap: 12px;
+  flex-wrap: wrap;
+}
+
+/* Lista com vistos */
+.check-list {
+  list-style: none;
+  display: grid;
+  gap: 12px;
+}
+
+.check-list li {
+  display: flex;
+  gap: 12px;
+  align-items: flex-start;
+}
+
+.check-list li::before {
+  content: '';
+  flex: none;
+  width: 22px;
+  height: 22px;
+  margin-top: 1px;
+  border-radius: 50%;
+  background: var(--sea-soft) url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%231d5c63' stroke-width='2.5' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='m6 12.5 4 4 8-9'/%3E%3C/svg%3E") center / 14px no-repeat;
+}
+
+.final-cta h2 em {
+  color: #bfe6e9;
+}

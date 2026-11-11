@@ -25,19 +25,24 @@
       <div class="container hero__content">
         <p class="eyebrow">Casas de férias · Lagos, Algarve</p>
         <h1>Onde o Atlântico<br><em>encontra a calma.</em></h1>
+        <p class="hero__lead">Seis casas escolhidas a dedo entre falésias douradas e o centro histórico. Reserve direto, sem comissões.</p>
+        <div class="hero__rating">
+          <div class="hero__avatars"><span>MS</span><span>JP</span><span>BL</span><span>+</span></div>
+          <p><strong>4.9 ★</strong> média de mais de 1.200 avaliações</p>
+        </div>
       </div>
 
       <form class="container search" action="/alojamentos" method="get">
         <div class="search__field">
-          <label for="checkIn">Check-in</label>
+          <label for="checkIn" data-icon="calendar">Check-in</label>
           <input id="checkIn" name="checkIn" type="date" required>
         </div>
         <div class="search__field">
-          <label for="checkOut">Check-out</label>
+          <label for="checkOut" data-icon="calendar">Check-out</label>
           <input id="checkOut" name="checkOut" type="date" required>
         </div>
         <div class="search__field">
-          <label for="guests">Hóspedes</label>
+          <label for="guests" data-icon="users">Hóspedes</label>
           <select id="guests" name="guests">
             <option value="1">1 hóspede</option>
             <option value="2" selected>2 hóspedes</option>
@@ -53,50 +58,122 @@
       </form>
     </section>
 
-    <section class="perks container">
-      <div>
-        <span class="perks__number">01</span>
-        <h3>Reserva direta</h3>
-        <p class="muted">Sem comissões de plataformas. O preço que vê é o preço que paga.</p>
-      </div>
-      <div>
-        <span class="perks__number">02</span>
-        <h3>Check-in online</h3>
-        <p class="muted">Diga-nos a hora de chegada e encontra a chave à sua espera.</p>
-      </div>
-      <div>
-        <span class="perks__number">03</span>
-        <h3>Anfitriã local</h3>
-        <p class="muted">A Rita vive em Lagos e responde a qualquer dúvida, a qualquer hora.</p>
+    <section class="trust">
+      <div class="container trust__grid" data-trust>
+        <div data-icon="shield"><strong>Reserva direta</strong><span>Sem comissões de plataformas</span></div>
+        <div data-icon="calendar"><strong>Cancelamento grátis</strong><span>Até 14 dias antes da chegada</span></div>
+        <div data-icon="key"><strong>Check-in online</strong><span>A chave está à sua espera</span></div>
+        <div data-icon="chat"><strong>Anfitriã local</strong><span>Resposta em menos de 1 hora</span></div>
       </div>
     </section>
 
-    <section class="section container" id="casas">
+    <section class="section container about">
+      <div class="about__media">
+        <img class="about__main" src="https://images.unsplash.com/photo-1705095605806-4b2936e90471?w=900&h=1100&q=75&auto=format&fit=crop" alt="Terraço com sofás e vista para o mar" loading="lazy">
+        <img class="about__small" src="https://images.unsplash.com/photo-1583847268964-b28dc8f51f92?w=600&h=600&q=75&auto=format&fit=crop" alt="Sala luminosa com sofá branco" loading="lazy">
+        <div class="about__badge"><strong>12</strong><span>anos a receber hóspedes</span></div>
+      </div>
+      <div class="about__text">
+        <p class="eyebrow muted">Sobre nós</p>
+        <h2>Uma família de Lagos, <em>seis casas com alma.</em></h2>
+        <p>Começámos em 2014 com a Casa Farol, a casa de férias dos avós. Hoje cuidamos de seis casas espalhadas pelos sítios mais bonitos de Lagos, cada uma com o seu feitio.</p>
+        <p>Não somos uma agência: somos nós que limpamos, que deixamos o pão fresco no primeiro dia e que atendemos o telefone quando precisa de alguma coisa.</p>
+        <ul class="about__list">
+          <li>Casas limpas por equipa própria, com produtos ecológicos</li>
+          <li>Roupa de cama e toalhas de algodão incluídas</li>
+          <li>Cesto de boas-vindas com produtos da região</li>
+        </ul>
+        <div class="about__sign">
+          <span class="avatar">RM</span>
+          <p><strong>Rita Mendes</strong><span>Anfitriã e fundadora</span></p>
+        </div>
+      </div>
+    </section>
+
+    <section class="section section--sand-dark" id="casas">
+      <div class="container">
+        <div class="section-head">
+          <div>
+            <p class="eyebrow muted">As nossas casas</p>
+            <h2>Seis casas, <em>um só mar.</em></h2>
+          </div>
+          <div class="chips" data-filters>
+            <button class="chip is-active" type="button" data-tag="">Todas</button>
+            <button class="chip" type="button" data-tag="vista-mar">Vista mar</button>
+            <button class="chip" type="button" data-tag="piscina">Com piscina</button>
+            <button class="chip" type="button" data-tag="familias">Famílias</button>
+          </div>
+        </div>
+        <div class="property-grid" data-properties>
+          <div class="skeleton property-skeleton"></div>
+          <div class="skeleton property-skeleton"></div>
+          <div class="skeleton property-skeleton"></div>
+        </div>
+        <div class="center-cta"><a class="btn btn--ghost" href="/alojamentos">Ver disponibilidade de todas as casas</a></div>
+      </div>
+    </section>
+
+    <section class="stats">
+      <div class="container stats__grid">
+        <div><strong>6</strong><span>casas em Lagos</span></div>
+        <div><strong>4.9</strong><span>avaliação média</span></div>
+        <div><strong>2.300+</strong><span>hóspedes recebidos</span></div>
+        <div><strong>&lt;1h</strong><span>tempo de resposta</span></div>
+      </div>
+    </section>
+
+    <section class="section container">
       <div class="section-head">
-        <h2>Seis casas,<br><em>um só mar.</em></h2>
-        <div class="chips" data-filters>
-          <button class="chip is-active" type="button" data-tag="">Todas</button>
-          <button class="chip" type="button" data-tag="vista-mar">Vista mar</button>
-          <button class="chip" type="button" data-tag="piscina">Com piscina</button>
-          <button class="chip" type="button" data-tag="familias">Famílias</button>
+        <div>
+          <p class="eyebrow muted">Experiências</p>
+          <h2>Os dias também <em>se reservam.</em></h2>
         </div>
+        <p>Junte passeios à sua reserva e trate de tudo num só sítio. Escolhemos parceiros locais em quem confiamos.</p>
       </div>
-      <div class="property-grid" data-properties>
-        <div class="skeleton property-skeleton"></div>
-        <div class="skeleton property-skeleton"></div>
-        <div class="skeleton property-skeleton"></div>
+      <div class="exp-row" data-experiences></div>
+      <div class="center-cta"><a class="btn btn--ghost" href="/experiencias">Ver todas as experiências</a></div>
+    </section>
+
+    <section class="section section--ink">
+      <div class="container steps">
+        <div class="steps__intro">
+          <p class="eyebrow">Como reservar</p>
+          <h2>Três passos <em>até à praia.</em></h2>
+          <p>Sem intermediários: fala sempre connosco, do primeiro clique até ao check-out.</p>
+          <a class="btn btn--light" href="/alojamentos">Começar agora</a>
+        </div>
+        <ol class="steps__list">
+          <li><span>01</span><div><strong>Escolha a casa e as datas</strong><p>Veja a disponibilidade em tempo real e o preço total, já com limpeza e taxas.</p></div></li>
+          <li><span>02</span><div><strong>Peça a reserva</strong><p>Confirmamos em menos de 24 horas e enviamos os dados de pagamento.</p></div></li>
+          <li><span>03</span><div><strong>Faça o check-in online</strong><p>Diga-nos a hora de chegada. A chave e um cesto de boas-vindas estão à sua espera.</p></div></li>
+        </ol>
       </div>
     </section>
 
-    <section class="container">
-      <div class="experiences-band">
-        <img src="https://images.unsplash.com/photo-1608649944716-228404a0a8bb?w=1200&h=1000&q=75&auto=format&fit=crop" alt="Costa de Lagos vista de cima" loading="lazy">
-        <div class="experiences-band__text">
-          <h2>Experiências<br>para juntar à estadia.</h2>
-          <p>Adicione passeios à sua reserva e gira tudo na sua área pessoal: datas, pagamentos e check-in online.</p>
-          <ul class="experiences-band__list" data-experiences></ul>
-          <a class="btn btn--light" href="/experiencias">Ver todas as experiências</a>
+    <section class="section container">
+      <div class="section-head">
+        <div>
+          <p class="eyebrow muted">Hóspedes</p>
+          <h2>O que dizem <em>de nós.</em></h2>
         </div>
+        <p class="rating-summary"><strong>4.9</strong> de 5 · mais de 1.200 avaliações verificadas</p>
+      </div>
+      <div class="reviews-grid">
+        <figure class="quote-card">
+          <div class="quote-card__stars" data-stars></div>
+          <blockquote>“O terraço é ainda melhor do que nas fotos. A Rita deixou-nos dicas de praias que nunca teríamos encontrado sozinhos.”</blockquote>
+          <figcaption><span class="avatar">MS</span><span><strong>Marta S.</strong>Lisboa · Casa Farol</span></figcaption>
+        </figure>
+        <figure class="quote-card quote-card--sea">
+          <div class="quote-card__stars" data-stars></div>
+          <blockquote>“A vista da sala é de cortar a respiração. Já reservámos outra vez para o próximo ano.”</blockquote>
+          <figcaption><span class="avatar">BL</span><span><strong>Beatriz L.</strong>Lisboa · Refúgio da Ponta</span></figcaption>
+        </figure>
+        <figure class="quote-card">
+          <div class="quote-card__stars" data-stars></div>
+          <blockquote>“Os miúdos adoraram o pátio. Tudo perto a pé, nem tirámos o carro da garagem a semana inteira.”</blockquote>
+          <figcaption><span class="avatar">FR</span><span><strong>Família Rocha</strong>Braga · Casa Azulejo</span></figcaption>
+        </figure>
       </div>
     </section>
 
@@ -105,7 +182,12 @@
         <p class="eyebrow muted">A região</p>
         <h2>Praias douradas, <em>vila com alma.</em></h2>
         <p class="muted">Lagos tem algumas das praias mais bonitas da Europa, um centro histórico cheio de vida e o melhor peixe grelhado do Algarve. Preparámos um guia com os nossos sítios preferidos.</p>
-        <a class="link" href="/regiao">Ler o guia de Lagos</a>
+        <div class="region-teaser__facts">
+          <div><strong>1h</strong><span>do aeroporto de Faro</span></div>
+          <div><strong>300</strong><span>dias de sol por ano</span></div>
+          <div><strong>20+</strong><span>praias por perto</span></div>
+        </div>
+        <a class="btn" href="/regiao">Ler o guia de Lagos</a>
       </div>
       <div class="region-teaser__mosaic">
         <img src="https://images.unsplash.com/photo-1779487281695-0dce89c7462a?w=800&h=1000&q=75&auto=format&fit=crop" alt="Praia de Lagos com falésias" loading="lazy">
@@ -114,22 +196,54 @@
       </div>
     </section>
 
-    <section class="quotes">
-      <div class="container">
-        <p class="eyebrow muted">O que dizem os hóspedes</p>
-        <div class="quotes__grid">
-          <figure>
-            <blockquote>“O terraço é ainda melhor do que nas fotos. A Rita deixou-nos dicas de praias que nunca teríamos encontrado.”</blockquote>
-            <figcaption>Marta S. · Casa Farol</figcaption>
-          </figure>
-          <figure>
-            <blockquote>“A vista da sala é de cortar a respiração. Já reservámos outra vez para o próximo ano.”</blockquote>
-            <figcaption>Beatriz L. · Refúgio da Ponta</figcaption>
-          </figure>
-          <figure>
-            <blockquote>“Os miúdos adoraram o pátio. Tudo perto a pé, nem tirámos o carro da garagem.”</blockquote>
-            <figcaption>Família Rocha · Casa Azulejo</figcaption>
-          </figure>
+    <section class="section section--sand-dark">
+      <div class="container faq">
+        <div class="faq__intro">
+          <p class="eyebrow muted">Perguntas frequentes</p>
+          <h2>Antes de <em>reservar.</em></h2>
+          <div class="faq__help">
+            <strong>Não encontra a resposta?</strong>
+            <p class="muted">Ligue-nos ou mande mensagem, respondemos em menos de uma hora.</p>
+            <a class="btn btn--sea" href="/contactos">Falar connosco</a>
+          </div>
+        </div>
+        <div class="faq__list">
+          <details open>
+            <summary>Quando é que pago a reserva?</summary>
+            <p>Só depois de confirmarmos a disponibilidade. Enviamos uma referência Multibanco ou um pedido MB Way, e tem 48 horas para pagar.</p>
+          </details>
+          <details>
+            <summary>Posso cancelar?</summary>
+            <p>Sim. O cancelamento é gratuito até 14 dias antes da entrada e pode fazê-lo na sua área pessoal. Depois disso o valor não é reembolsado.</p>
+          </details>
+          <details>
+            <summary>A que horas é o check-in e o check-out?</summary>
+            <p>A entrada é a partir das 16h e a saída até às 11h. Se precisar de outro horário diga-nos, tentamos sempre ajustar.</p>
+          </details>
+          <details>
+            <summary>Posso levar o meu cão?</summary>
+            <p>Na Casa do Pátio e na Vila Barlavento sim, com um suplemento de limpeza de 30 €. Peça-nos ao reservar.</p>
+          </details>
+          <details>
+            <summary>Há estacionamento?</summary>
+            <p>Quatro das seis casas têm estacionamento privado. No centro histórico há um parque a 3 minutos a pé com desconto para hóspedes.</p>
+          </details>
+          <details>
+            <summary>Fazem preços para estadias longas?</summary>
+            <p>Sim, a partir de 14 noites fazemos 15% de desconto fora da época alta. Fale connosco para um orçamento.</p>
+          </details>
+        </div>
+      </div>
+    </section>
+
+    <section class="final-cta">
+      <img src="https://images.unsplash.com/photo-1773434537544-c1c77fbd1891?w=2400&h=1000&q=75&auto=format&fit=crop" alt="Veleiro ao pôr do sol no mar" loading="lazy">
+      <div class="container final-cta__inner">
+        <h2>A sua casa no Algarve <em>está à espera.</em></h2>
+        <p>Veja que casas estão livres nas suas datas e reserve em dois minutos.</p>
+        <div class="final-cta__actions">
+          <a class="btn btn--light" href="/alojamentos">Ver disponibilidade</a>
+          <a class="btn btn--outline-light" href="/contactos">Falar connosco</a>
         </div>
       </div>
     </section>

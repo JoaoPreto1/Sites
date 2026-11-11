@@ -1,12 +1,16 @@
 import { api } from '../api.js';
 import { linkDateInputs } from '../date-range.js';
-import { escapeHtml, money, propertyCard } from '../utils.js';
+import { icon } from '../icons.js';
+import { escapeHtml, img, money, propertyCard } from '../utils.js';
 
 const grid = document.querySelector('[data-properties]');
 const filters = document.querySelector('[data-filters]');
 const search = document.querySelector('.search');
 
 linkDateInputs(search.checkIn, search.checkOut);
+
+document.querySelectorAll('[data-icon]').forEach((el) => el.insertAdjacentHTML('afterbegin', icon(el.dataset.icon, el.closest('.trust') ? 24 : 15)));
+document.querySelectorAll('[data-stars]').forEach((el) => (el.innerHTML = icon('star', 16).repeat(5)));
 
 async function loadProperties(tag = '') {
   grid.setAttribute('aria-busy', 'true');
@@ -21,15 +25,25 @@ async function loadProperties(tag = '') {
 }
 
 async function loadExperiences() {
-  const list = document.querySelector('[data-experiences]');
+  const row = document.querySelector('[data-experiences]');
   try {
     const { experiences } = await api('/experiences');
-    list.innerHTML = experiences
+    row.innerHTML = experiences
       .slice(0, 4)
-      .map((experience) => `<li>${escapeHtml(experience.name)} <span>${money(experience.price)}</span></li>`)
+      .map(
+        (e) => `
+        <a class="exp-tile" href="/experiencias">
+          <img src="${img(e.image, 600, 760)}" alt="${escapeHtml(e.name)}" loading="lazy">
+          <div class="exp-tile__body">
+            <span class="exp-tile__meta">${icon('clock', 14)} ${e.duration} · ${escapeHtml(e.category)}</span>
+            <h3>${escapeHtml(e.name)}</h3>
+            <span class="exp-tile__price">${money(e.price)} / pessoa</span>
+          </div>
+        </a>`,
+      )
       .join('');
   } catch {
-    list.remove();
+    row.remove();
   }
 }
 
