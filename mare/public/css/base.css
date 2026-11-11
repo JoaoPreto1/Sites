@@ -274,6 +274,7 @@ h2 em {
 .form-grid {
   display: grid;
   gap: 18px;
+  align-content: start;
 }
 
 .form-grid--two {

@@ -29,6 +29,10 @@ export function saveSession({ accessToken, user }) {
   storage.set(USER_KEY, JSON.stringify(user));
 }
 
+export function updateStoredUser(user) {
+  storage.set(USER_KEY, JSON.stringify(user));
+}
+
 export function clearSession() {
   storage.set(TOKEN_KEY, null);
   storage.set(USER_KEY, null);

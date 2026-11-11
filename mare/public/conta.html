@@ -1,0 +1,84 @@
+<!doctype html>
+<html lang="pt">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>A minha conta · Maré</title>
+  <meta name="robots" content="noindex">
+  <link rel="icon" href="/favicon.svg">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Inter:wght@400;500;600&display=swap">
+  <link rel="stylesheet" href="/css/base.css">
+  <link rel="stylesheet" href="/css/layout.css">
+  <link rel="stylesheet" href="/css/components.css">
+  <link rel="stylesheet" href="/css/pages/conta.css">
+  <script type="module" src="/js/layout.js"></script>
+  <script type="module" src="/js/pages/conta.js"></script>
+</head>
+<body>
+  <header data-header></header>
+
+  <main class="container account-page">
+    <p class="eyebrow muted">A minha conta</p>
+    <h1 data-greeting>Olá.</h1>
+
+    <div class="tabs" role="tablist">
+      <button class="is-active" type="button" data-tab="proximas">Próximas estadias</button>
+      <button type="button" data-tab="anteriores">Anteriores</button>
+      <button type="button" data-tab="perfil">Os meus dados</button>
+    </div>
+
+    <section data-panel="proximas"><div class="skeleton booking-skeleton"></div></section>
+    <section data-panel="anteriores" hidden></section>
+
+    <section data-panel="perfil" hidden>
+      <div class="profile-grid">
+        <form class="card form-grid" data-profile novalidate>
+          <h3>Dados pessoais</h3>
+          <div class="field">
+            <label for="name">Nome</label>
+            <input class="input" id="name" name="name" autocomplete="name">
+          </div>
+          <div class="field">
+            <label for="email">Email</label>
+            <input class="input" id="email" name="email" disabled>
+          </div>
+          <div class="field">
+            <label for="phone">Telemóvel</label>
+            <input class="input" id="phone" name="phone" type="tel" autocomplete="tel">
+          </div>
+          <button class="btn" type="submit">Guardar alterações</button>
+        </form>
+
+        <form class="card form-grid" data-password novalidate>
+          <h3>Palavra-passe</h3>
+          <div class="field">
+            <label for="currentPassword">Palavra-passe atual</label>
+            <input class="input" id="currentPassword" name="currentPassword" type="password" autocomplete="current-password">
+          </div>
+          <div class="field">
+            <label for="newPassword">Nova palavra-passe</label>
+            <input class="input" id="newPassword" name="newPassword" type="password" autocomplete="new-password">
+          </div>
+          <p class="notice notice--error" data-error hidden></p>
+          <button class="btn btn--ghost" type="submit">Mudar palavra-passe</button>
+        </form>
+      </div>
+    </section>
+  </main>
+
+  <dialog class="modal" data-cancel-dialog>
+    <form method="dialog">
+      <h3>Cancelar reserva?</h3>
+      <p class="muted" data-cancel-text></p>
+      <div class="modal__actions">
+        <button class="btn btn--ghost" value="no">Manter reserva</button>
+        <button class="btn btn--danger" value="yes">Sim, cancelar</button>
+      </div>
+    </form>
+  </dialog>
+
+  <footer data-footer></footer>
+</body>
+</html>
