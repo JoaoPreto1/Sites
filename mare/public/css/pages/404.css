@@ -1,0 +1,16 @@
+.not-found {
+  padding-block: clamp(80px, 14vw, 180px);
+  text-align: center;
+}
+
+.not-found h1 {
+  margin: 18px 0 20px;
+}
+
+.not-found__actions {
+  display: flex;
+  justify-content: center;
+  gap: 12px;
+  flex-wrap: wrap;
+  margin-top: 36px;
+}
