@@ -26,8 +26,16 @@ Não usa base de dados: os dados vivem em memória (com exemplos já carregados)
 | ![Alojamentos](docs/alojamentos.jpg) | ![Casa](docs/casa.jpg) |
 | ![Reserva](docs/reserva.jpg) | ![Área do hóspede](docs/conta.jpg) |
 | ![Painel de gestão](docs/painel.jpg) | ![Experiências](docs/experiencias.jpg) |
+| ![A região](docs/regiao.jpg) | ![Contactos](docs/contactos.jpg) |
 
-<p align="center"><img src="docs/telemovel.jpg" alt="Versão de telemóvel" width="300"></p>
+### Telemóvel
+
+Todas as páginas são responsivas (testadas de 360 px a 1920 px). No telemóvel a navegação passa para um menu lateral e a página de cada casa ganha uma barra fixa para reservar.
+
+<p align="center">
+  <img src="docs/telemovel.jpg" alt="Página inicial no telemóvel" width="260">
+  <img src="docs/menu-telemovel.jpg" alt="Menu lateral no telemóvel" width="260">
+</p>
 
 ## Stack
 
@@ -76,7 +84,8 @@ mare/
 │   ├── js/
 │   │   ├── api.js          # fetch com token e renovação automática da sessão
 │   │   ├── session.js      # login, registo, logout e páginas protegidas
-│   │   ├── layout.js       # cabeçalho e rodapé
+│   │   ├── layout.js       # navbar, menu de telemóvel e rodapé
+│   │   ├── icons.js        # ícones SVG usados no site
 │   │   ├── calendar.js     # calendário de disponibilidade
 │   │   └── pages/          # um ficheiro por página
 │   └── *.html
@@ -122,6 +131,7 @@ Todas as rotas estão em `/api`. As marcadas com 🔒 precisam do cabeçalho `Au
 | GET / POST / DELETE | `/owner/blocks[/:id]` 🔒 | Bloquear datas |
 | GET / PATCH | `/owner/messages[/:id]` 🔒 | Mensagens do formulário de contacto |
 | POST | `/contact` | Enviar mensagem |
+| POST | `/newsletter` | Subscrever a newsletter (formulário do rodapé) |
 
 ### Como funciona o login
 
