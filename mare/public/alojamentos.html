@@ -20,14 +20,18 @@
   <header data-header></header>
 
   <main>
-    <section class="page-hero container">
-      <p class="eyebrow muted">Alojamentos</p>
-      <h1 class="listing-title">Escolha a casa,<br><em>nós tratamos do resto.</em></h1>
+    <section class="banner banner--listing">
+      <img src="https://images.unsplash.com/photo-1596178067639-5c6e68aea6dc?w=2400&h=1000&q=75&auto=format&fit=crop" alt="Piscina de uma das casas Maré entre palmeiras">
+      <div class="container">
+        <nav class="crumbs"><a href="/">Início</a> / <span>Alojamentos</span></nav>
+        <h1>Escolha a casa, <em>nós tratamos do resto.</em></h1>
+        <p>Seis casas em Lagos, do estúdio para dois à moradia com piscina para oito. Todas com limpeza, roupa de cama e boas-vindas incluídas.</p>
+      </div>
     </section>
 
-    <form class="filters" data-filters>
-      <div class="container filters__inner">
-        <div class="filters__dates">
+    <div class="container">
+      <form class="filters" data-filters>
+        <div class="filters__fields">
           <div class="field">
             <label for="checkIn">Check-in</label>
             <input class="input" id="checkIn" name="checkIn" type="date">
@@ -50,6 +54,16 @@
               <option value="8">8</option>
             </select>
           </div>
+          <div class="field">
+            <label for="sort">Ordenar</label>
+            <select class="select" id="sort" name="sort">
+              <option value="">Recomendadas</option>
+              <option value="price-asc">Preço mais baixo</option>
+              <option value="price-desc">Preço mais alto</option>
+              <option value="rating">Melhor avaliação</option>
+              <option value="guests">Mais espaço</option>
+            </select>
+          </div>
         </div>
         <div class="chips" data-tags>
           <button class="chip is-active" type="button" data-tag="">Todas</button>
@@ -58,8 +72,8 @@
           <button class="chip" type="button" data-tag="familias">Famílias</button>
           <button class="chip" type="button" data-tag="casais">Casais</button>
         </div>
-      </div>
-    </form>
+      </form>
+    </div>
 
     <section class="container listing">
       <div class="listing__summary">
@@ -67,6 +81,36 @@
         <button class="link muted" type="button" data-clear hidden>Limpar filtros</button>
       </div>
       <div class="property-grid" data-results></div>
+    </section>
+
+    <section class="section--tight container">
+      <div class="included">
+        <div class="included__text">
+          <p class="eyebrow muted">Incluído em todas as casas</p>
+          <h2>Chegue e <em>esteja de férias.</em></h2>
+        </div>
+        <ul class="included__grid">
+          <li data-icon="wifi"><strong>Wi-Fi rápido</strong><span>Fibra em todas as casas, para quem precisa de trabalhar.</span></li>
+          <li data-icon="bed"><strong>Roupa de algodão</strong><span>Camas feitas e toalhas de banho e de praia.</span></li>
+          <li data-icon="coffee"><strong>Cesto de boas-vindas</strong><span>Pão, fruta, café e um vinho da região.</span></li>
+          <li data-icon="sparkle"><strong>Limpeza profissional</strong><span>Feita pela nossa equipa, com produtos ecológicos.</span></li>
+          <li data-icon="key"><strong>Entrada autónoma</strong><span>Cofre de chaves para chegar à hora que quiser.</span></li>
+          <li data-icon="chat"><strong>Apoio local</strong><span>A Rita responde em menos de uma hora.</span></li>
+        </ul>
+      </div>
+    </section>
+
+    <section class="container listing-help">
+      <div class="help-card">
+        <div>
+          <h2>Grupos, estadias longas <em>ou datas difíceis?</em></h2>
+          <p>Juntamos casas para grupos até 20 pessoas e fazemos 15% de desconto em estadias de duas semanas fora da época alta.</p>
+        </div>
+        <div class="help-card__actions">
+          <a class="btn btn--light" href="/contactos">Pedir orçamento</a>
+          <a class="help-card__phone" href="tel:+351282000000" data-icon="phone">+351 282 000 000</a>
+        </div>
+      </div>
     </section>
   </main>
 

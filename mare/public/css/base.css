@@ -241,6 +241,7 @@ h2 em {
 .select,
 .textarea {
   width: 100%;
+  min-width: 0;
   padding: 13px 16px;
   border: 1px solid var(--line);
   border-radius: 12px;
