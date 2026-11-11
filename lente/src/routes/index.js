@@ -3,6 +3,7 @@ import auth from './auth.routes.js';
 import projects from './projects.routes.js';
 import quotes from './quotes.routes.js';
 import newsletter from './newsletter.routes.js';
+import galleries from './galleries.routes.js';
 import { services } from '../repositories/index.js';
 import { apiNotFound } from '../middleware/errors.js';
 
@@ -14,6 +15,7 @@ router.use('/auth', auth);
 router.use('/projects', projects);
 router.use('/quotes', quotes);
 router.use('/newsletter', newsletter);
+router.use('/galleries', galleries);
 router.use(apiNotFound);
 
 export default router;
