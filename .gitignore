@@ -12,3 +12,6 @@ Thumbs.db
 .idea/
 data/*.json
 !data/.gitkeep
+
+# Mockups de design (só locais)
+ideias/
