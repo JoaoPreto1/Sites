@@ -1,3 +1,5 @@
+import { icon } from './icons.js';
+
 const moneyFormat = new Intl.NumberFormat('pt-PT', { style: 'currency', currency: 'EUR', maximumFractionDigits: 2, minimumFractionDigits: 0 });
 
 export const money = (value) => moneyFormat.format(value);
@@ -103,22 +105,30 @@ export function propertyCard(property, query = '') {
   const tag = property.tags[0];
   const unavailable = property.available === false;
   const price = property.stay
-    ? `<strong>${money(property.stay.total)}</strong>${plural(property.stay.nights, 'noite', 'noites')}`
-    : `<strong>${money(property.pricePerNight)}</strong>/ noite`;
+    ? `<span><strong>${money(property.stay.total)}</strong> · ${plural(property.stay.nights, 'noite', 'noites')}</span>`
+    : `<span>desde <strong>${money(property.pricePerNight)}</strong> / noite</span>`;
+  const second = property.images[1];
 
   return `
-    <a class="property-card${unavailable ? ' is-unavailable' : ''}" href="/alojamentos/${property.slug}${query}">
-      <div class="property-card__media">
-        <img src="${img(property.images[0], 800, 880)}" alt="${escapeHtml(property.name)}" loading="lazy">
+    <a class="pcard${unavailable ? ' is-unavailable' : ''}" href="/alojamentos/${property.slug}${query}">
+      <div class="pcard__media">
+        <img src="${img(property.images[0], 720, 540)}" alt="${escapeHtml(property.name)}" loading="lazy">
+        ${second ? `<img class="pcard__alt" src="${img(second, 720, 540)}" alt="" loading="lazy">` : ''}
         ${tag ? `<span class="tag">${tagLabels[tag]}</span>` : ''}
+        <span class="pcard__rating">${icon('star', 14)} ${property.rating.toFixed(2)}</span>
       </div>
-      <div class="property-card__row">
-        <div>
-          <h3>${escapeHtml(property.name)}</h3>
-          <p class="property-card__meta">${plural(property.bedrooms, 'quarto', 'quartos')} · ${property.guests} hóspedes · ★ ${property.rating.toFixed(2)}</p>
-        </div>
-        <p class="property-card__price">${price}</p>
+      <div class="pcard__body">
+        <p class="pcard__area">${icon('pin', 15)} ${escapeHtml(property.area)}</p>
+        <h3>${escapeHtml(property.name)}</h3>
+        <p class="pcard__tagline">${escapeHtml(property.tagline)}</p>
+        <ul class="pcard__facts">
+          <li>${icon('bed', 17)} ${property.bedrooms}</li>
+          <li>${icon('bath', 17)} ${property.bathrooms}</li>
+          <li>${icon('users', 17)} ${property.guests}</li>
+          <li>${icon('area', 17)} ${property.size} m²</li>
+        </ul>
+        ${unavailable ? `<p class="pcard__status">Indisponível nestas datas · ${property.unavailableReason}</p>` : ''}
+        <div class="pcard__foot">${price}<span class="pcard__go">${icon('arrow', 18)}</span></div>
       </div>
-      ${unavailable ? `<p class="property-card__status">Indisponível nestas datas (${property.unavailableReason})</p>` : ''}
     </a>`;
 }

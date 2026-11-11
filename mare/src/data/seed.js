@@ -123,8 +123,8 @@ export const properties = [
     tags: ['casais'],
     amenities: [...commonAmenities, 'Secretária para trabalhar', 'Persianas blackout'],
     images: [
-      photo('1790419683322-b08a7050c424'),
       photo('1617048400527-e6ab223281e1'),
+      photo('1552558636-f6a8f071c2b3'),
       photo('1499916078039-922301b0eb9b'),
       photo('1781344334947-60c704bafd51'),
     ],
