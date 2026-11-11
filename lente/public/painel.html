@@ -1,0 +1,86 @@
+<!doctype html>
+<html lang="pt">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Painel do estúdio · Lente Studio</title>
+  <meta name="robots" content="noindex">
+  <link rel="icon" href="/favicon.svg">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@62..125,400..900&family=JetBrains+Mono:wght@400;500&display=swap">
+  <link rel="stylesheet" href="/css/base.css">
+  <link rel="stylesheet" href="/css/layout.css">
+  <link rel="stylesheet" href="/css/components.css">
+  <link rel="stylesheet" href="/css/pages/painel.css">
+  <script type="module" src="/js/layout.js"></script>
+  <script type="module" src="/js/pages/painel.js"></script>
+</head>
+<body>
+  <header data-header></header>
+
+  <main class="panel">
+    <section class="panel__head">
+      <div>
+        <span class="mono red">(Painel do estúdio)</span>
+        <h1 data-greeting>Bom dia.</h1>
+      </div>
+      <span class="mono muted" data-today></span>
+    </section>
+
+    <div class="tabs panel__tabs" role="tablist">
+      <button class="is-active" type="button" data-tab="resumo">Resumo</button>
+      <button type="button" data-tab="pedidos">Pedidos <span data-new-count></span></button>
+      <button type="button" data-tab="galerias">Galerias</button>
+      <button type="button" data-tab="clientes">Clientes</button>
+      <button type="button" data-tab="projetos">Projetos</button>
+    </div>
+
+    <section class="panel__body" data-panel="resumo"><div class="skeleton panel-skeleton"></div></section>
+    <section class="panel__body" data-panel="pedidos" hidden></section>
+
+    <section class="panel__body" data-panel="galerias" hidden>
+      <div class="panel__split">
+        <div class="table-wrap" data-galleries></div>
+        <form class="panel-form form-grid" data-gallery-form novalidate>
+          <h3>Nova galeria</h3>
+          <div class="field"><label for="g-title">Título</label><input class="input input--box" id="g-title" name="title" placeholder="Campanha inverno — seleção"></div>
+          <div class="field"><label for="g-client">Cliente</label><select class="select select--box" id="g-client" name="clientId"></select></div>
+          <div class="field"><label for="g-project">Projeto</label><input class="input input--box" id="g-project" name="project" placeholder="Opcional"></div>
+          <div class="form-grid form-grid--two">
+            <div class="field"><label for="g-shot">Sessão</label><input class="input input--box" id="g-shot" name="shotOn" type="date"></div>
+            <div class="field"><label for="g-exp">Expira</label><input class="input input--box" id="g-exp" name="expiresAt" type="date"></div>
+          </div>
+          <div class="field">
+            <label for="g-photos">Fotografias (um link por linha)</label>
+            <textarea class="textarea input--box" id="g-photos" name="photoUrls" placeholder="https://images.unsplash.com/photo-…"></textarea>
+          </div>
+          <label class="check"><input type="checkbox" name="allowDownload"> Permitir download desde já</label>
+          <p class="notice notice--error" data-error hidden></p>
+          <button class="btn btn--red" type="submit">Criar galeria</button>
+        </form>
+      </div>
+    </section>
+
+    <section class="panel__body" data-panel="clientes" hidden>
+      <div class="panel__split">
+        <div class="table-wrap" data-clients></div>
+        <form class="panel-form form-grid" data-client-form novalidate>
+          <h3>Novo cliente</h3>
+          <div class="field"><label for="c-name">Nome</label><input class="input input--box" id="c-name" name="name"></div>
+          <div class="field"><label for="c-company">Marca ou empresa</label><input class="input input--box" id="c-company" name="company"></div>
+          <div class="field"><label for="c-email">Email</label><input class="input input--box" id="c-email" name="email" type="email"></div>
+          <div class="field"><label for="c-phone">Telemóvel</label><input class="input input--box" id="c-phone" name="phone" type="tel"></div>
+          <div class="field"><label for="c-password">Palavra-passe inicial</label><input class="input input--box" id="c-password" name="password" type="text" autocomplete="off"></div>
+          <p class="notice notice--error" data-error hidden></p>
+          <button class="btn btn--red" type="submit">Criar acesso</button>
+        </form>
+      </div>
+    </section>
+
+    <section class="panel__body" data-panel="projetos" hidden></section>
+  </main>
+
+  <footer data-footer></footer>
+</body>
+</html>
