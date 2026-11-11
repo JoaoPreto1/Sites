@@ -1,0 +1,89 @@
+<!doctype html>
+<html lang="pt">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Painel de gestão · Maré</title>
+  <meta name="robots" content="noindex">
+  <link rel="icon" href="/favicon.svg">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Inter:wght@400;500;600&display=swap">
+  <link rel="stylesheet" href="/css/base.css">
+  <link rel="stylesheet" href="/css/layout.css">
+  <link rel="stylesheet" href="/css/components.css">
+  <link rel="stylesheet" href="/css/pages/painel.css">
+  <script type="module" src="/js/layout.js"></script>
+  <script type="module" src="/js/pages/painel.js"></script>
+</head>
+<body>
+  <header data-header></header>
+
+  <main class="container panel">
+    <div class="panel__head">
+      <div>
+        <p class="eyebrow muted">Painel de gestão</p>
+        <h1 data-greeting>Bom dia.</h1>
+      </div>
+      <p class="muted" data-today></p>
+    </div>
+
+    <div class="tabs" role="tablist">
+      <button class="is-active" type="button" data-tab="resumo">Resumo</button>
+      <button type="button" data-tab="reservas">Reservas</button>
+      <button type="button" data-tab="casas">Casas e preços</button>
+      <button type="button" data-tab="bloqueios">Bloqueios</button>
+      <button type="button" data-tab="mensagens">Mensagens <span class="badge" data-unread hidden></span></button>
+    </div>
+
+    <section data-panel="resumo"><div class="skeleton panel-skeleton"></div></section>
+
+    <section data-panel="reservas" hidden>
+      <div class="panel__toolbar">
+        <select class="select" data-status-filter aria-label="Filtrar por estado">
+          <option value="">Todos os estados</option>
+          <option value="pendente">A aguardar confirmação</option>
+          <option value="confirmada">Confirmadas</option>
+          <option value="concluida">Concluídas</option>
+          <option value="cancelada">Canceladas</option>
+        </select>
+        <select class="select" data-property-filter aria-label="Filtrar por casa">
+          <option value="">Todas as casas</option>
+        </select>
+      </div>
+      <div class="card table-wrap" data-bookings></div>
+    </section>
+
+    <section data-panel="casas" hidden>
+      <div class="owner-properties" data-properties></div>
+    </section>
+
+    <section data-panel="bloqueios" hidden>
+      <div class="blocks-layout">
+        <form class="card form-grid" data-block-form novalidate>
+          <h3>Bloquear datas</h3>
+          <p class="muted">Para obras, limpezas profundas ou estadias da família.</p>
+          <div class="field">
+            <label for="block-property">Casa</label>
+            <select class="select" id="block-property" name="propertyId"></select>
+          </div>
+          <div class="form-grid form-grid--two">
+            <div class="field"><label for="block-from">De</label><input class="input" id="block-from" name="from" type="date"></div>
+            <div class="field"><label for="block-to">Até</label><input class="input" id="block-to" name="to" type="date"></div>
+          </div>
+          <div class="field"><label for="block-reason">Motivo</label><input class="input" id="block-reason" name="reason" placeholder="Ex.: pintura"></div>
+          <p class="notice notice--error" data-error hidden></p>
+          <button class="btn" type="submit">Bloquear</button>
+        </form>
+        <div class="card table-wrap" data-blocks></div>
+      </div>
+    </section>
+
+    <section data-panel="mensagens" hidden>
+      <div class="messages" data-messages></div>
+    </section>
+  </main>
+
+  <footer data-footer></footer>
+</body>
+</html>
