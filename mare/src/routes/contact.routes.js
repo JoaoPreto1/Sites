@@ -5,10 +5,10 @@ import { messages } from '../repositories/index.js';
 import { validate } from '../middleware/validate.js';
 
 const contactSchema = z.object({
-  name: z.string().trim().min(2).max(80),
-  email: z.email(),
-  subject: z.string().trim().min(3).max(120),
-  message: z.string().trim().min(10).max(2000),
+  name: z.string().trim().min(2, 'Escreva o seu nome').max(80),
+  email: z.email('Escreva um email válido'),
+  subject: z.string().trim().min(3, 'Escreva um assunto').max(120),
+  message: z.string().trim().min(10, 'A mensagem é demasiado curta').max(2000),
 });
 
 const limiter = rateLimit({

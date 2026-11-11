@@ -1,0 +1,90 @@
+<!doctype html>
+<html lang="pt">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Entrar · Maré</title>
+  <meta name="description" content="Entre na sua conta Maré para gerir reservas, fazer check-in online e juntar experiências à estadia.">
+  <link rel="icon" href="/favicon.svg">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Inter:wght@400;500;600&display=swap">
+  <link rel="stylesheet" href="/css/base.css">
+  <link rel="stylesheet" href="/css/layout.css">
+  <link rel="stylesheet" href="/css/components.css">
+  <link rel="stylesheet" href="/css/pages/entrar.css">
+  <script type="module" src="/js/layout.js"></script>
+  <script type="module" src="/js/pages/entrar.js"></script>
+</head>
+<body>
+  <header data-header></header>
+
+  <main class="auth">
+    <div class="auth__photo">
+      <img src="https://images.unsplash.com/photo-1579550229847-676fa238ec46?w=1400&h=1600&q=75&auto=format&fit=crop" alt="Rochedos da costa de Lagos">
+      <p>“Voltámos três anos seguidos. Reservar direto com a Maré é sempre simples.”<span>Inês, hóspede desde 2024</span></p>
+    </div>
+
+    <div class="auth__panel">
+      <div class="auth__box">
+        <div class="tabs" role="tablist">
+          <button class="is-active" type="button" role="tab" data-tab="login">Entrar</button>
+          <button type="button" role="tab" data-tab="register">Criar conta</button>
+        </div>
+
+        <form class="form-grid" data-form="login" novalidate>
+          <div>
+            <h2>Bem-vindo de volta</h2>
+            <p class="muted">Entre para ver as suas reservas.</p>
+          </div>
+          <div class="field">
+            <label for="login-email">Email</label>
+            <input class="input" id="login-email" name="email" type="email" autocomplete="email" required>
+          </div>
+          <div class="field">
+            <label for="login-password">Palavra-passe</label>
+            <input class="input" id="login-password" name="password" type="password" autocomplete="current-password" required>
+          </div>
+          <p class="notice notice--error" data-error hidden></p>
+          <button class="btn btn--block" type="submit">Entrar</button>
+        </form>
+
+        <form class="form-grid" data-form="register" novalidate hidden>
+          <div>
+            <h2>Criar conta</h2>
+            <p class="muted">Leva menos de um minuto.</p>
+          </div>
+          <div class="field">
+            <label for="register-name">Nome</label>
+            <input class="input" id="register-name" name="name" autocomplete="name" required>
+          </div>
+          <div class="field">
+            <label for="register-email">Email</label>
+            <input class="input" id="register-email" name="email" type="email" autocomplete="email" required>
+          </div>
+          <div class="field">
+            <label for="register-phone">Telemóvel <span class="muted">(opcional)</span></label>
+            <input class="input" id="register-phone" name="phone" type="tel" autocomplete="tel">
+          </div>
+          <div class="field">
+            <label for="register-password">Palavra-passe</label>
+            <input class="input" id="register-password" name="password" type="password" autocomplete="new-password" minlength="8" required>
+          </div>
+          <p class="notice notice--error" data-error hidden></p>
+          <button class="btn btn--block" type="submit">Criar conta</button>
+        </form>
+
+        <details class="auth__demo">
+          <summary>Contas de demonstração</summary>
+          <p>Palavra-passe de todas: <code>mare1234</code></p>
+          <ul>
+            <li><button type="button" data-demo="hospede@mare.pt">hospede@mare.pt</button> — hóspede</li>
+            <li><button type="button" data-demo="dono@mare.pt">dono@mare.pt</button> — proprietária</li>
+            <li><button type="button" data-demo="admin@mare.pt">admin@mare.pt</button> — administração</li>
+          </ul>
+        </details>
+      </div>
+    </div>
+  </main>
+</body>
+</html>

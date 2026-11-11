@@ -9,14 +9,14 @@ const password = z.string().min(8, 'A palavra-passe precisa de pelo menos 8 cara
 const phone = z.string().trim().max(30).optional();
 
 const registerSchema = z.object({
-  name: z.string().trim().min(2).max(80),
-  email: z.email(),
+  name: z.string().trim().min(2, 'Escreva o seu nome').max(80),
+  email: z.email('Escreva um email válido'),
   password,
   phone,
 });
 
 const loginSchema = z.object({
-  email: z.email(),
+  email: z.email('Escreva um email válido'),
   password: z.string().min(1),
 });
 
