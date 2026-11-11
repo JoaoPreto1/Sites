@@ -8,3 +8,4 @@ export const bookings = createRepository(seed.bookings);
 export const blocks = createRepository(seed.blocks);
 export const messages = createRepository(seed.messages);
 export const refreshTokens = createRepository();
+export const subscribers = createRepository();

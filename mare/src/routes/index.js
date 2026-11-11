@@ -3,6 +3,7 @@ import auth from './auth.routes.js';
 import properties from './properties.routes.js';
 import bookings from './bookings.routes.js';
 import owner from './owner.routes.js';
+import newsletter from './newsletter.routes.js';
 import experiences from './experiences.routes.js';
 import contact from './contact.routes.js';
 import { apiNotFound } from '../middleware/errors.js';
@@ -16,6 +17,7 @@ router.use('/bookings', bookings);
 router.use('/owner', owner);
 router.use('/experiences', experiences);
 router.use('/contact', contact);
+router.use('/newsletter', newsletter);
 router.use(apiNotFound);
 
 export default router;

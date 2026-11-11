@@ -18,7 +18,7 @@
   --radius: 16px;
   --radius-lg: 24px;
   --shadow: 0 18px 50px rgba(20, 35, 31, 0.12);
-  --container: 1312px;
+  --container: 1360px;
   --gutter: clamp(16px, 4vw, 64px);
 }
 
@@ -285,4 +285,9 @@ h2 em {
   .form-grid--two {
     grid-template-columns: 1fr;
   }
+}
+
+.icon {
+  flex: none;
+  vertical-align: middle;
 }
