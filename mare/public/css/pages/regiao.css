@@ -1,44 +1,76 @@
-.region-intro {
+.region-facts {
+  background: var(--sea);
+  color: #fff;
+}
+
+.region-facts__grid {
   display: grid;
-  grid-template-columns: 1.4fr 1fr;
-  gap: 32px 64px;
-  align-items: end;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
 }
 
-.region-intro h1 {
-  font-size: clamp(46px, 6vw, 88px);
-  margin-top: 14px;
+.region-facts__grid div {
+  padding: 32px 20px;
+  text-align: center;
+  border-left: 1px solid rgba(255, 255, 255, 0.18);
 }
 
-.region-intro > p {
-  margin: 0;
+.region-facts__grid div:first-child {
+  border-left: 0;
 }
 
-@media (max-width: 860px) {
-  .region-intro {
-    grid-template-columns: 1fr;
+.region-facts strong {
+  display: block;
+  font-family: var(--serif);
+  font-weight: 400;
+  font-size: clamp(40px, 4vw, 56px);
+  line-height: 1;
+}
+
+.region-facts span {
+  font-size: 14px;
+  color: #d3e6e7;
+}
+
+@media (max-width: 760px) {
+  .region-facts__grid {
+    grid-template-columns: 1fr 1fr;
   }
-}
 
-.region-banner {
-  width: 100%;
-  height: clamp(280px, 40vw, 560px);
-  object-fit: cover;
-  border-radius: 32px;
+  .region-facts__grid div:nth-child(3) {
+    border-left: 0;
+  }
+
+  .region-facts__grid div:nth-child(n + 3) {
+    border-top: 1px solid rgba(255, 255, 255, 0.18);
+  }
 }
 
 .beaches {
   display: grid;
   grid-template-columns: repeat(4, minmax(0, 1fr));
-  gap: 24px;
+  gap: 20px;
+}
+
+.beaches article {
+  background: #fff;
+  border-radius: var(--radius-lg);
+  overflow: hidden;
 }
 
 .beaches img {
   width: 100%;
-  aspect-ratio: 4 / 5;
+  aspect-ratio: 4 / 4.4;
   object-fit: cover;
-  border-radius: var(--radius-lg);
-  margin-bottom: 16px;
+}
+
+.beaches article > div {
+  padding: 18px 20px 22px;
+}
+
+.beaches .tag {
+  background: var(--sea-soft);
+  color: var(--sea);
+  margin-bottom: 10px;
 }
 
 .beaches p {
@@ -99,6 +131,92 @@
 
   .food img {
     height: 320px;
+  }
+}
+
+.day {
+  display: grid;
+  grid-template-columns: minmax(0, 0.8fr) minmax(0, 1.2fr);
+  gap: clamp(32px, 6vw, 96px);
+  align-items: start;
+}
+
+.day__intro h2 {
+  margin: 14px 0 18px;
+}
+
+.day__intro img {
+  width: 100%;
+  margin-top: 28px;
+  aspect-ratio: 4 / 3;
+  object-fit: cover;
+  border-radius: var(--radius-lg);
+}
+
+.day__timeline {
+  list-style: none;
+  position: relative;
+  display: grid;
+  gap: 12px;
+}
+
+.day__timeline::before {
+  content: '';
+  position: absolute;
+  left: 39px;
+  top: 24px;
+  bottom: 24px;
+  width: 1px;
+  background: var(--line);
+}
+
+.day__timeline li {
+  position: relative;
+  display: grid;
+  grid-template-columns: 80px 1fr;
+  gap: 20px;
+  align-items: start;
+}
+
+.day__timeline time {
+  position: relative;
+  z-index: 1;
+  display: grid;
+  place-items: center;
+  height: 40px;
+  border-radius: 999px;
+  background: var(--ink);
+  color: #fff;
+  font-size: 14px;
+  font-weight: 600;
+}
+
+.day__timeline li > div {
+  padding: 18px 22px;
+  border-radius: var(--radius);
+  background: #fff;
+}
+
+.day__timeline p {
+  color: var(--mute);
+  font-size: 15px;
+  margin-top: 4px;
+}
+
+@media (max-width: 860px) {
+  .day {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 480px) {
+  .day__timeline li {
+    grid-template-columns: 64px 1fr;
+    gap: 12px;
+  }
+
+  .day__timeline::before {
+    left: 31px;
   }
 }
 
