@@ -8,7 +8,7 @@ Cada site vive na sua própria pasta e tem um `README.md` com o tipo de site, a 
 
 | Site | Pasta | Estado |
 |---|---|---|
-| Maré — alojamento local | [`mare/`](mare/) | Em construção |
+| Maré — alojamento local | [`mare/`](mare/) | Pronto |
 
 ### Lista de espera
 
