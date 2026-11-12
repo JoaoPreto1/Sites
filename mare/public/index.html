@@ -3,12 +3,11 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Maré · Casas de férias em Lagos, Algarve</title>
-  <meta name="description" content="Seis casas de férias em Lagos, no Algarve. Reserve direto, sem comissões, e junte passeios e experiências à sua estadia.">
   <link rel="icon" href="/favicon.svg">
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Inter:wght@400;500;600&display=swap">
+  <!--seo-->
+  <link rel="preload" href="/fonts/inter.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="preload" href="/fonts/instrument-serif.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="preload" href="/fonts/instrument-serif-italic.woff2" as="font" type="font/woff2" crossorigin>
   <link rel="stylesheet" href="/css/base.css">
   <link rel="stylesheet" href="/css/layout.css">
   <link rel="stylesheet" href="/css/components.css">
@@ -21,7 +20,7 @@
 
   <main>
     <section class="hero">
-      <img class="hero__image" src="https://images.unsplash.com/photo-1560242374-cef61d4d5db6?w=2400&q=80&auto=format&fit=crop" alt="Barcos entre as falésias da Ponta da Piedade, em Lagos">
+      <img class="hero__image" src="https://images.unsplash.com/photo-1560242374-cef61d4d5db6?w=1280&amp;q=60&amp;auto=format&amp;fit=crop" srcset="https://images.unsplash.com/photo-1560242374-cef61d4d5db6?w=480&amp;q=60&amp;auto=format&amp;fit=crop 480w, https://images.unsplash.com/photo-1560242374-cef61d4d5db6?w=720&amp;q=60&amp;auto=format&amp;fit=crop 720w, https://images.unsplash.com/photo-1560242374-cef61d4d5db6?w=960&amp;q=60&amp;auto=format&amp;fit=crop 960w, https://images.unsplash.com/photo-1560242374-cef61d4d5db6?w=1280&amp;q=60&amp;auto=format&amp;fit=crop 1280w, https://images.unsplash.com/photo-1560242374-cef61d4d5db6?w=1920&amp;q=60&amp;auto=format&amp;fit=crop 1920w, https://images.unsplash.com/photo-1560242374-cef61d4d5db6?w=2400&amp;q=60&amp;auto=format&amp;fit=crop 2400w" sizes="100vw" width="2400" height="1600" fetchpriority="high" decoding="async" alt="Barcos entre as falésias da Ponta da Piedade, em Lagos">
       <div class="container hero__content">
         <p class="eyebrow">Casas de férias · Lagos, Algarve</p>
         <h1>Onde o Atlântico<br><em>encontra a calma.</em></h1>
@@ -34,15 +33,15 @@
 
       <form class="container search" action="/alojamentos" method="get">
         <div class="search__field">
-          <label for="checkIn" data-icon="calendar">Check-in</label>
+          <label for="checkIn" data-icon="calendar" data-icon-size="15">Check-in</label>
           <input id="checkIn" name="checkIn" type="date" required>
         </div>
         <div class="search__field">
-          <label for="checkOut" data-icon="calendar">Check-out</label>
+          <label for="checkOut" data-icon="calendar" data-icon-size="15">Check-out</label>
           <input id="checkOut" name="checkOut" type="date" required>
         </div>
         <div class="search__field">
-          <label for="guests" data-icon="users">Hóspedes</label>
+          <label for="guests" data-icon="users" data-icon-size="15">Hóspedes</label>
           <select id="guests" name="guests">
             <option value="1">1 hóspede</option>
             <option value="2" selected>2 hóspedes</option>
@@ -69,8 +68,8 @@
 
     <section class="section container about">
       <div class="about__media">
-        <img class="about__main" src="https://images.unsplash.com/photo-1705095605806-4b2936e90471?w=900&h=1100&q=75&auto=format&fit=crop" alt="Terraço com sofás e vista para o mar" loading="lazy">
-        <img class="about__small" src="https://images.unsplash.com/photo-1583847268964-b28dc8f51f92?w=600&h=600&q=75&auto=format&fit=crop" alt="Sala luminosa com sofá branco" loading="lazy">
+        <img class="about__main" src="https://images.unsplash.com/photo-1705095605806-4b2936e90471?w=900&amp;h=1100&amp;q=75&amp;auto=format&amp;fit=crop" srcset="https://images.unsplash.com/photo-1705095605806-4b2936e90471?w=450&amp;h=550&amp;q=75&amp;auto=format&amp;fit=crop 450w, https://images.unsplash.com/photo-1705095605806-4b2936e90471?w=900&amp;h=1100&amp;q=75&amp;auto=format&amp;fit=crop 900w" sizes="(max-width: 900px) 100vw, 50vw" width="900" height="1100" alt="Terraço com sofás e vista para o mar" loading="lazy">
+        <img class="about__small" src="https://images.unsplash.com/photo-1583847268964-b28dc8f51f92?w=600&amp;h=600&amp;q=75&amp;auto=format&amp;fit=crop" srcset="https://images.unsplash.com/photo-1583847268964-b28dc8f51f92?w=300&amp;h=300&amp;q=75&amp;auto=format&amp;fit=crop 300w, https://images.unsplash.com/photo-1583847268964-b28dc8f51f92?w=600&amp;h=600&amp;q=75&amp;auto=format&amp;fit=crop 600w" sizes="(max-width: 900px) 100vw, 50vw" width="600" height="600" alt="Sala luminosa com sofá branco" loading="lazy">
         <div class="about__badge"><strong>12</strong><span>anos a receber hóspedes</span></div>
       </div>
       <div class="about__text">
@@ -190,9 +189,9 @@
         <a class="btn" href="/regiao">Ler o guia de Lagos</a>
       </div>
       <div class="region-teaser__mosaic">
-        <img src="https://images.unsplash.com/photo-1779487281695-0dce89c7462a?w=800&h=1000&q=75&auto=format&fit=crop" alt="Praia de Lagos com falésias" loading="lazy">
-        <img src="https://images.unsplash.com/photo-1591107576521-87091dc07797?w=600&h=480&q=75&auto=format&fit=crop" alt="Pastéis de nata" loading="lazy">
-        <img src="https://images.unsplash.com/photo-1759881585824-87f187cd4cb1?w=600&h=480&q=75&auto=format&fit=crop" alt="Praia com rochedos" loading="lazy">
+        <img src="https://images.unsplash.com/photo-1779487281695-0dce89c7462a?w=800&amp;h=1000&amp;q=75&amp;auto=format&amp;fit=crop" srcset="https://images.unsplash.com/photo-1779487281695-0dce89c7462a?w=400&amp;h=500&amp;q=75&amp;auto=format&amp;fit=crop 400w, https://images.unsplash.com/photo-1779487281695-0dce89c7462a?w=800&amp;h=1000&amp;q=75&amp;auto=format&amp;fit=crop 800w" sizes="(max-width: 900px) 100vw, 50vw" width="800" height="1000" alt="Praia de Lagos com falésias" loading="lazy">
+        <img src="https://images.unsplash.com/photo-1591107576521-87091dc07797?w=600&amp;h=480&amp;q=75&amp;auto=format&amp;fit=crop" srcset="https://images.unsplash.com/photo-1591107576521-87091dc07797?w=300&amp;h=240&amp;q=75&amp;auto=format&amp;fit=crop 300w, https://images.unsplash.com/photo-1591107576521-87091dc07797?w=600&amp;h=480&amp;q=75&amp;auto=format&amp;fit=crop 600w" sizes="(max-width: 900px) 100vw, 50vw" width="600" height="480" alt="Pastéis de nata" loading="lazy">
+        <img src="https://images.unsplash.com/photo-1759881585824-87f187cd4cb1?w=600&amp;h=480&amp;q=75&amp;auto=format&amp;fit=crop" srcset="https://images.unsplash.com/photo-1759881585824-87f187cd4cb1?w=300&amp;h=240&amp;q=75&amp;auto=format&amp;fit=crop 300w, https://images.unsplash.com/photo-1759881585824-87f187cd4cb1?w=600&amp;h=480&amp;q=75&amp;auto=format&amp;fit=crop 600w" sizes="(max-width: 900px) 100vw, 50vw" width="600" height="480" alt="Praia com rochedos" loading="lazy">
       </div>
     </section>
 
@@ -237,7 +236,7 @@
     </section>
 
     <section class="final-cta">
-      <img src="https://images.unsplash.com/photo-1773434537544-c1c77fbd1891?w=2400&h=1000&q=75&auto=format&fit=crop" alt="Veleiro ao pôr do sol no mar" loading="lazy">
+      <img src="https://images.unsplash.com/photo-1773434537544-c1c77fbd1891?w=2400&amp;h=1000&amp;q=75&amp;auto=format&amp;fit=crop" srcset="https://images.unsplash.com/photo-1773434537544-c1c77fbd1891?w=1200&amp;h=500&amp;q=75&amp;auto=format&amp;fit=crop 1200w, https://images.unsplash.com/photo-1773434537544-c1c77fbd1891?w=2400&amp;h=1000&amp;q=75&amp;auto=format&amp;fit=crop 2400w" sizes="(max-width: 900px) 100vw, 50vw" width="2400" height="1000" alt="Veleiro ao pôr do sol no mar" loading="lazy">
       <div class="container final-cta__inner">
         <h2>A sua casa no Algarve <em>está à espera.</em></h2>
         <p>Veja que casas estão livres nas suas datas e reserve em dois minutos.</p>

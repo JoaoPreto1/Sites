@@ -1,13 +1,10 @@
 import { api } from '../api.js';
-import { icon } from '../icons.js';
 import { currentUser } from '../session.js';
 import { showFieldErrors } from '../utils.js';
 
 const form = document.querySelector('[data-contact]');
 const error = form.querySelector('[data-error]');
 const sent = document.querySelector('[data-sent]');
-
-document.querySelectorAll('[data-icon]').forEach((el) => el.insertAdjacentHTML('afterbegin', icon(el.dataset.icon, 24)));
 
 const user = currentUser();
 if (user) {

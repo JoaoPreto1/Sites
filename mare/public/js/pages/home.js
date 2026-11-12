@@ -1,7 +1,7 @@
 import { api } from '../api.js';
 import { linkDateInputs } from '../date-range.js';
 import { icon } from '../icons.js';
-import { escapeHtml, img, money, propertyCard } from '../utils.js';
+import { escapeHtml, money, propertyCard, responsive } from '../utils.js';
 
 const grid = document.querySelector('[data-properties]');
 const filters = document.querySelector('[data-filters]');
@@ -9,7 +9,6 @@ const search = document.querySelector('.search');
 
 linkDateInputs(search.checkIn, search.checkOut);
 
-document.querySelectorAll('[data-icon]').forEach((el) => el.insertAdjacentHTML('afterbegin', icon(el.dataset.icon, el.closest('.trust') ? 24 : 15)));
 document.querySelectorAll('[data-stars]').forEach((el) => (el.innerHTML = icon('star', 16).repeat(5)));
 
 async function loadProperties(tag = '') {
@@ -33,7 +32,7 @@ async function loadExperiences() {
       .map(
         (e) => `
         <a class="exp-tile" href="/experiencias">
-          <img src="${img(e.image, 600, 760)}" alt="${escapeHtml(e.name)}" loading="lazy">
+          <img ${responsive(e.image, [300, 450, 600], 1.27, '(max-width: 520px) 100vw, (max-width: 1000px) 50vw, 25vw')} alt="${escapeHtml(e.name)}" loading="lazy" decoding="async">
           <div class="exp-tile__body">
             <span class="exp-tile__meta">${icon('clock', 14)} ${e.duration} · ${escapeHtml(e.category)}</span>
             <h3>${escapeHtml(e.name)}</h3>

@@ -2,7 +2,7 @@ import { api } from '../api.js';
 import { createCalendar } from '../calendar.js';
 import { linkDateInputs } from '../date-range.js';
 import { amenityIcon, icon } from '../icons.js';
-import { addDays, escapeHtml, formatDate, img, initials, money, params, plural, propertyCard, tagLabels, todayIso } from '../utils.js';
+import { addDays, escapeHtml, formatDate, img, initialData, initials, money, params, plural, propertyCard, responsive, tagLabels, todayIso } from '../utils.js';
 
 const root = document.querySelector('[data-property]');
 const slug = decodeURIComponent(window.location.pathname.split('/')[2] ?? '');
@@ -63,7 +63,11 @@ function render(property) {
 
     <div class="gallery gallery--${photos.length}">
       ${photos
-        .map((url, i) => `<button type="button" data-photo="${i}"><img src="${img(url, i === 0 ? 1400 : 700, i === 0 ? 1000 : 520)}" alt="${escapeHtml(property.name)}, fotografia ${i + 1}"></button>`)
+        .map((url, i) =>
+          i === 0
+            ? `<button type="button" data-photo="0"><img ${responsive(url, [480, 720, 960, 1280, 1600], 0.72, '(max-width: 760px) 100vw, 50vw')} alt="${escapeHtml(property.name)}, fotografia 1" fetchpriority="high"></button>`
+            : `<button type="button" data-photo="${i}"><img ${responsive(url, [360, 540, 720], 0.75, '(max-width: 760px) 50vw, 25vw')} alt="${escapeHtml(property.name)}, fotografia ${i + 1}" loading="lazy" decoding="async"></button>`,
+        )
         .join('')}
       <button class="btn btn--light btn--small gallery__all" type="button" data-photo="0">${icon('area', 16)} Ver as ${property.images.length} fotografias</button>
     </div>
@@ -137,7 +141,7 @@ function render(property) {
           <h2>Onde fica</h2>
           <div class="location">
             <div class="location__map">
-              <img src="${img('https://images.unsplash.com/photo-1759783640223-a893fa1e7e1b', 900, 600)}" alt="Vista aérea da costa de Lagos" loading="lazy">
+              <img ${responsive('https://images.unsplash.com/photo-1759783640223-a893fa1e7e1b', [450, 900], 0.667, '(max-width: 760px) 100vw, 40vw')} alt="Vista aérea da costa de Lagos" loading="lazy" decoding="async">
               <span class="location__pin">${icon('pin', 18)} ${escapeHtml(property.area)}</span>
             </div>
             <div>
@@ -327,7 +331,7 @@ async function loadMoreHomes(property) {
 
 async function init() {
   try {
-    const { property } = await api(`/properties/${encodeURIComponent(slug)}`);
+    const { property } = initialData() ?? (await api(`/properties/${encodeURIComponent(slug)}`));
     render(property);
     setupGallery(property);
     loadMoreHomes(property);

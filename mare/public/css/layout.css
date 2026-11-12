@@ -1,3 +1,19 @@
+/* Reserva o espaço da navbar antes de o JavaScript a desenhar, para a página não saltar */
+[data-header]:empty {
+  display: block;
+  height: 117px;
+}
+
+.has-hero [data-header]:empty {
+  height: 0;
+}
+
+@media (max-width: 760px) {
+  [data-header]:empty {
+    height: 69px;
+  }
+}
+
 /* Cabeçalho */
 .site-header {
   --topbar: 40px;

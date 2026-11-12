@@ -1,6 +1,5 @@
 import { api } from '../api.js';
 import { linkDateInputs } from '../date-range.js';
-import { icon } from '../icons.js';
 import { params, plural, propertyCard, shortDate } from '../utils.js';
 
 const form = document.querySelector('[data-filters]');
@@ -17,8 +16,6 @@ const sorters = {
   rating: (a, b) => b.rating - a.rating,
   guests: (a, b) => b.guests - a.guests,
 };
-
-document.querySelectorAll('[data-icon]').forEach((el) => el.insertAdjacentHTML('afterbegin', icon(el.dataset.icon, 20)));
 
 function syncForm() {
   form.checkIn.value = state.checkIn;

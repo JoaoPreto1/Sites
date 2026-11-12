@@ -1,10 +1,53 @@
+@font-face {
+  font-family: 'Inter';
+  font-style: normal;
+  font-weight: 400 600;
+  font-display: swap;
+  src: url('/fonts/inter.woff2') format('woff2');
+}
+
+@font-face {
+  font-family: 'Instrument Serif';
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: url('/fonts/instrument-serif.woff2') format('woff2');
+}
+
+@font-face {
+  font-family: 'Instrument Serif';
+  font-style: italic;
+  font-weight: 400;
+  font-display: swap;
+  src: url('/fonts/instrument-serif-italic.woff2') format('woff2');
+}
+
+/* Fontes de reserva com as mesmas medidas, para a troca de fonte não mexer no layout */
+@font-face {
+  font-family: 'Instrument Serif Fallback';
+  src: local('Times New Roman');
+  size-adjust: 82.5%;
+  ascent-override: 99%;
+  descent-override: 31%;
+  line-gap-override: 0%;
+}
+
+@font-face {
+  font-family: 'Inter Fallback';
+  src: local('Arial');
+  size-adjust: 105.9%;
+  ascent-override: 92%;
+  descent-override: 23%;
+  line-gap-override: 0%;
+}
+
 :root {
   --sand: #f5efe6;
   --paper: #fbf8f3;
   --line: #e2d8c8;
   --ink: #14231f;
   --ink-soft: #2a3a35;
-  --mute: #6f7a74;
+  --mute: #58625d;
   --sea: #1d5c63;
   --sea-dark: #164a50;
   --sea-soft: #e1ecec;
@@ -12,8 +55,8 @@
   --warn: #a76b12;
   --danger: #b3412c;
 
-  --serif: 'Instrument Serif', Georgia, serif;
-  --sans: 'Inter', system-ui, -apple-system, 'Segoe UI', sans-serif;
+  --serif: 'Instrument Serif', 'Instrument Serif Fallback', Georgia, serif;
+  --sans: 'Inter', 'Inter Fallback', system-ui, -apple-system, 'Segoe UI', sans-serif;
 
   --radius: 16px;
   --radius-lg: 24px;

@@ -53,7 +53,7 @@ export function createCalendar(root, { nights, months = 2, onSelect }) {
 
     return `
       <div class="cal__month">
-        <h4>${MONTH_NAMES[month]} ${year}</h4>
+        <h3>${MONTH_NAMES[month]} ${year}</h3>
         <div class="cal__grid">
           ${WEEK.map((d) => `<span class="cal__weekday">${d}</span>`).join('')}
           ${cells.join('')}

@@ -15,7 +15,7 @@ const path = window.location.pathname;
 
 function accountMarkup() {
   if (!user) {
-    return `<a class="nav-login" href="/entrar">${icon('user', 18)}<span>Entrar</span></a>`;
+    return `<a class="nav-login" href="/entrar" aria-label="Entrar">${icon('user', 18)}<span>Entrar</span></a>`;
   }
 
   return `
@@ -81,7 +81,7 @@ function renderHeader() {
     </div>
     <div class="navbar">
       <div class="container navbar__inner">
-        <a class="brand" href="/" aria-label="Maré, página inicial">
+        <a class="brand" href="/">
           <span class="brand__mark">${icon('wave', 20)}</span>
           <span class="brand__text"><strong>Maré</strong><small>Lagos · Algarve</small></span>
         </a>
@@ -89,7 +89,7 @@ function renderHeader() {
         <div class="header-actions">
           ${accountMarkup()}
           <a class="btn btn--sea btn--small nav-cta" href="/alojamentos">Reservar</a>
-          <button class="icon-button menu-toggle" type="button" aria-label="Abrir menu">${icon('menu', 22)}</button>
+          <button class="icon-button menu-toggle" type="button" aria-label="Abrir menu" aria-expanded="false">${icon('menu', 22)}</button>
         </div>
       </div>
     </div>`;
@@ -123,8 +123,11 @@ function setupDrawer(header) {
     drawer.classList.toggle('is-open', open);
     drawer.setAttribute('aria-hidden', !open);
     document.documentElement.classList.toggle('no-scroll', open);
+    header.querySelector('.menu-toggle').setAttribute('aria-expanded', open);
+    drawer.inert = !open;
   };
 
+  drawer.inert = true;
   header.querySelector('.menu-toggle').addEventListener('click', () => toggle(true));
   drawer.querySelector('[data-close-drawer]').addEventListener('click', () => toggle(false));
   drawer.addEventListener('click', (event) => event.target === drawer && toggle(false));

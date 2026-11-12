@@ -1,18 +1,16 @@
 import { api } from '../api.js';
 import { icon } from '../icons.js';
-import { escapeHtml, img, money } from '../utils.js';
+import { escapeHtml, money, responsive } from '../utils.js';
 
 const grid = document.querySelector('[data-experiences]');
 const featured = document.querySelector('[data-featured]');
 const filters = document.querySelector('[data-filters]');
 let experiences = [];
 
-document.querySelectorAll('[data-icon]').forEach((el) => el.insertAdjacentHTML('afterbegin', icon(el.dataset.icon, 24)));
-
 function featuredMarkup(e) {
   return `
     <article class="featured">
-      <img src="${img(e.image, 1200, 800)}" alt="${escapeHtml(e.name)}">
+      <img ${responsive(e.image, [600, 900, 1200], 0.667, '(max-width: 860px) 100vw, 55vw')} alt="${escapeHtml(e.name)}" loading="lazy" decoding="async">
       <div class="featured__body">
         <span class="tag">A mais procurada</span>
         <h3>${escapeHtml(e.name)}</h3>
@@ -34,7 +32,7 @@ function card(e) {
   return `
     <article class="exp-card">
       <div class="exp-card__media">
-        <img src="${img(e.image, 800, 600)}" alt="${escapeHtml(e.name)}" loading="lazy">
+        <img ${responsive(e.image, [400, 600, 800], 0.75, '(max-width: 640px) 100vw, (max-width: 1000px) 50vw, 33vw')} alt="${escapeHtml(e.name)}" loading="lazy" decoding="async">
         <span class="tag">${escapeHtml(e.category)}</span>
       </div>
       <div class="exp-card__body">

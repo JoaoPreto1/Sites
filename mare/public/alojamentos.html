@@ -3,12 +3,10 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Alojamentos · Maré</title>
-  <meta name="description" content="Casas de férias em Lagos com vista mar, piscina ou no centro histórico. Veja a disponibilidade e reserve direto.">
   <link rel="icon" href="/favicon.svg">
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Inter:wght@400;500;600&display=swap">
+  <!--seo-->
+  <link rel="preload" href="/fonts/inter.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="preload" href="/fonts/instrument-serif.woff2" as="font" type="font/woff2" crossorigin>
   <link rel="stylesheet" href="/css/base.css">
   <link rel="stylesheet" href="/css/layout.css">
   <link rel="stylesheet" href="/css/components.css">
@@ -21,7 +19,7 @@
 
   <main>
     <section class="banner banner--listing">
-      <img src="https://images.unsplash.com/photo-1596178067639-5c6e68aea6dc?w=2400&h=1000&q=75&auto=format&fit=crop" alt="Piscina de uma das casas Maré entre palmeiras">
+      <img src="https://images.unsplash.com/photo-1596178067639-5c6e68aea6dc?w=1440&amp;h=600&amp;q=75&amp;auto=format&amp;fit=crop" srcset="https://images.unsplash.com/photo-1596178067639-5c6e68aea6dc?w=640&amp;h=267&amp;q=75&amp;auto=format&amp;fit=crop 640w, https://images.unsplash.com/photo-1596178067639-5c6e68aea6dc?w=960&amp;h=400&amp;q=75&amp;auto=format&amp;fit=crop 960w, https://images.unsplash.com/photo-1596178067639-5c6e68aea6dc?w=1440&amp;h=600&amp;q=75&amp;auto=format&amp;fit=crop 1440w, https://images.unsplash.com/photo-1596178067639-5c6e68aea6dc?w=2000&amp;h=833&amp;q=75&amp;auto=format&amp;fit=crop 2000w" sizes="100vw" width="2400" height="1000" fetchpriority="high" alt="Piscina de uma das casas Maré entre palmeiras">
       <div class="container">
         <nav class="crumbs"><a href="/">Início</a> / <span>Alojamentos</span></nav>
         <h1>Escolha a casa, <em>nós tratamos do resto.</em></h1>
@@ -75,7 +73,8 @@
       </form>
     </div>
 
-    <section class="container listing">
+    <section class="container listing" aria-labelledby="listing-title">
+      <h2 class="sr-only" id="listing-title">Casas disponíveis</h2>
       <div class="listing__summary">
         <p data-summary>A procurar casas…</p>
         <button class="link muted" type="button" data-clear hidden>Limpar filtros</button>
@@ -90,12 +89,12 @@
           <h2>Chegue e <em>esteja de férias.</em></h2>
         </div>
         <ul class="included__grid">
-          <li data-icon="wifi"><strong>Wi-Fi rápido</strong><span>Fibra em todas as casas, para quem precisa de trabalhar.</span></li>
-          <li data-icon="bed"><strong>Roupa de algodão</strong><span>Camas feitas e toalhas de banho e de praia.</span></li>
-          <li data-icon="coffee"><strong>Cesto de boas-vindas</strong><span>Pão, fruta, café e um vinho da região.</span></li>
-          <li data-icon="sparkle"><strong>Limpeza profissional</strong><span>Feita pela nossa equipa, com produtos ecológicos.</span></li>
-          <li data-icon="key"><strong>Entrada autónoma</strong><span>Cofre de chaves para chegar à hora que quiser.</span></li>
-          <li data-icon="chat"><strong>Apoio local</strong><span>A Rita responde em menos de uma hora.</span></li>
+          <li data-icon="wifi" data-icon-size="20"><strong>Wi-Fi rápido</strong><span>Fibra em todas as casas, para quem precisa de trabalhar.</span></li>
+          <li data-icon="bed" data-icon-size="20"><strong>Roupa de algodão</strong><span>Camas feitas e toalhas de banho e de praia.</span></li>
+          <li data-icon="coffee" data-icon-size="20"><strong>Cesto de boas-vindas</strong><span>Pão, fruta, café e um vinho da região.</span></li>
+          <li data-icon="sparkle" data-icon-size="20"><strong>Limpeza profissional</strong><span>Feita pela nossa equipa, com produtos ecológicos.</span></li>
+          <li data-icon="key" data-icon-size="20"><strong>Entrada autónoma</strong><span>Cofre de chaves para chegar à hora que quiser.</span></li>
+          <li data-icon="chat" data-icon-size="20"><strong>Apoio local</strong><span>A Rita responde em menos de uma hora.</span></li>
         </ul>
       </div>
     </section>
@@ -108,7 +107,7 @@
         </div>
         <div class="help-card__actions">
           <a class="btn btn--light" href="/contactos">Pedir orçamento</a>
-          <a class="help-card__phone" href="tel:+351282000000" data-icon="phone">+351 282 000 000</a>
+          <a class="help-card__phone" href="tel:+351282000000" data-icon="phone" data-icon-size="20">+351 282 000 000</a>
         </div>
       </div>
     </section>

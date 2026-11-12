@@ -38,6 +38,21 @@ export function img(url, width, height) {
   return `${url}?w=${width}${size}&q=75&auto=format&fit=crop`;
 }
 
+// Atributos src/srcset/sizes para o browser escolher o tamanho certo em cada ecrã
+export function responsive(url, widths, ratio, sizes) {
+  const largest = widths[widths.length - 1];
+  const srcset = widths.map((w) => `${img(url, w, Math.round(w * ratio))} ${w}w`).join(', ');
+  return `src="${img(url, widths[1] ?? largest, Math.round((widths[1] ?? largest) * ratio))}" srcset="${srcset}" sizes="${sizes}" width="${largest}" height="${Math.round(largest * ratio)}"`;
+}
+
+export function initialData() {
+  try {
+    return JSON.parse(document.getElementById('initial-data')?.textContent ?? 'null');
+  } catch {
+    return null;
+  }
+}
+
 export function escapeHtml(value = '') {
   return String(value).replace(/[&<>"']/g, (char) => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' })[char]);
 }
@@ -112,8 +127,8 @@ export function propertyCard(property, query = '') {
   return `
     <a class="pcard${unavailable ? ' is-unavailable' : ''}" href="/alojamentos/${property.slug}${query}">
       <div class="pcard__media">
-        <img src="${img(property.images[0], 720, 540)}" alt="${escapeHtml(property.name)}" loading="lazy">
-        ${second ? `<img class="pcard__alt" src="${img(second, 720, 540)}" alt="" loading="lazy">` : ''}
+        <img ${responsive(property.images[0], [400, 600, 800, 1000], 0.75, '(max-width: 640px) 100vw, (max-width: 1080px) 50vw, 33vw')} alt="${escapeHtml(property.name)}" loading="lazy" decoding="async">
+        ${second ? `<img class="pcard__alt" ${responsive(second, [400, 600, 800, 1000], 0.75, '(max-width: 640px) 100vw, (max-width: 1080px) 50vw, 33vw')} alt="" loading="lazy" decoding="async">` : ''}
         ${tag ? `<span class="tag">${tagLabels[tag]}</span>` : ''}
         <span class="pcard__rating">${icon('star', 14)} ${property.rating.toFixed(2)}</span>
       </div>
