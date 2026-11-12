@@ -45,7 +45,7 @@ function render() {
   root.innerHTML = `
     <section class="gallery-head">
       <div>
-        <nav class="crumbs mono"><a href="/galerias">As minhas galerias</a> / ${escapeHtml(gallery.project)}</nav>
+        <nav class="crumbs"><a href="/galerias">As minhas galerias</a> / ${escapeHtml(gallery.project)}</nav>
         <h1>${escapeHtml(gallery.title)}</h1>
         <div class="gallery-head__meta mono">
           <span>${plural(gallery.photos.length, 'fotografia', 'fotografias')}</span>

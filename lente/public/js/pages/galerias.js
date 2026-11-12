@@ -32,8 +32,8 @@ function card(gallery) {
 
 const user = await requireUser();
 if (user) {
-  document.querySelector('[data-who]').textContent = `(04) Galerias — ${user.company || user.name}`;
-  document.querySelector('[data-greeting]').innerHTML = `Olá, ${escapeHtml(user.name.split(' ')[0])}<span class="red">.</span>`;
+  document.querySelector('[data-who]').textContent = `Área de cliente · ${user.company || user.name}`;
+  document.querySelector('[data-greeting]').innerHTML = `Olá, <span class="red">${escapeHtml(user.name.split(' ')[0])}.</span>`;
 
   try {
     const { galleries } = await api('/galleries', { auth: true });

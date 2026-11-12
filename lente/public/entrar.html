@@ -20,14 +20,14 @@
   <main class="login">
     <div class="login__photo">
       <img src="https://images.unsplash.com/photo-1542992933-ce75d0187ec1?w=2200&amp;h=2514&amp;q=75&amp;auto=format&amp;fit=crop" srcset="https://images.unsplash.com/photo-1542992933-ce75d0187ec1?w=640&amp;h=731&amp;q=75&amp;auto=format&amp;fit=crop 640w, https://images.unsplash.com/photo-1542992933-ce75d0187ec1?w=960&amp;h=1097&amp;q=75&amp;auto=format&amp;fit=crop 960w, https://images.unsplash.com/photo-1542992933-ce75d0187ec1?w=1440&amp;h=1646&amp;q=75&amp;auto=format&amp;fit=crop 1440w, https://images.unsplash.com/photo-1542992933-ce75d0187ec1?w=2200&amp;h=2514&amp;q=75&amp;auto=format&amp;fit=crop 2200w" sizes="100vw" width="2200" height="2514" fetchpriority="high" alt="Fotógrafa a trabalhar em estúdio">
-      <span class="mono">Área de cliente — acesso privado</span>
+      <span class="login__note">Área de cliente · acesso privado</span>
     </div>
 
     <div class="login__panel">
       <form class="login__form form-grid" data-login novalidate>
         <div>
-          <span class="mono red">(Área de cliente)</span>
-          <h1>Entrar<span class="red">.</span></h1>
+          <span class="mono login__eyebrow">Área de cliente</span>
+          <h1>Bem-vindo <span class="red">de volta.</span></h1>
           <p class="muted">Use o email e a palavra-passe que lhe enviámos com o link da galeria.</p>
         </div>
         <div class="field">
@@ -39,12 +39,12 @@
           <input class="input" id="password" name="password" type="password" autocomplete="current-password" placeholder="••••••••">
         </div>
         <p class="notice notice--error" data-error hidden></p>
-        <button class="quote-like" type="submit"><span>Entrar</span><span>→</span></button>
+        <button class="btn btn--red btn--block" type="submit">Entrar</button>
         <p class="muted login__help">Não tem acesso? As contas são criadas pelo estúdio quando o projeto começa. <a class="link" href="mailto:ola@lente.studio">Peça-nos aqui.</a></p>
 
         <details class="demo">
-          <summary class="mono">Contas de demonstração</summary>
-          <p class="mono">Palavra-passe: lente1234</p>
+          <summary>Contas de demonstração</summary>
+          <p>Palavra-passe de todas: <strong>lente1234</strong></p>
           <button type="button" data-demo="cliente@lente.pt">cliente@lente.pt <span class="muted">— Atelier Nove</span></button>
           <button type="button" data-demo="banda@lente.pt">banda@lente.pt <span class="muted">— Ruído Branco</span></button>
           <button type="button" data-demo="estudio@lente.pt">estudio@lente.pt <span class="muted">— administração</span></button>
