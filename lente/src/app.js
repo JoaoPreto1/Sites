@@ -1,14 +1,15 @@
 import express from 'express';
 import helmet from 'helmet';
 import cors from 'cors';
+import compression from 'compression';
 import cookieParser from 'cookie-parser';
 import { fileURLToPath } from 'node:url';
 import { env } from './config/env.js';
 import apiRoutes from './routes/index.js';
+import pageRoutes, { notFoundPage } from './routes/pages.routes.js';
 import { errorHandler } from './middleware/errors.js';
 
 const publicDir = fileURLToPath(new URL('../public', import.meta.url));
-const page = (name) => (req, res) => res.sendFile(`${name}.html`, { root: publicDir });
 
 export const app = express();
 
@@ -19,8 +20,8 @@ app.use(
       directives: {
         defaultSrc: ["'self'"],
         imgSrc: ["'self'", 'data:', 'https://images.unsplash.com'],
-        styleSrc: ["'self'", 'https://fonts.googleapis.com'],
-        fontSrc: ["'self'", 'https://fonts.gstatic.com'],
+        styleSrc: ["'self'"],
+        fontSrc: ["'self'"],
         scriptSrc: ["'self'"],
         connectSrc: ["'self'"],
         upgradeInsecureRequests: env.isProduction ? [] : null,
@@ -28,6 +29,7 @@ app.use(
     },
   }),
 );
+app.use(compression());
 
 if (env.corsOrigins.length) {
   app.use(cors({ origin: env.corsOrigins, credentials: true }));
@@ -37,10 +39,19 @@ app.use(express.json({ limit: '200kb' }));
 app.use(cookieParser());
 
 app.use('/api', apiRoutes);
+app.use(pageRoutes);
 
-app.get('/trabalho/:slug', page('projeto'));
-app.get('/galerias/:id', page('galeria'));
-app.use(express.static(publicDir, { extensions: ['html'] }));
-app.use((req, res) => res.status(404).sendFile('404.html', { root: publicDir }));
+// Os .html são modelos: só são servidos através das rotas acima, já com o SEO preenchido
+app.use((req, res, next) => (req.path.endsWith('.html') ? notFoundPage(req, res) : next()));
+app.use(
+  express.static(publicDir, {
+    index: false,
+    setHeaders(res, path) {
+      if (/[\\/]fonts[\\/]/.test(path)) res.set('Cache-Control', 'public, max-age=31536000, immutable');
+      else res.set('Cache-Control', 'public, max-age=86400');
+    },
+  }),
+);
+app.use(notFoundPage);
 
 app.use(errorHandler);

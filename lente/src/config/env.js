@@ -10,6 +10,7 @@ function secret(name, devFallback) {
 export const env = {
   isProduction,
   port: Number(process.env.PORT) || 3000,
+  siteUrl: (process.env.SITE_URL || `http://localhost:${process.env.PORT || 3000}`).replace(/\/$/, ''),
   jwt: {
     accessSecret: secret('JWT_ACCESS_SECRET', 'dev-access-secret'),
     refreshSecret: secret('JWT_REFRESH_SECRET', 'dev-refresh-secret'),
