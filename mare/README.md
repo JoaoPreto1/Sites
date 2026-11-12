@@ -9,7 +9,7 @@
 ![Node.js](https://img.shields.io/badge/Node.js-22+-339933?style=flat-square&logo=nodedotjs&logoColor=white)
 ![Express](https://img.shields.io/badge/Express-5-000000?style=flat-square&logo=express&logoColor=white)
 ![JWT](https://img.shields.io/badge/Auth-JWT-d63aff?style=flat-square&logo=jsonwebtokens&logoColor=white)
-![Zod](https://img.shields.io/badge/Validação-Zod-3e67b1?style=flat-square&logo=zod&logoColor=white)
+![express-validator](https://img.shields.io/badge/Validação-express--validator-000000?style=flat-square&logo=express&logoColor=white)
 ![HTML5](https://img.shields.io/badge/HTML5-e34f26?style=flat-square&logo=html5&logoColor=white)
 ![CSS](https://img.shields.io/badge/CSS-663399?style=flat-square&logo=css&logoColor=white)
 ![JavaScript](https://img.shields.io/badge/JavaScript-ES_Modules-f7df1e?style=flat-square&logo=javascript&logoColor=black)
@@ -97,7 +97,7 @@ Todas as páginas são responsivas (testadas de 360 px a 1920 px). A navegação
 | ⚙️ | **Node.js 22+** e **Express 5** | Servidor, API e páginas |
 | 🔐 | **jsonwebtoken** e **bcryptjs** | Login com access token e refresh token, palavras-passe cifradas |
 | 🛡️ | **helmet**, **express-rate-limit**, **cors** | Cabeçalhos de segurança, CSP e limite de tentativas |
-| ✅ | **zod** | Validação de todos os pedidos, com mensagens em português |
+| ✅ | **express-validator** | Validação de todos os pedidos, com mensagens em português |
 | 🎨 | **HTML, CSS e JavaScript** | Frontend sem build, com módulos ES e ícones SVG próprios |
 | 🗜️ | **compression** | Respostas comprimidas com gzip |
 | 🔤 | **Instrument Serif** e **Inter** | Tipografia, servida pelo próprio site |
