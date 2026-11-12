@@ -1,12 +1,13 @@
 import { Router } from 'express';
-import { z } from 'zod';
+import { body } from 'express-validator';
 import * as service from '../services/gallery.service.js';
 import { requireAuth } from '../middleware/auth.js';
 import { validate } from '../middleware/validate.js';
 
-const downloadInput = z.object({
-  photoIds: z.array(z.string()).max(500).optional(),
-});
+const downloadInput = [
+  body('photoIds', 'Seleção inválida').optional().isArray({ max: 500 }),
+  body('photoIds.*', 'Seleção inválida').isString(),
+];
 
 const router = Router();
 router.use(requireAuth);

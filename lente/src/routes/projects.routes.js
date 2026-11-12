@@ -1,14 +1,14 @@
 import { Router } from 'express';
-import { z } from 'zod';
+import { query } from 'express-validator';
 import { categories } from '../data/seed.js';
 import { validate } from '../middleware/validate.js';
 import { findWithNext, listPublished } from '../services/project.service.js';
 import { notFound } from '../utils/httpError.js';
 
-const listQuery = z.object({
-  category: z.enum(categories).optional(),
-  featured: z.enum(['true']).optional(),
-});
+const listQuery = [
+  query('category', 'Categoria inválida').optional().isIn(categories),
+  query('featured', 'Valor inválido').optional().isIn(['true']),
+];
 
 const router = Router();
 

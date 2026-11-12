@@ -1,50 +1,51 @@
 import { Router } from 'express';
-import { z } from 'zod';
+import { body } from 'express-validator';
 import { galleries, projects, quotes, users } from '../repositories/index.js';
 import * as gallery from '../services/gallery.service.js';
 import { createClient, publicUser } from '../services/auth.service.js';
 import { requireAuth, requireRole } from '../middleware/auth.js';
 import { validate } from '../middleware/validate.js';
-import { isoDate } from '../validation/common.js';
+import { email, isoDate, optionalText, password, text } from '../validation/common.js';
 import { today } from '../utils/dates.js';
 import { notFound } from '../utils/httpError.js';
 
 const QUOTE_STATUSES = ['novo', 'em conversa', 'aceite', 'recusado'];
 
-const quoteStatus = z.object({ status: z.enum(QUOTE_STATUSES) });
+const quoteStatus = [body('status', 'Estado inválido').isIn(QUOTE_STATUSES)];
 
-const clientInput = z.object({
-  name: z.string().trim().min(2, 'Escreva o nome do cliente').max(80),
-  email: z.email('Escreva um email válido'),
-  company: z.string().trim().max(80).optional(),
-  phone: z.string().trim().max(30).optional(),
-  password: z.string().min(8, 'A palavra-passe precisa de pelo menos 8 caracteres').max(100),
-});
+const clientInput = [
+  text('name', { min: 2, max: 80, message: 'Escreva o nome do cliente' }),
+  email(),
+  optionalText('company', 80),
+  optionalText('phone', 30),
+  password('password'),
+];
 
-const galleryInput = z
-  .object({
-    title: z.string().trim().min(3, 'Dê um título à galeria').max(120),
-    clientId: z.string().min(1, 'Escolha o cliente'),
-    project: z.string().trim().max(120).optional(),
-    shotOn: isoDate,
-    expiresAt: isoDate,
-    allowDownload: z.boolean().default(false),
-    photoUrls: z
-      .array(z.url({ protocol: /^https$/, hostname: /^images\.unsplash\.com$/, error: 'Use links https://images.unsplash.com/…' }))
-      .min(1, 'Junte pelo menos uma fotografia')
-      .max(200),
-  })
-  .refine((g) => g.expiresAt > today(), { message: 'A data de expiração tem de ser no futuro', path: ['expiresAt'] });
+const flag = (field) => body(field, 'Valor inválido').isBoolean({ strict: true }).toBoolean(true);
+const futureDate = (field) =>
+  isoDate(field)
+    .custom((value) => value > today())
+    .withMessage('A data de expiração tem de ser no futuro');
+const title = () => text('title', { min: 3, max: 120, message: 'Dê um título à galeria' });
 
-const galleryUpdate = z
-  .object({
-    allowDownload: z.boolean(),
-    expiresAt: isoDate,
-    title: z.string().trim().min(3).max(120),
-  })
-  .partial();
+const galleryInput = [
+  title(),
+  body('clientId', 'Escolha o cliente').isString().notEmpty(),
+  optionalText('project', 120),
+  isoDate('shotOn'),
+  futureDate('expiresAt'),
+  body('allowDownload', 'Valor inválido').default(false).isBoolean({ strict: true }).toBoolean(true),
+  body('photoUrls', 'Junte entre 1 e 200 fotografias').isArray({ min: 1, max: 200 }),
+  body('photoUrls.*', 'Use links https://images.unsplash.com/…').isURL({
+    protocols: ['https'],
+    require_protocol: true,
+    host_whitelist: ['images.unsplash.com'],
+  }),
+];
 
-const projectUpdate = z.object({ published: z.boolean(), featured: z.boolean() }).partial();
+const galleryUpdate = [flag('allowDownload').optional(), isoDate('expiresAt').optional(), title().optional()];
+
+const projectUpdate = [flag('published').optional(), flag('featured').optional()];
 
 const router = Router();
 router.use(requireAuth, requireRole('admin'));
