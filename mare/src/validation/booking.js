@@ -1,38 +1,37 @@
-import { z } from 'zod';
-import { checkOutAfterCheckIn, datesMessage, stayDates } from './common.js';
+import { body } from 'express-validator';
+import { checkOutAfterCheckIn, isoDate, text } from './common.js';
 
-const extra = z.object({
-  experienceId: z.string().min(1),
-  people: z.coerce.number().int().min(1).max(16),
-});
+const extraRules = (prefix = '') => [
+  body(`${prefix}experienceId`, 'Experiência inválida').isString().notEmpty(),
+  body(`${prefix}people`, 'Entre 1 e 16 pessoas').isInt({ min: 1, max: 16 }).toInt(),
+];
 
-const stayFields = {
-  propertyId: z.string().min(1),
-  ...stayDates,
-  adults: z.coerce.number().int().min(1).max(16),
-  children: z.coerce.number().int().min(0).max(10).default(0),
-  extras: z.array(extra).max(10).default([]),
-};
+const stayRules = [
+  body('propertyId', 'Indique o alojamento').isString().notEmpty(),
+  isoDate('checkIn'),
+  isoDate('checkOut'),
+  checkOutAfterCheckIn(),
+  body('adults', 'Entre 1 e 16 adultos').isInt({ min: 1, max: 16 }).toInt(),
+  body('children', 'Entre 0 e 10 crianças').default(0).isInt({ min: 0, max: 10 }).toInt(),
+  body('extras', 'No máximo 10 experiências').default([]).isArray({ max: 10 }),
+  ...extraRules('extras.*.'),
+];
 
-export const stayInput = z.object(stayFields).refine(checkOutAfterCheckIn, datesMessage);
+export const stayInput = stayRules;
 
-export const bookingInput = z
-  .object({
-    ...stayFields,
-    guest: z.object({
-      name: z.string().trim().min(2, 'Escreva o nome de quem fica na casa').max(80),
-      phone: z.string().trim().min(6, 'Precisamos de um telemóvel para combinar a chegada').max(30),
-    }),
-    notes: z.string().trim().max(1000).optional(),
-    acceptTerms: z.literal(true, { error: 'Tem de aceitar as condições da reserva' }),
-  })
-  .refine(checkOutAfterCheckIn, datesMessage);
+export const bookingInput = [
+  ...stayRules,
+  text('guest.name', { min: 2, max: 80, message: 'Escreva o nome de quem fica na casa' }),
+  text('guest.phone', { min: 6, max: 30, message: 'Precisamos de um telemóvel para combinar a chegada' }),
+  body('notes').optional().isString().trim().isLength({ max: 1000 }),
+  body('acceptTerms', 'Tem de aceitar as condições da reserva').custom((value) => value === true),
+];
 
-export const checkinInput = z.object({
-  arrivalTime: z.string().regex(/^([01]\d|2[0-3]):[0-5]\d$/, 'Indique a hora no formato 16:30'),
-  phone: z.string().trim().min(6).max(30),
-  guestNames: z.string().trim().min(2, 'Indique o nome dos hóspedes').max(1000),
-  notes: z.string().trim().max(1000).optional(),
-});
+export const checkinInput = [
+  body('arrivalTime', 'Indique a hora no formato 16:30').matches(/^([01]\d|2[0-3]):[0-5]\d$/),
+  text('phone', { min: 6, max: 30, message: 'Indique um telemóvel válido' }),
+  text('guestNames', { min: 2, max: 1000, message: 'Indique o nome dos hóspedes' }),
+  body('notes').optional().isString().trim().isLength({ max: 1000 }),
+];
 
-export const extraInput = extra;
+export const extraInput = extraRules();

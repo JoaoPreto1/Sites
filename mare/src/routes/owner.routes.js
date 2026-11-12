@@ -1,40 +1,37 @@
 import { Router } from 'express';
-import { z } from 'zod';
+import { body, query } from 'express-validator';
 import * as owner from '../services/owner.service.js';
 import { requireAuth, requireRole } from '../middleware/auth.js';
 import { validate } from '../middleware/validate.js';
 import { isoDate } from '../validation/common.js';
 import { today } from '../utils/dates.js';
 
-const bookingsQuery = z.object({
-  status: z.enum(['pendente', 'confirmada', 'cancelada', 'concluida']).optional(),
-  propertyId: z.string().optional(),
-});
+const bookingsQuery = [
+  query('status', 'Estado inválido').optional().isIn(['pendente', 'confirmada', 'cancelada', 'concluida']),
+  query('propertyId').optional().isString(),
+];
 
-const statusInput = z.object({
-  status: z.enum(['confirmada', 'cancelada', 'concluida']),
-});
+const statusInput = [body('status', 'Estado inválido').isIn(['confirmada', 'cancelada', 'concluida'])];
 
-const propertyInput = z
-  .object({
-    pricePerNight: z.coerce.number().min(20).max(5000),
-    cleaningFee: z.coerce.number().min(0).max(1000),
-    minNights: z.coerce.number().int().min(1).max(30),
-    active: z.boolean(),
-  })
-  .partial();
+const propertyInput = [
+  body('pricePerNight', 'Preço entre 20 € e 5000 €').optional().isFloat({ min: 20, max: 5000 }).toFloat(),
+  body('cleaningFee', 'Limpeza entre 0 € e 1000 €').optional().isFloat({ min: 0, max: 1000 }).toFloat(),
+  body('minNights', 'Entre 1 e 30 noites').optional().isInt({ min: 1, max: 30 }).toInt(),
+  body('active', 'Valor inválido').optional().isBoolean({ strict: true }).toBoolean(true),
+];
 
-const blockInput = z
-  .object({
-    propertyId: z.string().min(1),
-    from: isoDate,
-    to: isoDate,
-    reason: z.string().trim().max(120).optional(),
-  })
-  .refine((b) => b.to > b.from, { message: 'A data final tem de ser depois da inicial', path: ['to'] })
-  .refine((b) => b.to > today(), { message: 'O bloqueio tem de terminar no futuro', path: ['to'] });
+const blockInput = [
+  body('propertyId', 'Escolha a casa').isString().notEmpty(),
+  isoDate('from'),
+  isoDate('to')
+    .custom((to, { req }) => to > req.body.from)
+    .withMessage('A data final tem de ser depois da inicial')
+    .custom((to) => to > today())
+    .withMessage('O bloqueio tem de terminar no futuro'),
+  body('reason').optional().isString().trim().isLength({ max: 120 }),
+];
 
-const messageInput = z.object({ status: z.enum(['nova', 'lida', 'respondida']) });
+const messageInput = [body('status', 'Estado inválido').isIn(['nova', 'lida', 'respondida'])];
 
 const router = Router();
 router.use(requireAuth, requireRole('proprietario', 'admin'));

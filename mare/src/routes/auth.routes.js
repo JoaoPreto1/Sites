@@ -1,34 +1,21 @@
 import { Router } from 'express';
 import { rateLimit } from 'express-rate-limit';
-import { z } from 'zod';
+import { body } from 'express-validator';
 import * as controller from '../controllers/auth.controller.js';
 import { requireAuth } from '../middleware/auth.js';
 import { validate } from '../middleware/validate.js';
+import { email, text } from '../validation/common.js';
 
-const password = z.string().min(8, 'A palavra-passe precisa de pelo menos 8 caracteres').max(100);
-const phone = z.string().trim().max(30).optional();
+const password = (field) => body(field, 'A palavra-passe precisa de pelo menos 8 caracteres').isString().isLength({ min: 8, max: 100 });
+const phone = body('phone', 'Telemóvel inválido').optional().isString().trim().isLength({ max: 30 });
 
-const registerSchema = z.object({
-  name: z.string().trim().min(2, 'Escreva o seu nome').max(80),
-  email: z.email('Escreva um email válido'),
-  password,
-  phone,
-});
+const registerRules = [text('name', { min: 2, max: 80, message: 'Escreva o seu nome' }), email(), password('password'), phone];
 
-const loginSchema = z.object({
-  email: z.email('Escreva um email válido'),
-  password: z.string().min(1),
-});
+const loginRules = [email(), body('password', 'Escreva a palavra-passe').isString().notEmpty()];
 
-const profileSchema = z.object({
-  name: z.string().trim().min(2).max(80).optional(),
-  phone,
-});
+const profileRules = [body('name', 'Escreva o seu nome').optional().isString().trim().isLength({ min: 2, max: 80 }), phone];
 
-const passwordSchema = z.object({
-  currentPassword: z.string().min(1),
-  newPassword: password,
-});
+const passwordRules = [body('currentPassword', 'Escreva a palavra-passe atual').isString().notEmpty(), password('newPassword')];
 
 const limiter = rateLimit({
   windowMs: 15 * 60 * 1000,
@@ -40,13 +27,13 @@ const limiter = rateLimit({
 
 const router = Router();
 
-router.post('/register', limiter, validate(registerSchema), controller.register);
-router.post('/login', limiter, validate(loginSchema), controller.login);
+router.post('/register', limiter, validate(registerRules), controller.register);
+router.post('/login', limiter, validate(loginRules), controller.login);
 router.post('/refresh', controller.refresh);
 router.post('/logout', controller.logout);
 
 router.get('/me', requireAuth, controller.me);
-router.patch('/me', requireAuth, validate(profileSchema), controller.updateMe);
-router.patch('/me/password', requireAuth, validate(passwordSchema), controller.changePassword);
+router.patch('/me', requireAuth, validate(profileRules), controller.updateMe);
+router.patch('/me/password', requireAuth, validate(passwordRules), controller.changePassword);
 
 export default router;

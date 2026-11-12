@@ -1,10 +1,8 @@
 import { Router } from 'express';
 import { rateLimit } from 'express-rate-limit';
-import { z } from 'zod';
 import { subscribers } from '../repositories/index.js';
 import { validate } from '../middleware/validate.js';
-
-const schema = z.object({ email: z.email('Escreva um email válido') });
+import { email } from '../validation/common.js';
 
 const limiter = rateLimit({
   windowMs: 60 * 60 * 1000,
@@ -16,10 +14,10 @@ const limiter = rateLimit({
 
 const router = Router();
 
-router.post('/', limiter, validate(schema), async (req, res) => {
-  const email = req.valid.body.email.toLowerCase();
-  const exists = await subscribers.findOne((s) => s.email === email);
-  if (!exists) await subscribers.create({ email });
+router.post('/', limiter, validate([email()]), async (req, res) => {
+  const address = req.valid.body.email.toLowerCase();
+  const exists = await subscribers.findOne((s) => s.email === address);
+  if (!exists) await subscribers.create({ email: address });
   res.status(201).json({ message: 'Obrigado! Vai receber a próxima newsletter.' });
 });
 
