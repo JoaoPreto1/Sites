@@ -1,5 +1,5 @@
 .banner--listing {
-  min-height: clamp(380px, 40vw, 500px);
+  min-height: clamp(440px, 44vw, 600px);
   padding-bottom: 110px;
 }
 
