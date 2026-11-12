@@ -13,8 +13,9 @@
 ![HTML5](https://img.shields.io/badge/HTML5-e34f26?style=flat-square&logo=html5&logoColor=white)
 ![CSS](https://img.shields.io/badge/CSS-663399?style=flat-square&logo=css&logoColor=white)
 ![JavaScript](https://img.shields.io/badge/JavaScript-ES_Modules-f7df1e?style=flat-square&logo=javascript&logoColor=black)
+![Lighthouse](https://img.shields.io/badge/Lighthouse-97%2B%20·%20100%20·%20100%20·%20100-0cce6b?style=flat-square&logo=lighthouse&logoColor=white)
 
-[Funcionalidades](#-funcionalidades) · [Capturas](#-capturas) · [Tecnologias](#-tecnologias) · [Como pôr a correr](#-como-pôr-a-correr) · [API](#-api)
+[Funcionalidades](#-funcionalidades) · [Capturas](#-capturas) · [Tecnologias](#-tecnologias) · [SEO e desempenho](#-seo-e-desempenho) · [Como pôr a correr](#-como-pôr-a-correr) · [API](#-api)
 
 </div>
 
@@ -104,7 +105,37 @@ Todas as páginas são responsivas (testadas de 360 px a 1920 px). No telemóvel
 | 🛡️ | **helmet**, **express-rate-limit**, **cors** | Cabeçalhos de segurança, CSP e limite de tentativas |
 | ✅ | **zod** | Validação de todos os pedidos, com mensagens em português |
 | 🎨 | **HTML, CSS e JavaScript** | Frontend sem build, com módulos ES e ícones SVG próprios |
-| 🔤 | **Archivo** e **JetBrains Mono** | Tipografia (Google Fonts) |
+| 🗜️ | **compression** | Respostas comprimidas com gzip |
+| 🔤 | **Archivo** e **JetBrains Mono** | Tipografia, servida pelo próprio site |
+
+## 📈 SEO e desempenho
+
+Resultados do Lighthouse 12 (telemóvel com rede 4G lenta simulada / computador):
+
+| Página | Desempenho | Acessibilidade | Boas práticas | SEO |
+|---|:---:|:---:|:---:|:---:|
+| Início | 99 / 100 | 100 | 100 | 100 |
+| Trabalho | 98 / 100 | 100 | 100 | 100 |
+| Projeto | 98 / 100 | 100 | 100 | 100 |
+| Serviços | 99 / 100 | 100 | 100 | 100 |
+| Estúdio | 98 / 100 | 100 | 100 | 100 |
+| Orçamento | 99 / 100 | 100 | 100 | 100 |
+
+**SEO**
+
+- Título, descrição, `canonical`, Open Graph e Twitter Card gerados no servidor para cada página — incluindo cada projeto, com cliente e categoria.
+- Dados estruturados (JSON-LD): `ProfessionalService`, `CreativeWork` para cada projeto com equipa e imagens, `Service` com preços, `FAQPage`, `AboutPage` com a equipa e `BreadcrumbList`.
+- `/sitemap.xml` gerado a partir dos projetos publicados e `/robots.txt` que deixa de fora a API, as galerias e o painel.
+- Área de cliente e painel com `noindex`; projetos inexistentes respondem com 404 verdadeiro.
+- O endereço público vem de `SITE_URL` no `.env`.
+
+**Desempenho e acessibilidade**
+
+- Fontes servidas pelo site com `preload` e fontes de reserva com as mesmas medidas, para a troca de fonte não mexer no layout.
+- Imagens com `srcset`, `sizes`, dimensões e `fetchpriority` na primeira imagem (pré-carregada no `<head>`).
+- Portefólio, serviços e projetos já trazem os dados no HTML, sem esperar pela API; filtros e ícones desenhados no servidor.
+- Compressão gzip e cache longa para as fontes.
+- Vermelho em três tons para manter contraste AA em texto pequeno, botões e fundos escuros; menu de ecrã inteiro inacessível ao teclado quando fechado.
 
 ## 🚀 Como pôr a correr
 
@@ -202,6 +233,7 @@ Todas as rotas começam por `/api`. As marcadas com 🔒 precisam do cabeçalho 
 ## 📋 Antes de ir para produção
 
 - [ ] Definir `JWT_ACCESS_SECRET` e `JWT_REFRESH_SECRET` longos no `.env` e `NODE_ENV=production`
+- [ ] Definir `SITE_URL` com o domínio real (canonical, Open Graph e sitemap dependem dele) e submeter o `/sitemap.xml` no Google Search Console
 - [ ] Servir com HTTPS — em produção o cookie de refresh só viaja por ligação segura
 - [ ] Guardar as fotografias num serviço de ficheiros (S3, Cloudinary…) e gerar ZIPs para "descarregar tudo"
 - [ ] Enviar email ao cliente quando uma galeria é criada e ao estúdio quando chega um pedido
@@ -209,4 +241,4 @@ Todas as rotas começam por `/api`. As marcadas com 🔒 precisam do cabeçalho 
 
 ## 🙏 Créditos
 
-Fotografias do [Unsplash](https://unsplash.com/license), de uso gratuito.
+Fotografias do [Unsplash](https://unsplash.com/license), de uso gratuito. Fontes Archivo e JetBrains Mono com licença [SIL Open Font License](https://openfontlicense.org).

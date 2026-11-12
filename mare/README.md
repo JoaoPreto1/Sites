@@ -13,8 +13,9 @@
 ![HTML5](https://img.shields.io/badge/HTML5-e34f26?style=flat-square&logo=html5&logoColor=white)
 ![CSS](https://img.shields.io/badge/CSS-663399?style=flat-square&logo=css&logoColor=white)
 ![JavaScript](https://img.shields.io/badge/JavaScript-ES_Modules-f7df1e?style=flat-square&logo=javascript&logoColor=black)
+![Lighthouse](https://img.shields.io/badge/Lighthouse-95%2B%20·%20100%20·%20100%20·%20100-0cce6b?style=flat-square&logo=lighthouse&logoColor=white)
 
-[Funcionalidades](#-funcionalidades) · [Capturas](#-capturas) · [Tecnologias](#-tecnologias) · [Como pôr a correr](#-como-pôr-a-correr) · [API](#-api)
+[Funcionalidades](#-funcionalidades) · [Capturas](#-capturas) · [Tecnologias](#-tecnologias) · [SEO e desempenho](#-seo-e-desempenho) · [Como pôr a correr](#-como-pôr-a-correr) · [API](#-api)
 
 </div>
 
@@ -98,7 +99,37 @@ Todas as páginas são responsivas (testadas de 360 px a 1920 px). A navegação
 | 🛡️ | **helmet**, **express-rate-limit**, **cors** | Cabeçalhos de segurança, CSP e limite de tentativas |
 | ✅ | **zod** | Validação de todos os pedidos, com mensagens em português |
 | 🎨 | **HTML, CSS e JavaScript** | Frontend sem build, com módulos ES e ícones SVG próprios |
-| 🔤 | **Instrument Serif** e **Inter** | Tipografia (Google Fonts) |
+| 🗜️ | **compression** | Respostas comprimidas com gzip |
+| 🔤 | **Instrument Serif** e **Inter** | Tipografia, servida pelo próprio site |
+
+## 📈 SEO e desempenho
+
+Resultados do Lighthouse 12 (telemóvel com rede 4G lenta simulada / computador):
+
+| Página | Desempenho | Acessibilidade | Boas práticas | SEO |
+|---|:---:|:---:|:---:|:---:|
+| Início | 90 – 99 / 96 | 100 | 100 | 100 |
+| Alojamentos | 97 / 99 | 100 | 100 | 100 |
+| Casa | 95 / 100 | 100 | 100 | 100 |
+| Experiências | 96 / 100 | 100 | 100 | 100 |
+| A região | 98 / 100 | 100 | 100 | 100 |
+| Contactos | 98 / 100 | 100 | 100 | 100 |
+
+**SEO**
+
+- Título, descrição, `canonical`, Open Graph e Twitter Card gerados no servidor para cada página — incluindo cada casa, com o nome, a zona e o preço.
+- Dados estruturados (JSON-LD): `LodgingBusiness`, `VacationRental` com quartos, comodidades, avaliações e preços, `FAQPage`, `TouristDestination` e `BreadcrumbList`.
+- `/sitemap.xml` gerado a partir das casas ativas e `/robots.txt` que deixa de fora a API e as páginas privadas.
+- Páginas privadas (conta, reserva, painel, entrar) com `noindex`; casas inexistentes respondem com 404 verdadeiro.
+- O endereço público vem de `SITE_URL` no `.env`.
+
+**Desempenho e acessibilidade**
+
+- Fontes servidas pelo site com `preload` e fontes de reserva com as mesmas medidas, para a troca de fonte não mexer no layout.
+- Imagens com `srcset`, `sizes`, dimensões e `fetchpriority` na imagem principal (pré-carregada no `<head>`).
+- A página de cada casa já traz os dados no HTML, sem esperar pela API; ícones desenhados no servidor.
+- Compressão gzip e cache longa para as fontes.
+- Contraste AA em todo o texto, ordem de títulos correta e menu de telemóvel inacessível ao teclado quando fechado.
 
 ## 🚀 Como pôr a correr
 
@@ -204,6 +235,7 @@ Todas as rotas começam por `/api`. As marcadas com 🔒 precisam do cabeçalho 
 ## 📋 Antes de ir para produção
 
 - [ ] Definir `JWT_ACCESS_SECRET` e `JWT_REFRESH_SECRET` longos no `.env` e `NODE_ENV=production` (o servidor recusa arrancar sem eles)
+- [ ] Definir `SITE_URL` com o domínio real (canonical, Open Graph e sitemap dependem dele) e submeter o `/sitemap.xml` no Google Search Console
 - [ ] Servir com HTTPS — em produção o cookie de refresh só viaja por ligação segura
 - [ ] Ligar os pagamentos (Stripe, Easypay ou MB Way) em `src/services/booking.service.js`
 - [ ] Enviar emails de confirmação ao hóspede e de aviso à proprietária
@@ -211,4 +243,4 @@ Todas as rotas começam por `/api`. As marcadas com 🔒 precisam do cabeçalho 
 
 ## 🙏 Créditos
 
-Fotografias do [Unsplash](https://unsplash.com/license), de uso gratuito.
+Fotografias do [Unsplash](https://unsplash.com/license), de uso gratuito. Fontes Instrument Serif e Inter com licença [SIL Open Font License](https://openfontlicense.org).
