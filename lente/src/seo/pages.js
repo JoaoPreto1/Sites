@@ -8,6 +8,7 @@ export const FEATURED_SIZES = '(max-width: 860px) 100vw, 50vw';
 export const GRID_SIZES = '(max-width: 600px) 100vw, (max-width: 1000px) 50vw, 33vw';
 export const COVER_WIDTHS = [640, 960, 1280, 1600, 2000];
 export const COVER_RATIO = 0.65;
+const HERO = 'https://images.unsplash.com/photo-1595550891383-152fbed0f9bc';
 
 const address = {
   '@type': 'PostalAddress',
@@ -56,7 +57,7 @@ export function staticPages({ featured = [], projects = [], services = [] } = {}
     '/': {
       file: 'index',
       description: 'Estúdio de fotografia e vídeo no Porto para marcas de moda, música e editorial. Campanhas, lookbooks, capas de álbum e galerias privadas para clientes.',
-      preload: featured[0] ? [{ srcset: srcset(featured[0].cover, WORK_WIDTHS, WORK_RATIO), sizes: FEATURED_SIZES }] : [],
+      preload: [{ srcset: srcset(HERO, [640, 960, 1280, 1920, 2400], 0.62, 70), sizes: '100vw' }],
       schema: [studio(), { '@context': 'https://schema.org', '@type': 'WebSite', name: 'Lente Studio', url: absolute('/'), inLanguage: 'pt-PT' }],
     },
     '/trabalho': {
