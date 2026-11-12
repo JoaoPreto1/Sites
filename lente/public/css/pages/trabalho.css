@@ -72,7 +72,7 @@
 }
 
 .index__row:hover {
-  color: var(--red);
+  color: var(--red-text);
 }
 
 .index__row:hover img {
@@ -121,4 +121,9 @@
   .custom-band .btn {
     justify-self: start;
   }
+}
+
+/* O portefólio é desenhado por JS: reserva altura para o rodapé não saltar */
+.work-list {
+  min-height: 100vh;
 }

@@ -74,15 +74,15 @@
 
 .nav a:hover,
 .nav a[aria-current='page'] {
-  color: var(--red);
+  color: var(--red-text);
 }
 
 .nav a[aria-current='page'] {
-  border-color: var(--red);
+  border-color: var(--red-text);
 }
 
 .nav a[aria-current='page'] .mono {
-  color: var(--red);
+  color: var(--red-text);
 }
 
 .header-actions {
@@ -105,7 +105,7 @@
 }
 
 .nav-login:hover {
-  color: var(--red);
+  color: var(--red-text);
 }
 
 .account {
@@ -372,8 +372,8 @@
 }
 
 .footer-cta .btn {
-  background: var(--red);
-  border-color: var(--red);
+  background: var(--red-ui);
+  border-color: var(--red-ui);
   color: #fff;
 }
 
@@ -390,7 +390,7 @@
   padding: 48px var(--gutter);
 }
 
-.footer-grid h4 {
+.footer-grid h3 {
   font-family: var(--mono);
   font-size: 12px;
   font-weight: 400;
@@ -506,4 +506,26 @@
   .nav-login span {
     display: none;
   }
+}
+
+/* Reserva o espaço da navbar antes de o JavaScript a desenhar, para a página não saltar */
+[data-header]:empty {
+  display: block;
+  height: 69px;
+}
+
+.footer-grid h3 {
+  font-family: var(--mono);
+  font-size: 12px;
+  font-weight: 400;
+  letter-spacing: 0;
+  line-height: 1.4;
+  text-transform: uppercase;
+  color: #8b877f;
+  margin-bottom: 16px;
+}
+
+.hero__word,
+.footer-word {
+  font-family: var(--display);
 }

@@ -12,7 +12,7 @@
 }
 
 .project-head .crumbs a:hover {
-  color: var(--red);
+  color: var(--red-text);
 }
 
 .project-head h1 {
@@ -200,4 +200,8 @@
   font-size: clamp(44px, 9vw, 140px);
   font-weight: 900;
   font-stretch: 125%;
+}
+
+[data-project] {
+  min-height: 100vh;
 }

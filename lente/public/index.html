@@ -3,12 +3,10 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Lente Studio · Fotografia e vídeo no Porto</title>
-  <meta name="description" content="Estúdio de fotografia e vídeo no Porto para marcas de moda, música e editorial. Galerias privadas para clientes.">
   <link rel="icon" href="/favicon.svg">
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@62..125,400..900&family=JetBrains+Mono:wght@400;500&display=swap">
+  <!--seo-->
+  <link rel="preload" href="/fonts/archivo.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="preload" href="/fonts/jetbrains-mono.woff2" as="font" type="font/woff2" crossorigin>
   <link rel="stylesheet" href="/css/base.css">
   <link rel="stylesheet" href="/css/layout.css">
   <link rel="stylesheet" href="/css/components.css">
@@ -30,7 +28,8 @@
       </div>
     </section>
 
-    <section class="featured wrap" data-featured>
+    <h2 class="sr-only">Projetos em destaque</h2>
+    <section class="featured wrap" data-featured aria-label="Projetos em destaque">
       <div class="skeleton featured__skeleton"></div>
     </section>
 
@@ -42,6 +41,7 @@
     </div>
 
     <section class="section">
+      <h2 class="sr-only">Índice de projetos</h2>
       <div class="label-row mono"><span>Índice de projetos</span><a class="link" href="/trabalho">Ver tudo ↗</a></div>
       <div class="index" data-index></div>
       <img class="index__preview" data-preview alt="" hidden>
@@ -64,8 +64,8 @@
 
     <section class="section studio-teaser">
       <div class="studio-teaser__images">
-        <img src="https://images.unsplash.com/photo-1471341971476-ae15ff5dd4ea?w=1200&h=900&q=75&auto=format&fit=crop" alt="Estúdio com fundo branco e luzes" loading="lazy">
-        <img src="https://images.unsplash.com/photo-1536293283170-b4604bbe272f?w=700&h=900&q=75&auto=format&fit=crop" alt="Sessão de moda com fundo vermelho" loading="lazy">
+        <img src="https://images.unsplash.com/photo-1471341971476-ae15ff5dd4ea?w=1200&amp;h=900&amp;q=75&amp;auto=format&amp;fit=crop" srcset="https://images.unsplash.com/photo-1471341971476-ae15ff5dd4ea?w=600&amp;h=450&amp;q=75&amp;auto=format&amp;fit=crop 600w, https://images.unsplash.com/photo-1471341971476-ae15ff5dd4ea?w=900&amp;h=675&amp;q=75&amp;auto=format&amp;fit=crop 900w, https://images.unsplash.com/photo-1471341971476-ae15ff5dd4ea?w=1200&amp;h=900&amp;q=75&amp;auto=format&amp;fit=crop 1200w" sizes="(max-width: 900px) 100vw, 45vw" width="1200" height="900" alt="Estúdio com fundo branco e luzes" loading="lazy">
+        <img src="https://images.unsplash.com/photo-1536293283170-b4604bbe272f?w=700&amp;h=900&amp;q=75&amp;auto=format&amp;fit=crop" srcset="https://images.unsplash.com/photo-1536293283170-b4604bbe272f?w=350&amp;h=450&amp;q=75&amp;auto=format&amp;fit=crop 350w, https://images.unsplash.com/photo-1536293283170-b4604bbe272f?w=700&amp;h=900&amp;q=75&amp;auto=format&amp;fit=crop 700w" sizes="(max-width: 900px) 40vw, 20vw" width="700" height="900" alt="Sessão de moda com fundo vermelho" loading="lazy">
       </div>
       <div class="studio-teaser__text">
         <span class="mono red">(Estúdio)</span>
@@ -92,27 +92,28 @@
         <h2>As suas fotografias, num só sítio.</h2>
         <p>Cada cliente recebe uma galeria privada protegida por login. Pode ver as imagens em alta, marcar favoritas para retoque e descarregar o material final quando estiver aprovado.</p>
         <ul class="client-area__list">
-          <li data-icon="lock">Acesso privado com email e palavra-passe</li>
-          <li data-icon="heart">Favoritas para escolher o que vai a retoque</li>
-          <li data-icon="download">Download em alta resolução</li>
-          <li data-icon="clock">Disponível durante 60 dias</li>
+          <li data-icon="lock" data-icon-size="18">Acesso privado com email e palavra-passe</li>
+          <li data-icon="heart" data-icon-size="18">Favoritas para escolher o que vai a retoque</li>
+          <li data-icon="download" data-icon-size="18">Download em alta resolução</li>
+          <li data-icon="clock" data-icon-size="18">Disponível durante 60 dias</li>
         </ul>
         <a class="btn btn--light" href="/entrar">Entrar na área de cliente ↗</a>
       </div>
       <div class="client-area__mock" aria-hidden="true">
         <div class="mock__bar mono"><span>Campanha SS27 — seleção final</span><span>10 fotos · 2 ♥</span></div>
         <div class="mock__grid">
-          <img src="https://images.unsplash.com/photo-1562151270-c7d22ceb586a?w=400&h=500&q=70&auto=format&fit=crop" alt="" loading="lazy">
-          <img src="https://images.unsplash.com/photo-1718563072717-db22ef0c9434?w=400&h=500&q=70&auto=format&fit=crop" alt="" loading="lazy">
-          <img src="https://images.unsplash.com/photo-1572251328767-e59f06f13ba1?w=400&h=500&q=70&auto=format&fit=crop" alt="" loading="lazy">
-          <img src="https://images.unsplash.com/photo-1653152707179-125e4e184a0b?w=400&h=500&q=70&auto=format&fit=crop" alt="" loading="lazy">
-          <img src="https://images.unsplash.com/photo-1629511565591-a1d494ad6c58?w=400&h=500&q=70&auto=format&fit=crop" alt="" loading="lazy">
-          <img src="https://images.unsplash.com/photo-1664515226058-03952a19bd76?w=400&h=500&q=70&auto=format&fit=crop" alt="" loading="lazy">
+          <img src="https://images.unsplash.com/photo-1562151270-c7d22ceb586a?w=400&amp;h=500&amp;q=70&amp;auto=format&amp;fit=crop" srcset="https://images.unsplash.com/photo-1562151270-c7d22ceb586a?w=200&amp;h=250&amp;q=70&amp;auto=format&amp;fit=crop 200w, https://images.unsplash.com/photo-1562151270-c7d22ceb586a?w=400&amp;h=500&amp;q=70&amp;auto=format&amp;fit=crop 400w" sizes="(max-width: 900px) 33vw, 15vw" width="400" height="500" alt="" loading="lazy">
+          <img src="https://images.unsplash.com/photo-1718563072717-db22ef0c9434?w=400&amp;h=500&amp;q=70&amp;auto=format&amp;fit=crop" srcset="https://images.unsplash.com/photo-1718563072717-db22ef0c9434?w=200&amp;h=250&amp;q=70&amp;auto=format&amp;fit=crop 200w, https://images.unsplash.com/photo-1718563072717-db22ef0c9434?w=400&amp;h=500&amp;q=70&amp;auto=format&amp;fit=crop 400w" sizes="(max-width: 900px) 33vw, 15vw" width="400" height="500" alt="" loading="lazy">
+          <img src="https://images.unsplash.com/photo-1572251328767-e59f06f13ba1?w=400&amp;h=500&amp;q=70&amp;auto=format&amp;fit=crop" srcset="https://images.unsplash.com/photo-1572251328767-e59f06f13ba1?w=200&amp;h=250&amp;q=70&amp;auto=format&amp;fit=crop 200w, https://images.unsplash.com/photo-1572251328767-e59f06f13ba1?w=400&amp;h=500&amp;q=70&amp;auto=format&amp;fit=crop 400w" sizes="(max-width: 900px) 33vw, 15vw" width="400" height="500" alt="" loading="lazy">
+          <img src="https://images.unsplash.com/photo-1653152707179-125e4e184a0b?w=400&amp;h=500&amp;q=70&amp;auto=format&amp;fit=crop" srcset="https://images.unsplash.com/photo-1653152707179-125e4e184a0b?w=200&amp;h=250&amp;q=70&amp;auto=format&amp;fit=crop 200w, https://images.unsplash.com/photo-1653152707179-125e4e184a0b?w=400&amp;h=500&amp;q=70&amp;auto=format&amp;fit=crop 400w" sizes="(max-width: 900px) 33vw, 15vw" width="400" height="500" alt="" loading="lazy">
+          <img src="https://images.unsplash.com/photo-1629511565591-a1d494ad6c58?w=400&amp;h=500&amp;q=70&amp;auto=format&amp;fit=crop" srcset="https://images.unsplash.com/photo-1629511565591-a1d494ad6c58?w=200&amp;h=250&amp;q=70&amp;auto=format&amp;fit=crop 200w, https://images.unsplash.com/photo-1629511565591-a1d494ad6c58?w=400&amp;h=500&amp;q=70&amp;auto=format&amp;fit=crop 400w" sizes="(max-width: 900px) 33vw, 15vw" width="400" height="500" alt="" loading="lazy">
+          <img src="https://images.unsplash.com/photo-1664515226058-03952a19bd76?w=400&amp;h=500&amp;q=70&amp;auto=format&amp;fit=crop" srcset="https://images.unsplash.com/photo-1664515226058-03952a19bd76?w=200&amp;h=250&amp;q=70&amp;auto=format&amp;fit=crop 200w, https://images.unsplash.com/photo-1664515226058-03952a19bd76?w=400&amp;h=500&amp;q=70&amp;auto=format&amp;fit=crop 400w" sizes="(max-width: 900px) 33vw, 15vw" width="400" height="500" alt="" loading="lazy">
         </div>
       </div>
     </section>
   </main>
 
   <footer data-footer></footer>
+  <!--data-->
 </body>
 </html>

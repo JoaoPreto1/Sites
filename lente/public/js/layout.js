@@ -33,7 +33,7 @@ function accountMarkup() {
 
 function overlayMarkup() {
   return `
-    <div class="overlay" data-overlay aria-hidden="true">
+    <div class="overlay" data-overlay aria-hidden="true" inert>
       <div class="overlay__head">
         <a class="brand" href="/"><span class="brand__dot"></span>LENTE<sup>®</sup></a>
         <button class="menu-toggle" type="button" data-close-overlay>Fechar ${icon('close', 18)}</button>
@@ -74,7 +74,7 @@ function renderHeader() {
   header.className = 'site-header';
   header.innerHTML = `
     <div class="navbar">
-      <a class="brand" href="/" aria-label="Lente Studio, página inicial"><span class="brand__dot"></span>LENTE<sup>®</sup></a>
+      <a class="brand" href="/"><span class="brand__dot"></span>LENTE<sup>®</sup></a>
       <nav class="nav" aria-label="Principal">${nav}</nav>
       <div class="header-actions">
         <span class="clock mono" data-clock></span>
@@ -109,6 +109,7 @@ function setupAccount(header) {
 function setupOverlay(header) {
   const overlay = document.querySelector('[data-overlay]');
   const toggle = (open) => {
+    overlay.inert = !open;
     overlay.classList.toggle('is-open', open);
     overlay.setAttribute('aria-hidden', !open);
     document.documentElement.classList.toggle('no-scroll', open);
@@ -131,7 +132,7 @@ function renderFooter() {
     </div>
     <div class="footer-grid">
       <div>
-        <h4>Newsletter</h4>
+        <h3>Newsletter</h3>
         <p>Um email por mês com trabalho novo, bastidores e vagas na agenda.</p>
         <form class="newsletter" data-newsletter novalidate>
           <label class="sr-only" for="newsletter-email">Email</label>
@@ -140,7 +141,7 @@ function renderFooter() {
         </form>
       </div>
       <div>
-        <h4>Estúdio</h4>
+        <h3>Estúdio</h3>
         <ul>
           <li>Rua do Almada 300</li>
           <li>4050-032 Porto</li>
@@ -148,7 +149,7 @@ function renderFooter() {
         </ul>
       </div>
       <div>
-        <h4>Contacto</h4>
+        <h3>Contacto</h3>
         <ul>
           <li><a href="mailto:ola@lente.studio">ola@lente.studio</a></li>
           <li><a href="tel:+351220000000">+351 220 000 000</a></li>
@@ -156,7 +157,7 @@ function renderFooter() {
         </ul>
       </div>
       <div>
-        <h4>Redes</h4>
+        <h3>Redes</h3>
         <ul>
           <li><a href="#">Instagram ↗</a></li>
           <li><a href="#">Vimeo ↗</a></li>

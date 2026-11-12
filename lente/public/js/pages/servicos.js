@@ -1,12 +1,12 @@
 import { api } from '../api.js';
 import { icon } from '../icons.js';
-import { escapeHtml, money, pad } from '../utils.js';
+import { escapeHtml, initialData, money, pad } from '../utils.js';
 
 const root = document.querySelector('[data-services]');
 const serviceIcons = { Fotografia: 'camera', Vídeo: 'video', 'Direção de arte': 'palette', Retoque: 'brush' };
 
 try {
-  const { services } = await api('/services');
+  const { services } = initialData() ?? (await api('/services'));
   root.innerHTML = services
     .map(
       (s, i) => `

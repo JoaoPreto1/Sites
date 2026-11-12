@@ -1,5 +1,5 @@
 import { api } from '../api.js';
-import { escapeHtml, img, pad, params, workCard } from '../utils.js';
+import { escapeHtml, img, initialData, pad, params, workCard } from '../utils.js';
 
 const filters = document.querySelector('[data-filters]');
 const grid = document.querySelector('[data-works]');
@@ -22,7 +22,7 @@ function render() {
   const visible = projects.filter((p) => !current || p.category === current);
   count.textContent = `(01) Trabalho — ${pad(visible.length, 2)} projetos`;
 
-  grid.innerHTML = visible.map((p, i) => workCard(p, i)).join('');
+  grid.innerHTML = visible.map((p, i) => workCard(p, i, { eager: i === 0 })).join('');
   list.innerHTML = visible
     .map(
       (p, i) => `
@@ -58,7 +58,7 @@ toggle.forEach((button) =>
 );
 
 try {
-  ({ projects, categories } = await api('/projects'));
+  ({ projects, categories } = initialData() ?? (await api('/projects')));
   if (!categories.includes(current)) current = '';
   renderFilters();
   render();

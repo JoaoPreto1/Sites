@@ -152,12 +152,12 @@
 }
 
 .index__row:hover {
-  color: var(--red);
+  color: var(--red-text);
   padding-left: 12px;
 }
 
 .index__row:hover .mono {
-  color: var(--red);
+  color: var(--red-text);
 }
 
 .index__preview {
@@ -266,7 +266,7 @@
   display: grid;
   grid-template-columns: repeat(4, minmax(0, 1fr));
   border-block: 1px solid var(--line);
-  background: var(--red);
+  background: var(--red-ui);
   color: #fff;
 }
 

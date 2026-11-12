@@ -1,17 +1,52 @@
+@font-face {
+  font-family: 'Archivo';
+  font-style: normal;
+  font-weight: 400 900;
+  font-stretch: 62% 125%;
+  font-display: swap;
+  src: url('/fonts/archivo.woff2') format('woff2');
+}
+
+@font-face {
+  font-family: 'JetBrains Mono';
+  font-style: normal;
+  font-weight: 400 500;
+  font-display: swap;
+  src: url('/fonts/jetbrains-mono.woff2') format('woff2');
+}
+
+/* Fontes de reserva com as mesmas medidas, para a troca de fonte não mexer no layout */
+@font-face {
+  font-family: 'Archivo Fallback';
+  src: local('Arial');
+  size-adjust: 98%;
+}
+
+@font-face {
+  font-family: 'Archivo Display Fallback';
+  src: local('Arial Black');
+  size-adjust: 116%;
+}
+
 :root {
   --paper: #efede8;
   --paper-2: #e6e2d9;
   --white: #f8f7f4;
   --ink: #111;
   --ink-2: #2a2a2a;
-  --mute: #75726b;
+  --mute: #615e57;
   --line: #111;
   --line-soft: #cfcac0;
   --red: #ff3b1f;
+  /* versões mais escuras para texto pequeno e botões, com contraste AA */
+  --red-text: #c4280f;
+  --red-ui: #d42c12;
+  --red-on-dark: #ff6b52;
   --ok: #2e7d4f;
 
-  --sans: 'Archivo', system-ui, -apple-system, 'Segoe UI', sans-serif;
-  --mono: 'JetBrains Mono', ui-monospace, Menlo, monospace;
+  --sans: 'Archivo', 'Archivo Fallback', system-ui, -apple-system, 'Segoe UI', sans-serif;
+  --display: 'Archivo', 'Archivo Display Fallback', 'Arial Black', sans-serif;
+  --mono: 'JetBrains Mono', 'Courier New', ui-monospace, Menlo, monospace;
 
   --gutter: clamp(16px, 3vw, 40px);
 }
@@ -80,6 +115,11 @@ button {
 }
 
 h1,
+h2 {
+  font-family: var(--display);
+}
+
+h1,
 h2,
 h3 {
   overflow-wrap: break-word;
@@ -112,6 +152,16 @@ h3 {
 
 .red {
   color: var(--red);
+}
+
+.mono.red,
+.field-error {
+  color: var(--red-text);
+}
+
+.section--ink .mono.red,
+.site-footer .mono.red {
+  color: var(--red-on-dark);
 }
 
 .mono {
@@ -166,8 +216,8 @@ h3 {
 }
 
 .btn:hover {
-  background: var(--red);
-  border-color: var(--red);
+  background: var(--red-ui);
+  border-color: var(--red-ui);
   color: #fff;
 }
 
@@ -177,8 +227,8 @@ h3 {
 }
 
 .btn--red {
-  background: var(--red);
-  border-color: var(--red);
+  background: var(--red-ui);
+  border-color: var(--red-ui);
   color: #fff;
 }
 
@@ -219,7 +269,7 @@ h3 {
 }
 
 .link:hover {
-  color: var(--red);
+  color: var(--red-text);
 }
 
 /* Formulários */
@@ -276,7 +326,6 @@ h3 {
 }
 
 .field-error {
-  color: var(--red);
   font-size: 13px;
 }
 

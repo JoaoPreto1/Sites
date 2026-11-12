@@ -23,6 +23,23 @@ export function img(url, width, height) {
   return `${url}?w=${width}${size}&q=75&auto=format&fit=crop`;
 }
 
+// Atributos src/srcset/sizes para o browser escolher o tamanho certo em cada ecrã
+export function responsive(url, widths, ratio, sizes) {
+  const largest = widths[widths.length - 1];
+  const middle = widths[Math.floor(widths.length / 2)];
+  const srcset = widths.map((w) => `${img(url, w, Math.round(w * ratio))} ${w}w`).join(', ');
+  return `src="${img(url, middle, Math.round(middle * ratio))}" srcset="${srcset}" sizes="${sizes}" width="${largest}" height="${Math.round(largest * ratio)}"`;
+}
+
+// Dados que o servidor deixa na página para evitar um pedido à API
+export function initialData() {
+  try {
+    return JSON.parse(document.getElementById('initial-data')?.textContent ?? 'null');
+  } catch {
+    return null;
+  }
+}
+
 export function escapeHtml(value = '') {
   return String(value).replace(/[&<>"']/g, (char) => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' })[char]);
 }
@@ -76,11 +93,17 @@ export function showFieldErrors(form, details = []) {
   }
 }
 
-export function workCard(project, index) {
+export const WORK_WIDTHS = [400, 600, 800, 1000, 1200];
+export const GRID_SIZES = '(max-width: 600px) 100vw, (max-width: 1000px) 50vw, 33vw';
+export const FEATURED_SIZES = '(max-width: 860px) 100vw, 50vw';
+
+// O primeiro cartão visível carrega logo e com prioridade (é o LCP da página)
+export function workCard(project, index, { sizes = GRID_SIZES, eager = false } = {}) {
+  const loading = eager ? 'fetchpriority="high"' : 'loading="lazy" decoding="async"';
   return `
     <a class="work" href="/trabalho/${project.slug}">
       <div class="work__media">
-        <img src="${img(project.cover, 800, 1000)}" alt="${escapeHtml(project.title)}" loading="lazy">
+        <img ${responsive(project.cover, WORK_WIDTHS, 1.25, sizes)} alt="${escapeHtml(project.title)}" ${loading}>
         <span class="tag">${escapeHtml(project.category)}</span>
         <span class="work__view">${icon('arrowUp', 22)}</span>
       </div>

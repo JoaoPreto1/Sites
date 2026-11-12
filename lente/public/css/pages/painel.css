@@ -19,7 +19,7 @@
 .panel__tabs [data-new-count]:not(:empty) {
   margin-left: 6px;
   padding: 1px 6px;
-  background: var(--red);
+  background: var(--red-ui);
   color: #fff;
 }
 

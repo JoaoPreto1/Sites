@@ -38,7 +38,7 @@
   content: '0' counter(item);
   font-family: var(--mono);
   font-size: 12px;
-  color: var(--red);
+  color: var(--red-text);
 }
 
 .manifesto strong {
@@ -182,7 +182,7 @@
 }
 
 .gear__grid .mono {
-  color: var(--red);
+  color: var(--red-text);
 }
 
 .gear__grid ul {

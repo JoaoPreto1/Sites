@@ -1,6 +1,6 @@
 import { api } from '../api.js';
 import { createLightbox } from '../lightbox.js';
-import { escapeHtml, img } from '../utils.js';
+import { escapeHtml, initialData, responsive } from '../utils.js';
 
 const root = document.querySelector('[data-project]');
 const slug = decodeURIComponent(window.location.pathname.split('/')[2] ?? '');
@@ -22,7 +22,7 @@ function render(project, next) {
     </section>
 
     <div class="project-cover">
-      <button type="button" data-photo="0"><img src="${img(project.cover, 2000, 1300)}" alt="${escapeHtml(project.title)}"></button>
+      <button type="button" data-photo="0"><img ${responsive(project.cover, [640, 960, 1280, 1600, 2000], 0.65, '100vw')} alt="${escapeHtml(project.title)}" fetchpriority="high"></button>
     </div>
 
     <section class="project-body">
@@ -39,12 +39,12 @@ function render(project, next) {
 
     <section class="project-gallery">
       ${project.gallery
-        .map((url, i) => `<button type="button" data-photo="${i + 1}"><img src="${img(url, 1400)}" alt="${escapeHtml(project.title)}, imagem ${i + 2}" loading="lazy"></button>`)
+        .map((url, i) => `<button type="button" data-photo="${i + 1}"><img ${i % 3 === 0 ? responsive(url, [640, 960, 1400, 1800], 0.5625, '100vw') : responsive(url, [400, 600, 900], 1.25, '(max-width: 640px) 100vw, 50vw')} alt="${escapeHtml(project.title)}, imagem ${i + 2}" loading="lazy" decoding="async"></button>`)
         .join('')}
     </section>
 
     <a class="next-project" href="/trabalho/${next.slug}">
-      <img src="${img(next.cover, 2000, 900)}" alt="" loading="lazy">
+      <img ${responsive(next.cover, [800, 1400, 2000], 0.45, '100vw')} alt="" loading="lazy" decoding="async">
       <div class="next-project__inner">
         <span class="mono">Próximo projeto — ${escapeHtml(next.category)}</span>
         <h2>${escapeHtml(next.title)} →</h2>
@@ -59,7 +59,7 @@ function render(project, next) {
 }
 
 try {
-  const { project, next } = await api(`/projects/${encodeURIComponent(slug)}`);
+  const { project, next } = initialData() ?? (await api(`/projects/${encodeURIComponent(slug)}`));
   render(project, next);
 } catch (error) {
   root.innerHTML = `
