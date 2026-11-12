@@ -11,8 +11,9 @@ function render(project, next) {
 
   root.innerHTML = `
     <section class="project-head">
-      <nav class="crumbs mono"><a href="/trabalho">Trabalho</a> / <a href="/trabalho?categoria=${encodeURIComponent(project.category)}">${escapeHtml(project.category)}</a> / ${escapeHtml(project.title)}</nav>
-      <h1>${escapeHtml(project.title)}<span class="red">.</span></h1>
+      <nav class="crumbs"><a href="/trabalho">Trabalho</a> / <a href="/trabalho?categoria=${encodeURIComponent(project.category)}">${escapeHtml(project.category)}</a> / ${escapeHtml(project.title)}</nav>
+      <p class="mono project-head__eyebrow">${escapeHtml(project.category)} · ${escapeHtml(project.client)}</p>
+      <h1>${escapeHtml(project.title)}</h1>
       <div class="project-meta">
         <div><span class="mono">Cliente</span>${escapeHtml(project.client)}</div>
         <div><span class="mono">Ano</span>${project.year}</div>
@@ -26,13 +27,13 @@ function render(project, next) {
     </div>
 
     <section class="project-body">
-      <span class="mono red">(Sobre o projeto)</span>
+      <span class="mono project-body__label">Sobre o projeto</span>
       <div class="form-grid">
         <p class="project-body__lead">${escapeHtml(project.summary)}</p>
         <p class="project-body__text">${escapeHtml(project.description)}</p>
       </div>
       <div>
-        <span class="mono">Equipa</span>
+        <span class="mono muted">Equipa</span>
         <ul>${project.team.map((member) => `<li>${escapeHtml(member)}</li>`).join('')}</ul>
       </div>
     </section>
@@ -47,7 +48,7 @@ function render(project, next) {
       <img ${responsive(next.cover, [800, 1400, 2000], 0.45, '100vw')} alt="" loading="lazy" decoding="async">
       <div class="next-project__inner">
         <span class="mono">Próximo projeto — ${escapeHtml(next.category)}</span>
-        <h2>${escapeHtml(next.title)} →</h2>
+        <h2>${escapeHtml(next.title)} <span class="red">→</span></h2>
       </div>
     </a>`;
 

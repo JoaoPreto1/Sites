@@ -4,8 +4,8 @@
   max-width: none;
   max-height: none;
   border: 0;
-  background: #0b0b0b;
-  color: var(--paper);
+  background: rgba(8, 8, 7, 0.97);
+  color: var(--text);
   place-items: center;
 }
 
@@ -17,6 +17,7 @@
   max-width: min(1300px, 86vw);
   max-height: 80vh;
   object-fit: contain;
+  border-radius: 10px;
 }
 
 .lightbox__bar {
@@ -26,33 +27,45 @@
   right: 0;
   display: flex;
   justify-content: space-between;
+  align-items: center;
   gap: 12px;
-  padding: 20px var(--gutter);
-  border-bottom: 1px solid rgba(255, 255, 255, 0.15);
+  padding: 18px var(--gutter);
+  font-size: 14px;
+  color: var(--text-2);
+}
+
+.lightbox__bar button {
+  padding: 8px 16px;
+  border-radius: 999px;
+  border: 1px solid var(--line-strong);
+  font-size: 14px;
 }
 
 .lightbox__bar button:hover {
-  color: var(--red);
+  background: var(--text);
+  color: var(--bg);
 }
 
 .lightbox__actions {
   display: flex;
-  gap: 18px;
+  gap: 8px;
 }
 
 .lightbox__arrow {
   position: absolute;
   top: 50%;
-  width: 56px;
-  height: 56px;
-  border: 1px solid rgba(255, 255, 255, 0.3);
-  font-size: 22px;
+  width: 52px;
+  height: 52px;
+  border-radius: 50%;
+  border: 1px solid var(--line-strong);
+  font-size: 20px;
   transform: translateY(-50%);
+  transition: background 0.2s, color 0.2s;
 }
 
 .lightbox__arrow:hover {
-  background: var(--red);
-  border-color: var(--red);
+  background: var(--text);
+  color: var(--bg);
 }
 
 .lightbox__arrow--prev {
@@ -66,7 +79,12 @@
 @media (max-width: 640px) {
   .lightbox__arrow {
     top: auto;
-    bottom: 20px;
+    bottom: 24px;
     transform: none;
+  }
+
+  .lightbox__actions button {
+    padding: 6px 10px;
+    font-size: 12px;
   }
 }
