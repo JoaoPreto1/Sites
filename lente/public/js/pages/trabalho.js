@@ -20,7 +20,7 @@ function renderFilters() {
 
 function render() {
   const visible = projects.filter((p) => !current || p.category === current);
-  count.textContent = `(01) Trabalho — ${pad(visible.length, 2)} projetos`;
+  count.textContent = `Portefólio · ${visible.length} ${visible.length === 1 ? 'projeto' : 'projetos'}`;
 
   grid.innerHTML = visible.map((p, i) => workCard(p, i, { eager: i === 0 })).join('');
   list.innerHTML = visible
@@ -31,7 +31,7 @@ function render() {
         <img src="${img(p.cover, 240, 180)}" alt="" loading="lazy">
         <strong>${escapeHtml(p.title)}</strong>
         <span class="mono">${escapeHtml(p.category)} · ${escapeHtml(p.client)}</span>
-        <span class="mono">${p.year} ↗</span>
+        <span class="mono">${p.year}</span>
       </a>`,
     )
     .join('');
