@@ -53,7 +53,7 @@ form.addEventListener('submit', async (event) => {
     window.scrollTo({ top: 0, behavior: 'smooth' });
   } catch (err) {
     showFieldErrors(form, err.details);
-    error.textContent = err.details?.length ? 'Faltam alguns campos — estão assinalados a vermelho.' : err.message;
+    error.textContent = err.details?.length ? 'Faltam alguns campos — estão assinalados acima.' : err.message;
     error.hidden = false;
     button.disabled = false;
   }
