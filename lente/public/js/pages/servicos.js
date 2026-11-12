@@ -1,27 +1,14 @@
 import { api } from '../api.js';
-import { icon } from '../icons.js';
-import { escapeHtml, initialData, money } from '../utils.js';
+import { serviceCard } from '../service-card.js';
 
 const root = document.querySelector('[data-services]');
-const serviceIcons = { Fotografia: 'camera', Vídeo: 'video', 'Direção de arte': 'palette', Retoque: 'brush' };
 
-try {
-  const { services } = initialData() ?? (await api('/services'));
-  root.innerHTML = services
-    .map(
-      (s) => `
-      <article class="service-card">
-        <div class="service-card__head">
-          <span class="service-card__icon">${icon(serviceIcons[s.name], 26)}</span>
-          <p class="service-card__price">desde<strong>${money(s.from)}</strong>${escapeHtml(s.unit)}</p>
-        </div>
-        <h2>${escapeHtml(s.name)}</h2>
-        <p>${escapeHtml(s.summary)}</p>
-        <ul>${s.includes.map((item) => `<li>${icon('check', 16)} ${escapeHtml(item)}</li>`).join('')}</ul>
-        <a class="btn btn--line" href="/orcamento?servico=${encodeURIComponent(s.name)}">Pedir proposta</a>
-      </article>`,
-    )
-    .join('');
-} catch {
-  root.innerHTML = '<p class="empty">Não foi possível carregar os serviços.</p>';
+// Os cartões já vêm do servidor; só os desenha aqui se a página tiver sido aberta sem eles
+if (!root.querySelector('.service-card')) {
+  try {
+    const { services } = await api('/services');
+    root.innerHTML = services.map(serviceCard).join('');
+  } catch {
+    root.innerHTML = '<p class="empty">Não foi possível carregar os serviços.</p>';
+  }
 }

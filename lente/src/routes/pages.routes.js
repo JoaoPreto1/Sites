@@ -8,6 +8,7 @@ import { findWithNext, listPublished } from '../services/project.service.js';
 import { absolute, renderHead } from '../seo/head.js';
 import { projectPage, staticPages } from '../seo/pages.js';
 import { icon } from '../../public/js/icons.js';
+import { serviceCard } from '../../public/js/service-card.js';
 
 const publicDir = fileURLToPath(new URL('../../public', import.meta.url));
 const templates = new Map();
@@ -35,11 +36,12 @@ function filterButtons(projects) {
     .join('');
 }
 
-async function send(res, page, { status = 200, data } = {}) {
+async function send(res, page, { status = 200, data, services = [] } = {}) {
   let html = withIcons(await template(page.file))
     .replace('<!--seo-->', renderHead(page))
     .replace('<!--data-->', data ? initialData(data) : '');
   if (page.file === 'trabalho') html = html.replace('<div class="filters" data-filters></div>', `<div class="filters" data-filters>${filterButtons(data.projects)}</div>`);
+  if (page.file === 'servicos') html = html.replace('<!--services-->', services.map(serviceCard).join(''));
   res.status(status).type('html').set('Cache-Control', 'no-cache').send(html);
 }
 
@@ -62,10 +64,9 @@ for (const path of Object.keys(staticPages())) {
     const initial = {
       '/': { projects: data.projects, services: data.services },
       '/trabalho': { projects: data.projects, categories },
-      '/servicos': { services: data.services },
     }[path];
 
-    await send(res, { ...page, path }, { data: initial });
+    await send(res, { ...page, path }, { data: initial, services: data.services });
   });
 }
 

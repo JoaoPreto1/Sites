@@ -31,7 +31,7 @@ A parte mais importante é a **área de cliente**: cada cliente entra com email 
 
 Funciona **sem base de dados**: os dados vivem em memória e já trazem projetos, galerias, pedidos e contas de exemplo, mas o backend está completo — login com JWT, permissões por perfil, validação e regras de acesso às galerias.
 
-O design é editorial e tipográfico: letra larga em negrito, detalhes em mono, linhas finas e um vermelho forte como única cor.
+O design é escuro e editorial, para as fotografias serem as protagonistas: títulos em serifa clássica (Playfair Display), texto em Manrope, um único tom champanhe como destaque e grelhas com muito espaço.
 
 ## ✨ Funcionalidades
 
@@ -106,7 +106,7 @@ Todas as páginas são responsivas (testadas de 360 px a 1920 px). No telemóvel
 | ✅ | **zod** | Validação de todos os pedidos, com mensagens em português |
 | 🎨 | **HTML, CSS e JavaScript** | Frontend sem build, com módulos ES e ícones SVG próprios |
 | 🗜️ | **compression** | Respostas comprimidas com gzip |
-| 🔤 | **Archivo** e **JetBrains Mono** | Tipografia, servida pelo próprio site |
+| 🔤 | **Playfair Display** e **Manrope** | Tipografia, servida pelo próprio site |
 
 ## 📈 SEO e desempenho
 
@@ -116,9 +116,9 @@ Resultados do Lighthouse 12 (telemóvel com rede 4G lenta simulada / computador)
 |---|:---:|:---:|:---:|:---:|
 | Início | 99 / 100 | 100 | 100 | 100 |
 | Trabalho | 98 / 100 | 100 | 100 | 100 |
-| Projeto | 98 / 100 | 100 | 100 | 100 |
+| Projeto | 99 / 100 | 100 | 100 | 100 |
 | Serviços | 99 / 100 | 100 | 100 | 100 |
-| Estúdio | 98 / 100 | 100 | 100 | 100 |
+| Estúdio | 99 / 100 | 100 | 100 | 100 |
 | Orçamento | 99 / 100 | 100 | 100 | 100 |
 
 **SEO**
@@ -133,9 +133,9 @@ Resultados do Lighthouse 12 (telemóvel com rede 4G lenta simulada / computador)
 
 - Fontes servidas pelo site com `preload` e fontes de reserva com as mesmas medidas, para a troca de fonte não mexer no layout.
 - Imagens com `srcset`, `sizes`, dimensões e `fetchpriority` na primeira imagem (pré-carregada no `<head>`).
-- Portefólio, serviços e projetos já trazem os dados no HTML, sem esperar pela API; filtros e ícones desenhados no servidor.
+- Portefólio e projetos já trazem os dados no HTML, sem esperar pela API; cartões de serviços, filtros e ícones desenhados no servidor.
 - Compressão gzip e cache longa para as fontes.
-- Vermelho em três tons para manter contraste AA em texto pequeno, botões e fundos escuros; menu de ecrã inteiro inacessível ao teclado quando fechado.
+- Contraste AA em todo o texto sobre o fundo escuro; menu de ecrã inteiro inacessível ao teclado quando fechado.
 
 ## 🚀 Como pôr a correr
 
@@ -241,4 +241,4 @@ Todas as rotas começam por `/api`. As marcadas com 🔒 precisam do cabeçalho 
 
 ## 🙏 Créditos
 
-Fotografias do [Unsplash](https://unsplash.com/license), de uso gratuito. Fontes Archivo e JetBrains Mono com licença [SIL Open Font License](https://openfontlicense.org).
+Fotografias do [Unsplash](https://unsplash.com/license), de uso gratuito. Fontes Playfair Display e Manrope com licença [SIL Open Font License](https://openfontlicense.org).
