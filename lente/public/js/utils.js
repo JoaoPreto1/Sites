@@ -109,7 +109,7 @@ export function workCard(project, index, { sizes = GRID_SIZES, eager = false } =
       </div>
       <div class="work__meta">
         <h3>${escapeHtml(project.title)}</h3>
-        <span class="mono">${index !== undefined ? `${pad(index + 1)} · ` : ''}${project.year}</span>
+        <span class="mono">${project.year}</span>
       </div>
       <p class="work__client">${escapeHtml(project.client)} — ${escapeHtml(project.summary)}</p>
     </a>`;
