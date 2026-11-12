@@ -1,20 +1,25 @@
 .not-found {
-  padding-block: clamp(80px, 12vw, 160px);
+  padding-block: clamp(96px, 14vw, 180px);
+}
+
+.not-found__code {
+  color: var(--accent);
 }
 
 .not-found h1 {
-  margin: 24px 0;
+  max-width: 900px;
+  margin: 20px 0 22px;
 }
 
 .not-found__text {
   font-size: 18px;
-  color: var(--ink-2);
+  color: var(--text-2);
   max-width: 480px;
 }
 
 .not-found__actions {
   display: flex;
-  gap: 8px;
+  gap: 10px;
   flex-wrap: wrap;
-  margin-top: 32px;
+  margin-top: 34px;
 }

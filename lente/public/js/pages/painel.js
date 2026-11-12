@@ -13,7 +13,7 @@ const badge = (status) => `<span class="badge badge--${statusClass[status]}">${s
 function greeting(name) {
   const hour = new Date().getHours();
   const hello = hour < 12 ? 'Bom dia' : hour < 20 ? 'Boa tarde' : 'Boa noite';
-  return `${hello}, ${escapeHtml(name.split(' ')[0])}<span class="red">.</span>`;
+  return `${hello}, <span class="red">${escapeHtml(name.split(' ')[0])}.</span>`;
 }
 
 async function loadOverview() {
