@@ -6,7 +6,10 @@ import { overview as clubOverview } from '../services/club.service.js';
 import { upcoming } from '../services/tasting.service.js';
 import { absolute } from '../seo/head.js';
 import { photoUrl, srcset } from '../seo/images.js';
-import { breadcrumbs, productSchema, store } from '../seo/pages.js';
+import { breadcrumbs, eventSchema, productSchema, store } from '../seo/pages.js';
+import { producersPage } from '../views/pages/producers.js';
+import { TASTING_QUESTIONS, tastingsPage } from '../views/pages/tastings.js';
+import { CLUB_QUESTIONS, clubPage } from '../views/pages/club.js';
 import { bottle } from '../../public/js/shared/bottle.js';
 import { documentHtml } from '../views/document.js';
 import { homePage } from '../views/pages/home.js';
@@ -126,6 +129,58 @@ router.get('/carta/:slug/garrafa.svg', async (req, res) => {
   const result = await wineDetail(req.params.slug).catch(() => null);
   if (!result) return notFoundPage(req, res);
   res.type('image/svg+xml').set('Cache-Control', 'public, max-age=86400').send(bottle(result.wine).replace('<svg ', '<svg xmlns="http://www.w3.org/2000/svg" width="200" height="600" '));
+});
+
+const faqSchema = (questions) => ({
+  '@context': 'https://schema.org',
+  '@type': 'FAQPage',
+  mainEntity: questions.map(([q, a]) => ({ '@type': 'Question', name: q, acceptedAnswer: { '@type': 'Answer', text: a } })),
+});
+
+router.get('/produtores', async (req, res) => {
+  const [list, wines, { regions }] = await Promise.all([producers.findAll(), listWines(), catalog()]);
+  const regionName = Object.fromEntries(regions.map((r) => [r.slug, r.name]));
+
+  send(req, res, {
+    page: {
+      title: 'Produtores',
+      description: 'Os pequenos produtores de vinho com quem a Cepa trabalha, do Vinho Verde ao Alentejo: quem são, onde fazem o vinho e o que temos deles na carta.',
+      image: photoUrl(list[0].photo, 1200, 0.525),
+      schema: [breadcrumbs([['Início', '/'], ['Produtores', '/produtores']])],
+    },
+    main: producersPage({ producers: list, wines, regionName }),
+    css: ['producers'],
+    data: { wines },
+  });
+});
+
+router.get('/provas', async (req, res) => {
+  const tastings = await upcoming();
+  send(req, res, {
+    page: {
+      title: 'Provas de vinho no Porto',
+      description: 'Provas de vinho com os produtores, à mesa comprida da loja na Rua de Cedofeita. Lugares limitados, reserva online.',
+      image: photoUrl(tastings[0]?.photo ?? 'https://images.unsplash.com/photo-1510812431401-41d2bd2722f3', 1200, 0.525),
+      schema: [...tastings.map(eventSchema), faqSchema(TASTING_QUESTIONS), breadcrumbs([['Início', '/'], ['Provas', '/provas']])],
+    },
+    main: tastingsPage({ tastings }),
+    css: ['tastings'],
+    script: 'tastings',
+  });
+});
+
+router.get('/clube', async (req, res) => {
+  const club = await clubOverview();
+  send(req, res, {
+    page: {
+      title: 'Clube de vinhos',
+      description: 'Uma caixa de vinhos portugueses por mês, escolhida pela Cepa, com notas de prova. A partir de 39 €, sem compromisso: pausa ou cancela quando quiser.',
+      schema: [faqSchema(CLUB_QUESTIONS), breadcrumbs([['Início', '/'], ['Clube', '/clube']])],
+    },
+    main: clubPage(club),
+    css: ['club'],
+    script: 'club',
+  });
 });
 
 router.get('/robots.txt', (req, res) => {
