@@ -1,0 +1,188 @@
+.book__head {
+  max-width: 900px;
+  padding: clamp(36px, 6vw, 72px) 0 40px;
+}
+
+.book__head h1 {
+  margin: 18px 0 22px;
+}
+
+.book__head p:last-child {
+  max-width: 60ch;
+  color: var(--ink-2);
+  font-size: 1.2rem;
+}
+
+/* Índice com pontinhos, como no início de um livro */
+.book__index {
+  max-width: 760px;
+  padding: 26px 0;
+  border-block: 3px double var(--rule-strong);
+}
+
+.book__index ol {
+  list-style: none;
+}
+
+.book__index a {
+  display: flex;
+  align-items: baseline;
+  gap: 14px;
+  padding: 8px 0;
+  text-decoration: none;
+}
+
+.book__index a > .mono:first-child {
+  width: 34px;
+  color: var(--wine);
+}
+
+.book__index-name {
+  font-size: 1.4rem;
+}
+
+.book__index a:hover .book__index-name {
+  font-style: italic;
+  color: var(--wine);
+}
+
+.book__index-dots {
+  flex: 1;
+  border-bottom: 2px dotted var(--rule-strong);
+  transform: translateY(-5px);
+}
+
+.book__index a > .mono:last-child {
+  color: var(--mute);
+}
+
+/* Cada produtor é um capítulo, alternando o lado da fotografia */
+.chapter {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+  gap: clamp(32px, 6vw, 88px);
+  align-items: start;
+  padding: clamp(64px, 9vw, 120px) 0;
+  border-bottom: 1px solid var(--rule);
+  scroll-margin-top: 20px;
+}
+
+.chapter--flip .chapter__media {
+  order: 2;
+}
+
+.chapter__media {
+  position: sticky;
+  top: 24px;
+  padding-bottom: 60px;
+}
+
+.chapter__media > img {
+  width: 100%;
+  aspect-ratio: 1 / 0.8;
+  object-fit: cover;
+}
+
+.chapter__portrait {
+  position: absolute;
+  left: 24px;
+  bottom: 0;
+  width: 170px;
+  padding: 8px 8px 10px;
+  background: #faf6ef;
+  box-shadow: 0 16px 28px rgba(32, 26, 23, 0.18);
+  transform: rotate(-3deg);
+}
+
+.chapter--flip .chapter__portrait {
+  left: auto;
+  right: 24px;
+  transform: rotate(3deg);
+}
+
+.chapter__portrait img {
+  width: 100%;
+  aspect-ratio: 1 / 1.25;
+  object-fit: cover;
+}
+
+.chapter__portrait figcaption {
+  margin-top: 8px;
+  font-size: 0.62rem;
+  color: var(--mute);
+  text-align: center;
+}
+
+.chapter__num {
+  font-size: 2.6rem;
+  font-style: italic;
+  color: var(--wine);
+  line-height: 1;
+}
+
+.chapter__num .mono {
+  font-style: normal;
+  vertical-align: middle;
+  margin-right: 6px;
+  color: var(--mute);
+}
+
+.chapter h2 {
+  margin-top: 14px;
+  font-size: clamp(2.2rem, 4vw, 3.4rem);
+}
+
+.chapter__region {
+  margin: 10px 0 24px;
+  color: var(--mute);
+}
+
+.chapter__story {
+  font-size: 1.15rem;
+  line-height: 1.65;
+}
+
+.chapter blockquote {
+  margin: 28px 0 36px;
+  padding-left: 20px;
+  border-left: 2px solid var(--wine);
+  font-size: 1.45rem;
+  font-style: italic;
+  line-height: 1.35;
+}
+
+.chapter__wines h3 {
+  color: var(--mute);
+  font-weight: 400;
+  padding-bottom: 8px;
+  border-bottom: 1px solid var(--rule-strong);
+}
+
+@media (max-width: 900px) {
+  .chapter {
+    grid-template-columns: 1fr;
+  }
+
+  .chapter--flip .chapter__media {
+    order: 0;
+  }
+
+  .chapter__media {
+    position: relative;
+    top: 0;
+  }
+
+  .chapter__portrait {
+    width: 130px;
+  }
+}
+
+@media (max-width: 560px) {
+  .book__index a > .mono:last-child {
+    display: none;
+  }
+
+  .book__index-name {
+    font-size: 1.2rem;
+  }
+}

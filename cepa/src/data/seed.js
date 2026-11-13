@@ -54,7 +54,7 @@ export const producers = [
     name: 'Casa do Lameiro',
     region: 'vinho-verde',
     winemaker: 'Nuno e Clara Barros',
-    photo: photo('1693825207937-b1fa40db8279'),
+    photo: photo('1605673349837-1d83a7740e30'),
     portrait: photo('1698716206713-b2a8c7e50267'),
     quote: 'O Alvarinho de Monção tem sal. Não se explica, prova-se.',
     story:
