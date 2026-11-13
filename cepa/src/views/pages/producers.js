@@ -1,4 +1,4 @@
-import { entry } from '../../../public/js/shared/carta.js';
+import { entries } from '../../../public/js/shared/carta.js';
 import { escapeHtml } from '../../../public/js/shared/format.js';
 import { photo } from '../helpers.js';
 
@@ -31,18 +31,18 @@ export function producersPage({ producers, wines, regionName }) {
         (p, i) => `
     <article class="chapter${i % 2 ? ' chapter--flip' : ''}" id="${p.slug}" aria-labelledby="t-${p.slug}">
       <div class="chapter__media">
-        ${photo(p.photo, { widths: [480, 800, 1100], ratio: 0.8, sizes: '(max-width: 900px) 100vw, 50vw', alt: `Paisagem da ${p.name}` })}
-        <figure class="chapter__portrait">${photo(p.portrait, { widths: [240, 360], ratio: 1.25, sizes: '170px', alt: p.winemaker })}<figcaption class="mono">${escapeHtml(p.winemaker)}</figcaption></figure>
+        ${photo(p.photo, { widths: [400, 600, 800], ratio: 0.75, sizes: '(max-width: 900px) 100vw, 440px', alt: `Paisagem da ${p.name}` })}
+        <figure class="chapter__portrait">${photo(p.portrait, { widths: [160, 280], ratio: 1.25, sizes: '130px', alt: p.winemaker })}<figcaption class="mono">${escapeHtml(p.winemaker)}</figcaption></figure>
       </div>
       <div class="chapter__text">
         <p class="chapter__num"><span class="mono">Capítulo</span> ${ROMAN[i]}</p>
         <h2 id="t-${p.slug}">${escapeHtml(p.name)}</h2>
-        <p class="mono chapter__region">${escapeHtml(regionName[p.region])}</p>
+        <p class="mono chapter__region">${escapeHtml(regionName[p.region])}${p.place ? ` · ${escapeHtml(p.place)}` : ''}</p>
         <p class="chapter__story">${escapeHtml(p.story)}</p>
-        <blockquote>“${escapeHtml(p.quote)}”</blockquote>
+        ${p.quote ? `<blockquote>“${escapeHtml(p.quote)}”</blockquote>` : ''}
         <div class="chapter__wines">
           <h3 class="mono">Na nossa carta</h3>
-          ${winesOf(p.id).map((w) => entry(w)).join('')}
+          ${entries(winesOf(p.id))}
         </div>
       </div>
     </article>`,
