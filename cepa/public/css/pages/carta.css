@@ -125,17 +125,9 @@
 }
 
 .carta-list {
-  columns: 2;
-  column-gap: clamp(32px, 6vw, 80px);
-}
-
-.carta-list .carta-section {
-  break-inside: avoid-column;
-  margin: 0 0 48px;
-}
-
-.carta-list .carta-section + .carta-section {
-  margin-top: 0;
+  max-width: 1000px;
+  margin-inline: auto;
+  padding-top: 12px;
 }
 
 @media (max-width: 1000px) {
@@ -147,9 +139,6 @@
     grid-column: 1 / -1;
   }
 
-  .carta-list {
-    columns: 1;
-  }
 }
 
 @media (max-width: 760px) {

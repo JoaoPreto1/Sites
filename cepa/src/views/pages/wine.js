@@ -86,7 +86,7 @@ export function winePage({ wine, producer, related }) {
         <p class="mono">Quem faz</p>
         <h2 id="maker-title">${escapeHtml(producer.name)}</h2>
         <p>${escapeHtml(producer.story)}</p>
-        <blockquote>“${escapeHtml(producer.quote)}”<footer class="mono">${escapeHtml(producer.winemaker)}</footer></blockquote>
+        ${producer.quote ? `<blockquote>“${escapeHtml(producer.quote)}”<footer class="mono">${escapeHtml(producer.winemaker)}</footer></blockquote>` : ''}
       </div>
     </section>
 
