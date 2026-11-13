@@ -8,6 +8,7 @@ import { env } from './config/env.js';
 import apiRoutes from './routes/index.js';
 import pageRoutes, { notFoundPage } from './routes/pages.routes.js';
 import { errorHandler } from './middleware/errors.js';
+import styleRoutes from './routes/styles.routes.js';
 
 const publicDir = fileURLToPath(new URL('../public', import.meta.url));
 
@@ -39,6 +40,7 @@ app.use(express.json({ limit: '200kb' }));
 app.use(cookieParser());
 
 app.use('/api', apiRoutes);
+app.use(styleRoutes);
 app.use(pageRoutes);
 
 app.use(

@@ -49,7 +49,7 @@ router.get('/', async (req, res) => {
     page: {
       description: 'Garrafeira no Porto com mais de vinte vinhos portugueses de pequenos produtores. Diga-nos o que vai para a mesa e sugerimos o vinho. Clube mensal e provas.',
       schema: [store()],
-      preload: [{ srcset: srcset('https://images.unsplash.com/photo-1553361371-9b22f78e8b1d', [400, 600, 800], 1.4), sizes: '(max-width: 900px) 100vw, 34vw' }],
+      preload: [{ srcset: srcset('https://images.unsplash.com/photo-1553361371-9b22f78e8b1d', [240, 400, 600, 800], 1.4), sizes: '(max-width: 900px) 120px, 34vw' }],
     },
     main: homePage({ pairing: suggestion, dishes, regions, featured, types: TYPES, total, feature, club, tastings: tastings.slice(0, 3) }),
     css: ['home'],

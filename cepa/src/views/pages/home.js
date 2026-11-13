@@ -33,7 +33,7 @@ function hero({ pairing, dishes }) {
       <div class="pairing" data-pairing-result aria-live="polite">${pairingResult(pairing)}</div>
     </div>
     <figure class="hero__aside">
-      ${photo('https://images.unsplash.com/photo-1553361371-9b22f78e8b1d', { widths: [400, 600, 800], ratio: 1.4, sizes: '(max-width: 900px) 100vw, 34vw', alt: 'Copo de vinho tinto numa mesa posta para jantar', eager: true })}
+      ${photo('https://images.unsplash.com/photo-1553361371-9b22f78e8b1d', { widths: [240, 400, 600, 800], ratio: 1.4, sizes: '(max-width: 900px) 120px, 34vw', alt: 'Copo de vinho tinto numa mesa posta para jantar', eager: true })}
       <figcaption>Ninguém sabe tudo sobre vinho. Diga-nos o que vai cozinhar e nós tratamos do resto — na loja é igual, só que com provas.</figcaption>
     </figure>
   </section>`;

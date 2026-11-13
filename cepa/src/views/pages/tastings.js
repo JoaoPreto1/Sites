@@ -21,9 +21,9 @@ export function tastingsPage({ tastings }) {
     <ol class="tickets">
       ${tastings
         .map(
-          (t) => `
+          (t, i) => `
       <li class="ticket" id="${t.slug}">
-        <div class="ticket__photo">${photo(t.photo, { widths: [400, 700, 1000], ratio: 0.75, sizes: '(max-width: 900px) 100vw, 40vw', alt: t.title })}</div>
+        <div class="ticket__photo">${photo(t.photo, { widths: [400, 600, 800, 1000], ratio: 0.75, sizes: '(max-width: 900px) 100vw, 40vw', alt: t.title, eager: i === 0 })}</div>
         <div class="ticket__body">
           <p class="ticket__date"><span class="ticket__day">${dayNumber(t.date)}</span><span class="mono">${monthName(t.date)}<br>${t.time}</span></p>
           <h2>${escapeHtml(t.title)}</h2>

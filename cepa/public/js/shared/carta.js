@@ -62,7 +62,7 @@ export function pairingResult({ picks, people, overBudget }) {
       <a class="pick__bottle" href="/carta/${first.slug}" tabindex="-1">${bottle(first)}</a>
       <div class="pick__body">
         <p class="mono pick__kicker">A nossa escolha · ${escapeHtml(first.regionName)}</p>
-        <h3><a href="/carta/${first.slug}">${escapeHtml(first.name)} <em>${vintage(first)}</em></a></h3>
+        <h2><a href="/carta/${first.slug}">${escapeHtml(first.name)} <em>${vintage(first)}</em></a></h2>
         <p class="pick__reason">${escapeHtml(first.reason)}</p>
         <p class="pick__note">“${escapeHtml(first.staffNote || first.notes)}”</p>
         <div class="pick__buy">

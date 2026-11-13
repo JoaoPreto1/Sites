@@ -201,16 +201,16 @@
   color: var(--wine);
 }
 
-.pick h3 {
+.pick h2 {
   margin: 10px 0 12px;
   font-size: clamp(1.8rem, 3vw, 2.5rem);
 }
 
-.pick h3 a {
+.pick h2 a {
   text-decoration: none;
 }
 
-.pick h3 em {
+.pick h2 em {
   color: var(--mute);
 }
 
