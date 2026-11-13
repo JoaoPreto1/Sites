@@ -41,8 +41,6 @@ app.use(cookieParser());
 app.use('/api', apiRoutes);
 app.use(pageRoutes);
 
-// Os .html são modelos: só são servidos através das rotas acima, já com o SEO preenchido
-app.use((req, res, next) => (req.path.endsWith('.html') ? notFoundPage(req, res) : next()));
 app.use(
   express.static(publicDir, {
     index: false,

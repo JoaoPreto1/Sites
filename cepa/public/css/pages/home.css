@@ -1,0 +1,600 @@
+/* Abertura: a frase que se completa */
+.hero {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(280px, 0.52fr);
+  gap: clamp(32px, 6vw, 88px);
+  padding-top: clamp(36px, 6vw, 72px);
+}
+
+.sentence {
+  margin: 26px 0 clamp(36px, 5vw, 56px);
+}
+
+.sentence p {
+  font-size: clamp(2.1rem, 4.6vw, 4.1rem);
+  line-height: 1.16;
+  letter-spacing: -0.02em;
+}
+
+.pick-word {
+  position: relative;
+  display: inline-block;
+}
+
+.pick-word select {
+  appearance: none;
+  field-sizing: content;
+  max-width: 100%;
+  padding: 0 0.85em 0 0.05em;
+  background: transparent;
+  border: 0;
+  border-bottom: 2px dotted var(--wine);
+  color: var(--wine);
+  font-style: italic;
+  line-height: 1.05;
+  cursor: pointer;
+  border-radius: 0;
+}
+
+.pick-word::after {
+  content: '';
+  position: absolute;
+  right: 0.15em;
+  top: 50%;
+  width: 0.28em;
+  height: 0.28em;
+  border-right: 2px solid var(--wine);
+  border-bottom: 2px solid var(--wine);
+  transform: translateY(-70%) rotate(45deg);
+  pointer-events: none;
+}
+
+.pick-word select:focus-visible {
+  outline: none;
+  background: rgba(123, 30, 44, 0.08);
+}
+
+.pick-word option {
+  font-size: 1rem;
+  font-style: normal;
+  color: var(--ink);
+}
+
+.pairing {
+  min-height: 330px;
+  transition: opacity 0.2s;
+}
+
+.pairing.is-loading {
+  opacity: 0.4;
+}
+
+.hero__aside {
+  align-self: start;
+  position: sticky;
+  top: 24px;
+}
+
+.hero__aside img {
+  width: 100%;
+  aspect-ratio: 1 / 1.4;
+  object-fit: cover;
+}
+
+.hero__aside figcaption {
+  margin-top: 14px;
+  padding-top: 12px;
+  border-top: 1px solid var(--rule);
+  color: var(--ink-2);
+  font-style: italic;
+  font-size: 1.02rem;
+}
+
+/* Carta da semana em duas colunas, como um menu */
+.weekly {
+  margin-top: clamp(80px, 11vw, 150px);
+}
+
+.weekly__head {
+  display: grid;
+  grid-template-columns: 1fr minmax(0, 360px);
+  gap: 16px 48px;
+  align-items: end;
+  padding-bottom: 28px;
+  margin-bottom: 36px;
+  border-bottom: 3px double var(--rule-strong);
+}
+
+.weekly__head p {
+  color: var(--ink-2);
+}
+
+.weekly__head .link {
+  grid-column: 2;
+  justify-self: start;
+}
+
+.weekly__list {
+  columns: 2;
+  column-gap: clamp(32px, 6vw, 80px);
+}
+
+.weekly__list .carta-section {
+  break-inside: avoid;
+  margin: 0 0 44px;
+}
+
+/* De norte a sul: a lista de regiões e a fotografia que muda */
+.route {
+  margin-top: clamp(80px, 11vw, 150px);
+  padding: clamp(56px, 8vw, 104px) 0;
+  background: var(--paper-2);
+  border-block: 1px solid var(--rule);
+}
+
+.route__grid {
+  display: grid;
+  grid-template-columns: minmax(0, 0.9fr) minmax(0, 1fr);
+  gap: clamp(32px, 6vw, 88px);
+  align-items: start;
+}
+
+.route__photos {
+  position: sticky;
+  top: 24px;
+  aspect-ratio: 1 / 1.2;
+}
+
+.route__photo {
+  position: absolute;
+  inset: 0;
+  opacity: 0;
+  transition: opacity 0.4s;
+}
+
+.route__photo.is-active {
+  opacity: 1;
+}
+
+.route__photo img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.route__photo figcaption {
+  position: absolute;
+  left: 0;
+  bottom: -30px;
+  color: var(--mute);
+}
+
+.route__list h2 {
+  margin: 16px 0 28px;
+}
+
+.route__list ol {
+  list-style: none;
+  border-top: 1px solid var(--rule-strong);
+}
+
+.route__list a {
+  display: grid;
+  grid-template-columns: 76px 1fr auto;
+  align-items: baseline;
+  gap: 16px;
+  padding: 14px 0;
+  border-bottom: 1px solid var(--rule);
+  text-decoration: none;
+}
+
+.route__lat,
+.route__count {
+  color: var(--mute);
+}
+
+.route__name {
+  font-size: clamp(1.8rem, 3.4vw, 2.7rem);
+  line-height: 1.1;
+  transition: transform 0.25s, color 0.25s;
+}
+
+.route__list a:hover .route__name,
+.route__list a:focus-visible .route__name,
+.route__list a.is-active .route__name {
+  color: var(--wine);
+  font-style: italic;
+  transform: translateX(8px);
+}
+
+/* Produtor do mês */
+.feature {
+  margin-top: clamp(80px, 11vw, 150px);
+}
+
+.feature__grid {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+  gap: clamp(32px, 6vw, 88px);
+  align-items: start;
+}
+
+.feature__photo {
+  position: relative;
+  margin-bottom: 70px;
+}
+
+.feature__photo > img {
+  width: 100%;
+  aspect-ratio: 1 / 1.3;
+  object-fit: cover;
+}
+
+.feature__portrait {
+  position: absolute;
+  right: -28px;
+  bottom: -70px;
+  width: min(180px, 38%);
+  padding: 8px 8px 30px;
+  background: #faf6ef;
+  box-shadow: 0 18px 30px rgba(32, 26, 23, 0.18);
+  transform: rotate(3deg);
+}
+
+.feature__portrait img {
+  aspect-ratio: 1 / 1.25;
+  object-fit: cover;
+  width: 100%;
+}
+
+.feature__text h2 {
+  margin-top: 16px;
+}
+
+.feature__by {
+  margin: 12px 0 26px;
+  color: var(--mute);
+}
+
+.feature__story {
+  font-size: 1.2rem;
+  line-height: 1.6;
+}
+
+.dropcap {
+  float: left;
+  margin: 0.06em 0.12em 0 0;
+  font-size: 4.4em;
+  line-height: 0.78;
+  font-style: italic;
+  color: var(--wine);
+}
+
+.feature blockquote {
+  margin: 32px 0;
+  padding-left: 22px;
+  border-left: 2px solid var(--wine);
+  font-size: clamp(1.4rem, 2.4vw, 1.85rem);
+  font-style: italic;
+  line-height: 1.3;
+}
+
+.feature__wines {
+  margin-bottom: 26px;
+  border-top: 1px solid var(--rule-strong);
+}
+
+/* A caixa do mês do clube, em cor de vinho */
+.box {
+  margin-top: clamp(80px, 11vw, 150px);
+  padding: clamp(56px, 8vw, 110px) 0;
+  background: var(--wine-deep);
+  color: var(--paper);
+}
+
+.box__grid {
+  display: grid;
+  grid-template-columns: minmax(0, 0.8fr) minmax(0, 1.2fr);
+  gap: clamp(32px, 6vw, 88px);
+  align-items: end;
+}
+
+.box__kicker {
+  color: #e6c9a8;
+}
+
+.box h2 {
+  margin: 16px 0 22px;
+  font-style: italic;
+}
+
+.box__text p {
+  color: #e9dfd2;
+}
+
+.box__terms {
+  margin: 18px 0 30px;
+  padding-top: 16px;
+  border-top: 1px solid rgba(243, 237, 226, 0.25);
+  font-style: italic;
+}
+
+.btn--paper {
+  background: var(--paper);
+  border-color: var(--paper);
+  color: var(--ink);
+}
+
+.btn--paper:hover {
+  background: transparent;
+  color: var(--paper);
+  border-color: var(--paper);
+}
+
+.box__shelf {
+  list-style: none;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: clamp(16px, 3vw, 40px);
+  padding-bottom: 0;
+  border-bottom: 8px solid #3a0d14;
+  box-shadow: 0 2px 0 rgba(243, 237, 226, 0.15);
+}
+
+.box__bottle {
+  display: flex;
+  justify-content: center;
+  align-items: flex-end;
+  height: clamp(220px, 28vw, 330px);
+}
+
+.box__bottle .bottle {
+  height: 100%;
+  width: auto;
+  filter: drop-shadow(10px 14px 12px rgba(0, 0, 0, 0.35));
+  transition: transform 0.3s;
+}
+
+.box__bottle:hover .bottle {
+  transform: translateY(-8px);
+}
+
+.box__note {
+  margin: 0 0 -1px;
+  padding: 18px 0 22px;
+  min-height: 130px;
+  color: #e9dfd2;
+  font-style: italic;
+  font-size: 1rem;
+  text-align: center;
+  order: 2;
+}
+
+.box__shelf li {
+  display: flex;
+  flex-direction: column-reverse;
+}
+
+/* Programa de provas */
+.programme {
+  margin-top: clamp(80px, 11vw, 150px);
+}
+
+.programme__head {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  gap: 20px;
+  padding-bottom: 18px;
+  border-bottom: 3px double var(--rule-strong);
+}
+
+.programme__list {
+  list-style: none;
+}
+
+.programme__item {
+  display: grid;
+  grid-template-columns: 110px minmax(0, 1fr) 220px;
+  gap: clamp(18px, 4vw, 48px);
+  padding: 30px 0;
+  border-bottom: 1px solid var(--rule);
+}
+
+.programme__date {
+  display: grid;
+  align-content: start;
+  gap: 6px;
+  line-height: 1;
+}
+
+.programme__date span:first-child {
+  font-size: 4rem;
+  font-style: italic;
+  color: var(--wine);
+}
+
+.programme__item h3 {
+  font-size: 2rem;
+}
+
+.programme__item h3 a {
+  text-decoration: none;
+}
+
+.programme__item h3 a:hover {
+  color: var(--wine);
+}
+
+.programme__meta {
+  margin: 8px 0 12px;
+  color: var(--mute);
+}
+
+.programme__item p:last-child {
+  color: var(--ink-2);
+  max-width: 60ch;
+}
+
+.programme__seats {
+  display: grid;
+  gap: 10px;
+  align-content: start;
+  color: var(--mute);
+}
+
+/* A loja */
+.shop {
+  position: relative;
+  margin-top: clamp(80px, 11vw, 150px);
+}
+
+.shop__photo img {
+  width: 100%;
+  aspect-ratio: 1 / 0.55;
+  object-fit: cover;
+}
+
+.shop__card {
+  position: absolute;
+  right: clamp(16px, 4vw, 48px);
+  bottom: clamp(16px, 4vw, 48px);
+  max-width: 360px;
+  padding: 26px 28px;
+  background: var(--paper);
+}
+
+.shop__card h2 {
+  font-size: 2.2rem;
+  font-style: italic;
+  margin-bottom: 10px;
+}
+
+.shop__card p + p {
+  margin-top: 12px;
+  color: var(--mute);
+}
+
+@media (max-width: 1000px) {
+  .weekly__list {
+    columns: 1;
+  }
+
+  .programme__item {
+    grid-template-columns: 80px minmax(0, 1fr);
+  }
+
+  .programme__seats {
+    grid-column: 2;
+  }
+}
+
+@media (max-width: 900px) {
+  .hero,
+  .route__grid,
+  .feature__grid,
+  .box__grid {
+    grid-template-columns: 1fr;
+  }
+
+  .hero__aside {
+    position: static;
+    display: grid;
+    grid-template-columns: 120px 1fr;
+    gap: 18px;
+    align-items: end;
+  }
+
+  .hero__aside figcaption {
+    margin: 0;
+  }
+
+  .weekly__head {
+    grid-template-columns: 1fr;
+  }
+
+  .weekly__head .link {
+    grid-column: 1;
+  }
+
+  .route__photos {
+    display: none;
+  }
+
+  .feature__portrait {
+    right: 12px;
+  }
+
+  .shop__photo img {
+    aspect-ratio: 1 / 0.8;
+  }
+
+  .shop__card {
+    position: static;
+    max-width: none;
+    padding: 22px 0 0;
+    background: none;
+  }
+}
+
+@media (max-width: 600px) {
+  .pick {
+    grid-template-columns: 84px 1fr;
+    gap: 18px;
+    align-items: start;
+  }
+
+  .pick__bottle .bottle {
+    width: 84px;
+  }
+
+  .route__list a {
+    grid-template-columns: 1fr auto;
+  }
+
+  .route__lat {
+    display: none;
+  }
+
+  .box__shelf {
+    grid-template-columns: 1fr;
+    border-bottom: 0;
+    box-shadow: none;
+  }
+
+  .box__shelf li {
+    flex-direction: row;
+    gap: 18px;
+    align-items: end;
+    border-bottom: 6px solid #3a0d14;
+  }
+
+  .box__bottle {
+    height: 190px;
+    flex-shrink: 0;
+  }
+
+  .box__note {
+    text-align: left;
+    min-height: 0;
+  }
+
+  .programme__item {
+    grid-template-columns: 1fr;
+    gap: 10px;
+  }
+
+  .programme__date {
+    display: flex;
+    gap: 10px;
+    align-items: baseline;
+  }
+
+  .programme__date span:first-child {
+    font-size: 2.6rem;
+  }
+
+  .programme__seats {
+    grid-column: 1;
+  }
+}
