@@ -1,0 +1,262 @@
+.tastings__head {
+  max-width: 980px;
+  padding: clamp(36px, 6vw, 72px) 0 48px;
+}
+
+.tastings__head h1 {
+  margin: 18px 0 22px;
+}
+
+.tastings__head p:last-child {
+  max-width: 58ch;
+  font-size: 1.2rem;
+  color: var(--ink-2);
+}
+
+/* Cada prova é um bilhete com canhoto destacável */
+.tickets {
+  list-style: none;
+  display: grid;
+  gap: 32px;
+}
+
+.ticket {
+  display: grid;
+  grid-template-columns: minmax(0, 0.9fr) minmax(0, 1.3fr) 260px;
+  background: #faf6ef;
+  box-shadow: 0 1px 0 var(--rule-strong), 0 18px 40px -24px rgba(32, 26, 23, 0.35);
+  scroll-margin-top: 20px;
+}
+
+.ticket__photo img {
+  width: 100%;
+  height: 100%;
+  min-height: 320px;
+  object-fit: cover;
+}
+
+.ticket__body {
+  padding: 30px 34px;
+}
+
+.ticket__date {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  line-height: 1;
+}
+
+.ticket__day {
+  font-size: 3.6rem;
+  font-style: italic;
+  color: var(--wine);
+}
+
+.ticket__date .mono {
+  line-height: 1.5;
+  color: var(--mute);
+}
+
+.ticket h2 {
+  margin: 18px 0 6px;
+  font-size: 2.2rem;
+}
+
+.ticket__host {
+  margin-bottom: 14px;
+  font-style: italic;
+  color: var(--mute);
+}
+
+.ticket__body > p:not([class]) {
+  color: var(--ink-2);
+}
+
+.ticket__lineup {
+  display: flex;
+  gap: 8px;
+  align-items: flex-end;
+  margin-top: 22px;
+  padding-bottom: 6px;
+  border-bottom: 4px solid var(--paper-3);
+}
+
+.ticket__lineup .bottle {
+  height: 92px;
+  width: auto;
+  transition: transform 0.2s;
+}
+
+.ticket__lineup a:hover .bottle {
+  transform: translateY(-4px);
+}
+
+.ticket__stub {
+  position: relative;
+  display: grid;
+  gap: 14px;
+  align-content: start;
+  padding: 30px 26px;
+  border-left: 2px dashed var(--rule-strong);
+}
+
+.ticket__stub::before,
+.ticket__stub::after {
+  content: '';
+  position: absolute;
+  left: -13px;
+  width: 24px;
+  height: 24px;
+  border-radius: 50%;
+  background: var(--paper);
+}
+
+.ticket__stub::before {
+  top: -12px;
+}
+
+.ticket__stub::after {
+  bottom: -12px;
+}
+
+.ticket__price {
+  display: grid;
+  font-family: var(--mono);
+  font-size: 1.5rem;
+  line-height: 1.2;
+}
+
+.ticket__price .mono {
+  font-size: 0.66rem;
+  color: var(--mute);
+}
+
+.ticket__left {
+  color: var(--mute);
+}
+
+.ticket__form {
+  display: grid;
+  grid-template-columns: 80px 1fr;
+  gap: 12px;
+  align-items: end;
+}
+
+.ticket__full {
+  font-style: italic;
+  color: var(--wine);
+}
+
+.ticket__when {
+  margin-top: auto;
+  color: var(--mute);
+  font-size: 0.66rem;
+}
+
+.ticket--booked .ticket__form {
+  display: none;
+}
+
+.ticket__booked {
+  padding: 12px 14px;
+  border: 1px solid var(--sage);
+  color: var(--sage);
+}
+
+/* Perguntas */
+.questions > * {
+  max-width: 820px;
+}
+
+.questions {
+  margin-top: clamp(72px, 10vw, 130px);
+}
+
+.questions h2 {
+  padding-bottom: 16px;
+  border-bottom: 3px double var(--rule-strong);
+}
+
+.questions details {
+  border-bottom: 1px solid var(--rule);
+}
+
+.questions summary {
+  display: flex;
+  justify-content: space-between;
+  gap: 16px;
+  padding: 20px 0;
+  font-size: 1.4rem;
+  cursor: pointer;
+  list-style: none;
+}
+
+.questions summary::-webkit-details-marker {
+  display: none;
+}
+
+.questions summary::after {
+  content: '+';
+  font-family: var(--mono);
+  color: var(--wine);
+}
+
+.questions details[open] summary::after {
+  content: '−';
+}
+
+.questions details p {
+  padding-bottom: 22px;
+  color: var(--ink-2);
+  max-width: 62ch;
+}
+
+@media (max-width: 1100px) {
+  .ticket {
+    grid-template-columns: minmax(0, 1fr) 250px;
+  }
+
+  .ticket__photo {
+    grid-column: 1 / -1;
+  }
+
+  .ticket__photo img {
+    min-height: 0;
+    aspect-ratio: 16 / 7;
+  }
+}
+
+@media (max-width: 680px) {
+  .ticket {
+    grid-template-columns: 1fr;
+  }
+
+  .ticket__body {
+    padding: 24px 20px;
+  }
+
+  .ticket__stub {
+    border-left: 0;
+    border-top: 2px dashed var(--rule-strong);
+    padding: 24px 20px;
+  }
+
+  .ticket__stub::before,
+  .ticket__stub::after {
+    top: -13px;
+    bottom: auto;
+  }
+
+  .ticket__stub::before {
+    left: -12px;
+  }
+
+  .ticket__stub::after {
+    left: auto;
+    right: -12px;
+  }
+
+  .ticket__photo img {
+    aspect-ratio: 4 / 3;
+  }
+}
