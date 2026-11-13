@@ -1,5 +1,5 @@
 import { bottle } from '../../../public/js/shared/bottle.js';
-import { carta, entry, pairingResult, peopleWord } from '../../../public/js/shared/carta.js';
+import { carta, entries, pairingResult, peopleWord } from '../../../public/js/shared/carta.js';
 import { dayNumber, escapeHtml, longDate, money, monthName, plural } from '../../../public/js/shared/format.js';
 import { cartaNumber, glasses, photo } from '../helpers.js';
 
@@ -11,6 +11,11 @@ const BUDGETS = [
   ['', 'o que for preciso'],
 ];
 
+// Também usados no preload da imagem, em pages.routes.js
+export const HERO_PHOTO = 'https://images.unsplash.com/photo-1553361371-9b22f78e8b1d';
+export const HERO_WIDTHS = [400, 600, 800, 1000];
+export const HERO_SIZES = '(max-width: 900px) 100vw, 380px';
+
 const options = (list, selected) =>
   list.map(([value, label]) => `<option value="${value}"${String(value) === String(selected) ? ' selected' : ''}>${escapeHtml(label)}</option>`).join('');
 
@@ -18,24 +23,28 @@ function hero({ pairing, dishes }) {
   const people = Array.from({ length: 12 }, (_, i) => [i + 1, i === 0 ? 'eu sozinho' : peopleWord(i + 1)]);
 
   return `
-  <section class="hero wrap">
-    <div class="hero__main">
-      <p class="kicker mono"><span>Carta n.º ${cartaNumber()} · o que vai para a mesa?</span></p>
-      <h1 class="sr-only">Cepa, garrafeira de vinhos portugueses no Porto</h1>
-      <form class="sentence" data-pairing>
-        <p>Esta noite há
-          <span class="pick-word"><select name="prato" aria-label="Prato">${options(dishes.map((d) => [d.slug, d.name]), pairing.dish.slug)}</select></span>,
-          somos <span class="pick-word"><select name="pessoas" aria-label="Quantas pessoas">${options(people, pairing.people)}</select></span>
-          e cada garrafa pode custar
-          <span class="pick-word"><select name="orcamento" aria-label="Orçamento por garrafa">${options(BUDGETS, pairing.budget ?? '')}</select></span>.
-        </p>
-      </form>
-      <div class="pairing" data-pairing-result aria-live="polite">${pairingResult(pairing)}</div>
+  <section class="hero">
+    <div class="wrap hero__grid">
+      <div class="hero__ask">
+        <p class="kicker mono"><span>Carta n.º ${cartaNumber()} · o que vai para a mesa?</span></p>
+        <h1 class="sr-only">Cepa, garrafeira de vinhos portugueses no Porto</h1>
+        <form class="sentence" data-pairing autocomplete="off">
+          <p>Esta noite há
+            <span class="pick-word"><select name="prato" aria-label="Prato">${options(dishes.map((d) => [d.slug, d.name]), pairing.dish.slug)}</select></span>,
+            somos <span class="pick-word"><select name="pessoas" aria-label="Quantas pessoas">${options(people, pairing.people)}</select></span>
+            e cada garrafa pode custar
+            <span class="pick-word"><select name="orcamento" aria-label="Orçamento por garrafa">${options(BUDGETS, pairing.budget ?? '')}</select></span>.
+          </p>
+        </form>
+        <p class="hero__lead">Ninguém sabe tudo sobre vinho. Mude as palavras a vermelho e o escanção escolhe por si — na loja é igual, só que com provas.</p>
+      </div>
+      <figure class="hero__photo">
+        ${photo(HERO_PHOTO, { widths: HERO_WIDTHS, ratio: 1.2, sizes: HERO_SIZES, alt: 'Copo de vinho tinto numa mesa posta para jantar', eager: true })}
+      </figure>
     </div>
-    <figure class="hero__aside">
-      ${photo('https://images.unsplash.com/photo-1553361371-9b22f78e8b1d', { widths: [240, 400, 600, 800], ratio: 1.4, sizes: '(max-width: 900px) 120px, 34vw', alt: 'Copo de vinho tinto numa mesa posta para jantar', eager: true })}
-      <figcaption>Ninguém sabe tudo sobre vinho. Diga-nos o que vai cozinhar e nós tratamos do resto — na loja é igual, só que com provas.</figcaption>
-    </figure>
+    <div class="pairing-band">
+      <div class="wrap pairing" data-pairing-result aria-live="polite">${pairingResult(pairing)}</div>
+    </div>
   </section>`;
 }
 
@@ -99,8 +108,8 @@ function producerFeature({ producer, wines }) {
         <h2 id="feature-title" class="title-lg">${escapeHtml(producer.name)}</h2>
         <p class="feature__by mono">${escapeHtml(producer.winemaker)} · Douro</p>
         <p class="feature__story"><span class="dropcap">${escapeHtml(first[0])}</span>${escapeHtml(first.slice(1))}. ${escapeHtml(rest.join('. '))}</p>
-        <blockquote>“${escapeHtml(producer.quote)}”</blockquote>
-        <div class="feature__wines">${wines.map((w) => entry(w)).join('')}</div>
+        ${producer.quote ? `<blockquote>“${escapeHtml(producer.quote)}”</blockquote>` : ''}
+        <div class="feature__wines">${entries(wines)}</div>
         <a class="link" href="/produtores#${producer.slug}">Conhecer os outros produtores</a>
       </div>
     </div>

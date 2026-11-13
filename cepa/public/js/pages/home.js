@@ -1,5 +1,6 @@
 import { api } from '../api.js';
 import { pairingResult } from '../shared/carta.js';
+import { initialData } from '../utils.js';
 
 const form = document.querySelector('[data-pairing]');
 const result = document.querySelector('[data-pairing-result]');
@@ -23,6 +24,14 @@ async function suggest() {
 }
 
 form?.addEventListener('change', suggest);
+
+// Ao voltar à página, o browser pode repor escolhas antigas nos menus: nesse caso a sugestão tem de acompanhar
+const shown = initialData()?.pairing;
+if (form && shown) {
+  const { prato, pessoas, orcamento } = Object.fromEntries(new FormData(form));
+  if (prato !== shown.dish.slug || Number(pessoas) !== shown.people || String(orcamento) !== String(shown.budget ?? '')) suggest();
+}
+window.addEventListener('pageshow', (event) => event.persisted && suggest());
 
 // Lista de regiões: a fotografia ao lado acompanha a região em que se passa o rato
 const photos = document.querySelectorAll('[data-region-photo]');

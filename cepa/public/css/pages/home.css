@@ -1,57 +1,61 @@
-/* Abertura: a frase que se completa */
-.hero {
+/* Abertura: a frase que se completa e a fotografia ao lado */
+.hero__grid {
   display: grid;
-  grid-template-columns: minmax(0, 1fr) minmax(280px, 0.52fr);
-  gap: clamp(32px, 6vw, 88px);
-  padding-top: clamp(36px, 6vw, 72px);
+  grid-template-columns: minmax(0, 1fr) 380px;
+  gap: clamp(32px, 6vw, 96px);
+  align-items: center;
+  padding: clamp(36px, 6vw, 72px) 0 clamp(40px, 6vw, 72px);
 }
 
 .sentence {
-  margin: 26px 0 clamp(36px, 5vw, 56px);
+  margin: 24px 0 26px;
 }
 
 .sentence p {
-  font-size: clamp(2.1rem, 4.6vw, 4.1rem);
-  line-height: 1.16;
+  font-size: clamp(2rem, 3.9vw, 3.4rem);
+  line-height: 1.32;
   letter-spacing: -0.02em;
 }
 
 .pick-word {
   position: relative;
   display: inline-block;
+  line-height: 1.1;
 }
 
 .pick-word select {
   appearance: none;
   field-sizing: content;
   max-width: 100%;
-  padding: 0 0.85em 0 0.05em;
+  padding: 0 0.62em 0.04em 0;
   background: transparent;
   border: 0;
-  border-bottom: 2px dotted var(--wine);
+  border-bottom: 2px solid rgba(123, 30, 44, 0.35);
+  border-radius: 0;
   color: var(--wine);
   font-style: italic;
-  line-height: 1.05;
+  line-height: 1.1;
   cursor: pointer;
-  border-radius: 0;
+  transition: border-color 0.2s;
+}
+
+.pick-word select:hover,
+.pick-word select:focus-visible {
+  outline: none;
+  border-bottom-color: var(--wine);
 }
 
 .pick-word::after {
   content: '';
   position: absolute;
-  right: 0.15em;
+  right: 0.1em;
   top: 50%;
-  width: 0.28em;
-  height: 0.28em;
+  width: 0.2em;
+  height: 0.2em;
   border-right: 2px solid var(--wine);
   border-bottom: 2px solid var(--wine);
-  transform: translateY(-70%) rotate(45deg);
+  transform: translateY(-65%) rotate(45deg);
   pointer-events: none;
-}
-
-.pick-word select:focus-visible {
-  outline: none;
-  background: rgba(123, 30, 44, 0.08);
 }
 
 .pick-word option {
@@ -60,37 +64,150 @@
   color: var(--ink);
 }
 
+.hero__lead {
+  max-width: 52ch;
+  color: var(--ink-2);
+  font-size: 1.1rem;
+}
+
+.hero__photo img {
+  width: 100%;
+  aspect-ratio: 1 / 1.2;
+  object-fit: cover;
+}
+
+/* As três sugestões, numa faixa própria */
+.pairing-band {
+  padding: clamp(32px, 5vw, 56px) 0;
+  background: var(--paper-2);
+  border-block: 1px solid var(--rule);
+}
+
 .pairing {
-  min-height: 330px;
+  min-height: 520px;
   transition: opacity 0.2s;
 }
 
 .pairing.is-loading {
-  opacity: 0.4;
+  opacity: 0.45;
 }
 
-.hero__aside {
-  align-self: start;
-  position: sticky;
-  top: 24px;
+.picks {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: clamp(16px, 2.4vw, 28px);
 }
 
-.hero__aside img {
-  width: 100%;
-  aspect-ratio: 1 / 1.4;
-  object-fit: cover;
+.pick {
+  display: flex;
+  flex-direction: column;
+  padding: 22px 24px 24px;
+  background: #faf6ef;
+  border: 1px solid var(--rule);
 }
 
-.hero__aside figcaption {
-  margin-top: 14px;
-  padding-top: 12px;
-  border-top: 1px solid var(--rule);
+.pick--main {
+  border-color: var(--wine);
+  box-shadow: inset 0 0 0 1px var(--wine);
+}
+
+.pick__badge {
+  color: var(--mute);
+  font-size: 0.66rem;
+}
+
+.pick--main .pick__badge {
+  color: var(--wine);
+}
+
+.pick__bottle {
+  display: flex;
+  justify-content: center;
+  align-items: flex-end;
+  height: 210px;
+  margin: 14px 0 18px;
+  border-bottom: 5px solid var(--paper-3);
+}
+
+.pick__bottle .bottle {
+  height: 92%;
+  width: auto;
+  filter: drop-shadow(8px 12px 10px rgba(32, 26, 23, 0.22));
+  transition: transform 0.25s;
+}
+
+.pick:hover .pick__bottle .bottle {
+  transform: translateY(-5px);
+}
+
+.pick__kind {
+  color: var(--mute);
+  font-size: 0.66rem;
+}
+
+.pick h3 {
+  margin: 8px 0 8px;
+  font-size: 1.55rem;
+  line-height: 1.15;
+}
+
+.pick h3 a {
+  text-decoration: none;
+}
+
+.pick h3 a:hover {
+  color: var(--wine);
+}
+
+.pick h3 em {
+  color: var(--mute);
+}
+
+.pick__reason {
   color: var(--ink-2);
-  font-style: italic;
   font-size: 1.02rem;
 }
 
-/* Carta da semana em duas colunas, como um menu */
+.pick__buy {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  align-items: center;
+  gap: 12px;
+  margin-top: auto;
+  padding-top: 20px;
+}
+
+.pick__price {
+  font-family: var(--mono);
+  font-size: 1.05rem;
+  white-space: nowrap;
+}
+
+.pick__buy .btn {
+  min-height: 42px;
+  padding: 8px 16px;
+}
+
+.pairing__note {
+  max-width: 78ch;
+  margin-top: 22px;
+  color: var(--ink-2);
+  font-style: italic;
+}
+
+.pairing__note .mono {
+  margin-right: 10px;
+  font-style: normal;
+  color: var(--wine);
+}
+
+.pairing__warn {
+  color: var(--wine);
+  margin-bottom: 16px;
+}
+
+/* Carta da semana, numa coluna larga como uma carta de restaurante */
 .weekly {
   margin-top: clamp(80px, 11vw, 150px);
 }
@@ -115,13 +232,8 @@
 }
 
 .weekly__list {
-  columns: 2;
-  column-gap: clamp(32px, 6vw, 80px);
-}
-
-.weekly__list .carta-section {
-  break-inside: avoid;
-  margin: 0 0 44px;
+  max-width: 980px;
+  margin-inline: auto;
 }
 
 /* De norte a sul: a lista de regiões e a fotografia que muda */
@@ -476,10 +588,6 @@
 }
 
 @media (max-width: 1000px) {
-  .weekly__list {
-    columns: 1;
-  }
-
   .programme__item {
     grid-template-columns: 80px minmax(0, 1fr);
   }
@@ -490,23 +598,23 @@
 }
 
 @media (max-width: 900px) {
-  .hero,
+  .hero__grid,
   .route__grid,
   .feature__grid,
   .box__grid {
     grid-template-columns: 1fr;
   }
 
-  .hero__aside {
-    position: static;
-    display: grid;
-    grid-template-columns: 120px 1fr;
-    gap: 18px;
-    align-items: end;
+  .hero__photo img {
+    aspect-ratio: 16 / 9;
   }
 
-  .hero__aside figcaption {
-    margin: 0;
+  .picks {
+    grid-template-columns: 1fr;
+  }
+
+  .pairing {
+    min-height: 0;
   }
 
   .weekly__head {
@@ -539,13 +647,20 @@
 
 @media (max-width: 600px) {
   .pick {
-    grid-template-columns: 84px 1fr;
-    gap: 18px;
-    align-items: start;
+    display: grid;
+    grid-template-columns: 80px minmax(0, 1fr);
+    column-gap: 18px;
   }
 
-  .pick__bottle .bottle {
-    width: 84px;
+  .pick > :not(.pick__bottle) {
+    grid-column: 2;
+  }
+
+  .pick__bottle {
+    grid-row: 1 / span 6;
+    height: 200px;
+    margin: 0;
+    border-bottom: 0;
   }
 
   .route__list a {
