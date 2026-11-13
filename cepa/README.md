@@ -29,9 +29,9 @@ A Cepa é a loja online de uma **garrafeira no Porto** que só vende vinho portu
 
 A página inicial não começa com uma fotografia, começa com uma pergunta: *“Esta noite há polvo à lagareiro, somos quatro e cada garrafa pode custar até 20 €.”* Cada parte da frase é um menu, e a sugestão do escanção muda à medida que se escolhe — com a razão de cada vinho e quantas garrafas levar.
 
-O design parte de uma **carta de vinhos impressa**: papel com grão, nome e preço ligados por pontinhos, régua dupla nos cabeçalhos, tipografia de rótulo (Newsreader e IBM Plex Mono) e um único tom de vinho. As garrafas não são fotografias: são **desenhadas em SVG** a partir dos dados de cada vinho — formato da garrafa, cor do vidro e rótulo próprio com nome e colheita.
+O design parte de uma **carta de vinhos impressa**: papel com grão, vinhos em colunas (vinho, região, ano e preço) como numa carta de restaurante, régua dupla nos cabeçalhos, tipografia de rótulo (Newsreader e IBM Plex Mono) e um único tom de vinho. As garrafas não são fotografias: são **desenhadas em SVG** a partir dos dados de cada vinho — formato da garrafa, cor do vidro e rótulo próprio com nome e colheita.
 
-Funciona **sem base de dados**: os dados vivem em memória e já trazem 24 vinhos, 7 produtores, provas, encomendas e contas de exemplo, mas o backend está completo — login com JWT, maioridade verificada no registo, stock, descontos de sócio, reservas e painel de gestão.
+Funciona **sem base de dados**: os dados vivem em memória e já trazem 27 vinhos, 8 produtores (entre eles a Montes Ermos, de Freixo de Espada à Cinta), provas, encomendas e contas de exemplo, mas o backend está completo — login com JWT, maioridade verificada no registo, stock, descontos de sócio, reservas e painel de gestão.
 
 ## ✨ Funcionalidades
 
@@ -116,7 +116,7 @@ Resultados do Lighthouse 12 (telemóvel com rede 4G lenta simulada / computador)
 
 | Página | Desempenho | Acessibilidade | Boas práticas | SEO |
 |---|:---:|:---:|:---:|:---:|
-| Início | 100 / 100 | 100 | 100 | 100 |
+| Início | 98 / 100 | 100 | 100 | 100 |
 | A carta | 100 / 100 | 100 | 100 | 100 |
 | Vinho | 100 / 100 | 100 | 100 | 100 |
 | Produtores | 100 / 100 | 100 | 100 | 100 |
