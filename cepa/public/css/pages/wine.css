@@ -1,0 +1,355 @@
+.crumbs {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  padding: 26px 0;
+  color: var(--mute);
+}
+
+.crumbs a {
+  text-decoration: none;
+}
+
+.crumbs a:hover {
+  color: var(--wine);
+}
+
+.wine__grid {
+  display: grid;
+  grid-template-columns: minmax(0, 0.85fr) minmax(0, 1fr);
+  gap: clamp(32px, 6vw, 96px);
+  align-items: start;
+}
+
+/* A garrafa num nicho, como numa montra */
+.wine__stage {
+  position: sticky;
+  top: 24px;
+  display: flex;
+  justify-content: center;
+  align-items: flex-end;
+  height: min(78vh, 680px);
+  padding: 48px 0 0;
+  background: radial-gradient(ellipse 60% 6% at 50% 96%, rgba(32, 26, 23, 0.28), transparent 70%), var(--paper-2);
+  border-radius: 999px 999px 0 0;
+  border-bottom: 10px solid var(--paper-3);
+}
+
+.wine__bottle {
+  height: 88%;
+  width: auto;
+  margin-bottom: 18px;
+  filter: drop-shadow(14px 20px 16px rgba(32, 26, 23, 0.25));
+}
+
+.wine__info {
+  padding-top: clamp(0px, 4vw, 48px);
+}
+
+.wine__kicker {
+  color: var(--wine);
+}
+
+.wine__info h1 {
+  margin: 14px 0 10px;
+}
+
+.wine__info h1 em {
+  color: var(--mute);
+}
+
+.wine__producer {
+  font-size: 1.3rem;
+  font-style: italic;
+  color: var(--ink-2);
+}
+
+.wine__notes {
+  margin-top: 28px;
+  font-size: clamp(1.3rem, 2vw, 1.6rem);
+  line-height: 1.45;
+}
+
+.buy {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 18px;
+  margin-top: 36px;
+  padding: 22px 0;
+  border-block: 1px solid var(--rule-strong);
+}
+
+.buy__price {
+  display: grid;
+  margin-right: auto;
+  font-family: var(--mono);
+  font-size: 1.6rem;
+  line-height: 1.1;
+}
+
+.buy__price .mono {
+  font-size: 0.66rem;
+  color: var(--mute);
+}
+
+.qty {
+  display: flex;
+  align-items: center;
+  border: 1px solid var(--rule-strong);
+  height: 48px;
+}
+
+.qty button {
+  width: 44px;
+  height: 100%;
+  font-size: 1.2rem;
+}
+
+.qty button:hover {
+  color: var(--wine);
+}
+
+.qty input {
+  width: 48px;
+  height: 100%;
+  border: 0;
+  border-inline: 1px solid var(--rule);
+  background: transparent;
+  text-align: center;
+  font-family: var(--mono);
+  appearance: textfield;
+  -moz-appearance: textfield;
+}
+
+.qty input::-webkit-inner-spin-button,
+.qty input::-webkit-outer-spin-button {
+  -webkit-appearance: none;
+}
+
+.buy__out {
+  font-style: italic;
+  color: var(--wine);
+}
+
+.buy__info {
+  margin-top: 12px;
+  color: var(--mute);
+}
+
+.staff-note {
+  position: relative;
+  margin-top: 44px;
+  padding: 26px 28px 22px;
+  background: #faf6ef;
+  box-shadow: 0 12px 30px rgba(32, 26, 23, 0.1);
+  transform: rotate(-1deg);
+}
+
+.staff-note::before {
+  content: '';
+  position: absolute;
+  top: -10px;
+  left: 50%;
+  width: 90px;
+  height: 22px;
+  background: rgba(214, 199, 170, 0.7);
+  transform: translateX(-50%) rotate(2deg);
+}
+
+.staff-note p {
+  font-size: 1.35rem;
+  font-style: italic;
+  line-height: 1.4;
+}
+
+.staff-note footer {
+  margin-top: 12px;
+  color: var(--mute);
+}
+
+/* Contrarrótulo: a ficha técnica com moldura dupla */
+.backlabel {
+  display: grid;
+  grid-template-columns: minmax(0, 1.4fr) minmax(0, 1fr);
+  gap: 28px 56px;
+  margin-top: clamp(64px, 9vw, 120px);
+  padding: clamp(24px, 4vw, 44px);
+  border: 3px double var(--rule-strong);
+}
+
+.backlabel h2 {
+  grid-column: 1 / -1;
+  color: var(--mute);
+  font-weight: 400;
+}
+
+.backlabel__facts {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 0 32px;
+}
+
+.backlabel__facts div {
+  display: flex;
+  justify-content: space-between;
+  gap: 16px;
+  padding: 12px 0;
+  border-bottom: 1px dotted var(--rule-strong);
+}
+
+.backlabel__facts dt {
+  font-family: var(--mono);
+  font-size: 0.72rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--mute);
+  padding-top: 4px;
+}
+
+.backlabel__facts dd {
+  text-align: right;
+}
+
+.backlabel__scales {
+  display: grid;
+  gap: 22px;
+  align-content: start;
+}
+
+.scale {
+  display: grid;
+  gap: 8px;
+}
+
+.scale .mono {
+  color: var(--mute);
+}
+
+.scale__bar {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  gap: 4px;
+}
+
+.scale__bar i {
+  height: 8px;
+  background: var(--paper-3);
+}
+
+.scale__bar i.is-on {
+  background: var(--wine);
+}
+
+.scale__ends {
+  display: flex;
+  justify-content: space-between;
+  font-size: 0.95rem;
+  font-style: italic;
+  color: var(--mute);
+}
+
+.backlabel__pairs {
+  grid-column: 1 / -1;
+  padding-top: 20px;
+  border-top: 1px solid var(--rule);
+}
+
+.backlabel__pairs h3 {
+  color: var(--mute);
+  font-weight: 400;
+  margin-bottom: 8px;
+}
+
+.backlabel__pairs p {
+  font-size: 1.5rem;
+  font-style: italic;
+}
+
+.backlabel__pairs a {
+  text-decoration-color: var(--rule-strong);
+}
+
+.backlabel__pairs a:hover {
+  color: var(--wine);
+}
+
+/* Quem faz */
+.maker {
+  display: grid;
+  grid-template-columns: minmax(0, 1.2fr) minmax(0, 1fr);
+  gap: clamp(28px, 5vw, 72px);
+  align-items: center;
+  margin-top: clamp(64px, 9vw, 120px);
+}
+
+.maker img {
+  width: 100%;
+  aspect-ratio: 1 / 0.7;
+  object-fit: cover;
+}
+
+.maker__text > .mono {
+  color: var(--wine);
+}
+
+.maker h2 {
+  margin: 10px 0 16px;
+  font-size: clamp(2rem, 3.4vw, 2.8rem);
+}
+
+.maker__text > p:not(.mono) {
+  color: var(--ink-2);
+}
+
+.maker blockquote {
+  margin-top: 22px;
+  font-size: 1.3rem;
+  font-style: italic;
+  line-height: 1.35;
+}
+
+.maker blockquote footer {
+  margin-top: 10px;
+  font-style: normal;
+  color: var(--mute);
+}
+
+.related {
+  margin-top: clamp(64px, 9vw, 120px);
+}
+
+.related h2 {
+  padding-bottom: 18px;
+  border-bottom: 3px double var(--rule-strong);
+}
+
+@media (max-width: 900px) {
+  .wine__grid,
+  .maker,
+  .backlabel {
+    grid-template-columns: 1fr;
+  }
+
+  .wine__stage {
+    position: static;
+    height: 420px;
+    max-width: 360px;
+    width: 100%;
+    margin-inline: auto;
+  }
+}
+
+@media (max-width: 560px) {
+  .backlabel__facts {
+    grid-template-columns: 1fr;
+  }
+
+  .buy__price {
+    flex-basis: 100%;
+  }
+
+  .buy .btn {
+    flex: 1;
+  }
+}
