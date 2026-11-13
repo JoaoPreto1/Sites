@@ -245,7 +245,7 @@ export const wines = [
     pairings: ['doces', 'queijos'], shape: 'porto', label: { paper: '#1f1a17', ink: '#d6b77a' },
   }),
   wine({
-    id: 'w-19', slug: 'generosos-colheita-2005', name: 'Colheita 2005', producerId: 'p-generosos', region: 'douro', type: 'generoso', year: 2005,
+    id: 'w-19', slug: 'generosos-colheita-2005', name: 'Colheita', producerId: 'p-generosos', region: 'douro', type: 'generoso', year: 2005,
     grapes: ['Lote de casta misturada'], price: 68, alcohol: 20, temperature: '13–14 °C', keep: 'meses depois de aberto', body: 5, acidity: 4, stock: 5,
     notes: 'Vinte anos em barrica de um só ano. Iodo, café, laranja amarga.',
     pairings: ['doces', 'queijos'], shape: 'porto', label: { paper: '#efe2c6', ink: '#3d2414' },
