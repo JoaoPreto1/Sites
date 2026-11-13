@@ -49,6 +49,19 @@ export const producers = [
       'Doze hectares de socalcos em Ervedosa do Douro, virados a norte para fugir ao calor de agosto. A Teresa voltou de Bordéus em 2011 para pegar na quinta do avô e mudou pouco: vinhas velhas misturadas, pisa a pé em lagares de granito e nada de madeira nova. Os vinhos saem tensos, mais frescos do que se espera do Douro, e pedem tempo na garrafeira.',
   },
   {
+    id: 'p-montes-ermos',
+    slug: 'montes-ermos',
+    name: 'Montes Ermos',
+    region: 'douro',
+    place: 'Freixo de Espada à Cinta',
+    winemaker: 'Adega de Freixo de Espada à Cinta',
+    photo: photo('1603657289356-97dbe434eb91'),
+    portrait: photo('1633557534986-e104328d8160'),
+    quote: '',
+    story:
+      'Do Douro Superior, em Freixo de Espada à Cinta, já colado à fronteira e às arribas do Douro. É a marca da adega local, que junta as uvas de muitos pequenos viticultores do concelho: vinhas em encostas de xisto e granito, verões muito quentes e secos e noites que refrescam vindas do rio. Vinhos honestos, de fruta madura e bom preço, que mostram um Douro menos conhecido do que o dos socalcos da Régua e do Pinhão.',
+  },
+  {
     id: 'p-lameiro',
     slug: 'casa-do-lameiro',
     name: 'Casa do Lameiro',
@@ -281,6 +294,27 @@ export const wines = [
     grapes: ['Alicante Bouschet', 'Tinta Grossa'], price: 29, alcohol: 14.5, temperature: '17–18 °C', keep: 'até 2033', body: 5, acidity: 3,
     notes: 'Tinta Grossa da Vidigueira, rara. Ameixa, chocolate amargo, esteva. Profundo.',
     pairings: ['carne', 'caca', 'queijos'], shape: 'bordalesa', label: { paper: '#1f1a17', ink: '#c9a46a' },
+  }),
+  wine({
+    id: 'w-25', slug: 'montes-ermos-branco-2023', name: 'Montes Ermos Branco', producerId: 'p-montes-ermos', region: 'douro', type: 'branco', year: 2023,
+    grapes: ['Rabigato', 'Códega do Larinho', 'Viosinho'], price: 7.9, alcohol: 13, temperature: '9–11 °C', keep: 'até 2026', body: 2, acidity: 3,
+    notes: 'Pêssego, flor de laranjeira e um fundo de pedra. Fresco e fácil, com a fruta madura do Douro Superior.',
+    pairings: ['peixe', 'petiscos', 'bacalhau'], shape: 'borgonha', label: { paper: '#f1ead9', ink: '#5a6b3a' },
+    staffNote: 'O branco da casa cá na loja. Ninguém acredita no preço.',
+  }),
+  wine({
+    id: 'w-26', slug: 'montes-ermos-tinto-2022', name: 'Montes Ermos Tinto', producerId: 'p-montes-ermos', region: 'douro', type: 'tinto', year: 2022,
+    grapes: ['Touriga Nacional', 'Touriga Franca', 'Tinta Roriz'], price: 8.5, alcohol: 13.5, temperature: '15–17 °C', keep: 'até 2027', body: 3, acidity: 3,
+    notes: 'Amora, ameixa e um toque de esteva. Redondo, de taninos macios, para o dia a dia.',
+    pairings: ['carne', 'leitao', 'petiscos'], shape: 'bordalesa', label: { paper: '#efe6d3', ink: '#6a2a1f' }, featured: true,
+    staffNote: 'Tinto de mesa sem complicações. Um bife e está feito o jantar.',
+  }),
+  wine({
+    id: 'w-27', slug: 'montes-ermos-reserva-tinto-2020', name: 'Montes Ermos Reserva', producerId: 'p-montes-ermos', region: 'douro', type: 'tinto', year: 2020,
+    grapes: ['Touriga Nacional', 'Touriga Franca', 'Tinta Roriz'], price: 13.9, alcohol: 14, temperature: '16–18 °C', keep: 'até 2030', body: 4, acidity: 3,
+    notes: 'Fruta preta, cacau e especiaria do estágio em madeira. Encorpado e quente, como o Douro Superior.',
+    pairings: ['carne', 'caca', 'queijos'], shape: 'bordalesa', label: { paper: '#1f1a17', ink: '#c9b27a' },
+    staffNote: 'Para um cabrito ou um cozido. Abrir meia hora antes.',
   }),
 ];
 
