@@ -11,7 +11,7 @@ export function documentHtml({ page, main, css = [], script, data, path }) {
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  ${renderHead({ ...page, path })}
+  ${renderHead({ ...page, path: page.path ?? path })}
   <link rel="icon" href="/favicon.svg" type="image/svg+xml">
   <link rel="preload" href="/fonts/newsreader.woff2" as="font" type="font/woff2" crossorigin>
   <link rel="stylesheet" href="/css/base.css">
