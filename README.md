@@ -7,7 +7,7 @@
 ![Node.js](https://img.shields.io/badge/Node.js-22+-339933?style=flat-square&logo=nodedotjs&logoColor=white)
 ![Express](https://img.shields.io/badge/Express-5-000000?style=flat-square&logo=express&logoColor=white)
 ![JWT](https://img.shields.io/badge/Auth-JWT-d63aff?style=flat-square&logo=jsonwebtokens&logoColor=white)
-![Zod](https://img.shields.io/badge/Validação-Zod-3e67b1?style=flat-square&logo=zod&logoColor=white)
+![express-validator](https://img.shields.io/badge/Validação-express--validator-000000?style=flat-square&logo=express&logoColor=white)
 ![JavaScript](https://img.shields.io/badge/JavaScript-ES_Modules-f7df1e?style=flat-square&logo=javascript&logoColor=black)
 
 </div>
@@ -35,6 +35,14 @@ Cada site vive na sua própria pasta e já traz login com JWT, rotas, validaçã
       <p>✅ <strong>Pronto</strong></p>
     </td>
   </tr>
+  <tr>
+    <td width="50%"><a href="cepa/"><img src="cepa/docs/capa.jpg" alt="Cepa" width="100%"></a></td>
+    <td>
+      <h3><a href="cepa/">Cepa</a></h3>
+      <p>Garrafeira no Porto desenhada como uma carta de vinhos impressa: sugestão de vinho para o jantar, carta com filtros, garrafas desenhadas em SVG, clube mensal, provas com reserva, cesto e painel.</p>
+      <p>✅ <strong>Pronto</strong></p>
+    </td>
+  </tr>
 </table>
 
 ### ⏳ Lista de espera
@@ -48,7 +56,7 @@ Ainda nenhum — o próximo site entra aqui.
 | ⚙️ Servidor | Node.js 22+ e Express 5 |
 | 🔐 Autenticação | JWT (access token + refresh token) e `bcryptjs` |
 | 🛡️ Segurança | `helmet`, `cors` e `express-rate-limit` |
-| ✅ Validação | `zod` |
+| ✅ Validação | `express-validator` |
 | 🎨 Frontend | HTML, CSS e JavaScript sem build, servido pelo Express |
 
 ## 🚀 Como correr um site
