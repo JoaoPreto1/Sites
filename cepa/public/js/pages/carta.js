@@ -12,7 +12,7 @@ let wines = initialData()?.wines ?? [];
 let request = 0;
 
 function filters() {
-  const entries = [...new FormData(form)].filter(([, value]) => String(value).trim());
+  const entries = [...new FormData(form)].filter(([key, value]) => String(value).trim() && !(key === 'ordem' && value === 'carta'));
   return new URLSearchParams(entries);
 }
 

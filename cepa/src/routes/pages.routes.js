@@ -8,6 +8,7 @@ import { absolute } from '../seo/head.js';
 import { photoUrl, srcset } from '../seo/images.js';
 import { breadcrumbs, eventSchema, productSchema, store } from '../seo/pages.js';
 import { producersPage } from '../views/pages/producers.js';
+import { accountView, adminView, cartView, loginView } from '../views/pages/private.js';
 import { TASTING_QUESTIONS, tastingsPage } from '../views/pages/tastings.js';
 import { CLUB_QUESTIONS, clubPage } from '../views/pages/club.js';
 import { bottle } from '../../public/js/shared/bottle.js';
@@ -182,6 +183,24 @@ router.get('/clube', async (req, res) => {
     script: 'club',
   });
 });
+
+const privatePages = {
+  '/cesto': { title: 'Cesto', view: cartView, script: 'cesto' },
+  '/entrar': { title: 'Entrar', view: loginView, script: 'entrar' },
+  '/conta': { title: 'A minha conta', view: accountView, script: 'conta' },
+  '/painel': { title: 'Painel', view: adminView, script: 'painel' },
+};
+
+for (const [path, { title, view, script }] of Object.entries(privatePages)) {
+  router.get(path, (req, res) =>
+    send(req, res, {
+      page: { title, description: 'Área pessoal da Cepa.', noindex: true },
+      main: view(),
+      css: ['private'],
+      script,
+    }),
+  );
+}
 
 router.get('/robots.txt', (req, res) => {
   const lines = ['User-agent: *', 'Allow: /', 'Disallow: /api/', 'Disallow: /cesto', 'Disallow: /conta', 'Disallow: /painel', 'Disallow: /entrar'];
