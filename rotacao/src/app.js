@@ -50,9 +50,8 @@ app.use(
   express.static(publicDir, {
     index: false,
     setHeaders(res, path) {
-      // Os módulos JS importam-se uns aos outros sem versão no URL: revalidam sempre (304 se não mudaram)
+      // Os módulos JS (e o three.js) importam-se sem versão no URL: revalidam sempre (304 se não mudaram)
       if (/[\\/]fonts[\\/]/.test(path)) res.set('Cache-Control', 'public, max-age=31536000, immutable');
-      else if (/[\\/]vendor[\\/]/.test(path)) res.set('Cache-Control', 'public, max-age=2592000');
       else if (path.endsWith('.js')) res.set('Cache-Control', 'no-cache');
       else res.set('Cache-Control', 'public, max-age=86400');
     },
