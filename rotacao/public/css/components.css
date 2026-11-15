@@ -413,3 +413,215 @@
   border: 1px solid var(--line-2);
   color: var(--mute);
 }
+
+/* Legenda dos estados */
+.grades {
+  display: grid;
+  grid-template-columns: repeat(5, minmax(0, 150px));
+  border: 1px solid var(--line-2);
+  border-radius: 10px;
+  overflow: hidden;
+}
+
+.grades div {
+  padding: 12px 14px;
+  border-right: 1px solid var(--line);
+}
+
+.grades div:last-child {
+  border-right: 0;
+}
+
+.grades dt {
+  font-family: var(--mono);
+  font-weight: 800;
+  font-size: 1rem;
+}
+
+.grades dd {
+  color: var(--mute);
+  font-size: 0.82rem;
+  line-height: 1.35;
+  margin-top: 4px;
+}
+
+@media (max-width: 760px) {
+  .grades {
+    grid-template-columns: repeat(2, 1fr);
+    width: 100%;
+  }
+
+  .grades div {
+    border-bottom: 1px solid var(--line);
+  }
+}
+
+/* Parede de cortiça com cartões presos com fita-cola */
+.cork {
+  position: relative;
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(min(220px, 100%), 1fr));
+  gap: 26px 22px;
+  padding: clamp(24px, 3vw, 40px);
+  border-radius: 10px;
+  background: radial-gradient(#a57a4f 1px, transparent 1.5px) 0 0 / 7px 7px, radial-gradient(#7a5532 1px, transparent 1.5px) 3px 4px / 9px 9px, #8d6542;
+  box-shadow: inset 0 0 0 10px #4a3220, inset 0 0 40px rgba(0, 0, 0, 0.4);
+}
+
+.card-note {
+  position: relative;
+  padding: 22px 20px 16px;
+  background: #fbf7ee;
+  color: var(--ink);
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.35);
+  transform: rotate(var(--r, 0deg));
+  transition: transform 0.4s var(--spring);
+}
+
+.card-note:hover {
+  transform: rotate(0deg) scale(1.03);
+}
+
+.card-note::before {
+  content: '';
+  position: absolute;
+  top: -10px;
+  left: 50%;
+  width: 70px;
+  height: 22px;
+  background: rgba(241, 230, 194, 0.85);
+  transform: translateX(-50%) rotate(3deg);
+}
+
+.card-note__head {
+  font-family: var(--mono);
+  font-size: 0.66rem;
+  font-weight: 800;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: #b0331e;
+}
+
+.card-note p {
+  font-family: var(--marker);
+  font-size: 1.25rem;
+  line-height: 1.2;
+  margin: 8px 0 10px;
+}
+
+.card-note small {
+  font-family: var(--mono);
+  font-size: 0.72rem;
+  color: #5e554d;
+}
+
+.card-note--found {
+  background: var(--led);
+}
+
+.card-note--found .card-note__head {
+  color: #0f2a18;
+}
+
+/* Mini leitor fixo em baixo, quando há alguma coisa a tocar */
+.mini {
+  position: fixed;
+  z-index: 90;
+  left: 50%;
+  bottom: 16px;
+  width: min(560px, calc(100vw - 24px));
+  display: grid;
+  grid-template-columns: 52px 1fr auto auto;
+  gap: 12px;
+  align-items: center;
+  padding: 8px 10px 8px 8px;
+  border-radius: 16px;
+  background: rgba(35, 31, 28, 0.94);
+  backdrop-filter: blur(12px);
+  border: 1px solid var(--line-2);
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.55);
+  transform: translate(-50%, 0);
+  transition: transform 0.45s var(--spring), opacity 0.3s;
+}
+
+.mini[hidden] {
+  display: grid !important;
+  transform: translate(-50%, 140%);
+  opacity: 0;
+  pointer-events: none;
+}
+
+.mini__cover {
+  width: 52px;
+  height: 52px;
+  border-radius: 8px;
+  object-fit: cover;
+}
+
+.mini.is-playing .mini__cover {
+  border-radius: 50%;
+  animation: spin 4s linear infinite;
+}
+
+.mini__text {
+  min-width: 0;
+}
+
+.mini__text b,
+.mini__text span {
+  display: block;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.mini__text span {
+  color: var(--mute);
+  font-size: 0.86rem;
+}
+
+.mini__bar {
+  grid-column: 1 / -1;
+  height: 3px;
+  border-radius: 3px;
+  background: rgba(255, 255, 255, 0.12);
+  overflow: hidden;
+  margin: -2px 4px 0;
+}
+
+.mini__bar i {
+  display: block;
+  height: 100%;
+  width: 0;
+  background: var(--orange);
+}
+
+.mini button {
+  width: 42px;
+  height: 42px;
+  border-radius: 50%;
+  display: grid;
+  place-items: center;
+}
+
+.mini__toggle {
+  background: var(--txt);
+  color: var(--ink);
+}
+
+.mini .icon {
+  width: 18px;
+  height: 18px;
+}
+
+.mini__toggle .icon-pause,
+.mini.is-playing .mini__toggle .icon-play,
+.record-card__play .icon-pause,
+.record-card__play[aria-pressed='true'] .icon-play {
+  display: none;
+}
+
+.mini.is-playing .mini__toggle .icon-pause,
+.record-card__play[aria-pressed='true'] .icon-pause {
+  display: block;
+}

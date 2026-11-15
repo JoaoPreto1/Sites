@@ -31,8 +31,8 @@ router.get(
   requireAuth,
   validate([param('index').isInt({ min: 0, max: 60 }).toInt()], 'params'),
   async (req, res) => {
-    const file = await fullTrack(req.user.id, req.params.slug, req.valid.params.index);
-    res.set('Cache-Control', 'private, no-store').redirect(file);
+    const url = await fullTrack(req.user.id, req.params.slug, req.valid.params.index);
+    res.set('Cache-Control', 'private, no-store').json({ url });
   },
 );
 

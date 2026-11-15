@@ -23,6 +23,8 @@ app.use(
         imgSrc: ["'self'", 'data:', 'blob:', 'https://*.mzstatic.com', 'https://images.unsplash.com'],
         mediaSrc: ["'self'", 'blob:', 'https://*.itunes.apple.com', 'https://*.mzstatic.com'],
         styleSrc: ["'self'"],
+        // Só atributos style (cores dos rótulos, atrasos das animações); folhas de estilo continuam só locais
+        styleSrcAttr: ["'unsafe-inline'"],
         fontSrc: ["'self'"],
         scriptSrc: ["'self'"],
         connectSrc: ["'self'"],
@@ -48,7 +50,10 @@ app.use(
   express.static(publicDir, {
     index: false,
     setHeaders(res, path) {
+      // Os módulos JS importam-se uns aos outros sem versão no URL: revalidam sempre (304 se não mudaram)
       if (/[\\/]fonts[\\/]/.test(path)) res.set('Cache-Control', 'public, max-age=31536000, immutable');
+      else if (/[\\/]vendor[\\/]/.test(path)) res.set('Cache-Control', 'public, max-age=2592000');
+      else if (path.endsWith('.js')) res.set('Cache-Control', 'no-cache');
       else res.set('Cache-Control', 'public, max-age=86400');
     },
   }),
