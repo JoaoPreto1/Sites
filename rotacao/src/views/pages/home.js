@@ -85,7 +85,7 @@ export function homePage({ records, crates, grades, arrivals, rooms, wants }) {
     </div>
     <div class="stage__body wrap">
       <div class="stage__deck">
-        <div class="deck" data-deck tabindex="0" aria-label="Gira-discos: setas para folhear, Enter para tocar o disco levantado, espaço para pausar">
+        <div class="deck" data-deck tabindex="0" role="application" aria-label="Gira-discos: setas para folhear, Enter para tocar o disco levantado, espaço para pausar">
           ${poster(records)}
           <div class="deck__tip" data-tip hidden></div>
           <p class="deck__busy mono" data-busy hidden>${disc('is-spinning')} A pousar o disco…</p>

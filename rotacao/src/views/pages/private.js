@@ -83,7 +83,7 @@ export const accountView = () => `
     </nav>
     <div class="panel" role="tabpanel" data-panel="discoteca">
       <div class="shelf-deck" data-shelf-deck hidden>
-        <div class="deck deck--account" data-deck tabindex="0" aria-label="O teu gira-discos: setas para folhear, Enter para tocar">
+        <div class="deck deck--account" data-deck tabindex="0" role="application" aria-label="O teu gira-discos: setas para folhear, Enter para tocar">
           <div class="deck__tip" data-tip hidden></div>
           <p class="deck__busy mono" data-busy hidden>${disc('is-spinning')} A pousar o disco…</p>
         </div>

@@ -40,6 +40,7 @@ function sides(record) {
 }
 
 let shownId = null;
+let shownBefore = false;
 function renderPanel() {
   const state = player.snapshot();
   const record = focus();
@@ -67,9 +68,13 @@ function renderPanel() {
           `${t.first ? `<li class="side">Lado ${t.side}</li>` : ''}<li><button type="button" data-track="${i}"><span>${t.side}${t.number}</span><span>${escapeHtml(t.title)}</span><span>${duration(t.ms)}</span></button></li>`,
       )
       .join('');
-    $('[data-now-record]').style.animation = 'none';
-    void $('[data-now-record]').offsetWidth;
-    $('[data-now-record]').style.animation = '';
+    // Repete a animação de entrada do painel quando muda de disco (não no primeiro desenho)
+    if (shownBefore) {
+      $('[data-now-record]').style.animation = 'none';
+      void $('[data-now-record]').offsetWidth;
+      $('[data-now-record]').style.animation = '';
+    }
+    shownBefore = true;
   }
 
   $('[data-now-player]').hidden = !playingThis;
@@ -171,11 +176,16 @@ deckEl.addEventListener('keydown', (event) => {
 // Medidor: barras que dançam com o som
 const vu = $('[data-now-vu]');
 const vuCtx = vu.getContext('2d');
+// Só desenha enquanto há som, para não gastar o processador com a página parada
+let vuFrame = 0;
 function drawVu() {
-  requestAnimationFrame(drawVu);
   const { bins } = player.level();
   vuCtx.clearRect(0, 0, vu.width, vu.height);
-  if (!bins) return;
+  if (!bins) {
+    vuFrame = 0;
+    return;
+  }
+  vuFrame = requestAnimationFrame(drawVu);
   const count = 20;
   const w = vu.width / count;
   for (let i = 0; i < count; i++) {
@@ -185,7 +195,9 @@ function drawVu() {
     vuCtx.fillRect(i * w + 1, vu.height - h, w - 2, h);
   }
 }
-drawVu();
+player.on('play', () => {
+  if (!vuFrame) vuFrame = requestAnimationFrame(drawVu);
+});
 
 player.on('change', renderPanel);
 for (const button of document.querySelectorAll('[data-crate]')) button.setAttribute('aria-pressed', button.dataset.crate === selected.crate);
@@ -225,8 +237,14 @@ function startDeck() {
 if (webgl()) {
   const auto = window.matchMedia('(pointer: fine) and (min-width: 900px)').matches;
   if (auto) {
-    const go = () => ('requestIdleCallback' in window ? requestIdleCallback(startDeck, { timeout: 1500 }) : setTimeout(startDeck, 300));
-    document.readyState === 'complete' ? go() : window.addEventListener('load', go, { once: true });
+    // Carrega ao primeiro sinal de que há alguém do outro lado (rato, scroll, teclado):
+    // a página abre logo e o 3D chega antes de se chegar ao caixote
+    const events = ['pointermove', 'pointerdown', 'scroll', 'keydown', 'wheel'];
+    const go = () => {
+      events.forEach((e) => window.removeEventListener(e, go));
+      startDeck();
+    };
+    events.forEach((e) => window.addEventListener(e, go, { once: true, passive: true }));
   } else {
     deckEl.classList.add('is-manual');
     $('[data-deck-start]').addEventListener('click', () => {

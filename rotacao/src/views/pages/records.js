@@ -70,6 +70,7 @@ export function recordsPage({ records, catalog, filters, view, title }) {
       <noscript><button class="btn btn--small" type="submit">Filtrar</button></noscript>
     </form>
 
+    <h2 class="sr-only">Discos</h2>
     <p class="records__count mono" data-count role="status">${records.length} ${records.length === 1 ? 'disco' : 'discos'}</p>
     <div class="records__results" data-results>${recordsResults(records, view)}</div>
   </section>`;

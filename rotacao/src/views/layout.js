@@ -26,7 +26,7 @@ export function header(path) {
   return `
   <header class="top">
     <div class="top__bar">
-      <a class="logo" href="/" aria-label="Rotação, página inicial">${disc('logo__disc')}<span class="logo__name">Rotação</span><small>discos · salas de ensaio · Lisboa</small></a>
+      <a class="logo" href="/">${disc('logo__disc')}<span class="logo__name">Rotação</span><small>discos · salas de ensaio · Lisboa</small></a>
       <nav class="top__nav" aria-label="Principal">${links}</nav>
       <div class="top__tools">
         <a class="top__account" href="/entrar" data-account>Entrar</a>
