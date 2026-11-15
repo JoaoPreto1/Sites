@@ -161,7 +161,7 @@ const privatePages = {
   '/saco': { title: 'Saco', view: bagView, script: 'bag' },
   '/entrar': { title: 'Entrar', view: loginView, script: 'login' },
   '/conta': { title: 'A minha conta', view: accountView, script: 'account', css: ['deck'] },
-  '/painel': { title: 'Painel', view: adminView, script: 'admin' },
+  '/painel': { title: 'Painel', view: adminView, script: 'admin', css: ['rooms'] },
 };
 
 for (const [path, { title, view, script, css = [] }] of Object.entries(privatePages)) {
