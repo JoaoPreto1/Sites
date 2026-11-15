@@ -676,3 +676,7 @@
   padding-bottom: 18px;
 }
 
+
+.card-note--found small {
+  color: #183522;
+}

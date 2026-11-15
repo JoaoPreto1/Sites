@@ -234,7 +234,12 @@ function startDeck() {
   return loading;
 }
 
-if (webgl()) {
+// Link para partilhar o disco no prato: /#tocar=kind-of-blue abre o caixote e pousa-o lá
+const shared = location.hash.match(/^#tocar=([a-z0-9-]+)$/)?.[1];
+
+if (webgl() && shared && records.some((r) => r.id === shared)) {
+  startDeck().then(() => deck?.play(shared));
+} else if (webgl()) {
   const auto = window.matchMedia('(pointer: fine) and (min-width: 900px)').matches;
   if (auto) {
     // Carrega ao primeiro sinal de que há alguém do outro lado (rato, scroll, teclado):

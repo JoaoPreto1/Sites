@@ -221,6 +221,8 @@ export function createDeck(container, { records, crates, onHover = () => {}, onS
 
   // Tira o disco da capa e pousa-o no prato
   async function load(item) {
+    item.entering = false;
+    item.group.visible = true;
     crate.select(item.index);
     onSelect(item.record);
     item.out = true;
@@ -454,8 +456,12 @@ export function createDeck(container, { records, crates, onHover = () => {}, onS
   if (!reducedMotion) {
     crate.items.forEach((item, i) => {
       item.out = true;
+      item.entering = true;
       item.group.visible = false;
       wait(0.15 + i * 0.03).then(() => {
+        // Se o disco já foi tirado do caixote entretanto, a entrada não mexe nele
+        if (!item.entering) return;
+        item.entering = false;
         item.lift = 4.5;
         item.group.position.y = 4.5;
         item.group.visible = true;

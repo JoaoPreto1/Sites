@@ -13,7 +13,7 @@ export function recordPage({ record, sides, related, grades }) {
     .map(
       (side) => `
       <section class="side-list">
-        <h3 class="side-list__name"><span>Lado ${side.side}</span><i></i><small class="mono">${duration(side.tracks.reduce((s, t) => s + t.ms, 0))}</small></h3>
+        <h2 class="side-list__name"><span>Lado ${side.side}</span><i></i><small class="mono">${duration(side.tracks.reduce((s, t) => s + t.ms, 0))}</small></h2>
         <ol>
           ${side.tracks
             .map(
