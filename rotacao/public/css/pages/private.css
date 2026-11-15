@@ -1,0 +1,514 @@
+.private-head {
+  display: flex;
+  justify-content: space-between;
+  align-items: end;
+  gap: 20px;
+  flex-wrap: wrap;
+}
+
+.private-head h1 {
+  font-size: clamp(3rem, 8vw, 6.6rem);
+}
+
+.private-head h1 em {
+  font-style: normal;
+  color: var(--orange);
+}
+
+/* Saco */
+.bag__grid {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) 420px;
+  gap: 40px;
+  align-items: start;
+}
+
+.line {
+  display: grid;
+  grid-template-columns: 96px minmax(0, 1fr) auto auto;
+  gap: 20px;
+  align-items: center;
+  padding: 18px 0;
+  border-bottom: 1px solid var(--line);
+  animation: line-in 0.5s var(--ease) both;
+}
+
+@keyframes line-in {
+  from {
+    opacity: 0;
+    transform: translateX(-16px);
+  }
+}
+
+.line img {
+  width: 96px;
+  height: 96px;
+  object-fit: cover;
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.5);
+}
+
+.line h2 {
+  font-size: 1.15rem;
+}
+
+.line h2 a {
+  text-decoration: none;
+}
+
+.line p {
+  color: var(--txt-2);
+}
+
+.line .mono {
+  color: var(--mute);
+  font-size: 0.7rem;
+  margin-top: 6px;
+}
+
+.line__warn {
+  color: var(--yellow) !important;
+}
+
+.qty {
+  display: flex;
+  align-items: center;
+  border: 1px solid var(--line-2);
+  border-radius: 999px;
+}
+
+.qty button {
+  width: 38px;
+  height: 38px;
+  font-size: 1.1rem;
+  font-weight: 700;
+}
+
+.qty span {
+  min-width: 22px;
+  text-align: center;
+  font-family: var(--mono);
+}
+
+.line__end {
+  display: grid;
+  justify-items: end;
+  gap: 6px;
+}
+
+.line__end b {
+  font-family: var(--marker);
+  font-weight: 400;
+  font-size: 1.4rem;
+}
+
+.line__remove {
+  font-size: 0.85rem;
+  color: var(--mute);
+  text-decoration: underline;
+}
+
+/* Talão da loja */
+.ticket {
+  position: sticky;
+  top: 130px;
+  background: var(--cream);
+  color: var(--ink);
+  padding: 26px;
+  border-radius: 4px;
+  box-shadow: 0 30px 60px rgba(0, 0, 0, 0.45);
+}
+
+.ticket::after {
+  content: '';
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: -10px;
+  height: 10px;
+  background: radial-gradient(circle at 10px -2px, transparent 10px, var(--cream) 10.5px) 0 0 / 20px 10px repeat-x;
+}
+
+.ticket__head {
+  display: flex;
+  justify-content: space-between;
+  border-bottom: 2px dashed rgba(23, 18, 15, 0.35);
+  padding-bottom: 12px;
+  color: #4d443c;
+}
+
+.ticket__totals {
+  font-family: var(--mono);
+  margin: 14px 0 20px;
+}
+
+.ticket__totals div {
+  display: flex;
+  justify-content: space-between;
+  padding: 5px 0;
+}
+
+.ticket__totals .is-total {
+  border-top: 2px solid var(--ink);
+  margin-top: 6px;
+  padding-top: 10px;
+  font-weight: 800;
+  font-size: 1.25rem;
+}
+
+.ticket__totals .is-hint {
+  color: #6b6058;
+  font-size: 0.8rem;
+}
+
+.checkout {
+  display: grid;
+  gap: 14px;
+}
+
+.checkout .input {
+  background: #fffaf0;
+  color: var(--ink);
+  border-color: rgba(23, 18, 15, 0.3);
+}
+
+.checkout .field > span:first-child,
+.checkout legend {
+  color: #5b5148;
+}
+
+.checkout .field-error,
+.checkout .form-error {
+  color: #a3271b;
+}
+
+.checkout__method {
+  border: 0;
+  display: grid;
+  gap: 8px;
+}
+
+.checkout__method legend {
+  margin-bottom: 8px;
+}
+
+.checkout__method label {
+  position: relative;
+  cursor: pointer;
+}
+
+.checkout__method input {
+  position: absolute;
+  opacity: 0;
+}
+
+.checkout__method span {
+  display: flex;
+  justify-content: space-between;
+  gap: 10px;
+  padding: 12px 14px;
+  border: 2px solid rgba(23, 18, 15, 0.22);
+  border-radius: 8px;
+}
+
+.checkout__method small {
+  color: #6b6058;
+}
+
+.checkout__method input:checked + span {
+  border-color: var(--ink);
+  background: #fffaf0;
+}
+
+.checkout__method input:focus-visible + span {
+  outline: 2px solid var(--orange);
+  outline-offset: 2px;
+}
+
+.checkout__row {
+  display: grid;
+  grid-template-columns: 1fr 1.3fr;
+  gap: 10px;
+}
+
+.checkout__note {
+  color: #6b6058;
+  font-size: 0.85rem;
+}
+
+.checkout__submit {
+  width: 100%;
+}
+
+.done {
+  text-align: center;
+  padding: 50px 0;
+  animation: line-in 0.5s var(--ease);
+}
+
+.done .disc {
+  --size: 160px;
+  margin: 0 auto 26px;
+  animation: drop-spin 1.6s var(--spring) both;
+}
+
+@keyframes drop-spin {
+  from {
+    transform: translateY(-80px) rotate(-200deg);
+    opacity: 0;
+  }
+}
+
+.done h2 {
+  font-stretch: 62%;
+  font-weight: 900;
+  text-transform: uppercase;
+  font-size: clamp(2.6rem, 6vw, 4.6rem);
+}
+
+.done p {
+  color: var(--txt-2);
+  margin: 12px auto 26px;
+  max-width: 520px;
+}
+
+.bag__empty {
+  padding: 30px 0;
+}
+
+.bag__empty h2 {
+  font-stretch: 62%;
+  font-weight: 900;
+  text-transform: uppercase;
+  font-size: clamp(2.2rem, 5vw, 3.6rem);
+}
+
+.bag__empty p {
+  color: var(--txt-2);
+  margin: 10px 0 24px;
+}
+
+/* Entrar */
+.door__grid {
+  display: grid;
+  grid-template-columns: 1fr 80px 1fr;
+  gap: 20px;
+  align-items: start;
+}
+
+.door__form {
+  display: grid;
+  gap: 16px;
+}
+
+.door__form h2 {
+  font-stretch: 75%;
+  font-size: 1.9rem;
+  text-transform: uppercase;
+}
+
+.door__or {
+  display: grid;
+  place-items: center;
+  padding-top: 120px;
+}
+
+.door__disc {
+  --size: 64px;
+  animation: spin 3s linear infinite;
+}
+
+.door__row {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 12px;
+}
+
+.door__demo {
+  border-top: 1px dashed var(--line-2);
+  padding-top: 14px;
+}
+
+.door__demo .mono {
+  color: var(--mute);
+  font-size: 0.66rem;
+  margin-bottom: 10px;
+}
+
+.door__demo p:last-child {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+}
+
+.door__demo button {
+  padding: 6px 12px;
+  border-radius: 999px;
+  border: 1px solid var(--line-2);
+  font-family: var(--mono);
+  font-size: 0.74rem;
+}
+
+.door__demo button:hover {
+  border-color: var(--yellow);
+  color: var(--yellow);
+}
+
+.door__note {
+  color: var(--mute);
+  font-size: 0.9rem;
+}
+
+/* Conta e painel */
+.panel {
+  animation: line-in 0.4s var(--ease);
+}
+
+.panel h2 {
+  font-stretch: 75%;
+  font-size: 1.8rem;
+  text-transform: uppercase;
+  margin-bottom: 14px;
+}
+
+.panel-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(min(320px, 100%), 1fr));
+  gap: 16px;
+}
+
+.item-card {
+  display: grid;
+  gap: 8px;
+}
+
+.item-card__head {
+  display: flex;
+  justify-content: space-between;
+  gap: 10px;
+  align-items: start;
+}
+
+.item-card h3 {
+  font-size: 1.1rem;
+}
+
+.item-card p {
+  color: var(--txt-2);
+}
+
+.item-card .mono {
+  color: var(--mute);
+  font-size: 0.7rem;
+}
+
+.item-card__actions {
+  display: flex;
+  gap: 10px;
+  flex-wrap: wrap;
+  margin-top: 6px;
+}
+
+.shelf-deck {
+  margin-bottom: 30px;
+}
+
+.deck--account {
+  height: clamp(380px, 55vh, 560px);
+  border: 1px solid var(--line);
+  background: radial-gradient(ellipse at 50% 70%, rgba(255, 120, 50, 0.08), transparent 70%);
+}
+
+.library__head {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 16px;
+  flex-wrap: wrap;
+  margin-bottom: 24px;
+}
+
+.library__head p {
+  color: var(--txt-2);
+  max-width: 620px;
+}
+
+.profile {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 24px;
+}
+
+.profile form {
+  display: grid;
+  gap: 14px;
+}
+
+.stats {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 14px;
+  margin-bottom: 30px;
+}
+
+.stats .box b {
+  display: block;
+  font-stretch: 62%;
+  font-weight: 900;
+  font-size: 3rem;
+  line-height: 1;
+}
+
+.stats .box span {
+  color: var(--mute);
+  font-size: 0.9rem;
+}
+
+.inline-input {
+  width: 84px;
+  min-height: 38px;
+  padding: 6px 10px;
+}
+
+.select-small {
+  min-height: 38px;
+  padding: 6px 30px 6px 10px;
+  width: auto;
+}
+
+@media (max-width: 960px) {
+  .bag__grid,
+  .door__grid,
+  .profile {
+    grid-template-columns: 1fr;
+  }
+
+  .ticket {
+    position: relative;
+    top: 0;
+  }
+
+  .door__or {
+    padding: 0;
+  }
+}
+
+@media (max-width: 560px) {
+  .line {
+    grid-template-columns: 72px minmax(0, 1fr);
+  }
+
+  .line img {
+    width: 72px;
+    height: 72px;
+  }
+
+  .line .qty,
+  .line__end {
+    grid-column: 2;
+    justify-items: start;
+  }
+
+  .door__row {
+    grid-template-columns: 1fr;
+  }
+}

@@ -5,6 +5,7 @@ import { bookableDays, HOURS, day as roomDay } from '../services/room.service.js
 import { rooms as roomConfig } from '../config/shop.js';
 import { ROOM_QUESTIONS, roomsPage } from '../views/pages/rooms.js';
 import { wantsPage } from '../views/pages/wants.js';
+import { accountView, adminView, bagView, loginView } from '../views/pages/private.js';
 import { SELL_QUESTIONS, sellPage } from '../views/pages/sell.js';
 import { COUNTS } from './offers.routes.js';
 import { wall } from '../services/want.service.js';
@@ -44,7 +45,7 @@ router.get('/', async (req, res) => {
       preload: [{ href: cover(first, 300) }],
     },
     main: homePage({ records, crates: info.crates, grades: info.grades, arrivals: arrivals.slice(0, 10), rooms, wants: wants.slice(0, 4) }),
-    css: ['home'],
+    css: ['home', 'deck'],
     script: 'home',
     data: { records, crates: info.crates },
   });
@@ -155,6 +156,24 @@ router.get('/compramos', (req, res) => {
     script: 'sell',
   });
 });
+
+const privatePages = {
+  '/saco': { title: 'Saco', view: bagView, script: 'bag' },
+  '/entrar': { title: 'Entrar', view: loginView, script: 'login' },
+  '/conta': { title: 'A minha conta', view: accountView, script: 'account', css: ['deck'] },
+  '/painel': { title: 'Painel', view: adminView, script: 'admin' },
+};
+
+for (const [path, { title, view, script, css = [] }] of Object.entries(privatePages)) {
+  router.get(path, (req, res) =>
+    send(req, res, {
+      page: { title, description: 'Área pessoal da Rotação.', noindex: true },
+      main: view(),
+      css: ['private', ...css],
+      script,
+    }),
+  );
+}
 
 router.get('/robots.txt', (req, res) => {
   const lines = ['User-agent: *', 'Allow: /', 'Disallow: /api/', 'Disallow: /saco', 'Disallow: /conta', 'Disallow: /painel', 'Disallow: /entrar'];
