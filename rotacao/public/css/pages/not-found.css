@@ -1,0 +1,58 @@
+.lost {
+  position: relative;
+  padding: clamp(60px, 10vw, 140px) 0 40px;
+  min-height: 60vh;
+}
+
+.lost h1 {
+  font-size: clamp(3.6rem, 12vw, 10rem);
+  margin-top: 14px;
+}
+
+.lost h1 em {
+  font-style: normal;
+  color: var(--orange);
+}
+
+.lost p:not(.kicker) {
+  max-width: 520px;
+  margin-top: 22px;
+  color: var(--txt-2);
+  font-size: 1.15rem;
+}
+
+.lost__links {
+  display: flex;
+  align-items: center;
+  gap: 24px;
+  margin-top: 32px;
+}
+
+.lost__disc {
+  position: absolute;
+  right: 0;
+  top: 60px;
+  width: clamp(160px, 30vw, 420px);
+  opacity: 0.9;
+  z-index: -1;
+}
+
+.lost__vinyl {
+  --size: 100%;
+  aspect-ratio: 1;
+  height: auto;
+  animation: wobble 3.6s ease-in-out infinite;
+}
+
+/* Disco empenado: roda e abana */
+@keyframes wobble {
+  0% {
+    transform: rotate(0deg) skewX(0deg);
+  }
+  50% {
+    transform: rotate(180deg) skewX(4deg);
+  }
+  100% {
+    transform: rotate(360deg) skewX(0deg);
+  }
+}

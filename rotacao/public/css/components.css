@@ -1,0 +1,415 @@
+/* Cabeçalho de página */
+.page-head {
+  padding: clamp(48px, 7vw, 96px) 0 clamp(28px, 4vw, 48px);
+}
+
+.page-head h1 {
+  font-size: clamp(3.6rem, 11vw, 9.5rem);
+  margin-top: 12px;
+}
+
+.page-head h1 em {
+  font-style: normal;
+  color: var(--orange);
+}
+
+.page-head p {
+  max-width: 620px;
+  margin-top: 22px;
+  font-size: 1.15rem;
+  color: var(--txt-2);
+}
+
+/* Capa de disco com o vinil a espreitar */
+.sleeve {
+  position: relative;
+  display: block;
+  aspect-ratio: 1;
+  isolation: isolate;
+  text-decoration: none;
+}
+
+.sleeve__cover {
+  position: relative;
+  z-index: 1;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  background: var(--panel);
+  box-shadow: 0 16px 30px rgba(0, 0, 0, 0.5), inset 0 0 0 1px rgba(255, 255, 255, 0.06);
+  transition: transform 0.5s var(--ease);
+}
+
+.sleeve__vinyl {
+  position: absolute;
+  inset: 3% 3% 3% 3%;
+  z-index: 0;
+  border-radius: 50%;
+  background: radial-gradient(circle, #ddd 0 1.2%, transparent 1.6%), radial-gradient(circle, var(--label, var(--orange)) 0 17%, #0c0c0c 17.5% 18.5%, transparent 19%),
+    conic-gradient(from 20deg, transparent, rgba(255, 255, 255, 0.1) 8%, transparent 16%, transparent 50%, rgba(255, 255, 255, 0.08) 58%, transparent 66%),
+    repeating-radial-gradient(circle, #181818 0 1px, #060606 1.6px 2.6px);
+  transition: transform 0.6s var(--ease);
+}
+
+.sleeve:hover .sleeve__vinyl,
+.sleeve:focus-visible .sleeve__vinyl,
+.sleeve.is-playing .sleeve__vinyl {
+  transform: translateX(34%) rotate(70deg);
+}
+
+.sleeve.is-playing .sleeve__vinyl {
+  animation: peek-spin 1.8s linear infinite;
+}
+
+@keyframes peek-spin {
+  from {
+    transform: translateX(34%) rotate(0deg);
+  }
+  to {
+    transform: translateX(34%) rotate(360deg);
+  }
+}
+
+.sleeve:hover .sleeve__cover {
+  transform: translateX(-3%) rotate(-1.5deg);
+}
+
+/* Etiqueta de preço escrita à mão */
+.tag {
+  position: absolute;
+  z-index: 3;
+  top: -10px;
+  right: -8px;
+  padding: 7px 11px 3px;
+  font-family: var(--marker);
+  font-size: 1.35rem;
+  line-height: 1;
+  color: var(--ink);
+  background: var(--yellow);
+  transform: rotate(-6deg);
+  box-shadow: 0 3px 8px rgba(0, 0, 0, 0.4);
+  transition: transform 0.4s var(--spring);
+}
+
+.tag--pink {
+  background: var(--pink);
+}
+
+.tag--mint {
+  background: var(--mint);
+}
+
+.tag--orange {
+  background: var(--orange);
+}
+
+.sleeve:hover .tag {
+  transform: rotate(4deg) scale(1.08);
+}
+
+.chip {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 4px 9px;
+  border: 1px solid var(--line-2);
+  border-radius: 5px;
+  font-family: var(--mono);
+  font-size: 0.72rem;
+  font-weight: 700;
+  color: var(--txt-2);
+  white-space: nowrap;
+}
+
+.chip--led {
+  border-color: var(--led);
+  color: var(--led);
+}
+
+.chip--warn {
+  border-color: var(--yellow);
+  color: var(--yellow);
+}
+
+/* Cartão de disco nas grelhas */
+.record-card h3 {
+  margin-top: 18px;
+  font-size: 1.08rem;
+  font-weight: 800;
+  line-height: 1.2;
+}
+
+.record-card h3 a {
+  text-decoration: none;
+}
+
+.record-card h3 a::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+}
+
+.record-card {
+  position: relative;
+}
+
+.record-card p {
+  color: var(--txt-2);
+  font-size: 0.98rem;
+}
+
+.record-card__meta {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 10px;
+  margin-top: 10px;
+  font-family: var(--mono);
+  font-size: 0.74rem;
+  color: var(--mute);
+}
+
+.record-card__play {
+  position: absolute;
+  z-index: 4;
+  left: 12px;
+  bottom: 12px;
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  display: grid;
+  place-items: center;
+  background: var(--txt);
+  color: var(--ink);
+  box-shadow: 0 6px 16px rgba(0, 0, 0, 0.45);
+  opacity: 0;
+  transform: scale(0.7);
+  transition: opacity 0.25s, transform 0.35s var(--spring), background 0.2s;
+}
+
+.record-card:hover .record-card__play,
+.record-card__play:focus-visible,
+.record-card__play[aria-pressed='true'] {
+  opacity: 1;
+  transform: none;
+}
+
+.record-card__play[aria-pressed='true'] {
+  background: var(--orange);
+}
+
+@media (hover: none) {
+  .record-card__play {
+    opacity: 1;
+    transform: none;
+    width: 42px;
+    height: 42px;
+  }
+}
+
+.icon-play,
+.icon-pause {
+  width: 16px;
+  height: 16px;
+}
+
+.records-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(min(200px, 42vw), 1fr));
+  gap: clamp(28px, 3vw, 42px) clamp(16px, 2.4vw, 32px);
+}
+
+/* Separadores dos caixotes */
+.dividers {
+  display: flex;
+  gap: 6px;
+  overflow-x: auto;
+  border-bottom: 2px solid var(--cream);
+  scrollbar-width: none;
+}
+
+.dividers::-webkit-scrollbar {
+  display: none;
+}
+
+.dividers a,
+.dividers button {
+  flex: none;
+  padding: 10px 18px 7px;
+  border-radius: 9px 9px 0 0;
+  background: var(--panel-2);
+  color: var(--txt-2);
+  font-family: var(--marker);
+  font-size: 1.15rem;
+  text-decoration: none;
+  transition: background 0.2s, color 0.2s, transform 0.25s var(--spring);
+}
+
+.dividers a:hover,
+.dividers button:hover {
+  transform: translateY(-3px);
+}
+
+.dividers [aria-current='page'],
+.dividers [aria-pressed='true'],
+.dividers [aria-selected='true'] {
+  background: var(--cream);
+  color: var(--ink);
+}
+
+/* Fita-cola com texto a marcador */
+.tape {
+  display: inline-block;
+  padding: 5px 14px 2px;
+  background: #efe7d2;
+  color: var(--ink);
+  font-family: var(--marker);
+  font-size: 1.15rem;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.4);
+  transform: rotate(-1.5deg);
+}
+
+/* Avisos */
+.toast-stack {
+  position: fixed;
+  z-index: 150;
+  right: 20px;
+  bottom: 20px;
+  display: grid;
+  gap: 10px;
+  max-width: min(400px, calc(100vw - 40px));
+}
+
+.toast {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  padding: 14px 18px;
+  border-radius: 12px;
+  background: var(--txt);
+  color: var(--ink);
+  font-weight: 600;
+  box-shadow: 0 14px 30px rgba(0, 0, 0, 0.5);
+  animation: toast-in 0.45s var(--spring);
+}
+
+.toast a {
+  font-weight: 800;
+  white-space: nowrap;
+}
+
+.toast--error {
+  background: var(--red);
+}
+
+@keyframes toast-in {
+  from {
+    opacity: 0;
+    transform: translateY(16px) scale(0.96);
+  }
+}
+
+.empty {
+  padding: 34px 0;
+  color: var(--mute);
+}
+
+/* Separadores de conta e painel */
+.tabs {
+  display: flex;
+  gap: 6px;
+  overflow-x: auto;
+  margin: 32px 0 30px;
+  border-bottom: 2px solid var(--cream);
+}
+
+.tabs button {
+  flex: none;
+  padding: 10px 18px 7px;
+  border-radius: 9px 9px 0 0;
+  background: var(--panel-2);
+  color: var(--txt-2);
+  font-weight: 700;
+}
+
+.tabs button[aria-selected='true'] {
+  background: var(--cream);
+  color: var(--ink);
+}
+
+.box {
+  background: var(--panel);
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  padding: clamp(18px, 2.4vw, 28px);
+}
+
+.table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 0.95rem;
+}
+
+.table th {
+  text-align: left;
+  font-family: var(--mono);
+  font-size: 0.7rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--mute);
+  font-weight: 700;
+  padding: 10px 12px;
+  border-bottom: 1px solid var(--line-2);
+}
+
+.table td {
+  padding: 12px;
+  border-bottom: 1px solid var(--line);
+  vertical-align: middle;
+}
+
+.table-scroll {
+  overflow-x: auto;
+}
+
+.status {
+  display: inline-block;
+  padding: 3px 9px;
+  border-radius: 999px;
+  font-family: var(--mono);
+  font-size: 0.7rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  background: var(--panel-2);
+  color: var(--txt-2);
+}
+
+.status--paga,
+.status--nova,
+.status--aberto {
+  background: var(--yellow);
+  color: var(--ink);
+}
+
+.status--enviada,
+.status--pronta,
+.status--marcada,
+.status--confirmada {
+  background: var(--mint);
+  color: var(--ink);
+}
+
+.status--entregue,
+.status--encontrado {
+  background: var(--led);
+  color: var(--ink);
+}
+
+.status--cancelada,
+.status--fechado,
+.status--fechada {
+  background: transparent;
+  border: 1px solid var(--line-2);
+  color: var(--mute);
+}
