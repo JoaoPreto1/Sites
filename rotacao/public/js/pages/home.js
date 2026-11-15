@@ -23,10 +23,20 @@ function focus() {
   return state.record ?? selected;
 }
 
+// Igual ao servidor: cada faixa vai para o lado onde cai o seu meio
 function sides(record) {
-  const count = record.tracks.length > 12 ? 4 : 2;
-  const per = Math.ceil(record.tracks.length / count);
-  return record.tracks.map((t, i) => ({ ...t, side: 'ABCD'[Math.floor(i / per)], first: i % per === 0 }));
+  const { tracks } = record;
+  const count = tracks.length > 12 ? 4 : 2;
+  const total = tracks.reduce((s, t) => s + t.ms, 0) || 1;
+  let before = 0;
+  let last = -1;
+  return tracks.map((t) => {
+    const side = Math.min(count - 1, Math.floor(((before + t.ms / 2) / total) * count));
+    before += t.ms;
+    const first = side !== last;
+    last = side;
+    return { ...t, side: 'ABCD'[side], first };
+  });
 }
 
 let shownId = null;

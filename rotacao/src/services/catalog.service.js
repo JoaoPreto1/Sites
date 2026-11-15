@@ -10,11 +10,15 @@ export const gradeRank = (code) => GRADE_ORDER.indexOf(code);
 // Um LP tem dois lados; com muitas faixas passa a ser um duplo (quatro lados)
 export function sides(tracks) {
   const count = tracks.length > 12 ? 4 : 2;
-  const per = Math.ceil(tracks.length / count);
-  return Array.from({ length: count }, (_, i) => ({
-    side: 'ABCD'[i],
-    tracks: tracks.slice(i * per, (i + 1) * per),
-  })).filter((s) => s.tracks.length);
+  return Array.from({ length: count }, (_, i) => ({ side: 'ABCD'[i], tracks: tracks.filter((t, n) => sideOf(tracks, n) === i) })).filter((s) => s.tracks.length);
+}
+
+// Cada faixa vai para o lado onde cai o seu meio, para os lados terem durações parecidas
+export function sideOf(tracks, index) {
+  const count = tracks.length > 12 ? 4 : 2;
+  const total = tracks.reduce((s, t) => s + t.ms, 0) || 1;
+  const before = tracks.slice(0, index).reduce((s, t) => s + t.ms, 0);
+  return Math.min(count - 1, Math.floor(((before + tracks[index].ms / 2) / total) * count));
 }
 
 // O que vai para o browser: as faixas completas ficam no servidor

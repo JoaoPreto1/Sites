@@ -621,20 +621,6 @@
   }
 }
 
-/* Cabeçalho das secções */
-.section-head {
-  display: flex;
-  justify-content: space-between;
-  align-items: end;
-  gap: 30px;
-  flex-wrap: wrap;
-  margin-bottom: 44px;
-}
-
-.section-head h2 {
-  font-size: clamp(3rem, 8vw, 7rem);
-  margin-top: 12px;
-}
 
 .arrivals {
   padding-top: clamp(80px, 10vw, 140px);

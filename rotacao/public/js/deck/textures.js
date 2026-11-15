@@ -109,7 +109,14 @@ export function vinylTexture(record, anisotropy = 8) {
   }
 
   // As faixas do lado A: um anel mais liso entre cada uma, como num disco a sério
-  const side = record.tracks.slice(0, Math.ceil(record.tracks.length / (record.tracks.length > 12 ? 4 : 2)));
+  const sides = record.tracks.length > 12 ? 4 : 2;
+  const whole = record.tracks.reduce((s, t) => s + t.ms, 0) || 1;
+  let before = 0;
+  const side = record.tracks.filter((t) => {
+    const keep = (before + t.ms / 2) / whole < 1 / sides;
+    before += t.ms;
+    return keep;
+  });
   const total = side.reduce((s, t) => s + t.ms, 0) || 1;
   let acc = 0;
   for (const t of side.slice(0, -1)) {

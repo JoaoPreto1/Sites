@@ -1,6 +1,6 @@
 import { Router } from 'express';
 import { cover } from '../../public/js/shared/format.js';
-import { catalog, listRecords } from '../services/catalog.service.js';
+import { catalog, listRecords, recordDetail } from '../services/catalog.service.js';
 import { day as roomDay } from '../services/room.service.js';
 import { wall } from '../services/want.service.js';
 import { today } from '../utils/dates.js';
@@ -8,7 +8,8 @@ import { absolute } from '../seo/head.js';
 import { store } from '../seo/pages.js';
 import { homePage } from '../views/pages/home.js';
 import { ORDERS, PRICES, recordsPage } from '../views/pages/records.js';
-import { breadcrumbs } from '../seo/pages.js';
+import { albumSchema, breadcrumbs } from '../seo/pages.js';
+import { recordPage } from '../views/pages/record.js';
 import { documentHtml } from '../views/document.js';
 import { notFoundView } from '../views/pages/not-found.js';
 
@@ -79,6 +80,28 @@ router.get('/discos', async (req, res) => {
     css: ['records'],
     script: 'records',
     data: { records },
+  });
+});
+
+router.get('/discos/:slug', async (req, res) => {
+  const result = await recordDetail(req.params.slug).catch(() => null);
+  if (!result) return notFoundPage(req, res);
+  const { record } = result;
+  const { grades } = await catalog();
+
+  send(req, res, {
+    page: {
+      title: `${record.artist} — ${record.title} (${record.year}) em vinil`,
+      description: `${record.title}, de ${record.artist}, em vinil: ${record.pressing.toLowerCase()}, disco ${record.media} e capa ${record.sleeve}. Ouve 30 segundos de cada uma das ${record.tracks.length} faixas. ${record.price} €.`,
+      image: cover(record, 1000),
+      type: 'product',
+      preload: [{ href: cover(record, 600) }],
+      schema: [albumSchema(record), breadcrumbs([['Início', '/'], ['Discos', '/discos'], [record.crateName, `/discos?caixote=${record.crate}`], [record.title, `/discos/${record.id}`]])],
+    },
+    main: recordPage({ ...result, grades }),
+    css: ['record'],
+    script: 'record',
+    data: { record, related: result.related },
   });
 });
 
