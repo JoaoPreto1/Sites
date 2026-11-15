@@ -43,6 +43,14 @@ Cada site vive na sua própria pasta e já traz login com JWT, rotas, validaçã
       <p>✅ <strong>Pronto</strong></p>
     </td>
   </tr>
+  <tr>
+    <td width="50%"><a href="rotacao/"><img src="rotacao/docs/capa.jpg" alt="Rotação" width="100%"></a></td>
+    <td>
+      <h3><a href="rotacao/">Rotação</a></h3>
+      <p>Loja de discos e salas de ensaio em Lisboa: caixote para folhear num gira-discos 3D (three.js), pré-escuta de 30 s de cada faixa de álbuns famosos, discoteca pessoal, salas marcadas numa mesa de mistura, parede da procura e painel.</p>
+      <p>✅ <strong>Pronto</strong></p>
+    </td>
+  </tr>
 </table>
 
 ### ⏳ Lista de espera
