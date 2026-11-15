@@ -515,9 +515,14 @@
   margin-top: 16px;
 }
 
+.stage__deck,
+.now {
+  min-width: 0;
+}
+
 @media (max-width: 1080px) {
   .stage__body {
-    grid-template-columns: 1fr;
+    grid-template-columns: minmax(0, 1fr);
   }
 
   .now {
@@ -705,8 +710,13 @@
 
 .wall-teaser h2 {
   color: var(--yellow);
-  font-size: clamp(3.4rem, 7.4vw, 7rem);
-  white-space: nowrap;
+  font-size: clamp(3rem, 7.4vw, 7rem);
+}
+
+@media (min-width: 961px) {
+  .wall-teaser h2 {
+    white-space: nowrap;
+  }
 }
 
 /* Compramos */
@@ -781,7 +791,7 @@
   .rooms-teaser__grid,
   .wall-teaser,
   .sell-band__grid {
-    grid-template-columns: 1fr;
+    grid-template-columns: minmax(0, 1fr);
   }
 
   .sell-band__stack {
