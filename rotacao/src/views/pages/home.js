@@ -144,7 +144,7 @@ export function homePage({ records, crates, grades, arrivals, rooms, wants }) {
         <div class="card-note${w.status === 'encontrado' ? ' card-note--found' : ''}" style="--r:${[-3, 2.5, -1.5, 3][i % 4]}deg">
           <span class="card-note__head">${w.status === 'encontrado' ? 'Encontrado ✓' : 'Procura-se'}</span>
           <p>${escapeHtml(w.artist)} — ${escapeHtml(w.title)}</p>
-          <small>— ${escapeHtml(w.name)}${w.maxPrice ? ` · até ${w.maxPrice} €` : ''}</small>
+          <small>— ${escapeHtml(w.name)}${w.maxPrice ? ` · até ${w.maxPrice}&nbsp;€` : ''}</small>
         </div>`,
         )
         .join('')}

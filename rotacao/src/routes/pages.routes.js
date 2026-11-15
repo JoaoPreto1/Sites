@@ -4,6 +4,9 @@ import { catalog, listRecords, recordDetail } from '../services/catalog.service.
 import { bookableDays, HOURS, day as roomDay } from '../services/room.service.js';
 import { rooms as roomConfig } from '../config/shop.js';
 import { ROOM_QUESTIONS, roomsPage } from '../views/pages/rooms.js';
+import { wantsPage } from '../views/pages/wants.js';
+import { SELL_QUESTIONS, sellPage } from '../views/pages/sell.js';
+import { COUNTS } from './offers.routes.js';
 import { wall } from '../services/want.service.js';
 import { today } from '../utils/dates.js';
 import { absolute } from '../seo/head.js';
@@ -123,6 +126,33 @@ router.get('/salas', async (req, res) => {
     css: ['rooms'],
     script: 'rooms',
     data,
+  });
+});
+
+router.get('/procura', async (req, res) => {
+  const [wants, { grades }] = await Promise.all([wall(), catalog()]);
+  send(req, res, {
+    page: {
+      title: 'Lista de procura de discos',
+      description: 'A parede da Rotação: deixa o disco que procuras e avisamos quando entrar na loja. Fica guardado 48 horas com o teu nome.',
+      schema: [breadcrumbs([['Início', '/'], ['Procura-se', '/procura']])],
+    },
+    main: wantsPage({ wants, grades }),
+    css: ['wants'],
+    script: 'wants',
+  });
+});
+
+router.get('/compramos', (req, res) => {
+  send(req, res, {
+    page: {
+      title: 'Vender discos de vinil em Lisboa',
+      description: 'Compramos coleções de discos de vinil em Lisboa e Setúbal: avaliação em casa ou na loja, classificação à tua frente e pagamento na hora, ou crédito na loja com mais 20%.',
+      schema: [faqSchema(SELL_QUESTIONS), breadcrumbs([['Início', '/'], ['Compramos discos', '/compramos']])],
+    },
+    main: sellPage({ counts: COUNTS }),
+    css: ['sell'],
+    script: 'sell',
   });
 });
 

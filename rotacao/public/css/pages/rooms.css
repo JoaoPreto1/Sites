@@ -493,40 +493,6 @@
   color: var(--txt);
 }
 
-.faq details {
-  border-bottom: 1px solid var(--line);
-}
-
-.faq .kicker {
-  margin-bottom: 10px;
-}
-
-.faq summary {
-  padding: 16px 0;
-  font-weight: 700;
-  cursor: pointer;
-  list-style: none;
-  display: flex;
-  justify-content: space-between;
-  gap: 20px;
-}
-
-.faq summary::after {
-  content: '+';
-  font-family: var(--mono);
-  color: var(--orange);
-  transition: transform 0.3s var(--spring);
-}
-
-.faq details[open] summary::after {
-  transform: rotate(45deg);
-}
-
-.faq details p {
-  color: var(--txt-2);
-  padding-bottom: 18px;
-}
-
 @media (max-width: 1100px) {
   .desk__mix {
     grid-template-columns: 1fr;

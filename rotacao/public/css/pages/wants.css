@@ -1,0 +1,128 @@
+.wall__head {
+  display: grid;
+  grid-template-columns: auto minmax(260px, 500px);
+  gap: 24px 56px;
+  align-items: end;
+}
+
+.wall__head h1 {
+  font-size: clamp(3.8rem, 11vw, 10rem);
+  color: var(--yellow);
+}
+
+.wall__head > p {
+  color: var(--txt-2);
+  font-size: 1.08rem;
+}
+
+.wall__grid {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) 380px;
+  gap: 28px;
+  align-items: start;
+}
+
+.wall__cork {
+  min-height: 520px;
+  align-content: start;
+}
+
+.wall__cork .card-note {
+  animation: pin-in 0.6s var(--spring) both;
+}
+
+.wall__cork .card-note:nth-child(3n + 2) {
+  animation-delay: 0.08s;
+}
+
+.wall__cork .card-note:nth-child(3n) {
+  animation-delay: 0.16s;
+}
+
+@keyframes pin-in {
+  from {
+    opacity: 0;
+    transform: translateY(-30px) rotate(calc(var(--r) * 3)) scale(1.06);
+  }
+}
+
+.pin-form {
+  position: sticky;
+  top: 130px;
+}
+
+.pin-form h2 {
+  font-stretch: 75%;
+  font-size: 2rem;
+  text-transform: uppercase;
+}
+
+.pin-form > p {
+  color: var(--mute);
+  margin: 6px 0 20px;
+}
+
+.pin-form form {
+  display: grid;
+  gap: 16px;
+}
+
+.grade-pick {
+  border: 0;
+}
+
+.grade-pick > div {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  gap: 6px;
+}
+
+.grade-pick label {
+  position: relative;
+}
+
+.grade-pick input {
+  position: absolute;
+  opacity: 0;
+}
+
+.grade-pick b {
+  display: grid;
+  place-items: center;
+  height: 44px;
+  border: 1px solid var(--line-2);
+  border-radius: 8px;
+  font-family: var(--mono);
+  font-size: 0.85rem;
+  color: var(--mute);
+  cursor: pointer;
+  transition: background 0.2s, color 0.2s;
+}
+
+.grade-pick input:checked + b {
+  background: var(--txt);
+  color: var(--ink);
+  border-color: var(--txt);
+}
+
+.grade-pick input:focus-visible + b {
+  outline: 2px solid var(--yellow);
+  outline-offset: 2px;
+}
+
+.pin-form__login {
+  color: var(--txt-2);
+  font-size: 0.95rem;
+}
+
+@media (max-width: 960px) {
+  .wall__head,
+  .wall__grid {
+    grid-template-columns: 1fr;
+  }
+
+  .pin-form {
+    position: relative;
+    top: 0;
+  }
+}
