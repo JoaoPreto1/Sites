@@ -3,14 +3,16 @@ import * as player from './player.js';
 import { cover } from './shared/format.js';
 import { icons } from './shared/icons.js';
 
+// `records` pode ser uma lista ou uma função que encontra o disco pelo id
 export function setupQuickPlay(records, { hideWhen } = {}) {
-  const byId = Object.fromEntries(records.map((r) => [r.id, r]));
+  const byId = Array.isArray(records) ? Object.fromEntries(records.map((r) => [r.id, r])) : null;
+  const find = (id) => (byId ? byId[id] : records(id));
 
   document.addEventListener('click', (event) => {
     const button = event.target.closest('[data-play]');
     if (!button) return;
     event.preventDefault();
-    const record = byId[button.dataset.play];
+    const record = find(button.dataset.play);
     if (!record) return;
     player.prepare();
     const state = player.snapshot();

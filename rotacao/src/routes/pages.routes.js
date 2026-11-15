@@ -7,6 +7,8 @@ import { today } from '../utils/dates.js';
 import { absolute } from '../seo/head.js';
 import { store } from '../seo/pages.js';
 import { homePage } from '../views/pages/home.js';
+import { ORDERS, PRICES, recordsPage } from '../views/pages/records.js';
+import { breadcrumbs } from '../seo/pages.js';
 import { documentHtml } from '../views/document.js';
 import { notFoundView } from '../views/pages/not-found.js';
 
@@ -39,6 +41,44 @@ router.get('/', async (req, res) => {
     css: ['home'],
     script: 'home',
     data: { records, crates: info.crates },
+  });
+});
+
+// Filtros dos caixotes vindos do URL: o que não for válido é ignorado
+function recordFilters(query, info) {
+  const ate = Number(query.ate);
+  const filters = {
+    caixote: info.crates.some((c) => c.slug === query.caixote) ? query.caixote : undefined,
+    estado: info.grades.some((g) => g.code === query.estado) ? query.estado : undefined,
+    ate: PRICES.some(([v]) => v === ate) ? ate : undefined,
+    ordem: ORDERS.some(([v]) => v === query.ordem) ? query.ordem : undefined,
+    q: typeof query.q === 'string' ? query.q.trim().slice(0, 60) || undefined : undefined,
+  };
+  return Object.fromEntries(Object.entries(filters).filter(([, v]) => v !== undefined));
+}
+
+router.get('/discos', async (req, res) => {
+  const info = await catalog();
+  const filters = recordFilters(req.query, info);
+  const records = await listRecords(filters);
+  const crate = info.crates.find((c) => c.slug === filters.caixote);
+  const view = req.query.vista === 'lista' ? 'lista' : 'capas';
+  const title = crate ? crate.name : 'Os caixotes';
+
+  send(req, res, {
+    page: {
+      title: crate ? `Discos de ${crate.name.toLowerCase()} em vinil` : 'Discos de vinil novos e usados',
+      description: crate
+        ? `${records.length} discos de ${crate.name.toLowerCase()} em vinil, com pré-escuta de cada faixa, estado da capa e do disco e envio para todo o país.`
+        : `${info.total} discos de vinil novos e usados, de Miles Davis a Amália. Ouve 30 segundos de cada faixa antes de comprar. Envio para todo o país ou levantamento em Lisboa.`,
+      path: crate ? `/discos?caixote=${crate.slug}` : '/discos',
+      noindex: Boolean(filters.q || filters.estado || filters.ate || filters.ordem),
+      schema: [breadcrumbs([['Início', '/'], ['Discos', '/discos'], ...(crate ? [[crate.name, `/discos?caixote=${crate.slug}`]] : [])])],
+    },
+    main: recordsPage({ records, catalog: info, filters, view, title }),
+    css: ['records'],
+    script: 'records',
+    data: { records },
   });
 });
 

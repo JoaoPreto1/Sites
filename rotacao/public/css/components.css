@@ -13,7 +13,7 @@
   color: var(--orange);
 }
 
-.page-head p {
+.page-head p:not(.kicker) {
   max-width: 620px;
   margin-top: 22px;
   font-size: 1.15rem;
