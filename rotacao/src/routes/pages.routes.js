@@ -1,14 +1,16 @@
 import { Router } from 'express';
 import { cover } from '../../public/js/shared/format.js';
 import { catalog, listRecords, recordDetail } from '../services/catalog.service.js';
-import { day as roomDay } from '../services/room.service.js';
+import { bookableDays, HOURS, day as roomDay } from '../services/room.service.js';
+import { rooms as roomConfig } from '../config/shop.js';
+import { ROOM_QUESTIONS, roomsPage } from '../views/pages/rooms.js';
 import { wall } from '../services/want.service.js';
 import { today } from '../utils/dates.js';
 import { absolute } from '../seo/head.js';
 import { store } from '../seo/pages.js';
 import { homePage } from '../views/pages/home.js';
 import { ORDERS, PRICES, recordsPage } from '../views/pages/records.js';
-import { albumSchema, breadcrumbs } from '../seo/pages.js';
+import { albumSchema, breadcrumbs, faqSchema, roomsSchema } from '../seo/pages.js';
 import { recordPage } from '../views/pages/record.js';
 import { documentHtml } from '../views/document.js';
 import { notFoundView } from '../views/pages/not-found.js';
@@ -102,6 +104,25 @@ router.get('/discos/:slug', async (req, res) => {
     css: ['record'],
     script: 'record',
     data: { record, related: result.related },
+  });
+});
+
+router.get('/salas', async (req, res) => {
+  const date = today();
+  const rooms = await roomDay(date);
+  const data = { date, days: bookableDays(), hours: HOURS, rooms, extras: roomConfig.extras, maxHours: roomConfig.maxHours };
+
+  send(req, res, {
+    page: {
+      title: 'Salas de ensaio em Lisboa',
+      description: 'Três salas de ensaio insonorizadas no Intendente, com bateria, amplificadores e PA. A partir de 9 € à hora, abertas todos os dias até à meia-noite. Marcação online e cancelamento grátis até 24 h antes.',
+      image: 'https://images.unsplash.com/photo-1519892300165-cb5542fb47c7?w=1200&h=630&q=75&fit=crop',
+      schema: [...roomsSchema(rooms), faqSchema(ROOM_QUESTIONS), breadcrumbs([['Início', '/'], ['Salas de ensaio', '/salas']])],
+    },
+    main: roomsPage(data),
+    css: ['rooms'],
+    script: 'rooms',
+    data,
   });
 });
 
