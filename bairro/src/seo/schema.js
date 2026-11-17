@@ -83,3 +83,11 @@ export const faqSchema = (items) => ({
   '@type': 'FAQPage',
   mainEntity: items.map(([q, a]) => ({ '@type': 'Question', name: q, acceptedAnswer: { '@type': 'Answer', text: a } })),
 });
+
+export const howTo = (steps) => ({
+  '@context': 'https://schema.org',
+  '@type': 'HowTo',
+  name: 'Como o estúdio Bairro faz um projeto de design',
+  totalTime: 'P10W',
+  step: steps.map((s, i) => ({ '@type': 'HowToStep', position: i + 1, name: s.name, text: `${s.text} ${s.get}` })),
+});

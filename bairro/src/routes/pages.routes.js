@@ -4,10 +4,11 @@ import { categoryCounts, featuredProject, listProjects, projectDetail } from '..
 import { listAvailability, listTeam, nextOpening } from '../services/studio.service.js';
 import { EXTRAS, SERVICES } from '../../public/js/shared/estimate.js';
 import { lisbonToday } from '../utils/dates.js';
-import { breadcrumbs, faqSchema, projectList, projectSchema, serviceCatalog, studio, teamPage } from '../seo/schema.js';
+import { breadcrumbs, faqSchema, howTo, projectList, projectSchema, serviceCatalog, studio, teamPage } from '../seo/schema.js';
 import { teamWindows } from '../views/pages/team.js';
 import { FAQ, pricesWindows } from '../views/pages/prices.js';
 import { quoteWindows } from '../views/pages/quote.js';
+import { processWindows, STEPS } from '../views/pages/process.js';
 import { manifestoWindows, settingsWindows, trashWindows } from '../views/pages/extras.js';
 import { accountWindows, adminWindows, loginWindows } from '../views/pages/private.js';
 import { absolute } from '../seo/head.js';
@@ -48,7 +49,7 @@ router.get('/', async (req, res) => {
     },
     windows: homeWindows({ team, project, opening }),
     extra: homeSticky(),
-    deskHeight: 1280,
+    deskHeight: 1320,
   });
 });
 
@@ -92,7 +93,7 @@ router.get('/projetos/:slug', async (req, res, next) => {
       image: photoUrl(first.photo, 1200, 0.525),
       type: 'article',
       schema: [projectSchema(project), breadcrumbs([['Bairro', '/'], ['Projetos', '/projetos'], [project.title, `/projetos/${project.slug}`]])],
-      preload: [{ srcset: photoSrcset(first.photo, [480, 760, 1000, 1400], 0.66), sizes: '(min-width: 1200px) 700px, (min-width: 900px) 60vw, 100vw' }],
+      preload: [{ srcset: photoSrcset(first.photo, [480, 760, 1000, 1400], 0.66), sizes: '(min-width: 1200px) 700px, (min-width: 1024px) 60vw, 100vw' }],
     },
     windows: projectWindows(project),
   });
@@ -107,6 +108,17 @@ router.get('/equipa', async (req, res) => {
       schema: [teamPage(team), breadcrumbs([['Bairro', '/'], ['Equipa', '/equipa']])],
     },
     windows: teamWindows({ team, months }),
+  });
+});
+
+router.get('/processo', async (req, res) => {
+  await send(req, res, {
+    page: {
+      title: 'Como trabalhamos',
+      description: 'Seis passos entre a primeira conversa e a entrega: pesquisa, esboços aplicados a peças reais, proposta impressa em tamanho real, afinação e 30 dias de apoio.',
+      schema: [howTo(STEPS), breadcrumbs([['Bairro', '/'], ['Como trabalhamos', '/processo']])],
+    },
+    windows: processWindows(),
   });
 });
 
@@ -199,6 +211,7 @@ router.get('/sitemap.xml', async (req, res) => {
     ...categories.filter((c) => c.count).map((c) => [`/projetos?categoria=${c.slug}`, '0.6']),
     ...projects.map((p) => [`/projetos/${p.slug}`, '0.8']),
     ['/equipa', '0.7'],
+    ['/processo', '0.7'],
     ['/precos', '0.8'],
     ['/orcamento', '0.7'],
     ['/manifesto', '0.5'],
