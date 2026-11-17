@@ -1,0 +1,152 @@
+.quote {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) 290px;
+  gap: 28px;
+}
+
+.quote-win .win__body {
+  padding: 26px;
+}
+
+.quote__title {
+  font-size: clamp(32px, 4vw, 46px);
+}
+
+.quote__lead {
+  max-width: 62ch;
+  margin: 8px 0 20px;
+}
+
+.quote__group {
+  margin: 18px 0;
+  border: 0;
+}
+
+.quote__group .legend {
+  margin-bottom: 8px;
+}
+
+.quote__checks {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 8px;
+}
+
+.tile {
+  padding: 10px 12px;
+  border: 2px solid var(--ink);
+  background: #fff;
+}
+
+.tile > span {
+  display: grid;
+  line-height: 1.35;
+}
+
+.tile:has(input:checked) {
+  background: var(--hl);
+  box-shadow: 3px 3px 0 var(--ink);
+}
+
+.quote__extras {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px 24px;
+}
+
+.quote__submit {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 12px 18px;
+  margin-top: 20px;
+}
+
+.quote__side {
+  display: grid;
+  align-content: start;
+  gap: 20px;
+}
+
+/* Calculadora de bolso */
+.calc {
+  padding: 14px;
+  border: 2px solid var(--ink);
+  background: #d8d4c8;
+  box-shadow: 4px 4px 0 var(--ink);
+}
+
+.calc__title {
+  font-family: var(--pixel);
+  font-size: 15px;
+  margin-bottom: 8px;
+}
+
+.calc__screen {
+  padding: 10px 12px;
+  border: 2px solid var(--ink);
+  background: #b9c7a5;
+  font-family: var(--pixel);
+  font-size: 24px;
+  text-align: right;
+  line-height: 1.15;
+  box-shadow: inset 3px 3px 0 rgba(20, 20, 20, 0.2);
+  margin-bottom: 8px;
+}
+
+.steps {
+  display: grid;
+  gap: 12px;
+}
+
+.steps li {
+  display: flex;
+  gap: 12px;
+}
+
+.steps li > span:last-child {
+  display: grid;
+  line-height: 1.35;
+}
+
+.steps__n {
+  flex-shrink: 0;
+  display: grid;
+  place-items: center;
+  width: 30px;
+  height: 30px;
+  border: 2px solid var(--ink);
+  background: #fff;
+  font-family: var(--pixel);
+}
+
+.quote-done {
+  max-width: 60ch;
+}
+
+.quote-done h2 {
+  font-size: 30px;
+  margin-bottom: 10px;
+}
+
+.quote-done p + p {
+  margin-top: 10px;
+}
+
+.quote-done .btn {
+  margin-top: 14px;
+}
+
+@media (max-width: 899px) {
+  .quote {
+    grid-template-columns: 1fr;
+  }
+
+  .quote-win .win__body {
+    padding: 16px;
+  }
+
+  .quote__checks {
+    grid-template-columns: 1fr;
+  }
+}
