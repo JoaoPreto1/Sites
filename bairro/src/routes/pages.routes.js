@@ -1,8 +1,14 @@
 import { Router } from 'express';
 import { photoSrcset, photoUrl } from '../../public/js/shared/format.js';
 import { categoryCounts, featuredProject, listProjects, projectDetail } from '../services/project.service.js';
-import { listTeam, nextOpening } from '../services/studio.service.js';
-import { breadcrumbs, projectList, projectSchema, studio } from '../seo/schema.js';
+import { listAvailability, listTeam, nextOpening } from '../services/studio.service.js';
+import { EXTRAS, SERVICES } from '../../public/js/shared/estimate.js';
+import { lisbonToday } from '../utils/dates.js';
+import { breadcrumbs, faqSchema, projectList, projectSchema, serviceCatalog, studio, teamPage } from '../seo/schema.js';
+import { teamWindows } from '../views/pages/team.js';
+import { FAQ, pricesWindows } from '../views/pages/prices.js';
+import { quoteWindows } from '../views/pages/quote.js';
+import { manifestoWindows, settingsWindows, trashWindows } from '../views/pages/extras.js';
 import { projectsWindows, projectWindows } from '../views/pages/projects.js';
 import { documentHtml } from '../views/document.js';
 import { FEATURED_SIZES, FEATURED_WIDTHS, homeSticky, homeWindows } from '../views/pages/home.js';
@@ -87,6 +93,79 @@ router.get('/projetos/:slug', async (req, res, next) => {
       preload: [{ srcset: photoSrcset(first.photo, [480, 760, 1000, 1400], 0.66), sizes: '(min-width: 1200px) 700px, (min-width: 900px) 60vw, 100vw' }],
     },
     windows: projectWindows(project),
+  });
+});
+
+router.get('/equipa', async (req, res) => {
+  const [team, months] = await Promise.all([listTeam(), listAvailability()]);
+  await send(req, res, {
+    page: {
+      title: 'Equipa e vagas',
+      description: 'Hugo, Leonor e Marta: três designers num segundo andar da Rua do Almada, no Porto, mais o gato Pixel. Veja quem somos e quando há vagas para começar.',
+      schema: [teamPage(team), breadcrumbs([['Bairro', '/'], ['Equipa', '/equipa']])],
+    },
+    windows: teamWindows({ team, months }),
+  });
+});
+
+router.get('/precos', async (req, res) => {
+  await send(req, res, {
+    page: {
+      title: 'Preços de design de marca, sites e embalagem',
+      description: `Preços de referência do estúdio Bairro: marca desde ${SERVICES[0].min} €, site desde ${SERVICES[1].min} €, embalagem desde ${SERVICES[3].min} €. Calcule uma estimativa e peça orçamento.`,
+      schema: [serviceCatalog(), faqSchema(FAQ), breadcrumbs([['Bairro', '/'], ['Preços', '/precos']])],
+    },
+    windows: pricesWindows(),
+  });
+});
+
+const fromQuery = (value, allowed) =>
+  String(value ?? '')
+    .split(',')
+    .filter((id) => allowed.includes(id));
+
+router.get('/orcamento', async (req, res) => {
+  await send(req, res, {
+    page: {
+      title: 'Pedir orçamento',
+      description: 'Conte-nos o que precisa: marca, site, embalagem ou cartazes. Respondemos em menos de dois dias úteis com uma conversa de 30 minutos sem custos.',
+      path: '/orcamento',
+      schema: [breadcrumbs([['Bairro', '/'], ['Pedir orçamento', '/orcamento']])],
+    },
+    windows: quoteWindows({
+      services: fromQuery(req.query.servicos, SERVICES.map((s) => s.id)),
+      extras: fromQuery(req.query.extras, EXTRAS.map((e) => e.id)),
+      today: lisbonToday(),
+    }),
+  });
+});
+
+router.get('/manifesto', async (req, res) => {
+  await send(req, res, {
+    page: {
+      title: 'Manifesto',
+      description: 'Oito regras do estúdio Bairro: desenhar para quem vende, poucos projetos de cada vez, preços às claras, tudo testado em papel e o gato tem sempre razão.',
+      type: 'article',
+      schema: [breadcrumbs([['Bairro', '/'], ['Manifesto', '/manifesto']])],
+    },
+    windows: manifestoWindows(),
+  });
+});
+
+router.get('/lixo', async (req, res) => {
+  await send(req, res, {
+    page: {
+      title: 'Ideias más',
+      description: 'O caixote do lixo do estúdio: logótipos em Comic Sans, sites com música de fundo e outras ideias que nunca saíram da primeira reunião.',
+    },
+    windows: trashWindows(),
+  });
+});
+
+router.get('/definicoes', async (req, res) => {
+  await send(req, res, {
+    page: { title: 'Definições', description: 'Mude a cor e o padrão do fundo do ambiente de trabalho.', noindex: true },
+    windows: settingsWindows(),
   });
 });
 
