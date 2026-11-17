@@ -627,7 +627,8 @@ body[data-pattern='liso'] {
 
   .icons a {
     flex-shrink: 0;
-    width: 84px;
+    width: 98px;
+    font-size: 11px;
     overflow-wrap: anywhere;
   }
 
