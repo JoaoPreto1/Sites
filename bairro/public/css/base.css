@@ -44,8 +44,8 @@
   --shadow: 6px 6px 0 var(--ink);
   --mono: 'Plex Mono', 'Mono Fallback', ui-monospace, monospace;
   --pixel: 'Pixelify', 'Plex Mono', 'Mono Fallback', monospace;
-  --bar-h: 36px;
-  --task-h: 50px;
+  --bar-h: 40px;
+  --task-h: 56px;
 }
 
 *,
@@ -69,7 +69,7 @@ body {
   background: var(--desk);
   color: var(--ink);
   font-family: var(--mono);
-  font-size: 15px;
+  font-size: 16px;
   line-height: 1.55;
 }
 
@@ -146,7 +146,7 @@ h3 {
 }
 
 .small {
-  font-size: 13px;
+  font-size: 14px;
 }
 
 .mark {
@@ -200,7 +200,7 @@ h3 {
 .btn--small {
   min-height: 34px;
   padding: 4px 10px;
-  font-size: 13px;
+  font-size: 14px;
   box-shadow: 3px 3px 0 var(--ink);
 }
 
@@ -224,7 +224,7 @@ h3 {
 
 .field > span,
 .legend {
-  font-size: 13px;
+  font-size: 14px;
   font-weight: 600;
 }
 
@@ -253,7 +253,7 @@ h3 {
 
 .field-error {
   color: var(--danger);
-  font-size: 13px;
+  font-size: 14px;
   font-weight: 600;
 }
 
@@ -317,7 +317,7 @@ h3 {
   background: var(--win);
   border: 2px solid var(--ink);
   box-shadow: var(--shadow);
-  font-size: 14px;
+  font-size: 15px;
   animation: pop 0.18s ease-out;
 }
 
@@ -331,7 +331,7 @@ h3 {
   border: 2px solid var(--ink);
   border-radius: 50%;
   font-weight: 600;
-  font-size: 12px;
+  font-size: 13px;
   vertical-align: -3px;
 }
 
@@ -365,4 +365,8 @@ h3 {
     animation: none !important;
     transition: none !important;
   }
+}
+
+.btn[hidden] {
+  display: none;
 }

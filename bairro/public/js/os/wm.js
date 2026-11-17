@@ -3,7 +3,7 @@
 const V = document.documentElement.dataset.v;
 const POS_KEY = 'bairro.pos';
 const MAX_WINDOWS = 7;
-const wide = matchMedia('(min-width: 900px)');
+const wide = matchMedia('(min-width: 1024px)');
 
 const deskEl = () => document.querySelector('.windows');
 const tasksEl = () => document.querySelector('.tasks');
@@ -59,6 +59,7 @@ export function focusWindow(win, { history: mode = 'replace' } = {}) {
 }
 
 export function closeWindow(win) {
+  resizes.unobserve(win);
   win.remove();
   const next = topmost();
   if (next) focusWindow(next);
@@ -124,6 +125,9 @@ function makeDraggable(win) {
       dx: parseFloat(win.style.getPropertyValue('--dx')) || 0,
       dy: parseFloat(win.style.getPropertyValue('--dy')) || 0,
       top: win.offsetTop,
+      left: win.offsetLeft,
+      width: win.offsetWidth,
+      room: deskEl().clientWidth,
     };
     bar.setPointerCapture(event.pointerId);
     win.classList.add('is-dragging');
@@ -131,7 +135,9 @@ function makeDraggable(win) {
 
   bar.addEventListener('pointermove', (event) => {
     if (!start) return;
-    const dx = start.dx + event.clientX - start.x;
+    // Fica sempre um bocado da janela à vista, para a poder voltar a agarrar
+    const keep = 140;
+    const dx = Math.min(start.room - start.left - keep, Math.max(keep - start.left - start.width, start.dx + event.clientX - start.x));
     // Não deixa a barra de título sair por cima do ambiente de trabalho
     const dy = Math.max(-start.top, start.dy + event.clientY - start.y);
     win.style.setProperty('--dx', `${dx}px`);
@@ -164,7 +170,47 @@ async function mountScript(win) {
   module.mount?.(win, state);
 }
 
+// Quando o conteúdo de uma janela cresce (fotografias, dados da conta), o ambiente de trabalho cresce com ela
+let fitting = 0;
+const resizes = new ResizeObserver(() => {
+  cancelAnimationFrame(fitting);
+  fitting = requestAnimationFrame(fitDesk);
+});
+
+// Arruma as janelas em cascata e esquece as posições arrastadas
+export function tidyWindows() {
+  try {
+    sessionStorage.removeItem(POS_KEY);
+  } catch {}
+  let step = 0;
+  allWindows().forEach((win) => {
+    win.style.removeProperty('--dx');
+    win.style.removeProperty('--dy');
+    win.classList.remove('win--max');
+    win.hidden = false;
+    if (!win.classList.contains('win--primary') && !win.dataset.home) {
+      win.style.setProperty('--x', `${40 + step * 36}px`);
+      win.style.setProperty('--y', `${30 + step * 34}px`);
+      step += 1;
+    }
+  });
+  const top = topmost();
+  if (top) focusWindow(top);
+  fitDesk();
+  window.scrollTo({ top: 0, behavior: 'smooth' });
+}
+
+export function showDesktop() {
+  allWindows().forEach((win) => {
+    win.hidden = true;
+    win.classList.remove('is-active', 'win--max');
+  });
+  syncTasks();
+  fitDesk();
+}
+
 export function initWindow(win) {
+  resizes.observe(win);
   const saved = session.read()[win.id];
   if (saved && wide.matches) {
     win.style.setProperty('--dx', saved.dx);
@@ -283,7 +329,12 @@ export function startDesktop() {
   const windows = allWindows();
   const primary = windows.find(ownsUrl);
   if (primary) primary.dataset.doctitle = document.title;
-  windows.forEach(initWindow);
+  windows.forEach((win) => {
+    win.dataset.home = '1';
+    initWindow(win);
+  });
+  document.querySelector('[data-tidy]')?.addEventListener('click', tidyWindows);
+  document.querySelector('[data-show-desk]')?.addEventListener('click', showDesktop);
   if (primary) focusWindow(primary, { history: false });
   syncTasks();
   fitDesk();

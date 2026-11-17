@@ -10,7 +10,7 @@ const WORK = [
   ['cartaz.png', 'Cartazes, menus e montras', 'cartaz'],
 ];
 
-export const FEATURED_SIZES = '(min-width: 900px) 600px, calc(100vw - 28px)';
+export const FEATURED_SIZES = '(min-width: 1024px) 480px, calc(100vw - 28px)';
 export const FEATURED_WIDTHS = [400, 620, 900, 1200];
 
 function welcome() {
@@ -20,13 +20,13 @@ function welcome() {
     title: 'bem-vindo.app',
     label: 'Bem-vindo',
     primary: true,
-    x: 48,
-    y: 36,
-    w: 700,
+    x: 40,
+    y: 30,
+    w: 660,
     cls: 'welcome',
     body: `<h1 class="welcome__title">Estúdio de design com <span class="mark">3 pessoas</span> e 1 gato.</h1>
     <p class="welcome__lead">Fazemos marcas, sites e embalagens para negócios pequenos do Porto e de onde for preciso. Abra as pastas, arraste as janelas pela barra de cima e, quando quiser falar connosco, escreva no bloco de notas.</p>
-    <div class="welcome__actions"><a class="btn btn--primary" href="/projetos">Abrir projetos</a><a class="btn" href="/orcamento">Pedir orçamento</a></div>
+    <div class="welcome__actions"><a class="btn btn--primary" href="/projetos">Abrir projetos</a><a class="btn" href="/processo">Como trabalhamos</a><a class="btn" href="/orcamento">Pedir orçamento</a></div>
     <ul class="filelist" aria-label="O que fazemos">
       ${WORK.map(([file, text]) => `<li><a href="/precos"><span class="filelist__name">${icon('doc')}${file}</span><span class="mute">${text}</span></a></li>`).join('')}
     </ul>`,
@@ -38,12 +38,12 @@ function teamMini(team, opening) {
   return win({
     id: 'equipa-mini',
     url: '/equipa',
-    title: 'equipa',
-    label: 'Equipa',
+    title: 'quem_cá_está',
+    label: 'Quem cá está',
     ico: 'folder',
-    x: 800,
-    y: 60,
-    w: 340,
+    x: 9999,
+    y: 40,
+    w: 380,
     cls: 'team-mini',
     body: `<h2 class="sr-only">Quem cá está</h2>
     <ul class="people">
@@ -71,9 +71,9 @@ function featured(project) {
     title: `${project.slug.replace(/-/g, '_')}.jpg`,
     label: project.title,
     ico: 'app',
-    x: 580,
-    y: 580,
-    w: 600,
+    x: 9999,
+    y: 500,
+    w: 480,
     cls: 'viewer viewer--mini',
     script: 'viewer',
     flush: true,
@@ -106,9 +106,9 @@ function note() {
     title: 'orçamento.txt',
     label: 'Bloco de notas',
     ico: 'doc',
-    x: 96,
-    y: 820,
-    w: 420,
+    x: 40,
+    y: 860,
+    w: 460,
     cls: 'win--note',
     script: 'note',
     body: `<h2 class="note__title">Fale-nos do seu projeto</h2>
@@ -126,10 +126,10 @@ export function homeWindows({ team, project, opening }) {
   return [
     { id: 'bemvindo', label: 'Bem-vindo', ico: 'app', html: welcome() },
     { id: 'destaque', label: project.title, ico: 'app', html: featured(project) },
-    { id: 'equipa-mini', label: 'Equipa', ico: 'folder', html: teamMini(team, opening) },
+    { id: 'equipa-mini', label: 'Quem cá está', ico: 'folder', html: teamMini(team, opening) },
     { id: 'nota', label: 'Bloco de notas', ico: 'doc', html: note() },
   ];
 }
 
 export const homeSticky = () =>
-  `<p class="sticky" style="left:1110px;top:390px">não esquecer: o gato chama-se Pixel e aparece em todas as videochamadas</p>`;
+  `<p class="sticky" style="--x:560px;--y:1090px">não esquecer: o gato chama-se Pixel e aparece em todas as videochamadas</p>`;

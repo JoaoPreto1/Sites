@@ -1,0 +1,158 @@
+.wizard {
+  display: grid;
+  grid-template-columns: 230px minmax(0, 1fr);
+  min-height: 520px;
+}
+
+/* Faixa lateral, como nos instaladores antigos */
+.wizard__side {
+  padding: 22px 18px;
+  border-right: 2px solid var(--ink);
+  background: linear-gradient(160deg, var(--accent) 0 30%, var(--hl) 30% 55%, var(--desk) 55%);
+  color: var(--ink);
+}
+
+.wizard__logo {
+  display: grid;
+  place-items: center;
+  width: 60px;
+  height: 60px;
+  margin-bottom: 26px;
+  border: 2px solid var(--ink);
+  background: var(--win);
+  box-shadow: 4px 4px 0 var(--ink);
+  font-size: 30px;
+}
+
+.wizard__list {
+  display: grid;
+  gap: 8px;
+}
+
+.wizard__list li {
+  padding: 6px 10px;
+  border: 2px solid var(--ink);
+  background: var(--win);
+  font-size: 14px;
+  font-weight: 600;
+}
+
+.wizard__list li.is-done {
+  background: #d9efe0;
+}
+
+.wizard__list li.is-done::after {
+  content: ' ✓';
+}
+
+.wizard__list li.is-current {
+  background: var(--ink);
+  color: var(--hl);
+}
+
+.wizard__main {
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+  padding: 26px 30px 24px;
+  background: #fff;
+}
+
+.wizard__title {
+  font-size: clamp(32px, 4vw, 46px);
+}
+
+.wizard__head p {
+  max-width: 60ch;
+  margin-top: 6px;
+}
+
+.wizard__steps {
+  display: grid;
+  gap: 22px;
+  flex: 1;
+}
+
+.wizard__step {
+  display: grid;
+  align-content: start;
+  gap: 10px;
+  max-width: 62ch;
+  font-size: 17px;
+}
+
+.wizard.is-ready .wizard__step:not(.is-current) {
+  display: none;
+}
+
+.wizard__step.is-current {
+  animation: pop 0.2s ease-out;
+}
+
+.wizard__n {
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--mute);
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+.wizard__name {
+  font-size: 30px;
+}
+
+.wizard__get {
+  display: flex;
+  align-items: flex-start;
+  gap: 12px;
+  padding: 12px 14px;
+  border: 2px dashed var(--ink);
+  background: var(--paper);
+  font-size: 16px;
+}
+
+.wizard__get .ico {
+  --size: 24px;
+}
+
+.wizard__nav {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 12px 16px;
+}
+
+.wizard__nav .link {
+  margin-left: auto;
+}
+
+@media (max-width: 1023px) {
+  .wizard {
+    grid-template-columns: 1fr;
+  }
+
+  .wizard__side {
+    padding: 14px;
+    border-right: 0;
+    border-bottom: 2px solid var(--ink);
+  }
+
+  .wizard__logo {
+    display: none;
+  }
+
+  .wizard__list {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px;
+  }
+
+  .wizard__list li {
+    font-size: 13px;
+    padding: 3px 8px;
+  }
+
+  .wizard__main {
+    padding: 18px 16px;
+  }
+}

@@ -6,7 +6,7 @@ const folderPath = (category) => `C:\\Bairro\\projetos${category ? `\\${category
 function card(p, i) {
   return `<li class="file" data-search="${esc(`${p.title} ${p.categoryName} ${p.services.join(' ')} ${p.year}`.toLowerCase())}">
     <a href="/projetos/${p.slug}">
-      <span class="file__thumb">${photo({ id: p.cover.photo, alt: p.cover.alt, widths: [300, 460, 640], sizes: '(min-width: 1200px) 260px, (min-width: 900px) 30vw, 50vw', ratio: 0.75, eager: i < 3 })}</span>
+      <span class="file__thumb">${photo({ id: p.cover.photo, alt: p.cover.alt, widths: [300, 460, 640], sizes: '(min-width: 1200px) 260px, (min-width: 1024px) 30vw, 50vw', ratio: 0.75, eager: i < 3 })}</span>
       <span class="file__name">${icon('folder')}${slugFile(p.title)}</span>
       <span class="file__meta"><span>${esc(p.categoryName)}</span><span>${esc(p.services.join(', '))}</span><span>${p.year}</span></span>
     </a>
@@ -85,7 +85,7 @@ export function projectWindows(project) {
   const body = `<div class="project">
     <div class="project__stage">
       <figure class="viewer__stage">
-        ${photo({ id: first.photo, alt: first.alt, widths: [480, 760, 1000, 1400], sizes: '(min-width: 1200px) 700px, (min-width: 900px) 60vw, 100vw', ratio: 0.66, eager: true, cls: 'viewer__img' })}
+        ${photo({ id: first.photo, alt: first.alt, widths: [480, 760, 1000, 1400], sizes: '(min-width: 1200px) 700px, (min-width: 1024px) 60vw, 100vw', ratio: 0.66, eager: true, cls: 'viewer__img' })}
         <button class="viewer__nav viewer__nav--prev" type="button" data-prev aria-label="Fotografia anterior">◀</button>
         <button class="viewer__nav viewer__nav--next" type="button" data-next aria-label="Fotografia seguinte">▶</button>
       </figure>

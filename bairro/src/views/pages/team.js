@@ -58,7 +58,7 @@ export function teamWindows({ team, months }) {
     <div class="team__bottom">
       ${calendar(months)}
       <section class="visit" aria-labelledby="visit-title">
-        ${photo({ id: '1599420186946-7b6fb4e297f0', alt: 'Mesa de trabalho com desenhos e marcadores', widths: [400, 600], sizes: '(min-width: 900px) 360px, 100vw', ratio: 0.6, cls: 'visit__photo' })}
+        ${photo({ id: '1599420186946-7b6fb4e297f0', alt: 'Mesa de trabalho com desenhos e marcadores', widths: [400, 600], sizes: '(min-width: 1024px) 360px, 100vw', ratio: 0.6, cls: 'visit__photo' })}
         <h2 id="visit-title" class="cal__title">Venha conhecer o estúdio</h2>
         <p>${STUDIO.street}, ${STUDIO.postalCode} ${STUDIO.city}<br>${STUDIO.hours}</p>
         <p><a class="link" href="mailto:${STUDIO.email}">${STUDIO.email}</a> · <a class="link" href="tel:${STUDIO.phone.replace(/\s/g, '')}">${STUDIO.phoneLabel}</a></p>

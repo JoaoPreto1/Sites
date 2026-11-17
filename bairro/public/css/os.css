@@ -26,7 +26,7 @@ body[data-pattern='liso'] {
   padding: 0 10px;
   background: var(--win);
   border-bottom: 2px solid var(--ink);
-  font-size: 14px;
+  font-size: 15px;
 }
 
 .start {
@@ -151,6 +151,7 @@ body[data-pattern='liso'] {
 /* Ambiente de trabalho */
 .desk {
   position: relative;
+  overflow-x: clip;
   min-height: calc(100vh - var(--bar-h));
   padding-bottom: calc(var(--task-h) + 30px);
 }
@@ -176,10 +177,10 @@ body[data-pattern='liso'] {
   display: grid;
   justify-items: center;
   gap: 6px;
-  width: 104px;
+  width: 112px;
   padding: 6px 2px;
   color: #fff;
-  font-size: 12px;
+  font-size: 13px;
   text-align: center;
   text-decoration: none;
 }
@@ -195,7 +196,7 @@ body[data-pattern='liso'] {
 }
 
 .ico {
-  --size: 52px;
+  --size: 58px;
   position: relative;
   width: var(--size);
   height: calc(var(--size) * 0.86);
@@ -336,12 +337,14 @@ body[data-pattern='liso'] {
 }
 
 /* Janelas */
+/* A posição e a largura de cada janela encolhem para caber no ecrã: nunca saem pela direita */
 .win {
+  --left: clamp(0px, var(--x), max(0px, 100% - var(--w) - 14px));
   position: absolute;
-  left: var(--x);
+  left: var(--left);
   top: var(--y);
   z-index: var(--z, 2);
-  width: min(var(--w), calc(100vw - 32px));
+  width: min(var(--w), 100% - 14px);
   translate: var(--dx, 0px) var(--dy, 0px);
   display: flex;
   flex-direction: column;
@@ -354,7 +357,7 @@ body[data-pattern='liso'] {
   position: relative;
   left: auto;
   top: auto;
-  margin-left: var(--x);
+  margin-left: var(--left);
   margin-top: var(--y);
 }
 
@@ -366,7 +369,7 @@ body[data-pattern='liso'] {
   display: flex;
   align-items: center;
   gap: 8px;
-  height: 34px;
+  height: 38px;
   padding: 0 8px;
   border-bottom: 2px solid var(--ink);
   background: var(--win) repeating-linear-gradient(var(--ink) 0 2px, transparent 2px 5px) 0 6px / 100% 22px no-repeat;
@@ -398,8 +401,8 @@ body[data-pattern='liso'] {
   flex-shrink: 0;
   display: grid;
   place-items: center;
-  width: 22px;
-  height: 22px;
+  width: 24px;
+  height: 24px;
   background: var(--win);
   border: 2px solid var(--ink);
   cursor: pointer;
@@ -440,7 +443,7 @@ body[data-pattern='liso'] {
   gap: 2px 4px;
   padding: 3px 8px;
   border-bottom: 2px solid var(--ink);
-  font-size: 13px;
+  font-size: 14px;
 }
 
 .win__menu a,
@@ -474,7 +477,7 @@ body[data-pattern='liso'] {
   gap: 4px 16px;
   padding: 4px 10px;
   border-top: 2px solid var(--ink);
-  font-size: 12px;
+  font-size: 13px;
 }
 
 .win--max {
@@ -522,6 +525,8 @@ body[data-pattern='liso'] {
 /* Post-it */
 .sticky {
   position: absolute;
+  left: clamp(0px, var(--x), 100% - 210px) !important;
+  top: var(--y) !important;
   z-index: 1;
   width: 190px;
   padding: 16px;
@@ -568,7 +573,7 @@ body[data-pattern='liso'] {
   padding: 0 10px;
   border: 2px solid var(--ink);
   background: #fff;
-  font-size: 13px;
+  font-size: 14px;
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
@@ -593,7 +598,7 @@ body[data-pattern='liso'] {
   align-items: center;
   gap: 12px;
   margin-left: auto;
-  font-size: 12px;
+  font-size: 13px;
   font-style: normal;
   white-space: nowrap;
 }
@@ -606,7 +611,7 @@ body[data-pattern='liso'] {
 }
 
 /* Telemóvel e ecrãs estreitos: as janelas empilham-se e não se arrastam */
-@media (max-width: 899px) {
+@media (max-width: 1023px) {
   .menubar__nav,
   .menubar__status {
     display: none;
@@ -628,8 +633,13 @@ body[data-pattern='liso'] {
   .icons a {
     flex-shrink: 0;
     width: 98px;
-    font-size: 11px;
+    font-size: 12px;
     overflow-wrap: anywhere;
+  }
+
+  .icons a span {
+    padding: 1px 2px;
+    font-size: 11px;
   }
 
   .icons .ico {
@@ -681,12 +691,48 @@ body[data-pattern='liso'] {
   }
 }
 
-@media (max-width: 1180px) and (min-width: 900px) {
+@media (max-width: 1240px) and (min-width: 1024px) {
   .windows {
     margin-right: 120px;
   }
 
   .icons a {
     width: 92px;
+  }
+}
+
+.taskbar__btn {
+  flex-shrink: 0;
+  display: grid;
+  place-items: center;
+  height: 36px;
+  min-width: 36px;
+  padding: 0 10px;
+  border: 2px solid var(--ink);
+  background: var(--win-2);
+  font-size: 14px;
+  font-weight: 600;
+}
+
+.taskbar__btn:hover {
+  background: var(--hl);
+}
+
+.desk-ico {
+  width: 18px;
+  height: 14px;
+  border: 2px solid var(--ink);
+  background: var(--desk);
+}
+
+@media (max-width: 1023px) {
+  .taskbar__btn[data-tidy] {
+    display: none;
+  }
+}
+
+@media (max-width: 1240px) {
+  .menubar__status {
+    display: none;
   }
 }

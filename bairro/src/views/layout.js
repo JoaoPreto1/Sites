@@ -4,6 +4,7 @@ import { icon } from './components.js';
 export const APPS = [
   { href: '/projetos', label: 'projetos', title: 'Projetos', ico: 'folder' },
   { href: '/equipa', label: 'equipa', title: 'Equipa', ico: 'folder' },
+  { href: '/processo', label: 'processo.exe', title: 'Como trabalhamos', ico: 'app' },
   { href: '/precos', label: 'preços.xls', title: 'Preços', ico: 'sheet' },
   { href: '/orcamento', label: 'orçamento.txt', title: 'Pedir orçamento', ico: 'doc' },
   { href: '/manifesto', label: 'manifesto.txt', title: 'Manifesto', ico: 'doc' },
@@ -23,7 +24,7 @@ export function menubar(path, opening) {
   return `<header class="menubar">
   <button class="start" type="button" aria-expanded="false" aria-controls="start-menu">✦ Bairro</button>
   <nav class="menubar__nav" aria-label="Principal">
-    ${APPS.slice(0, 5)
+    ${APPS.slice(0, 6)
       .map((app) => `<a href="${app.href}"${current(path, app.href)}>${app.title}</a>`)
       .join('')}
   </nav>
@@ -51,6 +52,8 @@ export const desktopIcons = (path) => `<nav class="icons" aria-label="Atalhos">
 
 export function taskbar(windows) {
   return `<footer class="taskbar">
+  <button class="taskbar__btn" type="button" data-show-desk aria-label="Mostrar o ambiente de trabalho" title="Mostrar o ambiente de trabalho"><span class="desk-ico" aria-hidden="true"></span></button>
+  <button class="taskbar__btn" type="button" data-tidy>Arrumar</button>
   <div class="tasks" aria-label="Janelas abertas">
     ${windows.map((w) => `<button class="task" type="button" data-task="w-${w.id}">${icon(w.ico ?? 'app')}${w.label ?? w.title}</button>`).join('')}
   </div>

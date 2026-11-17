@@ -10,7 +10,7 @@
   border-right: 2px solid var(--ink);
   background: var(--win-2);
   color: var(--mute);
-  font-size: 12px;
+  font-size: 13px;
   line-height: 2.05;
   text-align: center;
   overflow: hidden;
@@ -179,7 +179,7 @@
   margin-top: 20px;
 }
 
-@media (max-width: 899px) {
+@media (max-width: 1023px) {
   .editor {
     grid-template-columns: 1fr;
   }

@@ -3,7 +3,7 @@
 }
 
 .welcome__title {
-  font-size: clamp(38px, 6.2vw, 74px);
+  font-size: clamp(36px, 4.4vw, 64px);
   line-height: 0.98;
   letter-spacing: -0.5px;
 }
@@ -41,7 +41,7 @@
 }
 
 .note-form {
-  font-size: 14px;
+  font-size: 15px;
 }
 
 .note-row {
@@ -99,7 +99,7 @@
 }
 
 .note-done {
-  font-size: 15px;
+  font-size: 16px;
   line-height: 32px;
 }
 
@@ -108,7 +108,7 @@
   font-size: 22px;
 }
 
-@media (max-width: 899px) {
+@media (max-width: 1023px) {
   .welcome .win__body {
     padding: 20px 18px;
   }

@@ -45,7 +45,7 @@
   display: grid;
   align-content: start;
   gap: 6px;
-  font-size: 14px;
+  font-size: 15px;
 }
 
 .card__name {
@@ -57,7 +57,7 @@
   padding: 0 6px;
   background: var(--hl);
   font-weight: 600;
-  font-size: 13px;
+  font-size: 14px;
 }
 
 .card--cat {
@@ -142,7 +142,7 @@
 }
 
 .cal__free {
-  font-size: 13px;
+  font-size: 14px;
   font-weight: 600;
 }
 
@@ -156,7 +156,7 @@
 
 .visit {
   background: #fff;
-  font-size: 14px;
+  font-size: 15px;
 }
 
 .visit p + p {
@@ -171,7 +171,7 @@
   margin-bottom: 12px;
 }
 
-@media (max-width: 899px) {
+@media (max-width: 1023px) {
   .team-win .win__body {
     padding: 16px;
   }
@@ -188,7 +188,7 @@
   .card__photo,
   .card__ascii {
     width: 96px;
-    font-size: 15px;
+    font-size: 16px;
   }
 
   .cal__months {
