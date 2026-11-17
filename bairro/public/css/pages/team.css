@@ -1,0 +1,201 @@
+.team-win .win__body {
+  padding: 24px;
+}
+
+.team__intro h1 {
+  font-size: clamp(32px, 4vw, 46px);
+}
+
+.team__intro p {
+  max-width: 72ch;
+  margin-top: 8px;
+}
+
+.cards {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 18px;
+  margin-top: 22px;
+}
+
+.card {
+  display: grid;
+  grid-template-columns: 150px minmax(0, 1fr);
+  gap: 16px;
+  padding: 14px;
+  background: #fff;
+  border: 2px solid var(--ink);
+  box-shadow: 4px 4px 0 var(--ink);
+}
+
+.card__photo {
+  width: 150px;
+  aspect-ratio: 1 / 1.15;
+  object-fit: cover;
+  border: 2px solid var(--ink);
+  filter: grayscale(1) contrast(1.1);
+  transition: filter 0.3s;
+}
+
+.card:hover .card__photo {
+  filter: none;
+}
+
+.card__text {
+  display: grid;
+  align-content: start;
+  gap: 6px;
+  font-size: 14px;
+}
+
+.card__name {
+  font-size: 24px;
+}
+
+.card__role {
+  justify-self: start;
+  padding: 0 6px;
+  background: var(--hl);
+  font-weight: 600;
+  font-size: 13px;
+}
+
+.card--cat {
+  background: var(--ink);
+  color: var(--win);
+}
+
+.card--cat .mute {
+  color: #c9c6bd;
+}
+
+.card--cat .card__role {
+  color: var(--ink);
+}
+
+.card__ascii {
+  display: grid;
+  place-items: center;
+  width: 150px;
+  aspect-ratio: 1 / 1.15;
+  border: 2px solid var(--win);
+  color: var(--hl);
+  font-size: 22px;
+  line-height: 1.2;
+}
+
+.team__bottom {
+  display: grid;
+  grid-template-columns: minmax(0, 1.4fr) minmax(0, 1fr);
+  gap: 18px;
+  margin-top: 22px;
+}
+
+.cal,
+.visit {
+  padding: 18px;
+  border: 2px solid var(--ink);
+  background: var(--paper);
+}
+
+.cal__title {
+  font-size: 22px;
+  margin-bottom: 4px;
+}
+
+.cal__months {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 10px;
+  margin: 16px 0 18px;
+}
+
+.cal__month {
+  display: grid;
+  gap: 8px;
+  padding: 10px;
+  border: 2px solid var(--ink);
+  background: #fff;
+  text-align: center;
+}
+
+.cal__name {
+  font-family: var(--pixel);
+  font-size: 18px;
+}
+
+.cal__slots {
+  display: flex;
+  justify-content: center;
+  gap: 6px;
+}
+
+.cal__slots i {
+  width: 16px;
+  height: 16px;
+  border: 2px solid var(--ink);
+  background: var(--hl);
+}
+
+.cal__slots i.is-taken {
+  background: repeating-linear-gradient(45deg, var(--ink) 0 2px, transparent 2px 5px);
+}
+
+.cal__free {
+  font-size: 13px;
+  font-weight: 600;
+}
+
+.cal__month.is-full {
+  background: var(--win-2);
+}
+
+.cal__month.is-full .cal__free {
+  color: var(--mute);
+}
+
+.visit {
+  background: #fff;
+  font-size: 14px;
+}
+
+.visit p + p {
+  margin-top: 6px;
+}
+
+.visit__photo {
+  width: 100%;
+  aspect-ratio: 5 / 3;
+  object-fit: cover;
+  border: 2px solid var(--ink);
+  margin-bottom: 12px;
+}
+
+@media (max-width: 899px) {
+  .team-win .win__body {
+    padding: 16px;
+  }
+
+  .cards,
+  .team__bottom {
+    grid-template-columns: 1fr;
+  }
+
+  .card {
+    grid-template-columns: 96px minmax(0, 1fr);
+  }
+
+  .card__photo,
+  .card__ascii {
+    width: 96px;
+    font-size: 15px;
+  }
+
+  .cal__months {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+.cal__name .mute {
+  display: block;
+}
