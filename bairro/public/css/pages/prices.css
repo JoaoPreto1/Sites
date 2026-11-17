@@ -1,0 +1,178 @@
+.sheet__formula {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 6px 10px;
+  border-bottom: 2px solid var(--ink);
+  font-size: 13px;
+}
+
+.sheet__cell-ref {
+  width: 64px;
+  padding: 2px 8px;
+  border: 2px solid var(--ink);
+  background: #fff;
+  text-align: center;
+}
+
+.sheet__fx {
+  font-style: italic;
+  font-weight: 600;
+}
+
+.sheet__formula [data-formula] {
+  flex: 1;
+  padding: 2px 8px;
+  border: 2px solid var(--ink);
+  background: #fff;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+}
+
+.sheet__panel {
+  padding: 20px;
+  background: #fff;
+}
+
+.sheet__head h1,
+.sheet__head h2 {
+  font-size: clamp(30px, 4vw, 42px);
+}
+
+.sheet__head p {
+  max-width: 70ch;
+  margin: 6px 0 16px;
+}
+
+.sheet {
+  font-size: 14px;
+}
+
+.sheet .sheet__n {
+  width: 38px;
+  padding: 8px 4px;
+  background: var(--win-2);
+  border-right: 2px solid var(--ink);
+  color: var(--mute);
+  font-weight: 400;
+  text-align: center;
+  font-size: 12px;
+  letter-spacing: 0;
+  text-transform: none;
+}
+
+.sheet__col {
+  text-align: center !important;
+  color: var(--mute);
+  font-weight: 400 !important;
+}
+
+.sheet td {
+  border-right: 1px solid rgba(20, 20, 20, 0.12);
+}
+
+.sheet__labels td {
+  background: #f7f5ef;
+}
+
+.sheet__label {
+  font-size: 12px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+.sheet__check {
+  width: 74px;
+  text-align: center !important;
+}
+
+.sheet__check .check {
+  justify-content: center;
+}
+
+.sheet__detail {
+  display: block;
+  color: var(--mute);
+  font-size: 12px;
+}
+
+.sheet tr:has(input:checked) td {
+  background: #fffbe0;
+}
+
+.sheet__totals td {
+  background: var(--hl) !important;
+  border-top: 2px solid var(--ink);
+}
+
+.sheet__total {
+  font-family: var(--pixel);
+  font-size: 20px;
+}
+
+.sheet__actions {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 12px 18px;
+  margin-top: 18px;
+}
+
+.sheet__tabs {
+  display: flex;
+  gap: 2px;
+  padding: 0 10px;
+  border-top: 2px solid var(--ink);
+  background: var(--win-2);
+}
+
+.sheet__tabs button {
+  position: relative;
+  top: -2px;
+  padding: 6px 16px;
+  border: 2px solid var(--ink);
+  border-top-color: transparent;
+  background: var(--win-2);
+  font-size: 13px;
+  font-weight: 600;
+}
+
+.sheet__tabs [aria-selected='true'] {
+  background: #fff;
+}
+
+.faq {
+  max-width: 76ch;
+}
+
+.faq dt {
+  margin-top: 16px;
+  font-weight: 600;
+}
+
+.faq dt::before {
+  content: '? ';
+  color: var(--accent);
+}
+
+.faq dd {
+  margin-top: 4px;
+  color: #33322e;
+}
+
+@media (max-width: 899px) {
+  .sheet__panel {
+    padding: 14px 10px;
+  }
+
+  .sheet .sheet__n,
+  .sheet thead {
+    display: none;
+  }
+
+  .sheet__check {
+    width: 46px;
+  }
+}
