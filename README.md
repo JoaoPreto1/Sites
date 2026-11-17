@@ -51,6 +51,14 @@ Cada site vive na sua própria pasta e já traz login com JWT, rotas, validaçã
       <p>✅ <strong>Pronto</strong></p>
     </td>
   </tr>
+  <tr>
+    <td width="50%"><a href="bairro/"><img src="bairro/docs/capa.jpg" alt="Bairro" width="100%"></a></td>
+    <td>
+      <h3><a href="bairro/">Bairro</a></h3>
+      <p>Estúdio de design no Porto com o site feito como um ambiente de trabalho: janelas que se arrastam, explorador de projetos, folha de preços que faz a conta, orçamento no bloco de notas, área de cliente para aprovar provas e gestor de tarefas do estúdio.</p>
+      <p>✅ <strong>Pronto</strong></p>
+    </td>
+  </tr>
 </table>
 
 ### ⏳ Lista de espera
