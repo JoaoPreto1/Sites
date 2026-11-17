@@ -9,6 +9,8 @@ import { teamWindows } from '../views/pages/team.js';
 import { FAQ, pricesWindows } from '../views/pages/prices.js';
 import { quoteWindows } from '../views/pages/quote.js';
 import { manifestoWindows, settingsWindows, trashWindows } from '../views/pages/extras.js';
+import { accountWindows, adminWindows, loginWindows } from '../views/pages/private.js';
+import { absolute } from '../seo/head.js';
 import { projectsWindows, projectWindows } from '../views/pages/projects.js';
 import { documentHtml } from '../views/document.js';
 import { FEATURED_SIZES, FEATURED_WIDTHS, homeSticky, homeWindows } from '../views/pages/home.js';
@@ -167,6 +169,46 @@ router.get('/definicoes', async (req, res) => {
     page: { title: 'Definições', description: 'Mude a cor e o padrão do fundo do ambiente de trabalho.', noindex: true },
     windows: settingsWindows(),
   });
+});
+
+const privatePage = (title) => ({ title, description: 'Área reservada a clientes e à equipa do estúdio Bairro.', noindex: true });
+
+router.get('/entrar', async (req, res) => {
+  const email = typeof req.query.email === 'string' ? req.query.email.slice(0, 120) : '';
+  await send(req, res, { page: privatePage('Área de cliente'), windows: loginWindows({ email, register: req.query.registar === '1' }) });
+});
+
+router.get('/conta', async (req, res) => {
+  await send(req, res, { page: privatePage('O meu projeto'), windows: accountWindows() });
+});
+
+router.get('/painel', async (req, res) => {
+  await send(req, res, { page: privatePage('Gestor de tarefas'), windows: adminWindows() });
+});
+
+router.get('/robots.txt', (req, res) => {
+  res.type('text/plain').send(`User-agent: *\nDisallow: /api/\nDisallow: /conta\nDisallow: /painel\nDisallow: /entrar\nDisallow: /definicoes\n\nSitemap: ${absolute('/sitemap.xml')}\n`);
+});
+
+router.get('/sitemap.xml', async (req, res) => {
+  const [projects, categories] = await Promise.all([listProjects(), categoryCounts()]);
+  const today = lisbonToday();
+  const urls = [
+    ['/', '1.0'],
+    ['/projetos', '0.9'],
+    ...categories.filter((c) => c.count).map((c) => [`/projetos?categoria=${c.slug}`, '0.6']),
+    ...projects.map((p) => [`/projetos/${p.slug}`, '0.8']),
+    ['/equipa', '0.7'],
+    ['/precos', '0.8'],
+    ['/orcamento', '0.7'],
+    ['/manifesto', '0.5'],
+    ['/lixo', '0.3'],
+  ];
+  const xml = `<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+${urls.map(([path, priority]) => `  <url><loc>${absolute(path).replace(/&/g, '&amp;')}</loc><lastmod>${today}</lastmod><priority>${priority}</priority></url>`).join('\n')}
+</urlset>`;
+  res.type('application/xml').send(xml);
 });
 
 export default router;
