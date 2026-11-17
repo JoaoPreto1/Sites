@@ -2,7 +2,7 @@ import { api, clearSession, saveSession, storedUser } from './api.js';
 
 export const currentUser = () => storedUser();
 
-export const isStaff = (user = currentUser()) => user?.role === 'staff' || user?.role === 'admin';
+export const isStaff = (user = currentUser()) => user?.role === 'admin';
 
 export async function login(credentials) {
   const session = await api('/auth/login', { method: 'POST', body: credentials });

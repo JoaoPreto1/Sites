@@ -1,0 +1,691 @@
+/* Fundo do ambiente de trabalho: cor e padrão mudam nas definições */
+body {
+  background-color: var(--desk);
+  background-image: radial-gradient(var(--desk-dots) 1px, transparent 1.6px);
+  background-size: 14px 14px;
+}
+
+body[data-pattern='grelha'] {
+  background-image: linear-gradient(var(--desk-dots) 1px, transparent 1px), linear-gradient(90deg, var(--desk-dots) 1px, transparent 1px);
+  background-size: 28px 28px;
+}
+
+body[data-pattern='liso'] {
+  background-image: none;
+}
+
+/* Barra de menus */
+.menubar {
+  position: sticky;
+  top: 0;
+  z-index: 60;
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  height: var(--bar-h);
+  padding: 0 10px;
+  background: var(--win);
+  border-bottom: 2px solid var(--ink);
+  font-size: 14px;
+}
+
+.start {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  height: 28px;
+  padding: 0 10px;
+  font-family: var(--pixel);
+  font-size: 18px;
+  font-weight: 600;
+  text-decoration: none;
+}
+
+.start[aria-expanded='true'],
+.start:hover {
+  background: var(--ink);
+  color: var(--hl);
+}
+
+.menubar__nav {
+  display: flex;
+  align-items: center;
+  gap: 2px;
+}
+
+.menubar__nav a,
+.menubar__right a {
+  display: flex;
+  align-items: center;
+  height: 28px;
+  padding: 0 10px;
+  text-decoration: none;
+}
+
+.menubar__nav a:hover,
+.menubar__nav a[aria-current='page'],
+.menubar__right a:hover {
+  background: var(--ink);
+  color: var(--win);
+}
+
+.menubar__right {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  margin-left: auto;
+}
+
+.menubar__status {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 0 8px;
+}
+
+.dot {
+  display: inline-block;
+  width: 9px;
+  height: 9px;
+  border-radius: 50%;
+  background: var(--ok);
+  box-shadow: 0 0 0 2px rgba(31, 138, 76, 0.25);
+}
+
+.dot--off {
+  background: var(--accent);
+}
+
+.clock {
+  min-width: 5ch;
+  font-variant-numeric: tabular-nums;
+}
+
+/* Menu iniciar */
+.start-menu {
+  position: fixed;
+  left: 10px;
+  top: calc(var(--bar-h) + 4px);
+  z-index: 70;
+  width: 290px;
+  background: var(--win);
+  border: 2px solid var(--ink);
+  box-shadow: var(--shadow);
+}
+
+.start-menu__head {
+  padding: 12px 14px;
+  background: var(--ink);
+  color: var(--hl);
+  font-family: var(--pixel);
+  font-size: 20px;
+}
+
+.start-menu ul {
+  padding: 6px;
+}
+
+.start-menu a {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 7px 8px;
+  text-decoration: none;
+}
+
+.start-menu a:hover,
+.start-menu a:focus-visible {
+  background: var(--hl);
+}
+
+.start-menu .ico {
+  --size: 26px;
+}
+
+.start-menu hr {
+  margin: 6px 4px;
+  border: 0;
+  border-top: 2px dashed rgba(20, 20, 20, 0.25);
+}
+
+/* Ambiente de trabalho */
+.desk {
+  position: relative;
+  min-height: calc(100vh - var(--bar-h));
+  padding-bottom: calc(var(--task-h) + 30px);
+}
+
+.windows {
+  position: relative;
+  min-height: var(--desk-h, 680px);
+  margin-right: 140px;
+}
+
+/* Ícones */
+.icons {
+  position: absolute;
+  top: 22px;
+  right: 18px;
+  z-index: 1;
+  display: grid;
+  gap: 14px;
+  justify-items: center;
+}
+
+.icons a {
+  display: grid;
+  justify-items: center;
+  gap: 6px;
+  width: 104px;
+  padding: 6px 2px;
+  color: #fff;
+  font-size: 12px;
+  text-align: center;
+  text-decoration: none;
+}
+
+.icons a span {
+  padding: 1px 5px;
+}
+
+.icons a:hover span,
+.icons a[aria-current='page'] span {
+  background: var(--ink);
+  color: var(--hl);
+}
+
+.ico {
+  --size: 52px;
+  position: relative;
+  width: var(--size);
+  height: calc(var(--size) * 0.86);
+  flex-shrink: 0;
+}
+
+.ico::before,
+.ico::after {
+  content: '';
+  position: absolute;
+}
+
+/* pasta */
+.ico--folder::before {
+  inset: 18% 0 0;
+  background: var(--hl);
+  border: 2px solid var(--ink);
+  box-shadow: 3px 3px 0 var(--ink);
+}
+
+.ico--folder::after {
+  left: 0;
+  top: 2%;
+  width: 46%;
+  height: 20%;
+  background: var(--hl);
+  border: 2px solid var(--ink);
+  border-bottom: 0;
+}
+
+/* ficheiro de texto */
+.ico--doc::before {
+  inset: 0 16%;
+  background: #fff linear-gradient(var(--ink), var(--ink)) no-repeat 50% 28% / 56% 2px;
+  border: 2px solid var(--ink);
+  box-shadow: 3px 3px 0 var(--ink);
+}
+
+.ico--doc::after {
+  left: 30%;
+  right: 30%;
+  top: 40%;
+  height: 34%;
+  background: repeating-linear-gradient(var(--ink) 0 2px, transparent 2px 6px);
+}
+
+/* folha de cálculo */
+.ico--sheet::before {
+  inset: 0 12%;
+  background: #fff;
+  border: 2px solid var(--ink);
+  box-shadow: 3px 3px 0 var(--ink);
+}
+
+.ico--sheet::after {
+  left: 20%;
+  right: 20%;
+  top: 16%;
+  bottom: 16%;
+  background: linear-gradient(90deg, transparent 32%, var(--ok) 32% 38%, transparent 38%), repeating-linear-gradient(#1f8a4c55 0 2px, transparent 2px 8px);
+}
+
+/* caixote do lixo */
+.ico--trash::before {
+  left: 24%;
+  right: 24%;
+  top: 22%;
+  bottom: 0;
+  background: #cfd6da repeating-linear-gradient(90deg, transparent 0 6px, rgba(20, 20, 20, 0.35) 6px 8px);
+  border: 2px solid var(--ink);
+  border-radius: 0 0 6px 6px;
+  box-shadow: 3px 3px 0 var(--ink);
+}
+
+.ico--trash::after {
+  left: 14%;
+  right: 14%;
+  top: 8%;
+  height: 12%;
+  background: #cfd6da;
+  border: 2px solid var(--ink);
+}
+
+/* aplicação (janela pequena) */
+.ico--app::before {
+  inset: 6% 6% 0;
+  background: #fff;
+  border: 2px solid var(--ink);
+  box-shadow: 3px 3px 0 var(--ink);
+}
+
+.ico--app::after {
+  left: 6%;
+  right: 6%;
+  top: 6%;
+  height: 24%;
+  background: var(--accent);
+  border: 2px solid var(--ink);
+}
+
+/* definições: roda dentada simplificada */
+.ico--gear::before {
+  inset: 8% 16%;
+  border-radius: 50%;
+  background: #cfd6da;
+  border: 2px solid var(--ink);
+  box-shadow: 3px 3px 0 var(--ink);
+  outline: 5px dashed var(--ink);
+  outline-offset: -2px;
+}
+
+.ico--gear::after {
+  inset: 34% 40%;
+  border-radius: 50%;
+  background: var(--win);
+  border: 2px solid var(--ink);
+}
+
+/* pessoa */
+.ico--user::before {
+  left: 30%;
+  right: 30%;
+  top: 2%;
+  height: 40%;
+  border-radius: 50%;
+  background: var(--hl);
+  border: 2px solid var(--ink);
+}
+
+.ico--user::after {
+  left: 14%;
+  right: 14%;
+  bottom: 0;
+  height: 46%;
+  border-radius: 40% 40% 0 0;
+  background: var(--accent);
+  border: 2px solid var(--ink);
+}
+
+/* Janelas */
+.win {
+  position: absolute;
+  left: var(--x);
+  top: var(--y);
+  z-index: var(--z, 2);
+  width: min(var(--w), calc(100vw - 32px));
+  translate: var(--dx, 0px) var(--dy, 0px);
+  display: flex;
+  flex-direction: column;
+  background: var(--win);
+  border: 2px solid var(--ink);
+  box-shadow: 8px 8px 0 var(--ink);
+}
+
+.win--primary {
+  position: relative;
+  left: auto;
+  top: auto;
+  margin-left: var(--x);
+  margin-top: var(--y);
+}
+
+.win[hidden] {
+  display: none;
+}
+
+.win__bar {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  height: 34px;
+  padding: 0 8px;
+  border-bottom: 2px solid var(--ink);
+  background: var(--win) repeating-linear-gradient(var(--ink) 0 2px, transparent 2px 5px) 0 6px / 100% 22px no-repeat;
+  cursor: grab;
+  touch-action: none;
+  user-select: none;
+}
+
+.win.is-active .win__bar {
+  background-image: repeating-linear-gradient(var(--ink) 0 2px, var(--accent) 2px 5px);
+}
+
+.win.is-dragging .win__bar {
+  cursor: grabbing;
+}
+
+.win__title {
+  min-width: 0;
+  margin: 0 auto;
+  padding: 0 10px;
+  background: var(--win);
+  font-size: 16px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.win__ctl {
+  flex-shrink: 0;
+  display: grid;
+  place-items: center;
+  width: 22px;
+  height: 22px;
+  background: var(--win);
+  border: 2px solid var(--ink);
+  cursor: pointer;
+}
+
+.win__ctl::before {
+  content: '';
+  width: 10px;
+  height: 2px;
+  background: var(--ink);
+}
+
+.win__ctl[data-act='close']::before {
+  height: 10px;
+  background: linear-gradient(45deg, transparent 43%, var(--ink) 43% 57%, transparent 57%), linear-gradient(-45deg, transparent 43%, var(--ink) 43% 57%, transparent 57%);
+}
+
+.win__ctl[data-act='max']::before {
+  height: 10px;
+  background: none;
+  border: 2px solid var(--ink);
+  border-top-width: 3px;
+}
+
+.win__ctl:hover {
+  background: var(--hl);
+}
+
+.win__ctls {
+  display: flex;
+  gap: 4px;
+}
+
+.win__menu {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 2px 4px;
+  padding: 3px 8px;
+  border-bottom: 2px solid var(--ink);
+  font-size: 13px;
+}
+
+.win__menu a,
+.win__menu button {
+  padding: 2px 8px;
+  text-decoration: none;
+}
+
+.win__menu a:hover,
+.win__menu button:hover,
+.win__menu [aria-current='true'],
+.win__menu [aria-pressed='true'] {
+  background: var(--ink);
+  color: var(--win);
+}
+
+.win__body {
+  flex: 1;
+  min-height: 0;
+  padding: 22px;
+}
+
+.win__body--flush {
+  padding: 0;
+}
+
+.win__status {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  gap: 4px 16px;
+  padding: 4px 10px;
+  border-top: 2px solid var(--ink);
+  font-size: 12px;
+}
+
+.win--max {
+  position: fixed !important;
+  inset: calc(var(--bar-h) + 6px) 6px calc(var(--task-h) + 6px) !important;
+  width: auto !important;
+  margin: 0 !important;
+  translate: none !important;
+  z-index: 50 !important;
+}
+
+.win--max .win__body {
+  overflow: auto;
+}
+
+.win.is-opening {
+  animation: open 0.16s ease-out;
+}
+
+@keyframes open {
+  from {
+    transform: scale(0.96);
+    opacity: 0;
+  }
+}
+
+/* Bloco de notas amarelo */
+.win--note {
+  background: var(--paper);
+}
+
+.win--note .win__title {
+  background: var(--paper);
+}
+
+.win--note .win__bar {
+  background-color: var(--paper);
+}
+
+.lined {
+  background: repeating-linear-gradient(transparent 0 31px, #d9cf8a 31px 32px);
+  line-height: 32px;
+}
+
+/* Post-it */
+.sticky {
+  position: absolute;
+  z-index: 1;
+  width: 190px;
+  padding: 16px;
+  background: var(--hl);
+  border: 2px solid var(--ink);
+  box-shadow: 4px 4px 0 var(--ink);
+  font-family: var(--pixel);
+  font-size: 18px;
+  line-height: 1.25;
+  rotate: 4deg;
+}
+
+/* Barra de tarefas */
+.taskbar {
+  position: fixed;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: 60;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  height: var(--task-h);
+  padding: 0 10px;
+  background: var(--win);
+  border-top: 2px solid var(--ink);
+}
+
+.tasks {
+  display: flex;
+  gap: 6px;
+  min-width: 0;
+  overflow-x: auto;
+  scrollbar-width: none;
+}
+
+.task {
+  flex-shrink: 0;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  max-width: 220px;
+  height: 34px;
+  padding: 0 10px;
+  border: 2px solid var(--ink);
+  background: #fff;
+  font-size: 13px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.task .ico {
+  --size: 18px;
+}
+
+.task.is-active {
+  background: var(--ink);
+  color: var(--hl);
+}
+
+.task.is-min {
+  background: transparent;
+  border-style: dashed;
+}
+
+.tray {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-left: auto;
+  font-size: 12px;
+  font-style: normal;
+  white-space: nowrap;
+}
+
+.tray .clock {
+  padding: 4px 10px;
+  border: 2px solid var(--ink);
+  font-family: var(--pixel);
+  font-size: 17px;
+}
+
+/* Telemóvel e ecrãs estreitos: as janelas empilham-se e não se arrastam */
+@media (max-width: 899px) {
+  .menubar__nav,
+  .menubar__status {
+    display: none;
+  }
+
+  .desk {
+    padding: 0 0 calc(var(--task-h) + 24px);
+  }
+
+  .icons {
+    position: static;
+    display: flex;
+    gap: 2px;
+    overflow-x: auto;
+    padding: 14px 8px 6px;
+    scrollbar-width: none;
+  }
+
+  .icons a {
+    flex-shrink: 0;
+    width: 84px;
+    overflow-wrap: anywhere;
+  }
+
+  .icons .ico {
+    --size: 42px;
+  }
+
+  .windows {
+    min-height: 0 !important;
+    margin: 0;
+    padding: 8px 12px 0;
+    display: flex;
+    flex-direction: column;
+    gap: 22px;
+  }
+
+  .win,
+  .win--primary {
+    position: relative;
+    left: auto;
+    top: auto;
+    width: auto;
+    margin: 0;
+    translate: none;
+    box-shadow: 5px 5px 0 var(--ink);
+  }
+
+  .win__bar {
+    cursor: default;
+  }
+
+  .win__ctl[data-act='max'] {
+    display: none;
+  }
+
+  .win__body {
+    padding: 16px;
+  }
+
+  .sticky {
+    position: relative;
+    left: auto !important;
+    top: auto !important;
+    margin: 8px auto 0;
+    rotate: -2deg;
+  }
+
+  .tray address {
+    display: none;
+  }
+}
+
+@media (max-width: 1180px) and (min-width: 900px) {
+  .windows {
+    margin-right: 120px;
+  }
+
+  .icons a {
+    width: 92px;
+  }
+}

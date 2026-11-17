@@ -43,7 +43,7 @@ export function showFieldErrors(form, details = []) {
     const error = document.createElement('span');
     error.className = 'field-error';
     error.textContent = message;
-    target.closest('.field, .check')?.append(error);
+    target.closest('.field, .check, .note-row')?.append(error);
   }
   form.querySelector('[aria-invalid]')?.focus();
 }
