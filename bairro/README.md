@@ -25,7 +25,7 @@
 
 O Bairro é um **estúdio de design com três pessoas e um gato**, num segundo andar da Rua do Almada, no Porto. Faz marcas, sites, embalagens e cartazes para negócios pequenos.
 
-Em vez de um site com menu em cima, fotografia grande e cartões, o site é um **ambiente de trabalho**. Há ícones de pastas e ficheiros, uma barra de menus com relógio e uma barra de tarefas. Cada página abre como uma janela: o portefólio é um **explorador de ficheiros**, cada projeto abre num **visualizador de imagens**, os preços são uma **folha de cálculo** que faz a conta, o pedido de orçamento é um **bloco de notas**, o manifesto está num **editor de texto** e há um **caixote do lixo** com as ideias más do estúdio.
+Em vez de um site com menu em cima, fotografia grande e cartões, o site é um **ambiente de trabalho**. Há ícones de pastas e ficheiros, uma barra de menus com relógio e uma barra de tarefas. Cada página abre como uma janela: o portefólio é um **explorador de ficheiros**, cada projeto abre num **visualizador de imagens**, o processo de trabalho é um **assistente de instalação** (Seguinte ›), os preços são uma **folha de cálculo** que faz a conta, o pedido de orçamento é um **bloco de notas**, o manifesto está num **editor de texto** e há um **caixote do lixo** com as ideias más do estúdio.
 
 Os links não recarregam a página: a janela nova abre por cima das outras e fica na barra de tarefas, e o endereço muda para o da página. Cada janela continua a ser uma página normal, desenhada no servidor, com título, descrição e dados estruturados próprios.
 
@@ -42,10 +42,12 @@ Funciona **sem base de dados**: os dados vivem em memória e já trazem 8 projet
   <tr valign="top">
     <td>
       • Janelas que se arrastam, minimizam e maximizam<br>
+      • Botões para arrumar as janelas e mostrar o ambiente de trabalho<br>
       • Abrir páginas sem recarregar, com barra de tarefas<br>
       • Explorador de projetos com pastas, procura e vista em lista<br>
       • Visualizador com fotografias, propriedades e paleta<br>
       • Equipa e vagas para começar em cada mês<br>
+      • Como trabalhamos, num assistente de instalação<br>
       • Folha de preços que calcula a estimativa<br>
       • Pedido de orçamento no bloco de notas<br>
       • Manifesto, caixote do lixo e cor do fundo à escolha
@@ -74,9 +76,10 @@ Funciona **sem base de dados**: os dados vivem em memória e já trazem 8 projet
 
 - **Cada página é uma janela.** O servidor desenha a janela principal da página (e, na página inicial, mais três janelas e um post-it). Sem JavaScript o site funciona como qualquer outro: os links abrem páginas.
 - **Abrir sem recarregar.** Com JavaScript, um clique num link vai buscar a página ao servidor, tira de lá a janela principal e põe-na em cima das outras, em cascata. O endereço, o título e o botão de voltar atrás funcionam como numa página normal. Se a janela já está aberta, passa para a frente.
-- **Gestor de janelas** (`public/js/os/wm.js`): arrastar pela barra de título, duplo clique para maximizar, minimizar para a barra de tarefas, fechar, foco ao clicar. As posições ficam guardadas durante a sessão.
+- **Gestor de janelas** (`public/js/os/wm.js`): arrastar pela barra de título, duplo clique para maximizar, minimizar para a barra de tarefas, fechar, foco ao clicar. As posições ficam guardadas durante a sessão, e o botão **Arrumar** da barra de tarefas volta a pô-las em cascata.
+- **Cabe sempre no ecrã.** A posição e a largura de cada janela encolhem para caber na largura disponível, as janelas não se arrastam para fora do alcance e o ambiente de trabalho cresce à medida que o conteúdo das janelas carrega, para dar sempre para fazer scroll até ao fim.
 - **Cada janela traz o seu script**: o explorador procura e muda de vista, o visualizador troca de fotografia com as setas, a folha de cálculo faz a conta, o bloco de notas envia o pedido. Os scripts só carregam quando a janela abre.
-- **No telemóvel** as janelas empilham-se e não se arrastam, os ícones ficam numa fila no topo e a barra de tarefas continua em baixo.
+- **Em ecrãs com menos de 1024 px** (tablets e telemóveis) as janelas empilham-se e não se arrastam, os ícones ficam numa fila no topo e a barra de tarefas continua em baixo.
 - **Ícones desenhados em CSS** (pastas, ficheiros, folha de cálculo, lixo), sem imagens.
 - **Definições**: a cor e o padrão do fundo mudam e ficam guardados no browser.
 
@@ -89,21 +92,16 @@ Funciona **sem base de dados**: os dados vivem em memória e já trazem 8 projet
 | ![Projeto](docs/projeto.jpg) | ![Equipa](docs/equipa.jpg) |
 | **Folha de preços** | **Pedir orçamento** |
 | ![Preços](docs/precos.jpg) | ![Orçamento](docs/orcamento.jpg) |
-| **Manifesto** | **Ideias más** |
-| ![Manifesto](docs/manifesto.jpg) | ![Lixo](docs/lixo.jpg) |
-| **Entrar** | **Ficheiro não encontrado** |
-| ![Entrar](docs/entrar.jpg) | ![Erro](docs/erro.jpg) |
-| **O meu projeto** | **Provas** |
-| ![Conta](docs/conta.jpg) | ![Provas](docs/provas.jpg) |
-| **Mensagens** | **Gestor de tarefas** |
-| ![Mensagens](docs/mensagens.jpg) | ![Painel](docs/painel.jpg) |
-
-<details>
-<summary><strong>Trabalhos no gestor de tarefas</strong></summary>
-
-![Trabalhos](docs/painel-trabalhos.jpg)
-
-</details>
+| **Como trabalhamos** | **Manifesto** |
+| ![Como trabalhamos](docs/processo.jpg) | ![Manifesto](docs/manifesto.jpg) |
+| **Ideias más** | **Entrar** |
+| ![Lixo](docs/lixo.jpg) | ![Entrar](docs/entrar.jpg) |
+| **Ficheiro não encontrado** | **O meu projeto** |
+| ![Erro](docs/erro.jpg) | ![Conta](docs/conta.jpg) |
+| **Provas** | **Mensagens** |
+| ![Provas](docs/provas.jpg) | ![Mensagens](docs/mensagens.jpg) |
+| **Gestor de tarefas** | **Trabalhos em curso** |
+| ![Painel](docs/painel.jpg) | ![Trabalhos](docs/painel-trabalhos.jpg) |
 
 ### 📱 No telemóvel
 
@@ -138,6 +136,7 @@ Resultados do Lighthouse 12 (telemóvel com rede 4G lenta simulada / computador)
 | Um projeto | 99 / 100 | 100 | 100 | 100 |
 | Equipa | 100 / 100 | 100 | 100 | 100 |
 | Preços | 100 / 100 | 100 | 100 | 100 |
+| Como trabalhamos | 100 / 100 | 100 | 100 | 100 |
 | Pedir orçamento | 100 | 100 | 100 | 100 |
 | Manifesto | 100 | 100 | 100 | 100 |
 
@@ -145,7 +144,7 @@ Resultados do Lighthouse 12 (telemóvel com rede 4G lenta simulada / computador)
 
 - Todas as páginas públicas são desenhadas no servidor, com o `h1` no corpo da janela principal.
 - Título, descrição, `canonical`, Open Graph e Twitter Card em cada página; cada projeto usa a primeira fotografia como imagem de partilha. As pastas de cada categoria (`/projetos?categoria=embalagem`) têm título e descrição próprios.
-- Dados estruturados (JSON-LD): `ProfessionalService` com morada, horário e equipa, `CreativeWork` para cada projeto, `ItemList` do portefólio, `AboutPage` com as pessoas, `OfferCatalog` com os preços de cada serviço, `FAQPage` e `BreadcrumbList`.
+- Dados estruturados (JSON-LD): `ProfessionalService` com morada, horário e equipa, `CreativeWork` para cada projeto, `HowTo` com as fases de trabalho, `ItemList` do portefólio, `AboutPage` com as pessoas, `OfferCatalog` com os preços de cada serviço, `FAQPage` e `BreadcrumbList`.
 - `/sitemap.xml` gerado a partir dos projetos publicados e `/robots.txt` que deixa de fora a API, a área de cliente, o painel e as definições.
 - O endereço público vem de `SITE_URL` no `.env`.
 
