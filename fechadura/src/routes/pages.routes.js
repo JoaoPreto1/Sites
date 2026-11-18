@@ -1,5 +1,6 @@
 import { Router } from 'express';
 import { documentHtml } from '../views/document.js';
+import { absolute } from '../seo/head.js';
 import { listRooms } from '../services/room.service.js';
 import { bookingWindow, calendar, nextFree } from '../services/booking.service.js';
 import { FAQ, beforeBody, logBody } from '../views/pages/extras.js';
@@ -26,6 +27,21 @@ export function notFoundPage(req, res) {
 }
 
 const router = Router();
+
+router.get('/robots.txt', (req, res) => {
+  res.type('text').send(['User-agent: *', 'Allow: /', 'Disallow: /api/', 'Disallow: /conta', 'Disallow: /painel', 'Disallow: /entrar', '', `Sitemap: ${absolute('/sitemap.xml')}`].join('\n'));
+});
+
+router.get('/sitemap.xml', async (req, res) => {
+  const rooms = await listRooms();
+  const paths = ['/', '/salas', ...rooms.map((r) => `/salas/${r.slug}`), '/reservar', '/vouchers', '/registo', '/antes-de-vir'];
+  res.type('application/xml').send(
+    `<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+${paths.map((p) => `  <url><loc>${absolute(p)}</loc></url>`).join('\n')}
+</urlset>`,
+  );
+});
 
 router.get('/', async (req, res) => {
   const [rooms, best, log] = await Promise.all([listRooms(), records(), escapeLog()]);

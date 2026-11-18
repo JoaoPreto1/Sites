@@ -11,18 +11,18 @@ export const loginBody = () => `<section class="access wrap">
       <button type="button" role="tab" id="tab-login" aria-controls="panel-login" aria-selected="true" data-tab="login">Entrar</button>
       <button type="button" role="tab" id="tab-register" aria-controls="panel-register" aria-selected="false" data-tab="register" tabindex="-1">Criar conta</button>
     </div>
-    <form id="panel-login" role="tabpanel" aria-labelledby="tab-login" class="card-access__form" data-form="login" novalidate>
+    <div id="panel-login" role="tabpanel" aria-labelledby="tab-login"><form class="card-access__form" data-form="login" novalidate>
       <div class="field"><label for="l-email">Email</label><input class="input" id="l-email" name="email" type="email" autocomplete="email" required></div>
       <div class="field"><label for="l-pass">Palavra-passe</label><input class="input" id="l-pass" name="password" type="password" autocomplete="current-password" required></div>
       <button class="btn btn--ink" type="submit">Entrar</button>
-    </form>
-    <form id="panel-register" role="tabpanel" aria-labelledby="tab-register" class="card-access__form" data-form="register" novalidate hidden>
+    </form></div>
+    <div id="panel-register" role="tabpanel" aria-labelledby="tab-register" hidden><form class="card-access__form" data-form="register" novalidate>
       <div class="field"><label for="r-name">Nome</label><input class="input" id="r-name" name="name" autocomplete="name" required maxlength="80"></div>
       <div class="field"><label for="r-email">Email</label><input class="input" id="r-email" name="email" type="email" autocomplete="email" required><span class="hint">Reservas e vouchers feitos antes com este email passam para a conta.</span></div>
       <div class="field"><label for="r-phone">Telemóvel <span class="hint">(opcional)</span></label><input class="input" id="r-phone" name="phone" type="tel" autocomplete="tel" maxlength="30"></div>
       <div class="field"><label for="r-pass">Palavra-passe</label><input class="input" id="r-pass" name="password" type="password" autocomplete="new-password" minlength="8" required><span class="hint">Pelo menos 8 caracteres.</span></div>
       <button class="btn btn--ink" type="submit">Criar conta</button>
-    </form>
+    </form></div>
   </div>
 </section>`;
 

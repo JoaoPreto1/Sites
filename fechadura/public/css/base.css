@@ -2,14 +2,14 @@
   font-family: 'Anton';
   src: url('/fonts/anton.woff2') format('woff2');
   font-weight: 400;
-  font-display: swap;
+  font-display: optional;
 }
 
 @font-face {
   font-family: 'Special Elite';
   src: url('/fonts/special-elite.woff2') format('woff2');
   font-weight: 400;
-  font-display: swap;
+  font-display: optional;
 }
 
 /* Letras de reserva com as mesmas medidas, para a página não saltar quando as fontes chegam */
@@ -39,9 +39,9 @@
   --red: #c6281d;
   --red-hi: #ff6a5c;
   --cork: #8b6a46;
-  --green: #3e8a55;
+  --green: #2f6e43;
   --mute: #a69c8b;
-  --mute-ink: #6b5f50;
+  --mute-ink: #54493c;
   --line: rgba(239, 230, 210, 0.14);
   --display: 'Anton', 'Anton Fallback', Impact, sans-serif;
   --type: 'Special Elite', 'Elite Fallback', 'Courier New', monospace;

@@ -430,8 +430,7 @@
 
 .case__meta dd {
   font-weight: 600;
-  color: var(--accent);
-  filter: brightness(0.65);
+  color: var(--ink);
 }
 
 .case__next {

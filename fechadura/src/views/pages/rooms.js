@@ -33,8 +33,8 @@ function drawer(room, i, next) {
           <div><dt>Dificuldade</dt><dd>${locks(room.difficulty)}</dd></div>
           <div><dt>Saem a tempo</dt><dd>${room.escapeRate} em cada 100 equipas</dd></div>
           <div><dt>Sem degraus</dt><dd>${room.accessible ? 'sim' : 'não, tem escadas'}</dd></div>
-          <div class="drawer__cta"><a class="btn btn--brass btn--small" href="/salas/${room.slug}">Abrir o dossier</a><span class="hint">${next ? `Livre: ${shortDate(next.date)}, ${next.time}` : 'Sem sessões livres'}</span></div>
         </dl>
+        <div class="drawer__cta"><a class="btn btn--brass btn--small" href="/salas/${room.slug}">Abrir o dossier</a><span class="hint">${next ? `Livre: ${shortDate(next.date)}, ${next.time}` : 'Sem sessões livres'}</span></div>
       </div>
     </article>`;
 }
@@ -117,7 +117,7 @@ export function roomBody({ room, calendar, log, others }) {
             ${calendar
               .map(
                 (d) =>
-                  `<button type="button" class="day${d.closed ? ' day--closed' : ''}${!d.free && !d.closed ? ' day--full' : ''}" data-date="${d.date}"${d.closed || !d.free ? ' disabled' : ''} aria-pressed="false" aria-label="${shortDate(d.date)}: ${d.closed ? 'fechado' : `${d.free} sessões livres`}"><span>${shortDate(d.date).split(',')[0].slice(0, 3)}</span><b>${Number(d.date.slice(8))}</b><small>${d.closed ? 'fecha' : d.free ? `${d.free} livres` : 'cheio'}</small></button>`,
+                  `<button type="button" class="day${d.closed ? ' day--closed' : ''}${!d.free && !d.closed ? ' day--full' : ''}" data-date="${d.date}"${d.closed || !d.free ? ' disabled' : ''} aria-pressed="false"><span>${shortDate(d.date).split(',')[0].slice(0, 3)}</span><b>${Number(d.date.slice(8))}</b><small>${d.closed ? 'fecha' : d.free ? `${d.free} livres` : 'cheio'}</small></button>`,
               )
               .join('')}
           </div>

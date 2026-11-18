@@ -281,3 +281,8 @@
     margin-top: 20px;
   }
 }
+
+.letter .letter__stamp {
+  opacity: 1;
+  color: #2a5c39;
+}
