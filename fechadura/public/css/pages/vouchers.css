@@ -1,0 +1,241 @@
+.gift {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+  gap: 60px;
+  align-items: start;
+  padding-bottom: 40px;
+}
+
+.gift__form {
+  display: grid;
+  gap: 18px;
+}
+
+.gift__end {
+  display: grid;
+  gap: 10px;
+  justify-items: start;
+  margin-top: 8px;
+}
+
+/* Envelope com o cartão meio de fora */
+.envelope-preview {
+  position: sticky;
+  top: calc(var(--header) + 30px);
+  padding-top: 230px;
+}
+
+.env {
+  position: relative;
+  width: min(520px, 100%);
+  aspect-ratio: 1.55;
+  margin-inline: auto;
+}
+
+.env__back {
+  position: absolute;
+  inset: 0;
+  background: #b89a62;
+  box-shadow: 0 30px 50px rgba(0, 0, 0, 0.55);
+}
+
+.env__card {
+  position: absolute;
+  left: 6%;
+  right: 6%;
+  bottom: 40%;
+  z-index: 1;
+  padding: 22px 24px;
+  background: #fbf6e8;
+  transform: translateY(0) rotate(-2deg);
+  transition: transform 0.6s cubic-bezier(0.3, 1.3, 0.5, 1);
+}
+
+.env.is-sealed .env__card {
+  transform: translateY(-12%) rotate(-3deg);
+}
+
+.env__kicker {
+  font-size: 13px;
+  color: var(--mute-ink);
+}
+
+.env__msg {
+  margin-top: 10px;
+  font-family: var(--type);
+  font-size: 17px;
+  line-height: 1.5;
+  min-height: 3em;
+  overflow-wrap: anywhere;
+}
+
+.env__sign {
+  margin-top: 8px;
+  text-align: right;
+}
+
+.env__data {
+  display: grid;
+  grid-template-columns: repeat(3, auto);
+  justify-content: space-between;
+  gap: 10px;
+  margin-top: 14px;
+  padding-top: 10px;
+  border-top: 1px dashed #b9ac92;
+  font-size: 14px;
+}
+
+.env__data dt {
+  font-size: 12px;
+  color: var(--mute-ink);
+}
+
+.env__data dd {
+  font-weight: 700;
+}
+
+.env__code {
+  font-family: var(--display);
+  font-weight: 400 !important;
+  letter-spacing: 0.06em;
+}
+
+.env.is-sealed .env__code {
+  color: var(--red);
+}
+
+.env__front {
+  position: absolute;
+  inset: 50% 0 0;
+  z-index: 2;
+  padding: 15% 8% 0;
+  background: linear-gradient(160deg, #d9c08c, #c9ad73);
+  clip-path: polygon(0 0, 50% 46%, 100% 0, 100% 100%, 0 100%);
+}
+
+.env__to {
+  font-size: 20px;
+  color: var(--ink);
+}
+
+.env__addr {
+  margin-top: 6px;
+  font-size: 14px;
+  color: #6b5a3a;
+}
+
+.env__seal {
+  position: absolute;
+  left: 50%;
+  top: 66%;
+  z-index: 3;
+  translate: -50% -50%;
+  display: grid;
+  place-items: center;
+  width: 70px;
+  height: 70px;
+  border-radius: 46% 54% 50% 48%;
+  background: radial-gradient(circle at 38% 34%, #e05a4d, var(--red) 55%, #7d160f);
+  color: #f7c9c3;
+  font-family: var(--display);
+  font-size: 30px;
+  box-shadow: 0 4px 0 rgba(0, 0, 0, 0.3);
+  opacity: 0.35;
+  transition: opacity 0.3s, transform 0.4s;
+}
+
+.env.is-sealed .env__seal {
+  opacity: 1;
+  transform: scale(1.08);
+}
+
+.gift-done {
+  display: grid;
+  gap: 12px;
+  padding: 22px;
+  border: 1px solid var(--brass);
+  background: var(--dark-2);
+}
+
+.gift-done b {
+  font-family: var(--display);
+  font-weight: 400;
+  font-size: 32px;
+  letter-spacing: 0.06em;
+  color: var(--brass-hi);
+}
+
+.gift-faq__grid {
+  display: grid;
+  grid-template-columns: 0.6fr 1.4fr;
+  gap: 40px;
+}
+
+.gift-faq h2 {
+  font-size: clamp(36px, 4vw, 54px);
+}
+
+.gift-faq ol {
+  display: grid;
+  gap: 14px;
+  counter-reset: step;
+  font-size: 17px;
+}
+
+.gift-faq li {
+  position: relative;
+  padding-left: 46px;
+  counter-increment: step;
+}
+
+.gift-faq li::before {
+  content: counter(step);
+  position: absolute;
+  left: 0;
+  top: -2px;
+  display: grid;
+  place-items: center;
+  width: 30px;
+  height: 30px;
+  border: 1.5px solid var(--brass);
+  border-radius: 50%;
+  color: var(--brass);
+  font-size: 15px;
+}
+
+@media (max-width: 960px) {
+  .gift,
+  .gift-faq__grid {
+    grid-template-columns: 1fr;
+  }
+
+  .envelope-preview {
+    position: static;
+    grid-row: 1;
+    padding-top: 190px;
+  }
+}
+
+@media (max-width: 600px) {
+  .env__msg {
+    font-size: 14px;
+  }
+
+  .env__card {
+    padding: 14px 16px;
+  }
+
+  .env__data {
+    font-size: 12px;
+  }
+
+  .env__to {
+    font-size: 16px;
+  }
+
+  .env__seal {
+    width: 52px;
+    height: 52px;
+    font-size: 22px;
+  }
+}

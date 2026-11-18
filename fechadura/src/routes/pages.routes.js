@@ -2,6 +2,7 @@ import { Router } from 'express';
 import { documentHtml } from '../views/document.js';
 import { listRooms } from '../services/room.service.js';
 import { bookingWindow, calendar, nextFree } from '../services/booking.service.js';
+import { vouchersBody } from '../views/pages/vouchers.js';
 import { bookingBody } from '../views/pages/booking.js';
 import { escapeLog, records } from '../services/ranking.service.js';
 import { breadcrumbs, business, roomList, roomSchema } from '../seo/schema.js';
@@ -85,6 +86,18 @@ router.get('/reservar', async (req, res) => {
     },
     body: bookingBody({ rooms, window: bookingWindow() }),
     scripts: ['booking'],
+  });
+});
+
+router.get('/vouchers', async (req, res) => {
+  send(req, res, {
+    page: {
+      title: 'Vouchers de oferta',
+      description: 'Ofereça uma escape room no Porto: um voucher da Fechadura num envelope lacrado, com uma mensagem sua, para qualquer sala ou uma à escolha. Válido durante um ano.',
+      schema: [breadcrumbs([['Fechadura', '/'], ['Vouchers', '/vouchers']])],
+    },
+    body: vouchersBody({ rooms: await listRooms() }),
+    scripts: ['vouchers'],
   });
 });
 
