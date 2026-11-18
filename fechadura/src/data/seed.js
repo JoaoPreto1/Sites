@@ -170,7 +170,7 @@ function pastBookings() {
         const players = Math.max(room.players.min, 2 + (k % 5));
         const escaped = (k % 100) < room.escapeRate + 12;
         const seconds = escaped ? (room.duration - 22) * 60 + ((k * 37) % (20 * 60)) : room.duration * 60;
-        const team = TEAMS[k % TEAMS.length];
+        const team = TEAMS[(d * 5 + i * 3 + r * 7) % TEAMS.length];
         list.push(booking({ room, date, time, players: Math.min(players, room.players.max), team, name: team, email: `reservas+${k}@exemplo.pt`, status: 'jogada', result: { escaped, seconds, hints: k % 4 } }));
       });
     });
