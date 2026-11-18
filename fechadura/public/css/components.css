@@ -385,3 +385,7 @@
   content: '/';
   margin-right: 8px;
 }
+
+.field .stepper {
+  justify-self: start;
+}

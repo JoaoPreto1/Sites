@@ -1,7 +1,8 @@
 import { Router } from 'express';
 import { documentHtml } from '../views/document.js';
 import { listRooms } from '../services/room.service.js';
-import { calendar, nextFree } from '../services/booking.service.js';
+import { bookingWindow, calendar, nextFree } from '../services/booking.service.js';
+import { bookingBody } from '../views/pages/booking.js';
 import { escapeLog, records } from '../services/ranking.service.js';
 import { breadcrumbs, business, roomList, roomSchema } from '../seo/schema.js';
 import { photoSrcset, photoUrl } from '../../public/js/shared/pricing.js';
@@ -71,6 +72,19 @@ router.get('/salas/:slug', async (req, res, next) => {
     },
     body: roomBody({ room, calendar: days, log: { ...log.pages.find((p) => p.room.slug === room.slug), monthName: log.monthName }, others: all.filter((r) => r.id !== room.id) }),
     scripts: ['room'],
+  });
+});
+
+router.get('/reservar', async (req, res) => {
+  const rooms = await listRooms();
+  send(req, res, {
+    page: {
+      title: 'Reservar uma sala',
+      description: 'Reserve uma escape room na Fechadura, no Porto: escolha a sala, o dia, a hora e quantas pessoas vêm. Paga-se no fim, ao balcão, e pode cancelar até 24 horas antes.',
+      schema: [breadcrumbs([['Fechadura', '/'], ['Reservar', '/reservar']])],
+    },
+    body: bookingBody({ rooms, window: bookingWindow() }),
+    scripts: ['booking'],
   });
 });
 
