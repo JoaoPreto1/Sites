@@ -1,0 +1,283 @@
+/* Livro de registos */
+.ledger__months {
+  margin-top: 26px;
+}
+
+.ledger {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 0;
+  padding: 18px;
+  background: #3b2416;
+  border-radius: 10px;
+  box-shadow: 0 30px 60px rgba(0, 0, 0, 0.6);
+}
+
+.ledger__page {
+  position: relative;
+  padding: 34px clamp(20px, 3vw, 40px) 50px;
+  background: #f4ecd8;
+  background-image: repeating-linear-gradient(transparent 0 33px, rgba(60, 90, 140, 0.18) 33px 34px);
+  color: var(--ink);
+  min-height: 460px;
+}
+
+.ledger__page:nth-child(odd) {
+  box-shadow: inset -30px 0 30px -24px rgba(0, 0, 0, 0.35);
+  border-right: 1px solid #c7b893;
+}
+
+.ledger__page:nth-child(even) {
+  box-shadow: inset 30px 0 30px -24px rgba(0, 0, 0, 0.35);
+}
+
+.ledger__page:nth-child(n + 3) {
+  border-top: 8px solid #3b2416;
+}
+
+.ledger__page::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 54px;
+  width: 1px;
+  background: rgba(198, 40, 29, 0.35);
+}
+
+.ledger__case {
+  font-size: 13px;
+  color: var(--mute-ink);
+}
+
+.ledger__page h2 {
+  margin-top: 4px;
+  font-size: clamp(28px, 3vw, 38px);
+}
+
+.ledger__page h2 a {
+  text-decoration: none;
+}
+
+.ledger__page h2 a:hover {
+  text-decoration: underline;
+}
+
+.ledger__count {
+  margin-top: 2px;
+  font-size: 14px;
+  color: var(--accent);
+  filter: brightness(0.6);
+}
+
+.ledger__page table {
+  width: 100%;
+  margin-top: 18px;
+  border-collapse: collapse;
+  font-size: 15px;
+}
+
+.ledger__page th,
+.ledger__page td {
+  padding: 6px 6px;
+  height: 34px;
+  text-align: left;
+  font-weight: 400;
+}
+
+.ledger__page thead th {
+  font-size: 12px;
+  color: var(--mute-ink);
+}
+
+.ledger__page td:last-child {
+  text-align: right;
+}
+
+.ledger__page b {
+  color: #1d3a6e;
+  font-weight: 400;
+  font-size: 17px;
+}
+
+.ledger__limit {
+  position: absolute;
+  right: 30px;
+  bottom: 16px;
+  font-size: 13px;
+  color: var(--mute-ink);
+}
+
+.ledger__foot {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 20px;
+}
+
+@media (max-width: 860px) {
+  .ledger {
+    grid-template-columns: 1fr;
+    padding: 10px;
+  }
+
+  .ledger__page:nth-child(n) {
+    box-shadow: none;
+    border-right: 0;
+  }
+
+  .ledger__page + .ledger__page {
+    border-top: 8px solid #3b2416;
+  }
+
+  .ledger__page {
+    min-height: 0;
+  }
+
+  .ledger__page table th:nth-child(4),
+  .ledger__page table td:nth-child(4) {
+    display: none;
+  }
+}
+
+/* Antes de vir */
+.before {
+  display: grid;
+  grid-template-columns: minmax(0, 1.4fr) minmax(0, 0.8fr);
+  gap: 50px;
+  align-items: start;
+}
+
+.letter {
+  position: relative;
+  padding: clamp(28px, 5vw, 56px);
+  background: #f7f0de;
+  font-size: 17px;
+  line-height: 1.75;
+  rotate: -0.6deg;
+  box-shadow: 0 30px 60px -20px rgba(0, 0, 0, 0.6);
+}
+
+.letter p + p,
+.letter ol + p {
+  margin-top: 14px;
+}
+
+.letter__date {
+  text-align: right;
+  color: var(--mute-ink);
+  font-size: 15px;
+  margin-bottom: 22px;
+}
+
+.letter__rules {
+  display: grid;
+  gap: 14px;
+  margin: 22px 0;
+  padding-left: 22px;
+  list-style: decimal;
+}
+
+.letter__rules b {
+  font-weight: 400;
+  text-decoration: underline;
+  text-decoration-thickness: 2px;
+  text-underline-offset: 4px;
+}
+
+.letter__sign {
+  font-size: 22px;
+}
+
+.letter__stamp {
+  position: absolute;
+  right: 40px;
+  bottom: 40px;
+  color: var(--green);
+}
+
+.before__side {
+  display: grid;
+  gap: 36px;
+  padding-top: 20px;
+}
+
+.before__tag {
+  max-width: 340px;
+}
+
+.before__list {
+  display: grid;
+  gap: 14px;
+}
+
+.before__list b {
+  display: block;
+  font-family: var(--type);
+  font-weight: 400;
+  color: var(--brass);
+}
+
+.faq__title {
+  font-size: clamp(36px, 5vw, 64px);
+}
+
+.faq__list {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 12px 28px;
+  margin-top: 30px;
+}
+
+.faq details {
+  border-top: 1px solid var(--line);
+  padding: 4px 0;
+}
+
+.faq summary {
+  position: relative;
+  padding: 14px 40px 14px 0;
+  font-weight: 700;
+  cursor: pointer;
+  list-style: none;
+}
+
+.faq summary::-webkit-details-marker {
+  display: none;
+}
+
+.faq summary::after {
+  content: '+';
+  position: absolute;
+  right: 6px;
+  top: 10px;
+  font-family: var(--display);
+  font-size: 26px;
+  color: var(--brass);
+}
+
+.faq details[open] summary::after {
+  content: '−';
+}
+
+.faq details p {
+  padding: 0 0 16px;
+  color: #d8cfbd;
+}
+
+@media (max-width: 860px) {
+  .before,
+  .faq__list {
+    grid-template-columns: 1fr;
+  }
+
+  .letter {
+    rotate: 0deg;
+  }
+
+  .letter__stamp {
+    position: static;
+    margin-top: 20px;
+  }
+}

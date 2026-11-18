@@ -2,10 +2,11 @@ import { Router } from 'express';
 import { documentHtml } from '../views/document.js';
 import { listRooms } from '../services/room.service.js';
 import { bookingWindow, calendar, nextFree } from '../services/booking.service.js';
+import { FAQ, beforeBody, logBody } from '../views/pages/extras.js';
 import { vouchersBody } from '../views/pages/vouchers.js';
 import { bookingBody } from '../views/pages/booking.js';
 import { escapeLog, records } from '../services/ranking.service.js';
-import { breadcrumbs, business, roomList, roomSchema } from '../seo/schema.js';
+import { breadcrumbs, business, faqSchema, roomList, roomSchema } from '../seo/schema.js';
 import { photoSrcset, photoUrl } from '../../public/js/shared/pricing.js';
 import { FILTERS, HERO_SIZES, HERO_WIDTHS, roomBody, roomsBody } from '../views/pages/rooms.js';
 import { homeBody } from '../views/pages/home.js';
@@ -98,6 +99,31 @@ router.get('/vouchers', async (req, res) => {
     },
     body: vouchersBody({ rooms: await listRooms() }),
     scripts: ['vouchers'],
+  });
+});
+
+router.get('/registo', async (req, res) => {
+  const month = /^d{4}-d{2}$/.test(req.query.mes ?? '') ? req.query.mes : undefined;
+  const log = await escapeLog({ month, limit: 10 });
+  send(req, res, {
+    page: {
+      title: `Registo de fugas de ${log.monthName}`,
+      description: `As equipas que saíram das escape rooms da Fechadura em ${log.monthName}, sala a sala, com o tempo e as pistas que pediram.`,
+      path: log.month === log.months[0]?.value ? '/registo' : `/registo?mes=${log.month}`,
+      schema: [breadcrumbs([['Fechadura', '/'], ['Registo de fugas', '/registo']])],
+    },
+    body: logBody(log),
+  });
+});
+
+router.get('/antes-de-vir', (req, res) => {
+  send(req, res, {
+    page: {
+      title: 'Antes de vir: regras e perguntas frequentes',
+      description: 'Tudo o que precisa de saber antes de uma escape room na Fechadura: a que horas chegar, idades, pistas, pagamento, cancelamentos, acessibilidade e como chegar a Cedofeita.',
+      schema: [faqSchema(FAQ), breadcrumbs([['Fechadura', '/'], ['Antes de vir', '/antes-de-vir']])],
+    },
+    body: beforeBody(),
   });
 });
 
