@@ -4,7 +4,7 @@
 
 **Um site completo de cada vez, cada um com a data em que foi feito. Meta: 3 sites por semana.**
 
-![Sites feitos](https://img.shields.io/badge/sites_feitos-5-ff5a36?style=flat-square)
+![Sites feitos](https://img.shields.io/badge/sites_feitos-6-ff5a36?style=flat-square)
 ![Meta](https://img.shields.io/badge/meta-3_por_semana-1f8a4c?style=flat-square)
 ![Node.js](https://img.shields.io/badge/Node.js-22+-339933?style=flat-square&logo=nodedotjs&logoColor=white)
 ![Express](https://img.shields.io/badge/Express-5-000000?style=flat-square&logo=express&logoColor=white)
@@ -23,7 +23,7 @@ Três sites por semana, de segunda a domingo.
 
 | Semana | Sites | Meta | Estado |
 |---|---|:---:|---|
-| 16 a 22 nov 2026 | Bairro | 1 / 3 | ⏳ Em curso |
+| 16 a 22 nov 2026 | Bairro, Fechadura | 2 / 3 | ⏳ Em curso |
 | 9 a 15 nov 2026 | Maré, Lente Studio, Cepa, Rotação | 4 / 3 | ✅ Cumprida |
 
 ## 📅 Diário
@@ -31,6 +31,14 @@ Três sites por semana, de segunda a domingo.
 O mais recente primeiro.
 
 <table>
+  <tr>
+    <td width="50%"><a href="fechadura/"><img src="fechadura/docs/capa.jpg" alt="Fechadura" width="100%"></a></td>
+    <td>
+      <p>📅 <strong>Quarta, 18 nov 2026</strong></p>
+      <h3><a href="fechadura/">Fechadura</a></h3>
+      <p>Escape rooms no Porto com um site que abre trancado: para entrar resolve-se um cadeado (ou usa-se o atalho). Salas num quadro de cortiça com fio vermelho, dossier de cada sala com agenda, ficha de reserva, vouchers em envelopes lacrados, registo de fugas, área de cliente e painel do game master.</p>
+    </td>
+  </tr>
   <tr>
     <td width="50%"><a href="bairro/"><img src="bairro/docs/capa.jpg" alt="Bairro" width="100%"></a></td>
     <td>
