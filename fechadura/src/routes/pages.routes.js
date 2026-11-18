@@ -3,6 +3,7 @@ import { documentHtml } from '../views/document.js';
 import { listRooms } from '../services/room.service.js';
 import { bookingWindow, calendar, nextFree } from '../services/booking.service.js';
 import { FAQ, beforeBody, logBody } from '../views/pages/extras.js';
+import { accountBody, adminBody, loginBody } from '../views/pages/private.js';
 import { vouchersBody } from '../views/pages/vouchers.js';
 import { bookingBody } from '../views/pages/booking.js';
 import { escapeLog, records } from '../services/ranking.service.js';
@@ -126,5 +127,12 @@ router.get('/antes-de-vir', (req, res) => {
     body: beforeBody(),
   });
 });
+
+const privatePage = (title, body, script) => (req, res) =>
+  send(req, res, { page: { title, description: 'Área reservada da Fechadura.', noindex: true }, body: body(), scripts: [script] });
+
+router.get('/entrar', privatePage('Entrar', loginBody, 'login'));
+router.get('/conta', privatePage('O meu dossier', accountBody, 'account'));
+router.get('/painel', privatePage('Painel', adminBody, 'admin'));
 
 export default router;

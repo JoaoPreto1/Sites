@@ -214,7 +214,7 @@ export async function adminBookings({ status, q } = {}) {
   );
   return list
     .sort((a, b) => `${a.date}${a.time}`.localeCompare(`${b.date}${b.time}`) * (status === 'jogada' ? -1 : 1))
-    .slice(0, 60)
+    .slice(0, 25)
     .map((b) => withRoom(b, map.get(b.roomId)));
 }
 
