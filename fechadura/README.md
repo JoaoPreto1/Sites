@@ -72,18 +72,23 @@ Funciona **sem base de dados**: os dados vivem em memória e são gerados a part
 
 ## 🗝️ O design
 
-- **O site abre trancado.** O cadeado é feito só com CSS (latão, aro de aço e quatro rodas com o algarismo anterior e o seguinte). Quando o código está certo, o aro sobe, o título muda para "Aberto" e a página desce até às salas. O relógio no canto conta 60 minutos desde que a página abriu.
+- **O site abre trancado.** O cadeado é feito com CSS e SVG: corpo de latão com parafusos, letras gravadas e fechadura, aro de aço com reflexos e uma janela afundada com quatro rodas. Cada roda é uma fita de algarismos que rola (setas, teclado, roda do rato ou arrastar com o dedo), com sombra de cilindro.
+- **Animações do cadeado**: cai no sítio quando a página abre, tem um brilho que passa pelo latão de tempos a tempos e uma lanterna que segue o rato. Com o código errado abana e as pistas mexem-se; com o certo o aro salta, o corpo dá um estalo, saltam faíscas de latão e a página desce até às salas. Tudo respeita `prefers-reduced-motion`. O relógio no canto conta 60 minutos desde que a página abriu.
 - **Ninguém fica fechado.** O atalho "Não quero jogar" está sempre à vista, o conteúdo está todo no HTML e as rodas funcionam com teclado e leitor de ecrã.
-- **Quadro de cortiça**: os casos estão presos com alfinetes, e o fio vermelho entre eles é desenhado em SVG a partir da posição real de cada alfinete, por isso acompanha qualquer largura de ecrã.
+- **Quadro de cortiça**: os casos estão presos com alfinetes, e o fio vermelho entre eles é desenhado em SVG a partir da posição real de cada alfinete, um pouco descaído, por isso acompanha qualquer largura de ecrã.
+- **Sombras em camadas**: cada papel tem uma sombra curta e escura junto à superfície e outra larga e suave, como se estivesse mesmo pousado; os cartões levantam-se ao passar o rato.
+- **Mapa dobrado** de Cedofeita, desenhado em SVG: quarteirões, jardim, rosa dos ventos, escala, vincos do papel e o caminho a pé desde o metro da Trindade, com o pino da porta a pulsar.
 - **Cada sala tem a sua cor** (latão, azul de farol, vermelho de alcatifa, verde de garrafa), que aparece no separador da pasta, na agenda, no bilhete e no livro de registos.
 - **Letras**: Anton para os títulos, como os carimbos e as etiquetas de arquivo, e Special Elite, uma letra de máquina de escrever, para tudo o que é papel.
 - **No telemóvel** as pistas passam para baixo do cadeado, os cartões deixam de estar tortos e o fio vermelho desaparece.
 
 ## 📸 Capturas
 
-| Quadro das salas | Preços e vouchers |
+| Cadeado aberto | Quadro das salas |
 |---|---|
-| ![Quadro das salas](docs/quadro.jpg) | ![Preços](docs/precos.jpg) |
+| ![Cadeado aberto](docs/aberto.jpg) | ![Quadro das salas](docs/quadro.jpg) |
+| **Preços e vouchers** | **Onde fica** |
+| ![Preços](docs/precos.jpg) | ![Mapa](docs/mapa.jpg) |
 | **Arquivo das salas** | **Dossier de uma sala** |
 | ![Arquivo](docs/salas.jpg) | ![Sala](docs/sala.jpg) |
 | **O caso e as provas** | **Ficha de reserva** |
