@@ -11,7 +11,7 @@
   padding: clamp(24px, 4vw, 44px);
   background: var(--paper);
   background-image: repeating-linear-gradient(transparent 0 35px, rgba(43, 36, 32, 0.05) 35px 36px);
-  box-shadow: 0 30px 60px -20px rgba(0, 0, 0, 0.6);
+  box-shadow: var(--sh-deep);
 }
 
 .form-sheet__no {
@@ -162,7 +162,7 @@
 
 .ticket-preview .ticket {
   rotate: 2deg;
-  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.5);
+  box-shadow: var(--sh-lift);
 }
 
 .ticket__kicker {

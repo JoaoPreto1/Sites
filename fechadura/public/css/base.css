@@ -49,6 +49,12 @@
   --wrap: 1240px;
   --gutter: clamp(18px, 4vw, 56px);
   --header: 68px;
+  /* Sombras em camadas: uma curta e escura junto ao papel, outra larga e suave */
+  --sh-pin: 1px 2px 1px rgba(0, 0, 0, 0.35), 3px 6px 6px rgba(0, 0, 0, 0.3);
+  --sh-paper: 0 1px 1px rgba(20, 12, 4, 0.3), 0 4px 8px -2px rgba(20, 12, 4, 0.32), 0 18px 32px -14px rgba(20, 12, 4, 0.6);
+  --sh-lift: 0 1px 2px rgba(0, 0, 0, 0.3), 0 14px 26px -10px rgba(0, 0, 0, 0.6), 0 40px 70px -30px rgba(0, 0, 0, 0.65);
+  --sh-deep: 0 2px 4px rgba(0, 0, 0, 0.35), 0 30px 50px -18px rgba(0, 0, 0, 0.7), 0 70px 110px -40px rgba(0, 0, 0, 0.6);
+  --sh-wax: 0 2px 0 rgba(90, 10, 5, 0.55), 0 6px 10px -2px rgba(0, 0, 0, 0.45);
 }
 
 *,
@@ -390,6 +396,7 @@ ol {
   background: var(--paper);
   color: var(--ink);
   border-radius: 8px 40px 40px 8px;
+  box-shadow: var(--sh-lift);
   font-family: var(--type);
   line-height: 1.5;
   rotate: -3deg;

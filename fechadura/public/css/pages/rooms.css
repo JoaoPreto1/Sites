@@ -60,7 +60,7 @@
   background: #e2cc9a;
   color: var(--ink);
   border-top: 6px solid var(--accent);
-  box-shadow: 0 -2px 0 rgba(0, 0, 0, 0.12), 0 12px 20px rgba(0, 0, 0, 0.35);
+  box-shadow: var(--sh-paper);
 }
 
 .drawer__photos {
@@ -72,7 +72,7 @@
   position: absolute;
   padding: 8px 8px 22px;
   background: #fff;
-  box-shadow: 2px 6px 10px rgba(0, 0, 0, 0.3);
+  box-shadow: var(--sh-paper);
 }
 
 .drawer__ph img {
@@ -159,7 +159,7 @@
   background: #fffdf6;
   font-size: 14px;
   rotate: 1deg;
-  box-shadow: 2px 4px 0 rgba(0, 0, 0, 0.15);
+  box-shadow: var(--sh-paper);
 }
 
 .drawer__facts > div {
@@ -279,7 +279,7 @@
   padding: 10px;
   background: #fff;
   rotate: -1deg;
-  box-shadow: 3px 8px 14px rgba(0, 0, 0, 0.3);
+  box-shadow: var(--sh-paper);
 }
 
 .clipped img {
@@ -309,7 +309,7 @@
 .polaroid {
   padding: 10px 10px 14px;
   background: #fff;
-  box-shadow: 2px 6px 12px rgba(0, 0, 0, 0.25);
+  box-shadow: var(--sh-paper);
 }
 
 .polaroid--1 {
@@ -337,7 +337,7 @@
   padding: 34px clamp(22px, 4vw, 40px);
   background: #fffdf6;
   background-image: repeating-linear-gradient(transparent 0 31px, rgba(43, 36, 32, 0.08) 31px 32px);
-  box-shadow: 2px 6px 0 rgba(0, 0, 0, 0.12);
+  box-shadow: var(--sh-paper);
   font-size: 17px;
   line-height: 1.85;
 }
@@ -437,7 +437,7 @@
   gap: 16px;
   padding: 26px 22px;
   background: #fffdf6;
-  box-shadow: 4px 8px 0 rgba(0, 0, 0, 0.18);
+  box-shadow: var(--sh-lift);
   border-top: 12px solid var(--accent);
 }
 
@@ -593,6 +593,7 @@
   padding: 30px;
   background: #fffdf6;
   rotate: -1deg;
+  box-shadow: var(--sh-lift);
 }
 
 .room-log__page h2 {

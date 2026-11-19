@@ -10,7 +10,7 @@
   padding: 18px;
   background: #3b2416;
   border-radius: 10px;
-  box-shadow: 0 30px 60px rgba(0, 0, 0, 0.6);
+  box-shadow: var(--sh-deep);
 }
 
 .ledger__page {
@@ -156,7 +156,7 @@
   font-size: 17px;
   line-height: 1.75;
   rotate: -0.6deg;
-  box-shadow: 0 30px 60px -20px rgba(0, 0, 0, 0.6);
+  box-shadow: var(--sh-deep);
 }
 
 .letter p + p,

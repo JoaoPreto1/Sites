@@ -36,7 +36,7 @@
   position: absolute;
   inset: 0;
   background: #b89a62;
-  box-shadow: 0 30px 50px rgba(0, 0, 0, 0.55);
+  box-shadow: var(--sh-deep);
 }
 
 .env__card {
@@ -139,7 +139,7 @@
   color: #f7c9c3;
   font-family: var(--display);
   font-size: 30px;
-  box-shadow: 0 4px 0 rgba(0, 0, 0, 0.3);
+  box-shadow: var(--sh-wax);
   opacity: 0.35;
   transition: opacity 0.3s, transform 0.4s;
 }
