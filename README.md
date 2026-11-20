@@ -23,7 +23,7 @@ Três sites por semana, de segunda a domingo.
 
 | Semana | Sites | Meta | Estado |
 |---|---|:---:|---|
-| 16 a 22 nov 2026 | Bairro, Fechadura | 2 / 3 | ⏳ Em curso |
+| 16 a 22 nov 2026 | Bairro, Fechadura, Planta | 3 / 3 | ✅ Cumprida |
 | 9 a 15 nov 2026 | Maré, Lente Studio, Cepa, Rotação | 4 / 3 | ✅ Cumprida |
 
 ## 📅 Diário
@@ -31,6 +31,14 @@ Três sites por semana, de segunda a domingo.
 O mais recente primeiro.
 
 <table>
+  <tr>
+    <td width="50%"><a href="planta/"><img src="planta/docs/capa.jpg" alt="Planta" width="100%"></a></td>
+    <td>
+      <p>📅 <strong>Sexta, 20 nov 2026</strong></p>
+      <h3><a href="planta/">Planta</a></h3>
+      <p>Redesign do site de uma arquiteta (fictícia), feito como uma folha de desenho técnico: a página inicial é a planta do atelier e cada divisão é um projeto, com a fotografia ao passar por cima. Planta de cada casa com pinos, pedido de reunião, área de cliente com as fases da obra e mesa de trabalho da arquiteta.</p>
+    </td>
+  </tr>
   <tr>
     <td width="50%"><a href="fechadura/"><img src="fechadura/docs/capa.jpg" alt="Fechadura" width="100%"></a></td>
     <td>
