@@ -1,0 +1,476 @@
+/* Página inicial: a planta do atelier */
+.hero {
+  padding: clamp(36px, 5vw, 70px) 0 clamp(80px, 9vw, 120px);
+}
+
+.hero__grid {
+  display: grid;
+  grid-template-columns: minmax(300px, 420px) 1fr;
+  gap: clamp(30px, 4vw, 64px);
+  align-items: center;
+}
+
+.hero .display {
+  margin-top: 14px;
+  font-size: clamp(44px, 5.2vw, 70px);
+}
+
+.hero__lead {
+  margin-top: 22px;
+  max-width: 400px;
+  font-size: 13.5px;
+  line-height: 1.75;
+  color: var(--soft);
+}
+
+.hero__actions {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 18px 26px;
+  margin-top: 30px;
+}
+
+.hero__plan {
+  position: relative;
+  padding-top: 26px;
+}
+
+.plan {
+  width: 100%;
+  height: auto;
+  overflow: visible;
+  fill: none;
+  stroke: var(--line);
+}
+
+.plan text {
+  stroke: none;
+  fill: var(--ink);
+  font-family: var(--mono);
+  font-size: 13px;
+}
+
+.plan__walls {
+  stroke-width: 10;
+}
+
+.plan__thin {
+  stroke-width: 1.6;
+}
+
+.plan__furniture {
+  stroke-width: 1.2;
+  opacity: 0.6;
+}
+
+.plan__dims {
+  stroke-width: 0.8;
+}
+
+.plan__dims text {
+  font-size: 11px;
+  fill: var(--mute);
+}
+
+.room rect {
+  fill: transparent;
+  stroke: none;
+  transition: fill 0.25s;
+}
+
+.room:hover rect,
+.room:focus-visible rect,
+.room.is-on rect {
+  fill: var(--red-wash);
+}
+
+.room:focus-visible {
+  outline: none;
+}
+
+.room:focus-visible rect {
+  stroke: var(--red);
+  stroke-width: 2;
+  stroke-dasharray: 6 5;
+}
+
+.room text {
+  transition: fill 0.2s;
+}
+
+.room:hover text,
+.room.is-on text {
+  fill: var(--red);
+}
+
+.plan .room__sub {
+  font-size: 11px;
+  fill: var(--mute);
+}
+
+.plan__note {
+  stroke: var(--red-2);
+  stroke-width: 1.5;
+}
+
+.plan__note circle {
+  fill: var(--red-2);
+}
+
+.plan__note text {
+  fill: var(--red);
+  font-size: 12px;
+}
+
+.peek {
+  position: absolute;
+  right: 3%;
+  top: 9%;
+  width: min(300px, 38%);
+  transition: transform 0.35s cubic-bezier(0.2, 0.8, 0.2, 1);
+  pointer-events: none;
+}
+
+.peek img {
+  width: 100%;
+  aspect-ratio: 3 / 2;
+  object-fit: cover;
+  transition: opacity 0.25s;
+}
+
+.peek.is-changing img {
+  opacity: 0.2;
+}
+
+.peek figcaption {
+  position: absolute;
+  left: -7px;
+  top: calc(100% + 14px);
+  font-size: 11.5px;
+  color: var(--red);
+  white-space: nowrap;
+}
+
+@media (max-width: 960px) {
+  .hero__grid {
+    grid-template-columns: 1fr;
+  }
+
+  .peek {
+    position: relative;
+    right: auto;
+    top: auto;
+    width: min(320px, 80%);
+    margin: 30px 0 30px auto;
+  }
+}
+
+/* Índice */
+.index {
+  display: grid;
+  grid-template-columns: 300px 1fr;
+  gap: clamp(30px, 5vw, 70px);
+  padding-top: clamp(70px, 9vw, 110px);
+}
+
+.index__head p {
+  margin-top: 16px;
+  font-size: 13px;
+  color: var(--soft);
+}
+
+.rows {
+  list-style: none;
+  padding: 0;
+  border-top: 1.5px solid var(--line);
+}
+
+.row {
+  display: grid;
+  grid-template-columns: 56px 1fr 190px 210px 0;
+  align-items: center;
+  min-height: 86px;
+  padding: 12px 0;
+  border-bottom: 1px solid var(--rule);
+  font-size: 13px;
+  text-decoration: none;
+  transition: background 0.2s, padding 0.2s, grid-template-columns 0.3s;
+}
+
+.row__n {
+  color: var(--red);
+}
+
+.row__name {
+  font-family: var(--serif);
+  font-size: clamp(24px, 2.4vw, 32px);
+  line-height: 1.1;
+}
+
+.row__meta {
+  color: var(--soft);
+}
+
+.row__thumb {
+  overflow: hidden;
+  height: 62px;
+  opacity: 0;
+  transition: opacity 0.25s;
+}
+
+.row__thumb img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.row:hover,
+.row:focus-visible {
+  grid-template-columns: 56px 1fr 190px 210px 110px;
+  background: var(--white);
+  padding-left: 14px;
+  box-shadow: inset 3px 0 0 var(--red);
+  outline: none;
+}
+
+.row:hover .row__thumb,
+.row:focus-visible .row__thumb {
+  opacity: 1;
+}
+
+@media (max-width: 1100px) {
+  .index {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 760px) {
+  .row,
+  .row:hover,
+  .row:focus-visible {
+    grid-template-columns: 40px 1fr;
+    gap: 2px 0;
+  }
+
+  .row__meta {
+    grid-column: 2;
+    font-size: 12px;
+  }
+
+  .row__meta + .row__meta {
+    display: none;
+  }
+
+  .row__thumb {
+    display: none;
+  }
+}
+
+/* Cinco folhas: as fases de um projeto */
+.method {
+  margin-top: clamp(80px, 10vw, 130px);
+  padding-block: clamp(60px, 8vw, 100px);
+  background: var(--line);
+  color: var(--paper);
+}
+
+.method__head {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 40px;
+  align-items: end;
+}
+
+.method .display em {
+  color: #f0a48f;
+}
+
+.method__head p {
+  font-size: 13.5px;
+  color: #c6cfdb;
+  max-width: 480px;
+}
+
+.sheets {
+  list-style: none;
+  padding: 0;
+  margin-top: 50px;
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  gap: 14px;
+}
+
+.sheet-card {
+  position: relative;
+  min-height: 250px;
+  padding: 22px 18px;
+  background: var(--paper);
+  color: var(--ink);
+  background-image:
+    repeating-linear-gradient(0deg, transparent 0 15px, var(--grid) 15px 16px),
+    repeating-linear-gradient(90deg, transparent 0 15px, var(--grid) 15px 16px);
+  box-shadow: 0 2px 0 rgba(0, 0, 0, 0.25), 0 24px 40px -20px rgba(0, 0, 0, 0.6);
+  transform: rotate(calc((var(--i) - 2) * 0.6deg)) translateY(calc(var(--i) * 6px));
+  transition: transform 0.3s;
+}
+
+.sheet-card:hover {
+  transform: rotate(0) translateY(-6px);
+}
+
+.sheet-card__code {
+  display: inline-block;
+  padding: 3px 8px;
+  border: 1.5px solid var(--line);
+  font-size: 11px;
+}
+
+.sheet-card h3 {
+  margin-top: 46px;
+  font-family: var(--serif);
+  font-weight: 300;
+  font-size: 25px;
+  line-height: 1.1;
+}
+
+.sheet-card p {
+  margin-top: 10px;
+  font-size: 12.5px;
+  line-height: 1.6;
+  color: var(--soft);
+}
+
+@media (max-width: 1000px) {
+  .method__head {
+    grid-template-columns: 1fr;
+  }
+
+  .sheets {
+    grid-template-columns: repeat(auto-fit, minmax(190px, 1fr));
+  }
+
+  .sheet-card {
+    min-height: 0;
+    transform: none;
+  }
+}
+
+/* Faixa de fotografias */
+.band {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 26px;
+  margin-top: clamp(70px, 9vw, 110px);
+}
+
+.band__item {
+  position: relative;
+}
+
+.band__item img {
+  width: 100%;
+  aspect-ratio: 4 / 5;
+  object-fit: cover;
+}
+
+.band__item figcaption {
+  position: absolute;
+  left: 12px;
+  bottom: 12px;
+  max-width: calc(100% - 24px);
+  padding: 6px 10px;
+  background: var(--paper);
+  font-size: 11.5px;
+}
+
+@media (max-width: 760px) {
+  .band {
+    grid-template-columns: 1fr;
+  }
+
+  .band__item img {
+    aspect-ratio: 4 / 3;
+  }
+}
+
+/* Escritórios */
+.offices {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1.2fr;
+  margin-top: clamp(70px, 9vw, 110px);
+  border-top: 1.5px solid var(--line);
+}
+
+.offices > div {
+  padding: 34px 30px 10px 0;
+}
+
+.offices > div + div {
+  padding-left: 30px;
+  border-left: 1.5px solid var(--line);
+}
+
+.offices h2 {
+  margin: 6px 0 10px;
+}
+
+.offices p {
+  font-size: 13px;
+  color: var(--soft);
+}
+
+.offices__cta .display {
+  color: var(--ink);
+  margin-bottom: 24px;
+}
+
+.offices--plain {
+  grid-template-columns: 1fr 1fr;
+}
+
+@media (max-width: 900px) {
+  .offices {
+    grid-template-columns: 1fr;
+  }
+
+  .offices > div + div {
+    padding-left: 0;
+    border-left: 0;
+    border-top: 1px solid var(--rule);
+  }
+}
+
+.offices .offices__cta .display {
+  font-size: clamp(26px, 2.6vw, 34px);
+  line-height: 1.15;
+}
+
+/* No telemóvel a planta mostra só o número de cada divisão; os nomes estão no índice logo abaixo */
+.plan .room__num {
+  display: none;
+  font-family: var(--serif);
+  font-size: 66px;
+  fill: var(--line);
+}
+
+@media (max-width: 600px) {
+  .plan .room__num {
+    display: block;
+  }
+
+  /* Os nomes ficam no HTML para os leitores de ecrã, só deixam de se ver */
+  .plan .room__label {
+    opacity: 0;
+  }
+
+  .plan__note,
+  .plan__dims {
+    display: none;
+  }
+
+  .room.is-on .room__num,
+  .room:hover .room__num {
+    fill: var(--red);
+  }
+}
