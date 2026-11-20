@@ -1,0 +1,52 @@
+.lost {
+  padding: clamp(50px, 8vw, 110px) 0 clamp(90px, 10vw, 130px);
+}
+
+.lost__grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 50px;
+  align-items: center;
+}
+
+.lost h1 {
+  margin: 14px 0 20px;
+}
+
+.lost code {
+  font-family: var(--mono);
+  color: var(--red);
+}
+
+.lost__plan {
+  fill: none;
+  stroke: var(--line);
+  stroke-width: 8;
+}
+
+.lost__hole {
+  stroke: var(--red-2);
+  stroke-width: 2;
+  stroke-dasharray: 8 6;
+  fill: var(--red-wash);
+  animation: blink 2.4s ease-in-out infinite;
+}
+
+.lost__plan text {
+  stroke: none;
+  fill: var(--red);
+  font-family: var(--serif);
+  font-size: 64px;
+}
+
+@keyframes blink {
+  50% {
+    opacity: 0.4;
+  }
+}
+
+@media (max-width: 760px) {
+  .lost__grid {
+    grid-template-columns: 1fr;
+  }
+}
