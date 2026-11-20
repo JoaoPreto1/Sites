@@ -1,0 +1,186 @@
+{
+  "casa-em-silvalde": {
+    "logradouro": {
+      "ratio": 0.6672,
+      "widths": [
+        480,
+        960,
+        1600
+      ]
+    },
+    "interior": {
+      "ratio": 0.664,
+      "widths": [
+        480,
+        960,
+        1600
+      ]
+    },
+    "frente": {
+      "ratio": 0.6672,
+      "widths": [
+        480,
+        960,
+        1600
+      ]
+    },
+    "planta": {
+      "ratio": 0.8703,
+      "widths": [
+        480,
+        960,
+        1600
+      ]
+    },
+    "cobertura": {
+      "ratio": 0.8703,
+      "widths": [
+        480,
+        960,
+        1600
+      ]
+    },
+    "poema": {
+      "ratio": 0.7434,
+      "widths": [
+        480,
+        960
+      ]
+    }
+  },
+  "prime-studios": {
+    "corredor": {
+      "ratio": 0.625,
+      "widths": [
+        480,
+        960,
+        1600
+      ]
+    },
+    "cozinha": {
+      "ratio": 0.625,
+      "widths": [
+        480,
+        960,
+        1600
+      ]
+    },
+    "estudio": {
+      "ratio": 0.625,
+      "widths": [
+        480,
+        960,
+        1600
+      ]
+    }
+  },
+  "apartamento-em-pedroucos": {
+    "cozinha": {
+      "ratio": 0.625,
+      "widths": [
+        480,
+        960,
+        1600
+      ]
+    },
+    "escada": {
+      "ratio": 0.625,
+      "widths": [
+        480,
+        960,
+        1600
+      ]
+    },
+    "ilha": {
+      "ratio": 0.625,
+      "widths": [
+        480,
+        960,
+        1600
+      ]
+    },
+    "bancada": {
+      "ratio": 0.625,
+      "widths": [
+        480,
+        960,
+        1600
+      ]
+    },
+    "armario": {
+      "ratio": 0.625,
+      "widths": [
+        480,
+        960,
+        1600
+      ]
+    }
+  },
+  "casas-da-granja-ii": {
+    "jardim": {
+      "ratio": 1,
+      "widths": [
+        480,
+        960,
+        1600
+      ]
+    },
+    "rua": {
+      "ratio": 0.75,
+      "widths": [
+        480,
+        960,
+        1600
+      ]
+    },
+    "sala": {
+      "ratio": 1,
+      "widths": [
+        480,
+        960,
+        1600
+      ]
+    },
+    "patio": {
+      "ratio": 1.25,
+      "widths": [
+        480,
+        960
+      ]
+    },
+    "banho": {
+      "ratio": 1.25,
+      "widths": [
+        480,
+        960,
+        1600
+      ]
+    }
+  },
+  "casa-filipa-de-vilhena": {
+    "fachada": {
+      "ratio": 0.75,
+      "widths": [
+        480,
+        960,
+        1600
+      ]
+    },
+    "jardim": {
+      "ratio": 0.75,
+      "widths": [
+        480,
+        960,
+        1600
+      ]
+    },
+    "cozinha": {
+      "ratio": 0.75,
+      "widths": [
+        480,
+        960,
+        1600
+      ]
+    }
+  }
+}
