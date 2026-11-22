@@ -3,7 +3,7 @@ import { dateLong, dateShort, dayNum, esc, facts, monthShort, pageHero, photo, s
 
 const noticeLabel = (type) => NOTICE_TYPES.find(([v]) => v === type)?.[1] ?? 'Aviso';
 
-export function atualidadeBody({ news, events, yearly, notices, editais }) {
+export function atualidadeBody({ news, events, festas, notices, editais }) {
   return `${pageHero({ photoKey: 'matriz', crumbs: [['Atualidade']], title: 'O que se passa no <i>concelho</i>', lead: 'Notícias, agenda, avisos à população e editais, sempre atualizados.' })}
 ${subnav([['noticias', 'Notícias'], ['agenda', 'Agenda'], ['avisos', 'Avisos'], ['editais', 'Editais']])}
 
@@ -35,8 +35,8 @@ ${subnav([['noticias', 'Notícias'], ['agenda', 'Agenda'], ['avisos', 'Avisos'],
         ${events.length ? events.map((e) => `<div class="ev"><div class="d"><b>${dayNum(e.date)}</b><small>${monthShort(e.date)}</small></div><div><h4>${esc(e.title)}</h4><p>${esc(e.place)}</p></div></div>`).join('\n        ') : '<p>Sem eventos marcados para já.</p>'}
       </div>
       <div class="agenda soft">
-        <h3 class="k">Ao longo do ano</h3>
-        ${yearly.map(([a, b, title, text]) => `<div class="ev"><div class="d wide"><b>${a}</b><small>${b}</small></div><div><h4>${esc(title)}</h4><p>${esc(text)}</p></div></div>`).join('\n        ')}
+        <h3 class="k">Festas e tradições do ano</h3>
+        ${festas.map(([when, title, text]) => `<div class="ev ev--year"><span class="when">${esc(when)}</span><div><h4>${esc(title)}</h4><p>${esc(text)}</p></div></div>`).join('\n        ')}
       </div>
     </div>
   </div>

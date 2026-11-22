@@ -10,11 +10,14 @@ const FEATURED = [
   ['ocorrencia', 'Reportar ocorrência', 'Buracos, luz, lixo', '/contactos#ocorrencia'],
 ];
 
-const LIVE = [
-  ['fixar', icon.home, 'Fixar-se', 'Apoios à habitação, à natalidade e a quem vem trabalhar para o interior.', ['Apoio à fixação', 'Habitação']],
-  ['educacao', icon.school, 'Educação', 'Escolas, refeições e transporte escolar para todas as aldeias.', ['Matrículas', 'Bolsas de estudo']],
-  ['saude', icon.heart, 'Saúde e apoio social', 'Centro de saúde, apoio domiciliário e respostas para os mais velhos.', ['Cartão social', 'Teleassistência']],
-  ['mobilidade', icon.bus, 'Mobilidade', 'Transporte a pedido entre as aldeias e a vila, e ligações regionais.', ['Marcar viagem', 'Como chegar']],
+// “O que lhe está a acontecer?”: cada momento leva aos serviços e apoios certos
+const MOMENTS = [
+  [icon.heart, 'Vou ter um bebé', 'Enxoval do Bebé e a inscrição na creche e no pré-escolar.', [['Enxoval do Bebé', '/servicos#enxoval-bebe'], ['Pré-escolar', '/viver#educacao']]],
+  [icon.home, 'Vou fazer obras em casa', 'Licença de obras, plantas de localização e o apoio de até 3 500 € para recuperar a casa.', [['Licença de obras', '/servicos#licenca-obras'], ['Fundo Social de Habitação', '/servicos#apoio-habitacao']]],
+  [icon.pin, 'Mudei-me para o concelho', 'Água, escola e transporte escolar, e os apoios que se aplicam à sua família.', [['Contrato da água', '/servicos#contrato-agua'], ['Primeiros passos', '/viver#chegar']]],
+  [icon.school, 'Tenho filhos a estudar', 'Transporte escolar gratuito e apoio a quem estuda fora do concelho.', [['Transporte escolar', '/servicos#transporte-escolar'], ['Apoio a estudantes', '/servicos#transporte-estudantes']]],
+  [icon.bus, 'Preciso de ir a uma consulta', 'Transporte para consultas e exames fora do concelho e apoio na medicação.', [['Transporte para consultas', '/servicos#transporte-consultas'], ['Medicação', '/servicos#apoio-medicacao']]],
+  [icon.leaf, 'Vou limpar o terreno', 'Comunicar a queima antes de a fazer e entregar o que não arde no ecocentro.', [['Queimas e queimadas', '/servicos#queimas'], ['Ecocentro', '/equipamentos#ecocentro']]],
 ];
 
 const VISIT = [
@@ -99,9 +102,9 @@ export function homeBody({ news, events, notices, editais, desk }) {
 
 <section class="band dark">
   <div class="wrap">
-    <div class="h"><div><p class="k">Viver em Freixo</p><h2>Tudo o que precisa para viver no concelho</h2></div><a href="/viver" style="color:var(--gl)">Guia para novos residentes →</a></div>
-    <div class="grid4">
-      ${LIVE.map(([id, ic, title, text, list]) => `<a class="info" href="/viver#${id}"><span class="ic">${ic}</span><h3>${title}</h3><p>${text}</p><ul>${list.map((l) => `<li>${l}</li>`).join('')}</ul></a>`).join('\n      ')}
+    <div class="h"><div><p class="k">Por onde começar</p><h2>O que lhe está a acontecer?</h2></div><a href="/viver" style="color:var(--gl)">Guia para viver no concelho →</a></div>
+    <div class="grid3 moments">
+      ${MOMENTS.map(([ic, title, text, links], i) => `<article class="info moment" data-reveal style="--d:${(i % 3) * 70}ms"><span class="ic">${ic}</span><h3>${title}</h3><p>${text}</p><ul>${links.map(([l, h]) => `<li><a href="${h}">${l}</a></li>`).join('')}</ul></article>`).join('\n      ')}
     </div>
   </div>
 </section>

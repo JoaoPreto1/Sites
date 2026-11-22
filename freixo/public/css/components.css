@@ -51,3 +51,62 @@
 .phero:not(:has(>img)){padding-bottom:90px}
 .map--off{display:grid;place-content:center;justify-items:center;gap:14px;text-align:center;color:var(--soft);background:linear-gradient(135deg,var(--pl),var(--bg));border:1px dashed #cdb9de}
 .map--off .btn svg{width:18px;height:18px}
+
+/* executivo */
+.people{display:grid;grid-template-columns:repeat(2,1fr);gap:16px;margin-top:28px}
+.person{display:grid;grid-template-columns:56px 1fr;gap:16px;align-items:start;border:1px solid var(--line);border-radius:18px;padding:22px;background:#fff}
+.person--lead{grid-column:1/-1;background:linear-gradient(135deg,#faf6fd,#f3ecf8);border-color:#e2d4ee}
+.person h3{font-family:'Fraunces','Fraunces Fallback',Georgia,serif;font-weight:600;font-size:22px;margin:4px 0 10px}
+.person .k{font-size:11px}
+.avatar{width:56px;height:56px;border-radius:50%;display:grid;place-items:center;background:var(--pd);color:var(--gl);font-family:'Fraunces','Fraunces Fallback',Georgia,serif;font-weight:600;font-size:20px;box-shadow:inset 0 0 0 3px rgba(227,178,60,.5)}
+.tags-list{list-style:none;display:flex;flex-wrap:wrap;gap:6px;margin-bottom:12px}
+.tags-list li{font-size:12px;font-weight:600;background:#fff;border:1px solid var(--line);border-radius:999px;padding:4px 10px;color:var(--soft)}
+.person--lead .tags-list li{background:rgba(255,255,255,.8)}
+.link.sm{font-size:14px}
+.junta .facts{margin:4px 0 6px}
+.crest-fig{display:flex;gap:28px;align-items:center;margin-top:20px}
+.crest-fig figcaption{font-size:15px!important;color:#3b3342!important;margin:0!important}
+
+/* apoios e equipamentos */
+.apoio .amount{align-self:flex-start;background:var(--g);color:var(--pd);font-weight:700;font-size:14px;padding:5px 12px;border-radius:999px}
+.equip-group+.equip-group{margin-top:64px}
+.equip h3{font-size:21px}
+.equip__meta{list-style:none!important;display:grid;gap:8px;margin-top:auto;padding-top:10px;border-top:1px solid var(--line);font-size:14px!important;font-weight:500!important;color:var(--soft)!important}
+.equip__meta li::before{content:none!important}
+.equip__meta li{display:flex;gap:10px;align-items:flex-start}
+.equip__meta svg{width:18px;height:18px;flex:none;color:var(--p);margin-top:1px}
+.equip__meta a{color:var(--p);font-weight:700}
+
+/* contactos */
+.big-line{font-size:19px!important;font-weight:700;color:var(--p)!important}
+.big-line a{color:var(--p)}
+.social-row{display:flex;flex-wrap:wrap;gap:10px;margin-top:20px}
+.chip-link{border:1px solid var(--line);border-radius:999px;padding:9px 16px;font-weight:600;font-size:14px;color:var(--p);transition:border-color .2s,background .2s}
+.chip-link:hover{border-color:var(--p);background:var(--pl)}
+.phonebook{list-style:none;display:grid;grid-template-columns:repeat(2,1fr);column-gap:48px}
+.phonebook li{display:flex;justify-content:space-between;gap:16px;padding:14px 0;border-bottom:1px solid var(--line);font-size:15px}
+.phonebook a{font-weight:700;color:var(--p);white-space:nowrap}
+footer .socials{display:flex;gap:16px;margin-top:12px}
+footer .socials a{color:var(--gl);font-weight:600}
+footer p a{color:#fff}
+
+/* festas do ano */
+.ev--year{grid-template-columns:110px 1fr}
+.ev--year .when{font-size:12px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:var(--gl)}
+
+@media (max-width:900px){
+  .people{grid-template-columns:1fr}
+  .phonebook{grid-template-columns:1fr}
+}
+@media (max-width:640px){
+  .person{grid-template-columns:44px 1fr;padding:18px}
+  .avatar{width:44px;height:44px;font-size:16px}
+  .crest-fig{flex-direction:column;align-items:flex-start}
+  .ev--year{grid-template-columns:1fr;gap:4px}
+}
+
+/* momentos da vida */
+.moment ul{list-style:none;display:flex;flex-wrap:wrap;gap:8px;margin-top:auto;padding-top:8px}
+.moment ul li::before{content:none}
+.moment ul a{display:inline-flex;border:1px solid rgba(242,210,127,.45);border-radius:999px;padding:7px 13px;font-size:13px;font-weight:700;color:var(--gl);transition:background .2s,color .2s}
+.moment ul a:hover{background:var(--g);color:var(--pd)}

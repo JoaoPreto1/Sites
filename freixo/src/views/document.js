@@ -1,5 +1,5 @@
 import { renderHead } from '../seo/head.js';
-import { MUNICIPIO } from '../config/municipio.js';
+import { MUNICIPIO, SOCIAL } from '../config/municipio.js';
 import { crest, esc, icon } from './html.js';
 
 export const VERSION = Date.now().toString(36);
@@ -59,7 +59,7 @@ function header(path) {
 function footer() {
   return `<footer><div class="wrap">
   <div class="fg">
-    <div>${brand('')}<p>Paços do Concelho · atendimento nos dias úteis, das ${esc(MUNICIPIO.hours[0][1].split('–')[0])} às ${esc(MUNICIPIO.hours[0][1].split('–')[1])} e das ${esc(MUNICIPIO.hours[1][1].split('–')[0])} às ${esc(MUNICIPIO.hours[1][1].split('–')[1])}.</p></div>
+    <div>${brand('')}<p>${esc(MUNICIPIO.address)} · ${esc(MUNICIPIO.postal)}<br><a href="tel:+351${MUNICIPIO.phone.replace(/\s/g, '')}">${esc(MUNICIPIO.phone)}</a> · <a href="mailto:${MUNICIPIO.email}">${esc(MUNICIPIO.email)}</a><br>Dias úteis, ${MUNICIPIO.hours.map(([, h]) => h).join(' e ')}</p><p class="socials">${SOCIAL.map(([n, u]) => `<a href="${u}" rel="noopener">${n}</a>`).join('')}</p></div>
     <div><h2 class="fh">Município</h2><ul><li><a href="/municipio#camara">Câmara Municipal</a></li><li><a href="/municipio#assembleia">Assembleia Municipal</a></li><li><a href="/municipio#freguesias">Freguesias</a></li><li><a href="/municipio#historia">História e brasão</a></li><li><a href="/contactos">Contactos</a></li></ul></div>
     <div><h2 class="fh">Serviços</h2><ul><li><a href="/balcao">Balcão Online</a></li><li><a href="/servicos?categoria=agua">Água e resíduos</a></li><li><a href="/servicos?categoria=obras">Obras e urbanismo</a></li><li><a href="/contactos#ocorrencia">Reportar ocorrência</a></li><li><a href="/viver#mobilidade">Transporte a pedido</a></li></ul></div>
     <div><h2 class="fh">Informação</h2><ul><li><a href="/municipio#transparencia">Transparência</a></li><li><a href="/atualidade#editais">Editais e avisos</a></li><li><a href="/contactos#dados">Proteção de dados</a></li><li><a href="/contactos#acessibilidade">Acessibilidade</a></li><li><a href="/contactos#reclamacoes">Livro de reclamações</a></li></ul></div>

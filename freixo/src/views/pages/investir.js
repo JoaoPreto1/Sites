@@ -6,7 +6,7 @@ export const investirBody = () => `${pageHero({"photoKey":"penedo","crumbs":[["I
   <div class="h"><div><p class="k">Porquê aqui</p><h2>O que o concelho tem para oferecer</h2></div></div>
   <div class="grid4">
     <div class="info"><span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3c3 3 3 15 0 18M12 3c-3 3-3 15 0 18"/></svg></span><h3>Na fronteira</h3><p>Vila raiana, com Castela e Leão do outro lado do Douro e ligação a Salamanca.</p></div>
-    <div class="info"><span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><path d="M12 21c-5-3-8-7-8-11a8 8 0 0 1 16 0c0 4-3 8-8 11z"/><path d="M12 7v7"/></svg></span><h3>Produtos da terra</h3><p>Amêndoa, azeite, vinho do Douro Superior, mel e uma tradição de seda única no país.</p></div>
+    <div class="info"><span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><path d="M12 21c-5-3-8-7-8-11a8 8 0 0 1 16 0c0 4-3 8-8 11z"/><path d="M12 7v7"/></svg></span><h3>Produtos da terra</h3><p>Amêndoa, azeite e vinho do Douro Superior, com cooperativas já instaladas, e uma tradição de seda feita à mão.</p></div>
     <div class="info"><span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><path d="M3 20l6-12 4 7 3-4 5 9z"/></svg></span><h3>Turismo de natureza</h3><p>Parque Natural do Douro Internacional, aves de rapina, rio e centro histórico manuelino.</p></div>
     <div class="info"><span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><rect x="3" y="5" width="18" height="12" rx="2"/><path d="M8 21h8M12 17v4"/></svg></span><h3>Trabalho remoto</h3><p>Custo de vida baixo, casas para recuperar e tranquilidade para quem trabalha à distância.</p></div>
   </div>
@@ -18,12 +18,12 @@ export const investirBody = () => `${pageHero({"photoKey":"penedo","crumbs":[["I
       <p class="k">Apoios</p>
       <h2 class="t2">O que o Município pode fazer pelo seu projeto</h2>
       <div class="grid2" style="margin-top:28px">
-        <div class="info"><h3>Redução de taxas</h3><p>Isenção ou redução das taxas urbanísticas para investimentos que criem emprego no concelho.</p></div>
-        <div class="info"><h3>Espaços para empresas</h3><p>Lotes e espaços municipais em condições vantajosas para instalar a sua atividade.</p></div>
-        <div class="info"><h3>Licenciamento acompanhado</h3><p>Um técnico acompanha o processo e articula com as outras entidades.</p></div>
-        <div class="info"><h3>Fundos europeus</h3><p>Apoio na procura e na preparação de candidaturas a programas de financiamento.</p></div>
+        <div class="info"><h3>Área de Reabilitação Urbana</h3><p>Quem reabilita edifícios dentro da ARU do centro histórico tem acesso a benefícios fiscais e a taxas reduzidas.</p></div>
+        <div class="info"><h3>Gabinete de Apoio ao Agricultor</h3><p>Ajuda com candidaturas, parcelário e licenças para quem trabalha a amêndoa, o olival, a vinha ou o gado.</p></div>
+        <div class="info"><h3>Candidaturas e desenvolvimento</h3><p>O Município acompanha candidaturas a fundos europeus e programas de apoio ao investimento no interior.</p></div>
+        <div class="info"><h3>Espaço do Artesão</h3><p>Um espaço municipal para artesãos produzirem e venderem, a começar pela seda feita à mão.</p></div>
       </div>
-      <p style="font-size:14px;color:var(--soft);margin-top:16px">As condições exatas estão no regulamento municipal de apoio ao investimento.</p>
+      <p style="font-size:14px;color:var(--soft);margin-top:16px">No concelho já trabalham a Adega Cooperativa de Freixo, a CoopaFreixo e a associação de artesanato AEDPAFEC: contacte o Município para conhecer parceiros locais.</p>
     </div>
     <aside class="aside">
       <div class="box purple"><h3>Gabinete de apoio ao investidor</h3><p>Conte-nos a sua ideia. Respondemos em até cinco dias úteis com os próximos passos.</p><a class="btn gold" href="#contacto">Falar com o gabinete</a></div>

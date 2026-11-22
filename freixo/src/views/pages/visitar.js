@@ -20,6 +20,13 @@ ${subnav([["patrimonio","Património"],["natureza","Natureza"],["tradicoes","Tra
         <li><b>Capela do Senhor da Rua Nova</b>.</li>
         <li><b>Convento de São Filipe Néri</b>, dos Oratorianos, começado em 1673.</li>
         <li>O <b>velho freixo</b> junto à Matriz, que a população aceita como a árvore da lenda.</li>
+        <li>As ruas antigas da <b>Encruzilhada</b>, das <b>Flores</b>, do <b>Vale</b>, do <b>Castanheiro</b> e do <b>Outeiro</b>, com as portadas manuelinas.</li>
+      </ul>
+      <h3>Museus</h3>
+      <ul>
+        <li><a href="/equipamentos#museu-seda"><b>Museu da Seda e do Território</b></a>, no Largo do Outeiro: a seda do casulo ao tecido, com peças das artesãs à venda.</li>
+        <li><a href="/equipamentos#casa-junqueiro"><b>Museu Regional Casa Junqueiro</b></a>, dedicado ao poeta.</li>
+        <li><a href="/equipamentos#casa-natal"><b>Casa Natal de Guerra Junqueiro</b></a>, em Ligares.</li>
       </ul>
       <h3>No resto do concelho</h3>
       <ul>

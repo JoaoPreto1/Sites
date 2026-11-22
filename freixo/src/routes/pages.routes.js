@@ -13,7 +13,8 @@ import { visitarBody } from '../views/pages/visitar.js';
 import { investirBody } from '../views/pages/investir.js';
 import { atualidadeBody, noticiaBody } from '../views/pages/atualidade.js';
 import { contactosBody } from '../views/pages/contactos.js';
-import { yearly } from '../data/seed.js';
+import { FESTAS } from '../config/municipio.js';
+import { equipamentosBody } from '../views/pages/equipamentos.js';
 import { imgUrl, initialData } from '../views/html.js';
 import { balcaoBody, loginBody, painelBody } from '../views/pages/private.js';
 import { SERVICE_CATEGORIES } from '../config/municipio.js';
@@ -40,7 +41,7 @@ router.get('/robots.txt', (req, res) => {
 
 router.get('/sitemap.xml', async (req, res) => {
   const news = await content.listNews();
-  const paths = ['/', '/municipio', '/servicos', '/viver', '/visitar', '/investir', '/atualidade', ...news.map((n) => `/atualidade/${n.slug}`), '/contactos'];
+  const paths = ['/', '/municipio', '/servicos', '/viver', '/equipamentos', '/visitar', '/investir', '/atualidade', ...news.map((n) => `/atualidade/${n.slug}`), '/contactos'];
   res.type('application/xml').send(
     `<?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
@@ -104,6 +105,19 @@ router.get('/viver', (req, res) => {
   });
 });
 
+router.get('/equipamentos', (req, res) => {
+  send(req, res, {
+    page: {
+      title: 'Equipamentos municipais',
+      description: 'Biblioteca, Museu da Seda e do Território, Casa Junqueiro, auditório, piscinas, pavilhão, posto de turismo e ecocentro de Freixo de Espada à Cinta: onde ficam e como contactar.',
+      schema: [breadcrumbs([['Início', '/'], ['Viver', '/viver'], ['Equipamentos', '/equipamentos']])],
+      preload: heroPreload('matriz'),
+    },
+    body: equipamentosBody(),
+    scripts: ['atualidade'],
+  });
+});
+
 router.get('/visitar', (req, res) => {
   send(req, res, {
     page: {
@@ -148,7 +162,7 @@ router.get('/atualidade', async (req, res) => {
       schema: [breadcrumbs([['Início', '/'], ['Atualidade', '/atualidade']]), ...eventList(events)],
       preload: heroPreload('matriz'),
     },
-    body: atualidadeBody({ news, events, yearly, notices, editais }),
+    body: atualidadeBody({ news, events, festas: FESTAS, notices, editais }),
     scripts: ['atualidade', 'forms'],
   });
 });

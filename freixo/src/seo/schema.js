@@ -1,4 +1,4 @@
-import { MUNICIPIO } from '../config/municipio.js';
+import { MUNICIPIO, SOCIAL } from '../config/municipio.js';
 import { absolute } from './head.js';
 import { imgUrl } from '../views/html.js';
 
@@ -10,7 +10,10 @@ export const organization = () => ({
   url: absolute('/'),
   logo: absolute('/img/brasao-280.webp'),
   image: absolute(imgUrl('penedo', 1600)),
-  address: { '@type': 'PostalAddress', postalCode: MUNICIPIO.postalCode, addressLocality: MUNICIPIO.short, addressRegion: `Distrito de ${MUNICIPIO.district}`, addressCountry: 'PT' },
+  telephone: `+351 ${MUNICIPIO.phone}`,
+  email: MUNICIPIO.email,
+  sameAs: SOCIAL.map(([, u]) => u),
+  address: { '@type': 'PostalAddress', streetAddress: MUNICIPIO.address, postalCode: MUNICIPIO.postal.split(' ')[0], addressLocality: MUNICIPIO.short, addressRegion: `Distrito de ${MUNICIPIO.district}`, addressCountry: 'PT' },
   geo: { '@type': 'GeoCoordinates', ...MUNICIPIO.geo },
   areaServed: { '@type': 'AdministrativeArea', name: `Concelho de ${MUNICIPIO.short}` },
   openingHoursSpecification: MUNICIPIO.hours.map(([, span]) => {
