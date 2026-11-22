@@ -8,6 +8,7 @@ export function contactosBody() {
   return `${pageHero({ photoKey: 'vila', crumbs: [['Contactos']], title: 'Fale com o <i>Município</i>', lead: 'Presencialmente, pela mensagem abaixo ou no Balcão Online. Respondemos em até cinco dias úteis.' })}
 
 <section class="sec wrap">
+  <h2 class="sr">Morada, horário e contactos</h2>
   <div class="grid3">
     <div class="info"><span class="ic">${icon.pin}</span><h3>Paços do Concelho</h3><p>${esc(MUNICIPIO.short)}<br>${MUNICIPIO.postalCode} ${esc(MUNICIPIO.short)}</p></div>
     <div class="info"><span class="ic">${icon.clock}</span><h3>Horário</h3><p>Dias úteis<br>${MUNICIPIO.hours.map(([, h]) => h).join(' · ')}</p></div>
@@ -55,7 +56,10 @@ export function contactosBody() {
 
 <section class="sec wrap">
   <div class="h"><div><p class="k">Localização</p><h2>Como chegar</h2></div></div>
-  <iframe class="map" title="Mapa de Freixo de Espada à Cinta" loading="lazy" src="https://www.openstreetmap.org/export/embed.html?bbox=${lon - 0.03}%2C${lat - 0.02}%2C${lon + 0.03}%2C${lat + 0.02}&amp;layer=mapnik&amp;marker=${lat}%2C${lon}"></iframe>
+  <div class="map map--off" data-map="https://www.openstreetmap.org/export/embed.html?bbox=${lon - 0.03}%2C${lat - 0.02}%2C${lon + 0.03}%2C${lat + 0.02}&amp;layer=mapnik&amp;marker=${lat}%2C${lon}">
+    <p>O mapa é do OpenStreetMap e só carrega se o pedir.</p>
+    <button class="btn purple" type="button">${icon.pin}Mostrar o mapa</button>
+  </div>
   <p class="muted" style="margin-top:10px">Pela EN221 (Guarda – Figueira de Castelo Rodrigo – Freixo – Miranda do Douro) ou pela EN325 a partir do IP2 em Torre de Moncorvo. Mapa © colaboradores do OpenStreetMap.</p>
 </section>
 

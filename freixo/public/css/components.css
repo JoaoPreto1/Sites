@@ -49,3 +49,5 @@
 .phero .meta{display:flex;flex-wrap:wrap;gap:14px;align-items:center;font-size:14px;color:rgba(255,255,255,.85);margin-top:18px}
 .phero .meta .badge{background:var(--g);color:var(--pd)}
 .phero:not(:has(>img)){padding-bottom:90px}
+.map--off{display:grid;place-content:center;justify-items:center;gap:14px;text-align:center;color:var(--soft);background:linear-gradient(135deg,var(--pl),var(--bg));border:1px dashed #cdb9de}
+.map--off .btn svg{width:18px;height:18px}

@@ -29,3 +29,15 @@ for (const form of document.querySelectorAll('form[data-api]')) {
     });
   });
 }
+
+// O mapa de terceiros só carrega quando a pessoa o pede
+for (const box of document.querySelectorAll('[data-map]')) {
+  box.querySelector('button').addEventListener('click', () => {
+    const frame = document.createElement('iframe');
+    frame.className = 'map';
+    frame.title = 'Mapa de Freixo de Espada à Cinta';
+    frame.src = box.dataset.map;
+    box.replaceWith(frame);
+    frame.focus();
+  });
+}
