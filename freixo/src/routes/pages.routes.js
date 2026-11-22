@@ -1,11 +1,15 @@
 import { Router } from 'express';
 import { documentHtml } from '../views/document.js';
 import { absolute } from '../seo/head.js';
-import { eventList, organization, website } from '../seo/schema.js';
+import { breadcrumbs, eventList, organization, serviceCatalog, website } from '../seo/schema.js';
 import * as content from '../services/content.service.js';
 import { deskStatus } from '../services/today.service.js';
 import { srcset } from '../views/html.js';
 import { homeBody } from '../views/pages/home.js';
+import { municipioBody } from '../views/pages/municipio.js';
+import { servicosBody } from '../views/pages/servicos.js';
+import { viverBody } from '../views/pages/viver.js';
+import { SERVICE_CATEGORIES } from '../config/municipio.js';
 
 export function send(req, res, { status = 200, ...view }) {
   res.status(status).type('html').set('Cache-Control', 'no-cache').send(documentHtml({ ...view, path: req.path }));
@@ -47,6 +51,49 @@ router.get('/', async (req, res) => {
       preload: heroPreload('penedo'),
     },
     body: homeBody({ news, events, notices, editais, desk: deskStatus() }),
+  });
+});
+
+router.get('/municipio', (req, res) => {
+  send(req, res, {
+    page: {
+      title: 'Município',
+      description: 'Câmara Municipal, Assembleia Municipal, as quatro freguesias, a história dos forais, o brasão e as lendas do nome, e os documentos de transparência do Município.',
+      image: '/img/vila-1600.webp',
+      schema: [breadcrumbs([['Início', '/'], ['Município', '/municipio']])],
+      preload: heroPreload('vila'),
+    },
+    body: municipioBody(),
+  });
+});
+
+router.get('/servicos', async (req, res) => {
+  const services = await content.listServices();
+  const cat = SERVICE_CATEGORIES.find(([v]) => v === req.query.categoria)?.[0];
+  const q = typeof req.query.q === 'string' ? req.query.q.slice(0, 80) : '';
+  send(req, res, {
+    page: {
+      title: 'Serviços',
+      description: 'Todos os serviços do Município de Freixo de Espada à Cinta: água, obras, ação social, educação e atendimento. O que precisa, quanto demora e se pode tratar online.',
+      path: '/servicos',
+      schema: [serviceCatalog(services), breadcrumbs([['Início', '/'], ['Serviços', '/servicos']])],
+      preload: heroPreload('penedo'),
+    },
+    body: servicosBody({ services, cat, q }),
+    scripts: ['servicos'],
+  });
+});
+
+router.get('/viver', (req, res) => {
+  send(req, res, {
+    page: {
+      title: 'Viver no concelho',
+      description: 'Guia para viver em Freixo de Espada à Cinta: apoios à fixação, habitação, escolas, saúde, apoio social, transporte a pedido e como chegar.',
+      image: '/img/amendoeiras-1280.webp',
+      schema: [breadcrumbs([['Início', '/'], ['Viver', '/viver']])],
+      preload: heroPreload('amendoeiras'),
+    },
+    body: viverBody(),
   });
 });
 

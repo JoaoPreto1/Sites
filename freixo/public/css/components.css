@@ -32,3 +32,8 @@
 .box.purple .bh{color:#fff}
 .today .lab{margin:0}
 .today .i>span{font-size:inherit;color:inherit}
+.svc .in .sh{font-family:'Public Sans','Public Sans Fallback',Arial,sans-serif;font-size:13px;letter-spacing:.14em;text-transform:uppercase;color:var(--p);margin:0 0 8px}
+.crest-plain{width:150px;height:auto;flex:none}
+.prose figure .crest-plain{width:150px;border-radius:0}
+.prose .docs a{text-decoration:none;font-weight:inherit}
+.prose .docs{margin-left:0}
