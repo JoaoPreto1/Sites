@@ -13,7 +13,7 @@
 ![JavaScript](https://img.shields.io/badge/JavaScript-ES_Modules-f7df1e?style=flat-square&logo=javascript&logoColor=black)
 ![Lighthouse](https://img.shields.io/badge/Lighthouse-95%2B%20·%20100%20·%20100%20·%20100-0cce6b?style=flat-square&logo=lighthouse&logoColor=white)
 
-[Funcionalidades](#-funcionalidades) · [O design](#-o-design) · [Capturas](#-capturas) · [Tecnologias](#-tecnologias) · [SEO e desempenho](#-seo-e-desempenho) · [Como pôr a correr](#-como-pôr-a-correr) · [API](#-api)
+[Funcionalidades](#-funcionalidades) · [O design](#-o-design) · [Épocas](#-versões-por-época) · [Capturas](#-capturas) · [Tecnologias](#-tecnologias) · [SEO e desempenho](#-seo-e-desempenho) · [Como pôr a correr](#-como-pôr-a-correr) · [API](#-api)
 
 </div>
 
@@ -27,7 +27,9 @@ Proposta de redesign do site de uma câmara municipal, feita como trabalho de po
 
 O site usa o **brasão verdadeiro** do concelho e tira dele as cores: o **púrpura** do campo e o **ouro** do freixo e das espadas. As fotografias são do próprio concelho (Penedo Durão, Torre do Galo, Igreja Matriz, Congida, seda e amendoeiras) e os factos — freguesias, residentes dos Censos 2011 e 2021, forais, Monumento Nacional, Guerra Junqueiro, Procissão dos Sete Passos — vêm da Wikipedia.
 
-As **notícias, a agenda, os avisos, os prazos e os pedidos são de exemplo**. As datas são calculadas a partir de hoje, por isso há sempre notícias recentes, eventos nas próximas semanas e um aviso em curso. Funciona **sem base de dados**: tudo vive em memória, com repositórios prontos a trocar por uma base de dados real.
+A informação prática foi tirada do **site atual do Município** e reorganizada: os contactos, o executivo e os pelouros, a Assembleia, as quatro juntas com morada, telefone e horário, os apoios sociais com os seus regulamentos, os 13 equipamentos municipais, o ecocentro, a recolha de monos e as festas do ano. No site atual muita desta informação está escondida em menus sem página, com acentos partidos, agenda parada em 2023 e endereços sem nome; aqui cada coisa tem uma página e um caminho claro.
+
+As **notícias recentes, os avisos, os prazos e os pedidos são de exemplo**. As datas são calculadas a partir de hoje, por isso há sempre notícias recentes, eventos nas próximas semanas e um aviso em curso. Funciona **sem base de dados**: tudo vive em memória, com repositórios prontos a trocar por uma base de dados real.
 
 ## ✨ Funcionalidades
 
@@ -40,10 +42,15 @@ As **notícias, a agenda, os avisos, os prazos e os pedidos são de exemplo**. A
   <tr valign="top">
     <td>
       • Pesquisa “O que precisa de tratar?” logo à entrada, com a tecla <kbd>/</kbd><br>
+      • Menu com submenus: cada secção mostra as páginas que tem, com uma frase sobre cada<br>
+      • “O que lhe está a acontecer?”: vou ter um bebé, vou fazer obras, mudei-me… leva aos serviços certos<br>
+      • Versão do site para cada época, a escolher na barra de cima<br>
       • Seis serviços com ícones ilustrados em púrpura e ouro<br>
       • “Hoje no concelho”: o aviso mais importante, se os Paços estão abertos agora e o próximo evento<br>
       • Ficha do concelho e as quatro freguesias<br>
-      • Catálogo de 16 serviços com pesquisa e categorias: o que levar, quanto demora, se é online<br>
+      • Catálogo de 20 serviços com pesquisa e categorias: o que levar, quanto demora, se é online<br>
+      • Executivo com pelouros, Assembleia e as quatro juntas com contactos e horários<br>
+      • Oito apoios do Município e 13 equipamentos com morada e telefone<br>
       • Notícias com filtros, agenda, avisos à população e editais<br>
       • Guias para viver, visitar e investir no concelho<br>
       • Mensagem ao Município, ocorrências na via pública e newsletter<br>
@@ -76,7 +83,23 @@ As **notícias, a agenda, os avisos, os prazos e os pedidos são de exemplo**. A
 - **Destaque imersivo.** O Douro visto do Penedo Durão ocupa o ecrã inteiro com um véu púrpura; o brasão ao centro, o nome em Fraunces com “Espada à Cinta” a dourado e a pesquisa por baixo.
 - **Serviços a flutuar.** Uma barra branca com seis ícones ilustrados, desenhados para o site, sobe por cima da fotografia.
 - **Navbar que se adapta.** Transparente por cima da fotografia, ganha fundo ao descer; abaixo dos 1180 px passa a um menu de ecrã inteiro com pesquisa, Balcão Online e idiomas.
+- **Animações discretas.** O destaque entra peça a peça (brasão, título, pesquisa), a fotografia aproxima-se devagar, as secções aparecem ao descer e o ponto dos Paços do Concelho pulsa quando estão abertos. Tudo para quando o sistema pede menos movimento.
 - **Informação primeiro.** Cada página interior tem um índice das secções que acompanha a leitura, e caixas laterais com o que é preciso saber de seguida.
+
+## 🎄 Versões por época
+
+O site tem uma versão para cada época do ano: **Natal**, **Halloween e Pão-por-Deus**, **Carnaval**, **Amendoeira em Flor**, **Páscoa** e **Verão**. Quando uma época se aproxima, aparece na barra de cima, ao lado de PT · EN · ES, a opção *Ver a versão de Natal* (ou da época que for). Quem escolhe é o visitante: a escolha fica guardada e pode voltar à versão habitual com um clique.
+
+Cada versão muda as cores (mantendo o brasão), a fotografia do destaque, a frase e acrescenta um destaque com o que acontece no concelho nessa altura — a iluminação e a Fogueira do Galo no Natal, o Enterro do Entrudo no Largo do Outeiro, a Feira da Amendoeira em Flor, a Procissão dos Sete Passos, as Festas da Vila. As decorações são poucas e discretas (neve leve, pétalas, três morcegos, um sol) e só aparecem no destaque. As datas da Páscoa e do Carnaval são calculadas para cada ano. Para pré-visualizar: `/?epoca=natal`, `halloween`, `carnaval`, `amendoeira`, `pascoa`, `verao` ou `normal`.
+
+![As versões de Natal, Halloween, Amendoeira em Flor e Verão](docs/epocas.jpg)
+
+<table>
+  <tr>
+    <td width="50%"><img src="docs/natal-destaque.jpg" alt="Destaque de Natal na página inicial"><br><sub><b>Natal</b> · o destaque da época, com o que acontece no concelho</sub></td>
+    <td width="50%"><img src="docs/menu.jpg" alt="Menu com submenus"><br><sub><b>Menu</b> · cada secção com as suas páginas</sub></td>
+  </tr>
+</table>
 
 ## 📸 Capturas
 
@@ -94,8 +117,12 @@ As **notícias, a agenda, os avisos, os prazos e os pedidos são de exemplo**. A
     <td><img src="docs/noticia.jpg" alt="Notícia"><br><sub><b>Notícia</b> · texto, resumo e outras notícias</sub></td>
   </tr>
   <tr>
-    <td><img src="docs/contactos.jpg" alt="Contactos"><br><sub><b>Contactos</b> · mensagem, ocorrências e mapa a pedido</sub></td>
+    <td><img src="docs/contactos.jpg" alt="Contactos"><br><sub><b>Contactos</b> · telefones, email, emergência e juntas</sub></td>
     <td><img src="docs/balcao.jpg" alt="Balcão Online"><br><sub><b>Balcão Online</b> · pedidos, água e ocorrências do munícipe</sub></td>
+  </tr>
+  <tr>
+    <td><img src="docs/equipamentos.jpg" alt="Equipamentos municipais"><br><sub><b>Equipamentos</b> · museus, piscinas, biblioteca e ecocentro</sub></td>
+    <td><img src="docs/municipio.jpg" alt="Executivo"><br><sub><b>Câmara Municipal</b> · executivo e pelouros</sub></td>
   </tr>
   <tr>
     <td colspan="2"><img src="docs/painel.jpg" alt="Painel da câmara"><br><sub><b>Painel da câmara</b> · pedidos, ocorrências, mensagens e conteúdos</sub></td>
@@ -119,7 +146,9 @@ As **notícias, a agenda, os avisos, os prazos e os pedidos são de exemplo**. A
 
 | Página (telemóvel) | Desempenho | Acessibilidade | Boas práticas | SEO |
 | --- | :-: | :-: | :-: | :-: |
-| Início | 96 | 100 | 100 | 100 |
+| Início | 97 | 100 | 100 | 100 |
+| Início · versão de Natal | 97 | 100 | 100 | 100 |
+| Equipamentos | 98 | 100 | 100 | 100 |
 | Início (computador) | 100 | 100 | 100 | 100 |
 | Município | 96 | 100 | 100 | 100 |
 | Serviços | 98 | 100 | 100 | 100 |

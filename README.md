@@ -36,7 +36,7 @@ O mais recente primeiro.
     <td>
       <p>📅 <strong>Domingo, 22 nov 2026</strong></p>
       <h3><a href="freixo/">Freixo de Espada à Cinta</a></h3>
-      <p>Proposta de redesign (não oficial) do site de uma câmara municipal real, com o brasão verdadeiro e as suas cores, púrpura e ouro. Destaque sobre o Douro visto do Penedo Durão, serviços com ícones ilustrados, “Hoje no concelho”, catálogo de serviços, notícias, agenda e guias para viver, visitar e investir. Balcão Online para o munícipe (pedidos, água, ocorrências) e painel da câmara.</p>
+      <p>Proposta de redesign (não oficial) do site de uma câmara municipal real, com o brasão verdadeiro e as suas cores, púrpura e ouro. Informação real tirada do site atual e reorganizada, menu com submenus, “O que lhe está a acontecer?”, equipamentos, apoios e juntas, e uma versão do site para cada época (Natal, Halloween, Carnaval, Amendoeira em Flor, Páscoa e Verão) que aparece na barra de cima quando a data se aproxima. Balcão Online para o munícipe (pedidos, água, ocorrências) e painel da câmara.</p>
     </td>
   </tr>
   <tr>
