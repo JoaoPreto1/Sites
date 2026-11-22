@@ -4,7 +4,7 @@
 
 **Um site completo de cada vez, cada um com a data em que foi feito. Meta: 3 sites por semana.**
 
-![Sites feitos](https://img.shields.io/badge/sites_feitos-6-ff5a36?style=flat-square)
+![Sites feitos](https://img.shields.io/badge/sites_feitos-8-ff5a36?style=flat-square)
 ![Meta](https://img.shields.io/badge/meta-3_por_semana-1f8a4c?style=flat-square)
 ![Node.js](https://img.shields.io/badge/Node.js-22+-339933?style=flat-square&logo=nodedotjs&logoColor=white)
 ![Express](https://img.shields.io/badge/Express-5-000000?style=flat-square&logo=express&logoColor=white)
@@ -23,7 +23,7 @@ Três sites por semana, de segunda a domingo.
 
 | Semana | Sites | Meta | Estado |
 |---|---|:---:|---|
-| 16 a 22 nov 2026 | Bairro, Fechadura, Planta | 3 / 3 | ✅ Cumprida |
+| 16 a 22 nov 2026 | Bairro, Fechadura, Planta, Freixo | 4 / 3 | ✅ Cumprida |
 | 9 a 15 nov 2026 | Maré, Lente Studio, Cepa, Rotação | 4 / 3 | ✅ Cumprida |
 
 ## 📅 Diário
@@ -31,6 +31,14 @@ Três sites por semana, de segunda a domingo.
 O mais recente primeiro.
 
 <table>
+  <tr>
+    <td width="50%"><a href="freixo/"><img src="freixo/docs/capa.jpg" alt="Freixo de Espada à Cinta" width="100%"></a></td>
+    <td>
+      <p>📅 <strong>Domingo, 22 nov 2026</strong></p>
+      <h3><a href="freixo/">Freixo de Espada à Cinta</a></h3>
+      <p>Proposta de redesign (não oficial) do site de uma câmara municipal real, com o brasão verdadeiro e as suas cores, púrpura e ouro. Destaque sobre o Douro visto do Penedo Durão, serviços com ícones ilustrados, “Hoje no concelho”, catálogo de serviços, notícias, agenda e guias para viver, visitar e investir. Balcão Online para o munícipe (pedidos, água, ocorrências) e painel da câmara.</p>
+    </td>
+  </tr>
   <tr>
     <td width="50%"><a href="planta/"><img src="planta/docs/capa.jpg" alt="Planta" width="100%"></a></td>
     <td>
