@@ -5,6 +5,7 @@ import { article, breadcrumbs, eventList, organization, serviceCatalog, touristP
 import * as content from '../services/content.service.js';
 import { deskStatus } from '../services/today.service.js';
 import { srcset } from '../views/html.js';
+import { resolveEpoca } from '../config/epocas.js';
 import { homeBody } from '../views/pages/home.js';
 import { municipioBody } from '../views/pages/municipio.js';
 import { servicosBody } from '../views/pages/servicos.js';
@@ -20,7 +21,8 @@ import { balcaoBody, loginBody, painelBody } from '../views/pages/private.js';
 import { SERVICE_CATEGORIES } from '../config/municipio.js';
 
 export function send(req, res, { status = 200, ...view }) {
-  res.status(status).type('html').set('Cache-Control', 'no-cache').send(documentHtml({ ...view, path: req.path }));
+  const epoca = view.epoca ?? resolveEpoca(req, res);
+  res.status(status).type('html').set('Cache-Control', 'no-cache').send(documentHtml({ ...view, epoca, path: req.path }));
 }
 
 export function notFoundPage(req, res) {
@@ -52,13 +54,16 @@ ${paths.map((p) => `  <url><loc>${absolute(p)}</loc></url>`).join('\n')}
 
 router.get('/', async (req, res) => {
   const [news, events, notices, editais] = await Promise.all([content.listNews(), content.listEvents(), content.listNotices(), content.listEditais()]);
+  const epoca = resolveEpoca(req, res);
+  const heroKey = epoca.active?.photo ?? 'penedo';
   send(req, res, {
+    epoca,
     page: {
       description: 'Site do Município de Freixo de Espada à Cinta: Balcão Online, serviços, notícias e agenda, viver no concelho e visitar a vila manuelina do Douro Internacional.',
       schema: [organization(), website(), ...eventList(events.slice(0, 4))],
-      preload: heroPreload('penedo'),
+      preload: heroPreload(heroKey),
     },
-    body: homeBody({ news, events, notices, editais, desk: deskStatus() }),
+    body: homeBody({ news, events, notices, editais, desk: deskStatus(), epoca: epoca.active }),
   });
 });
 

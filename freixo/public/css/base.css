@@ -70,9 +70,9 @@ button,input,select,textarea{font:inherit;color:inherit}
 .brand b{display:block;font-family:'Fraunces','Fraunces Fallback',Georgia,serif;font-weight:600;font-size:20px;line-height:1.1}
 .brand small{display:block;font-size:11px;letter-spacing:.22em;text-transform:uppercase;color:var(--gl);font-weight:700;margin-top:2px}
 .menu{display:flex;gap:30px;font-weight:600;font-size:15px;margin-left:auto}
-.menu a{position:relative;padding:8px 0}
-.menu a::after{content:"";position:absolute;left:0;right:0;bottom:0;height:2px;background:var(--g);border-radius:2px;transform:scaleX(0);transition:transform .2s}
-.menu a:hover::after,.menu a[aria-current]::after{transform:none}
+.menu__item>a{position:relative;padding:8px 0;display:inline-block}
+.menu__item>a::after{content:"";position:absolute;left:0;right:0;bottom:0;height:2px;background:var(--g);border-radius:2px;transform:scaleX(0);transition:transform .2s}
+.menu__item>a:hover::after,.menu__item>a[aria-current]::after,.menu__item:focus-within>a::after{transform:none}
 .acts{display:flex;align-items:center;gap:12px}
 .round{width:44px;height:44px;border-radius:50%;border:1px solid rgba(255,255,255,.35);display:grid;place-items:center;background:rgba(255,255,255,.08);color:#fff;backdrop-filter:blur(6px);cursor:pointer}
 .round svg{width:18px;height:18px}

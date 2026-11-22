@@ -5,12 +5,45 @@ import { crest, esc, icon } from './html.js';
 export const VERSION = Date.now().toString(36);
 
 const NAV = [
-  ['/municipio', 'Município'],
-  ['/servicos', 'Serviços'],
-  ['/viver', 'Viver'],
-  ['/visitar', 'Visitar'],
-  ['/investir', 'Investir'],
-  ['/atualidade', 'Atualidade'],
+  ['/municipio', 'Município', 'Quem decide, as freguesias e a história do concelho.', [
+    ['/municipio#camara', 'Câmara Municipal', 'Presidente, vereadores e pelouros'],
+    ['/municipio#assembleia', 'Assembleia Municipal', 'Sessões e como intervir'],
+    ['/municipio#freguesias', 'Juntas de freguesia', 'Moradas, telefones e horários'],
+    ['/municipio#historia', 'História e brasão', 'Forais, lendas e personalidades'],
+    ['/municipio#transparencia', 'Transparência', 'Taxas, PDM, contratos e ética'],
+  ]],
+  ['/servicos', 'Serviços', 'O que pode tratar, o que levar e quanto demora.', [
+    ['/balcao', 'Balcão Online', 'Pedidos, faturas e leituras'],
+    ['/servicos?categoria=agua', 'Água e resíduos', 'Contratos, tarifário social, monos'],
+    ['/servicos?categoria=obras', 'Obras e urbanismo', 'Licenças, plantas, queimas, BUPi'],
+    ['/servicos?categoria=social', 'Ação social', 'Habitação, bebé, saúde, cuidadores'],
+    ['/servicos?categoria=educacao', 'Educação', 'Transporte escolar e estudantes'],
+    ['/contactos#ocorrencia', 'Reportar ocorrência', 'Um problema na rua'],
+  ]],
+  ['/viver', 'Viver', 'Casa, escola, saúde, apoios e tempo livre.', [
+    ['/viver#chegar', 'Mudar-se para cá', 'Os primeiros passos'],
+    ['/viver#apoios', 'Apoios do Município', 'Oito apoios para famílias'],
+    ['/viver#educacao', 'Educação e saúde', 'Escolas, consultas e medicação'],
+    ['/equipamentos', 'Equipamentos municipais', 'Museus, piscinas, biblioteca'],
+    ['/viver#ambiente', 'Resíduos e água', 'Ecocentro e recolhas'],
+  ]],
+  ['/visitar', 'Visitar', 'A vila mais manuelina de Portugal e o Douro Internacional.', [
+    ['/visitar#patrimonio', 'Património', 'Torre do Galo e Igreja Matriz'],
+    ['/equipamentos#cultura', 'Museus', 'Seda, Casa Junqueiro, biblioteca'],
+    ['/visitar#natureza', 'Natureza', 'Penedo Durão e Congida'],
+    ['/visitar#tradicoes', 'Tradições', 'Seda, amendoeiras, Sete Passos'],
+    ['/visitar#roteiro', 'Um dia em Freixo', 'Roteiro e informação prática'],
+  ]],
+  ['/investir', 'Investir', 'Apoios e acompanhamento para quem quer investir.', [
+    ['/investir', 'Porquê aqui', 'Produtos, turismo e fronteira'],
+    ['/investir#contacto', 'Falar com o Município', 'Conte-nos o seu projeto'],
+  ]],
+  ['/atualidade', 'Atualidade', 'Notícias, agenda, avisos e editais.', [
+    ['/atualidade#noticias', 'Notícias', 'O que se passa no concelho'],
+    ['/atualidade#agenda', 'Agenda', 'Eventos e festas do ano'],
+    ['/atualidade#avisos', 'Avisos', 'Cortes, trânsito e recolhas'],
+    ['/atualidade#editais', 'Editais', 'Documentos oficiais'],
+  ]],
 ];
 
 const isCurrent = (path, href) => (href === '/' ? path === '/' : path === href || path.startsWith(`${href}/`));
@@ -26,15 +59,21 @@ const GRADIENTS = `<svg width="0" height="0" style="position:absolute" aria-hidd
 const brand = (alt = 'Brasão de Freixo de Espada à Cinta') =>
   `<a class="brand" href="/">${crest(46, '', alt)}<span><b>Freixo de Espada à Cinta</b><small>Município</small></span></a>`;
 
-function header(path) {
+const seasonPill = (epoca) => {
+  if (epoca?.active) return `<button class="season-pill on" type="button" data-epoca-set="normal">Voltar à versão habitual</button>`;
+  if (epoca?.offer) return `<button class="season-pill" type="button" data-epoca-set="${epoca.offer.id}"><span class="season-dot" aria-hidden="true"></span>${epoca.offer.pill}</button>`;
+  return '';
+};
+
+function header(path, epoca) {
   return `<header class="site-head">
   <div class="util"><div class="wrap">
     <span>Município de Freixo de Espada à Cinta · Distrito de ${MUNICIPIO.district}</span>
-    <nav aria-label="Ajuda"><span><b>PT</b> · EN · ES</span><a href="/contactos#acessibilidade">Acessibilidade</a><a href="/contactos">Contactos</a></nav>
+    <nav aria-label="Ajuda">${seasonPill(epoca)}<span><b>PT</b> · EN · ES</span><a href="/contactos#acessibilidade">Acessibilidade</a><a href="/contactos">Contactos</a></nav>
   </div></div>
   <div class="bar"><div class="wrap">
     ${brand()}
-    <nav class="menu" aria-label="Principal">${NAV.map(([href, label]) => `<a href="${href}"${current(path, href)}>${label}</a>`).join('')}</nav>
+    <nav class="menu" aria-label="Principal">${NAV.map(([href, label, lead, items]) => `<div class="menu__item"><a href="${href}"${current(path, href)}>${label}</a><div class="mega"><div class="mega__in"><div class="mega__lead"><p class="k">${label}</p><p>${lead}</p><a class="link" href="${href}">Ver tudo →</a></div><ul>${items.map(([h, l, s]) => `<li><a href="${h}"><b>${l}</b><small>${s}</small></a></li>`).join('')}</ul></div></div></div>`).join('')}</nav>
     <div class="acts">
       <a class="round find" href="/servicos" aria-label="Procurar um serviço">${icon.search}</a>
       <a class="bo" href="/balcao" data-account>${icon.calendar}<span>Balcão Online</span></a>
@@ -49,8 +88,9 @@ function header(path) {
   </div>
   <div class="body">
     <form class="search" role="search" action="/servicos" method="get">${icon.search}<input type="search" name="q" placeholder="O que precisa de tratar?" aria-label="O que precisa de tratar?" autocomplete="off"></form>
-    <ul>${[['/', 'Início'], ...NAV, ['/contactos', 'Contactos']].map(([href, label]) => `<li><a href="${href}"${current(path, href)}>${label}</a></li>`).join('')}</ul>
+    <ul>${[['/', 'Início'], ...NAV, ['/contactos', 'Contactos'], ['/equipamentos', 'Equipamentos']].map(([href, label]) => `<li><a href="${href}"${current(path, href)}>${label}</a></li>`).join('')}</ul>
     <a class="bo" href="/balcao" data-account>${icon.calendar}<span>Balcão Online</span></a>
+    ${seasonPill(epoca)}
     <div class="lang"><b>PT</b><span>EN</span><span>ES</span><a href="/contactos#acessibilidade">Acessibilidade</a></div>
   </div>
 </div>`;
@@ -69,9 +109,9 @@ function footer() {
 </div></footer>`;
 }
 
-export function documentHtml({ page, body, path, scripts = [], data = '', bodyClass = '' }) {
+export function documentHtml({ page, body, path, scripts = [], data = '', bodyClass = '', epoca = null }) {
   return `<!doctype html>
-<html lang="pt-PT">
+<html lang="pt-PT"${epoca?.active ? ` data-epoca="${epoca.active.id}"` : ''}>
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -85,7 +125,7 @@ export function documentHtml({ page, body, path, scripts = [], data = '', bodyCl
 <body${bodyClass ? ` class="${bodyClass}"` : ''}>
   <a class="skip" href="#conteudo">Saltar para o conteúdo</a>
   ${GRADIENTS}
-  ${header(path)}
+  ${header(path, epoca)}
   <main id="conteudo">
 ${body}
   </main>

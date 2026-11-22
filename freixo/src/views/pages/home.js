@@ -30,22 +30,36 @@ const VISIT = [
 
 const NOTICE_DOT = { agua: '#e3b23c', transito: '#c0573a', ambiente: '#3d8b4f', geral: '#56307a' };
 
-export function homeBody({ news, events, notices, editais, desk }) {
+const seasonBanner = (e) => `<section class="sec wrap season-band" aria-label="${esc(e.name)}">
+  <div class="season-card" data-reveal>
+    <div class="season-card__text">
+      <p class="k">${esc(e.banner.kicker)}</p>
+      <h2>${esc(e.banner.title)}</h2>
+      <p>${esc(e.banner.text)}</p>
+      <a class="btn gold" href="${e.banner.link[0]}">${esc(e.banner.link[1])}</a>
+    </div>
+    <ol class="season-card__list">${e.banner.items.map(([when, title, text]) => `<li><span>${esc(when)}</span><b>${esc(title)}</b><small>${esc(text)}</small></li>`).join('')}</ol>
+  </div>
+</section>`;
+
+export function homeBody({ news, events, notices, editais, desk, epoca }) {
+  const heroKey = epoca?.photo ?? 'penedo';
   const [lead, second] = news;
   const notice = notices[0];
   const next = events[0];
 
   return `<section class="hero">
-  ${photo('penedo', 'O vale do Douro visto do miradouro do Penedo Durão', { eager: true, fit: 1600, sizes: '100vw' })}
+  ${photo(heroKey, epoca ? `Freixo de Espada à Cinta · ${epoca.name}` : 'O vale do Douro visto do miradouro do Penedo Durão', { eager: true, fit: 1600, sizes: '100vw' })}
   <div class="center wrap">
     ${crest(132, 'crest')}
     <p class="k">Município de</p>
     <h1>Freixo de <i>Espada à Cinta</i></h1>
-    <p class="sub">Vila manuelina debruçada sobre as arribas do Douro Internacional.</p>
+    ${epoca ? `<p class="season-tag">${esc(epoca.eyebrow)}</p>` : ''}
+    <p class="sub">${epoca ? esc(epoca.sub) : 'Vila manuelina debruçada sobre as arribas do Douro Internacional.'}</p>
     ${searchForm()}
     <div class="chips"><em>Mais procurados</em><a href="/servicos#leitura-agua">Leitura da água</a><a href="/servicos#licenca-obras">Licença de obras</a><a href="/viver#mobilidade">Transporte a pedido</a><a href="/atualidade#editais">Editais</a></div>
   </div>
-  <p class="credit">${esc(PHOTO_CREDITS.penedo)}</p>
+  <p class="credit">${esc(PHOTO_CREDITS[heroKey])}</p>
 </section>
 
 <div class="wrap">
@@ -56,10 +70,11 @@ export function homeBody({ news, events, notices, editais, desk }) {
   <section class="today" aria-label="Hoje no concelho">
     <h2 class="lab">Hoje no concelho</h2>
     ${notice ? `<a class="i" href="/atualidade#avisos"><i class="dot" style="background:${NOTICE_DOT[notice.type]}"></i><span><b>${esc(notice.title)}</b><span>${esc(notice.when)}</span></span></a>` : ''}
-    <a class="i" href="/contactos"><i class="dot" style="background:${desk.open ? '#3d8b4f' : '#a99bb8'}"></i><span><b>Paços do Concelho</b><span>${esc(desk.text)}</span></span></a>
+    <a class="i" href="/contactos"><i class="dot${desk.open ? " dot--live" : ""}" style="background:${desk.open ? "#3d8b4f" : "#a99bb8"}"></i><span><b>Paços do Concelho</b><span>${esc(desk.text)}</span></span></a>
     ${next ? `<a class="i" href="/atualidade#agenda"><i class="dot" style="background:#56307a"></i><span><b>${esc(next.title)}</b><span>${dateShort(next.date)} · ${esc(next.place.split(' · ')[0])}</span></span></a>` : ''}
   </section>
 </div>
+${epoca ? seasonBanner(epoca) : ''}
 
 <section class="sec wrap">
   <div class="split">

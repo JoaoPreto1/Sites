@@ -1,0 +1,77 @@
+/* Opção da época na barra de cima */
+.season-pill{display:inline-flex;align-items:center;gap:8px;border:1px solid rgba(242,210,127,.55);background:rgba(227,178,60,.14);color:var(--gl);border-radius:999px;padding:4px 12px;font:600 12px/1.4 'Public Sans','Public Sans Fallback',Arial,sans-serif;cursor:pointer;transition:background .2s}
+.season-pill:hover{background:rgba(227,178,60,.28)}
+.season-pill.on{border-color:rgba(255,255,255,.4);background:none;color:#fff}
+.season-dot{width:7px;height:7px;border-radius:50%;background:var(--gl);animation:season-dot 2s ease-in-out infinite}
+@keyframes season-dot{50%{opacity:.35;transform:scale(.7)}}
+.util nav{align-items:center}
+.drawer .season-pill{margin-top:20px;font-size:14px;padding:10px 16px;width:100%;justify-content:center}
+
+/* Etiqueta e destaque da época na página inicial */
+.season-tag{display:inline-block;margin-top:16px;background:var(--g);color:var(--pd);font-weight:700;font-size:13px;letter-spacing:.08em;text-transform:uppercase;border-radius:999px;padding:6px 14px}
+.season-band{padding-top:56px}
+.season-card{position:relative;overflow:hidden;display:grid;grid-template-columns:1.1fr 1fr;gap:40px;align-items:center;border-radius:24px;padding:44px 48px;background:linear-gradient(120deg,var(--pd),var(--p));color:#fff}
+.season-card::after{content:"";position:absolute;right:-90px;top:-110px;width:340px;height:340px;border-radius:50%;background:radial-gradient(circle,rgba(242,210,127,.28),transparent 70%)}
+.season-card .k{color:var(--gl)}
+.season-card h2{font-family:'Fraunces','Fraunces Fallback',Georgia,serif;font-weight:400;font-size:clamp(28px,3vw,40px);line-height:1.1;margin:8px 0 12px}
+.season-card p{color:rgba(255,255,255,.85)}
+.season-card .btn{margin-top:22px}
+.season-card__list{list-style:none;display:grid;gap:12px;position:relative;z-index:1}
+.season-card__list li{display:grid;grid-template-columns:96px 1fr;column-gap:16px;padding:14px 18px;border-radius:14px;background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.12)}
+.season-card__list span{grid-row:span 2;font-size:12px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;color:var(--gl);align-self:center}
+.season-card__list b{font-size:16px}
+.season-card__list small{font-size:13px;color:rgba(255,255,255,.75)}
+
+/* Cores de cada época */
+html[data-epoca="natal"]{--p:#8c1d2e;--pd:#35101d;--pl:#f8ecee;--g:#e3b23c;--gl:#f2d27f}
+html[data-epoca="halloween"]{--p:#5a2a82;--pd:#1b1024;--pl:#f4eefa;--g:#f08a24;--gl:#ffb35c}
+html[data-epoca="carnaval"]{--p:#6b2fa0;--pd:#2a1740;--g:#f2c12e;--gl:#ffd86b}
+html[data-epoca="amendoeira"]{--p:#7a3a6b;--pd:#3a1a34;--pl:#fbeff5;--g:#f3b6cb;--gl:#ffd5e3}
+html[data-epoca="pascoa"]{--p:#56307a;--pd:#2c1a3d;--g:#e9d58a;--gl:#f4e3a1}
+html[data-epoca="verao"]{--p:#0f5a73;--pd:#0b2f3d;--pl:#e8f4f7;--g:#ffc14d;--gl:#ffd98a}
+
+/* Véu sobre a fotografia, com a cor da época */
+html[data-epoca="natal"] .hero::before{background:linear-gradient(180deg,rgba(38,8,18,.86) 0%,rgba(110,22,38,.5) 40%,rgba(90,18,32,.55) 62%,rgba(30,6,14,.93) 100%)}
+html[data-epoca="halloween"] .hero::before{background:linear-gradient(180deg,rgba(16,8,24,.9) 0%,rgba(60,28,88,.55) 45%,rgba(120,54,10,.45) 70%,rgba(16,8,24,.94) 100%)}
+html[data-epoca="amendoeira"] .hero::before{background:linear-gradient(180deg,rgba(58,26,52,.8) 0%,rgba(140,70,120,.35) 45%,rgba(122,58,107,.45) 65%,rgba(46,20,42,.9) 100%)}
+html[data-epoca="carnaval"] .hero::before{background:linear-gradient(180deg,rgba(32,16,48,.85) 0%,rgba(107,47,160,.5) 45%,rgba(70,36,104,.55) 65%,rgba(32,16,48,.92) 100%)}
+html[data-epoca="verao"] .hero::before{background:linear-gradient(180deg,rgba(8,36,48,.82) 0%,rgba(15,90,115,.35) 45%,rgba(15,90,115,.45) 65%,rgba(8,36,48,.9) 100%)}
+html[data-epoca="natal"] .phero::before{background:linear-gradient(90deg,rgba(38,8,18,.92),rgba(110,22,38,.6) 55%,rgba(110,22,38,.3))}
+html[data-epoca="halloween"] .phero::before{background:linear-gradient(90deg,rgba(16,8,24,.94),rgba(60,28,88,.65) 55%,rgba(120,54,10,.35))}
+html[data-epoca="amendoeira"] .phero::before{background:linear-gradient(90deg,rgba(58,26,52,.9),rgba(122,58,107,.55) 55%,rgba(122,58,107,.25))}
+html[data-epoca="verao"] .phero::before{background:linear-gradient(90deg,rgba(8,36,48,.9),rgba(15,90,115,.55) 55%,rgba(15,90,115,.25))}
+html[data-epoca] .site-head.solid{background:color-mix(in srgb,var(--pd) 96%,transparent)}
+html[data-epoca] .phero--app{background:linear-gradient(120deg,var(--pd),var(--p))}
+
+/* Natal: uma fiada de luzes discretas por baixo da barra de cima */
+html[data-epoca="natal"] .util{position:relative}
+html[data-epoca="natal"] .util::after{content:"";position:absolute;left:0;right:0;bottom:-3px;height:6px;background:radial-gradient(circle,#f2d27f 0 2px,transparent 2.5px) 0 0/34px 6px repeat-x,radial-gradient(circle,#e8584f 0 2px,transparent 2.5px) 17px 0/34px 6px repeat-x;animation:twinkle 3s ease-in-out infinite alternate;pointer-events:none}
+@keyframes twinkle{from{opacity:.45}to{opacity:1}}
+
+/* Decorações dentro do destaque (inseridas pelo JavaScript, só decorativas) */
+.deco{position:absolute;inset:0;z-index:1;overflow:hidden;pointer-events:none}
+.deco i{position:absolute;top:-20px;display:block;opacity:0;animation:fall linear infinite}
+@keyframes fall{0%{opacity:0;transform:translate3d(0,-10px,0) rotate(0)}10%{opacity:var(--o,.8)}90%{opacity:var(--o,.8)}100%{opacity:0;transform:translate3d(var(--x,30px),110vh,0) rotate(var(--r,0deg))}}
+.deco--natal i{width:var(--s,5px);height:var(--s,5px);border-radius:50%;background:#fff;filter:blur(.4px)}
+.deco--amendoeira i{width:var(--s,9px);height:calc(var(--s,9px) * .7);border-radius:60% 40% 60% 40%;background:#fbe1ea;box-shadow:inset -1px -1px 0 rgba(200,110,140,.35)}
+.deco--carnaval i{width:6px;height:10px;border-radius:2px;background:var(--c,#f2c12e)}
+.deco--halloween svg{position:absolute;width:var(--s,46px);fill:#140a1c;opacity:.85;animation:bat 7s ease-in-out infinite alternate}
+@keyframes bat{from{transform:translate(0,0) rotate(-4deg)}to{transform:translate(18px,-14px) rotate(5deg)}}
+.deco--halloween::before{content:"";position:absolute;right:8%;top:16%;width:130px;height:130px;border-radius:50%;background:radial-gradient(circle,#ffd9a0 0,#f08a24 55%,transparent 72%);opacity:.35}
+.deco--verao::before{content:"";position:absolute;right:-60px;top:-60px;width:360px;height:360px;border-radius:50%;background:radial-gradient(circle,rgba(255,214,120,.55),transparent 65%);animation:sun 8s ease-in-out infinite alternate}
+@keyframes sun{from{transform:scale(.92);opacity:.7}to{transform:scale(1.05);opacity:1}}
+.deco--pascoa::before{content:"";position:absolute;left:50%;top:-30%;width:900px;height:700px;transform:translateX(-50%);background:conic-gradient(from 180deg at 50% 0,transparent 0 160deg,rgba(255,240,200,.12) 170deg,transparent 180deg,rgba(255,240,200,.1) 190deg,transparent 200deg)}
+
+@media (max-width:900px){
+  .season-card{grid-template-columns:1fr;padding:32px 26px}
+}
+@media (max-width:640px){
+  .season-card__list li{grid-template-columns:1fr}
+  .season-card__list span{grid-row:auto}
+  .deco--halloween::before{width:80px;height:80px}
+}
+@media (prefers-reduced-motion:reduce){
+  .deco i{display:none}
+}
+html[data-epoca="halloween"] .search .go{background:var(--g);color:var(--pd)}
+.hero .credit,.hero .center{z-index:2}
