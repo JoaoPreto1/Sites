@@ -1,7 +1,7 @@
 import { Router } from 'express';
 import { documentHtml } from '../views/document.js';
 import { absolute } from '../seo/head.js';
-import { breadcrumbs, eventList, organization, serviceCatalog, website } from '../seo/schema.js';
+import { article, breadcrumbs, eventList, organization, serviceCatalog, touristPlaces, website } from '../seo/schema.js';
 import * as content from '../services/content.service.js';
 import { deskStatus } from '../services/today.service.js';
 import { srcset } from '../views/html.js';
@@ -9,6 +9,12 @@ import { homeBody } from '../views/pages/home.js';
 import { municipioBody } from '../views/pages/municipio.js';
 import { servicosBody } from '../views/pages/servicos.js';
 import { viverBody } from '../views/pages/viver.js';
+import { visitarBody } from '../views/pages/visitar.js';
+import { investirBody } from '../views/pages/investir.js';
+import { atualidadeBody, noticiaBody } from '../views/pages/atualidade.js';
+import { contactosBody } from '../views/pages/contactos.js';
+import { yearly } from '../data/seed.js';
+import { imgUrl } from '../views/html.js';
 import { SERVICE_CATEGORIES } from '../config/municipio.js';
 
 export function send(req, res, { status = 200, ...view }) {
@@ -94,6 +100,86 @@ router.get('/viver', (req, res) => {
       preload: heroPreload('amendoeiras'),
     },
     body: viverBody(),
+  });
+});
+
+router.get('/visitar', (req, res) => {
+  send(req, res, {
+    page: {
+      title: 'Visitar',
+      description: 'Guia do visitante de Freixo de Espada à Cinta: a Torre do Galo, a Igreja Matriz manuelina, o Penedo Durão, a Congida, a seda, as amendoeiras em flor e a Procissão dos Sete Passos.',
+      image: '/img/torre-1280.webp',
+      schema: [
+        breadcrumbs([['Início', '/'], ['Visitar', '/visitar']]),
+        ...touristPlaces([
+          ['Torre do Galo', 'torre', 'Torre heptagonal do antigo castelo de Freixo de Espada à Cinta.'],
+          ['Igreja Matriz de Freixo de Espada à Cinta', 'matriz', 'Igreja-salão manuelina, Monumento Nacional desde 1910.'],
+          ['Miradouro do Penedo Durão', 'penedo', 'Miradouro sobre o Douro Internacional.'],
+          ['Praia fluvial da Congida', 'congida', 'Praia fluvial no rio Douro, com piscina e esplanada.'],
+        ]),
+      ],
+      preload: heroPreload('douro'),
+    },
+    body: visitarBody(),
+  });
+});
+
+router.get('/investir', (req, res) => {
+  send(req, res, {
+    page: {
+      title: 'Investir',
+      description: 'Investir em Freixo de Espada à Cinta: setores com futuro, apoios municipais e acompanhamento do gabinete de apoio ao investidor do primeiro contacto à abertura.',
+      schema: [breadcrumbs([['Início', '/'], ['Investir', '/investir']])],
+      preload: heroPreload('penedo'),
+    },
+    body: investirBody(),
+    scripts: ['forms'],
+  });
+});
+
+router.get('/atualidade', async (req, res) => {
+  const [news, events, notices, editais] = await Promise.all([content.listNews(), content.listEvents(), content.listNotices(), content.listEditais()]);
+  send(req, res, {
+    page: {
+      title: 'Atualidade',
+      description: 'Notícias, agenda de eventos, avisos à população e editais do Município de Freixo de Espada à Cinta.',
+      image: '/img/matriz-1600.webp',
+      schema: [breadcrumbs([['Início', '/'], ['Atualidade', '/atualidade']]), ...eventList(events)],
+      preload: heroPreload('matriz'),
+    },
+    body: atualidadeBody({ news, events, yearly, notices, editais }),
+    scripts: ['atualidade', 'forms'],
+  });
+});
+
+router.get('/atualidade/:slug', async (req, res, next) => {
+  const item = await content.findNews(req.params.slug);
+  if (!item) return next();
+  const others = (await content.listNews()).filter((n) => n.id !== item.id).slice(0, 3);
+  send(req, res, {
+    page: {
+      title: item.title,
+      description: item.summary,
+      image: imgUrl(item.photo, 1600),
+      type: 'article',
+      schema: [article(item), breadcrumbs([['Início', '/'], ['Atualidade', '/atualidade'], [item.title, `/atualidade/${item.slug}`]])],
+      preload: heroPreload(item.photo),
+    },
+    body: noticiaBody({ item, others }),
+    scripts: ['atualidade'],
+  });
+});
+
+router.get('/contactos', (req, res) => {
+  send(req, res, {
+    page: {
+      title: 'Contactos',
+      description: 'Contactos, horário e localização dos Paços do Concelho de Freixo de Espada à Cinta. Escreva ao Município ou reporte um problema na via pública.',
+      schema: [organization(), breadcrumbs([['Início', '/'], ['Contactos', '/contactos']])],
+      preload: heroPreload('vila'),
+    },
+    body: contactosBody(),
+    scripts: ['forms'],
   });
 });
 

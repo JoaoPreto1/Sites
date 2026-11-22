@@ -37,3 +37,15 @@
 .prose figure .crest-plain{width:150px;border-radius:0}
 .prose .docs a{text-decoration:none;font-weight:inherit}
 .prose .docs{margin-left:0}
+.sr{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}
+.agenda.soft{background:rgba(255,255,255,.05)}
+.prose .lead-p{font-size:20px;color:var(--ink);margin-top:0}
+.round-ic{width:40px;height:40px;border-radius:50%;border:1px solid var(--line);display:grid;place-items:center;color:var(--p);background:#fff;font-weight:700;cursor:pointer;text-decoration:none!important}
+.news-form{display:grid;gap:12px;margin-top:14px}
+.news-form input[type=email]{border:0;border-radius:999px;padding:13px 18px;font-size:15px;width:100%}
+.news-form .check{display:flex;gap:10px;align-items:flex-start;font-weight:400;font-size:13px;color:#cbbdd9}
+.news-form .ok{margin:0}
+.box.purple .field-error{color:#ffb4a8}
+.phero .meta{display:flex;flex-wrap:wrap;gap:14px;align-items:center;font-size:14px;color:rgba(255,255,255,.85);margin-top:18px}
+.phero .meta .badge{background:var(--g);color:var(--pd)}
+.phero:not(:has(>img)){padding-bottom:90px}
