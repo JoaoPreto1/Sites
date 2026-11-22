@@ -14,7 +14,8 @@ import { investirBody } from '../views/pages/investir.js';
 import { atualidadeBody, noticiaBody } from '../views/pages/atualidade.js';
 import { contactosBody } from '../views/pages/contactos.js';
 import { yearly } from '../data/seed.js';
-import { imgUrl } from '../views/html.js';
+import { imgUrl, initialData } from '../views/html.js';
+import { balcaoBody, loginBody, painelBody } from '../views/pages/private.js';
 import { SERVICE_CATEGORIES } from '../config/municipio.js';
 
 export function send(req, res, { status = 200, ...view }) {
@@ -182,5 +183,19 @@ router.get('/contactos', (req, res) => {
     scripts: ['forms'],
   });
 });
+
+const privatePage = (title, body, script, data) => async (req, res) =>
+  send(req, res, {
+    page: { title, description: 'Área reservada do Balcão Online do Município de Freixo de Espada à Cinta.', noindex: true },
+    body: body(),
+    scripts: [script],
+    data: data ? initialData(await data()) : '',
+  });
+
+const onlineServices = async () => (await content.listServices()).filter((s) => s.online && !s.action).map(({ slug, title, list }) => ({ slug, title, list }));
+
+router.get('/entrar', privatePage('Entrar no Balcão Online', loginBody, 'login'));
+router.get('/balcao', privatePage('O meu balcão', balcaoBody, 'balcao', onlineServices));
+router.get('/painel', privatePage('Painel da câmara', painelBody, 'painel'));
 
 export default router;
