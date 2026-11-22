@@ -1,5 +1,5 @@
 import { FREGUESIAS, MUNICIPIO } from '../../config/municipio.js';
-import { PHOTO_CREDITS, crest, dateLong, dateShort, dayNum, esc, facts, icon, monthShort, photo, searchForm, serviceArt } from '../html.js';
+import { PHOTO_CREDITS, crest, num, dateLong, dateShort, dayNum, esc, facts, icon, monthShort, photo, searchForm, serviceArt } from '../html.js';
 
 const FEATURED = [
   ['balcao', 'Balcão Online', 'Pedidos e requerimentos', '/balcao'],
@@ -75,9 +75,9 @@ export function homeBody({ news, events, notices, editais, desk }) {
       ${facts([
         ['Distrito', MUNICIPIO.district],
         ['Sub-região', MUNICIPIO.subregion],
-        ['Área', `${MUNICIPIO.areaKm2.toLocaleString('pt-PT')} km²`],
+        ['Área', `${num(MUNICIPIO.areaKm2)} km²`],
         ['Freguesias', String(FREGUESIAS.length)],
-        ['Residentes (Censos 2021)', MUNICIPIO.residents2021.toLocaleString('pt-PT')],
+        ['Residentes (Censos 2021)', num(MUNICIPIO.residents2021)],
         ['Padroeiro', MUNICIPIO.patron],
         ['Feriado municipal', MUNICIPIO.holiday],
         ['Código postal', MUNICIPIO.postalCode],
@@ -116,7 +116,7 @@ export function homeBody({ news, events, notices, editais, desk }) {
 <section class="sec wrap" id="freguesias">
   <div class="h"><div><p class="k">Território</p><h2>As quatro freguesias</h2></div><a href="/municipio#freguesias">Juntas de freguesia →</a></div>
   <div class="grid4">
-    ${FREGUESIAS.map((f) => `<a class="info" href="/municipio#freguesias"><h3>${esc(f.name)}</h3><p>${esc(f.text)}</p><span class="more">${f.residents2021.toLocaleString('pt-PT')} residentes →</span></a>`).join('\n    ')}
+    ${FREGUESIAS.map((f) => `<a class="info" href="/municipio#freguesias"><h3>${esc(f.name)}</h3><p>${esc(f.text)}</p><span class="more">${num(f.residents2021)} residentes →</span></a>`).join('\n    ')}
   </div>
   <p class="muted" style="margin-top:12px">Residentes segundo os Censos 2021.</p>
 </section>

@@ -46,6 +46,12 @@ export const initialData = (data) =>
 const MONTHS = ['janeiro', 'fevereiro', 'março', 'abril', 'maio', 'junho', 'julho', 'agosto', 'setembro', 'outubro', 'novembro', 'dezembro'];
 const local = (iso) => new Date(new Date(iso).toLocaleString('en-US', { timeZone: 'Europe/Lisbon' }));
 
+// Números com espaço nos milhares e vírgula decimal, como em português
+export const num = (n) => {
+  const [int, dec] = String(n).split('.');
+  return int.replace(/\B(?=(\d{3})+(?!\d))/g, ' ') + (dec ? `,${dec}` : '');
+};
+
 export const dateLong = (iso) => {
   const d = local(iso);
   return `${d.getDate()} de ${MONTHS[d.getMonth()]} de ${d.getFullYear()}`;

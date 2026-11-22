@@ -75,7 +75,7 @@ export const balcaoBody = () => `${head({ crumb: 'Balcão Online', title: 'O meu
     </div>
     <aside class="aside" style="position:static">
       <div class="box purple"><h2 class="bh">Comunicar leitura</h2><p>Leia os números a preto do contador. Conta para a fatura deste mês se comunicar entre os dias 20 e 25.</p>
-        <form class="reading" data-reading novalidate><label class="field"><span class="sr">Leitura em m³</span><input name="value" inputmode="numeric" pattern="[0-9]*" required placeholder="Leitura em m³"></label><button class="btn gold" type="submit">Enviar</button></form>
+        <form class="reading" data-reading novalidate><label class="field"><span class="sr">Leitura em m³</span><input name="value" inputmode="numeric" pattern="[0-9]*" required placeholder="m³"></label><button class="btn gold" type="submit">Enviar</button></form>
         <p class="last" data-last-reading></p></div>
     </aside>
   </div>
