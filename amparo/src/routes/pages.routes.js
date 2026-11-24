@@ -7,6 +7,10 @@ import { isDemo } from '../services/payments/index.js';
 import * as settings from '../services/settings.service.js';
 import { documentHtml } from '../views/document.js';
 import { homeBody } from '../views/pages/home.js';
+import { detailBody, listBody } from '../views/pages/pedidos.js';
+import { donateBody, receiptBody, simulationBody } from '../views/pages/pagamentos.js';
+import { CATEGORY_IDS, DISTRICTS, LIMITS } from '../config/platform.js';
+import { adPage, breadcrumbs } from '../seo/schema.js';
 
 export function send(req, res, { status = 200, ...view }) {
   res.status(status).type('html').set('Cache-Control', 'no-cache').send(documentHtml({ ...view, path: req.path }));
@@ -50,6 +54,70 @@ router.get('/', async (req, res) => {
     },
     body: homeBody({ active, fund: platform, launch, demo: isDemo }),
   });
+});
+
+const pick = (value, allowed) => (typeof value === 'string' && allowed.includes(value) ? value : '');
+
+router.get('/pedidos', async (req, res) => {
+  const filters = {
+    categoria: pick(req.query.categoria, CATEGORY_IDS),
+    distrito: pick(req.query.distrito, DISTRICTS),
+    q: typeof req.query.q === 'string' ? req.query.q.slice(0, 80) : '',
+    ordem: pick(req.query.ordem, ['recentes', 'falta', 'prazo']),
+  };
+  const { active, done } = await adsService.listPublic(filters);
+  const filtered = filters.categoria || filters.distrito || filters.q;
+  send(req, res, {
+    page: {
+      title: 'Pedidos de ajuda',
+      description: 'Pedidos de ajuda moderados para pagar renda, luz, água, alimentação, saúde, transportes e educação em Portugal. Veja o que falta e ajude com o valor que puder.',
+      path: '/pedidos',
+      noindex: Boolean(filtered),
+      schema: [breadcrumbs([['Início', '/'], ['Pedidos', '/pedidos']])],
+    },
+    body: listBody({ active, done, filters }),
+  });
+});
+
+router.get('/pedidos/:slug', async (req, res, next) => {
+  const ad = await adsService.findPublicBySlug(req.params.slug);
+  if (!ad) return next();
+  send(req, res, {
+    page: {
+      title: ad.title,
+      description: `${ad.categoryLabel}: ${ad.story.slice(0, 140).trim()}…`,
+      type: 'article',
+      schema: [adPage(ad), breadcrumbs([['Início', '/'], ['Pedidos', '/pedidos'], [ad.title, `/pedidos/${ad.slug}`]])],
+    },
+    body: detailBody(ad),
+    scripts: ['pedido'],
+  });
+});
+
+router.get('/doar/:slug', async (req, res, next) => {
+  const ad = await adsService.findPublicBySlug(req.params.slug);
+  if (!ad) return next();
+  if (ad.status !== 'ativo') return res.redirect(303, `/pedidos/${ad.slug}`);
+  const asked = Math.round(Number(String(req.query.valor ?? '').replace(',', '.')) * 100);
+  const cents = Number.isFinite(asked) && asked >= LIMITS.donationMinCents ? Math.min(asked, ad.remainingCents, LIMITS.donationMaxCents) : Math.min(1000, ad.remainingCents);
+  const [launch, s] = await Promise.all([settings.launchStatus(), settings.get()]);
+  sendPrivate(req, res, {
+    page: { title: `Doar: ${ad.title}`, description: 'Resumo da doação antes de confirmar.' },
+    body: donateBody({ ad, cents, launch, fees: s.fees, demo: isDemo }),
+    scripts: ['doar'],
+  });
+});
+
+const KINDS = ['doacao', 'plataforma'];
+
+router.get('/simulacao/:kind/:id', (req, res, next) => {
+  if (!isDemo || !KINDS.includes(req.params.kind)) return next();
+  sendPrivate(req, res, { page: { title: 'Simulação de pagamento', description: 'Simulação: nenhum dinheiro é movimentado.' }, body: simulationBody(req.params), scripts: ['simulacao'] });
+});
+
+router.get('/recibo/:kind/:id', (req, res, next) => {
+  if (!KINDS.includes(req.params.kind)) return next();
+  sendPrivate(req, res, { page: { title: 'Comprovativo', description: 'Comprovativo da doação.' }, body: receiptBody(req.params), scripts: ['recibo'] });
 });
 
 export default router;
