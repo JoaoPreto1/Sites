@@ -384,3 +384,6 @@ code {
     max-width: 92%;
   }
 }
+.thread__head .status {
+  align-self: flex-start;
+}

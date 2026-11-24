@@ -109,7 +109,7 @@ const donorsBlock = (ad) => {
 function till(ad) {
   const open = ad.status === 'ativo';
   const presets = [500, 1000, 2000].filter((c) => c < ad.remainingCents);
-  return `<aside class="till-wrap paper-shadow" aria-label="Doar para este pedido">
+  return `<aside class="till-wrap paper-shadow" id="doar" aria-label="Doar para este pedido">
   <div class="receipt till">
     <p class="mono till__k">${open ? 'Por pagar' : 'Pedido concluído'}</p>
     <dl class="totals mono">
@@ -188,5 +188,5 @@ export function detailBody(ad) {
     ${till(ad)}
   </div>
 </div>
-${ad.status === 'ativo' ? dialogs(ad) : ''}`;
+${ad.status === 'ativo' ? `${dialogs(ad)}<a class="mobile-give" href="#doar"><span>Falta <b>${euros(ad.remainingCents)}</b></span><span>Doar</span></a>` : ''}`;
 }

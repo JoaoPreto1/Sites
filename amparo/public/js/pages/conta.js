@@ -34,6 +34,11 @@ function init() {
   const initial = location.pathname.endsWith('/novo-pedido') ? 'novo' : location.hash.slice(1);
   select(tabs.some((t) => t.getAttribute('aria-controls') === initial) ? initial : 'pedidos', false);
   window.selectTab = select;
+  // Links como /conta#mensagens a partir da própria página
+  window.addEventListener('hashchange', () => {
+    const id = location.hash.slice(1);
+    if (tabs.some((t) => t.getAttribute('aria-controls') === id)) select(id, false);
+  });
 
   setupAdForm(select);
   setupUpload();

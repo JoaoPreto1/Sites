@@ -634,3 +634,40 @@
     margin-top: 40px;
   }
 }
+
+/* No telemóvel a caixa de doar fica no fim: uma barra fixa leva até lá */
+.mobile-give {
+  display: none;
+}
+@media (max-width: 960px) {
+  .mobile-give {
+    position: fixed;
+    left: 12px;
+    right: 12px;
+    bottom: 12px;
+    z-index: 30;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 12px;
+    padding: 10px 10px 10px 18px;
+    border-radius: 999px;
+    background: var(--ink);
+    color: var(--paper);
+    text-decoration: none;
+    box-shadow: 0 12px 30px -8px rgba(0, 0, 0, 0.45);
+  }
+  .mobile-give b {
+    font-family: var(--mono);
+    color: var(--marker);
+  }
+  .mobile-give span:last-child {
+    background: var(--green);
+    padding: 8px 16px;
+    border-radius: 999px;
+    font-weight: 700;
+  }
+  .detail {
+    padding-bottom: 110px;
+  }
+}
