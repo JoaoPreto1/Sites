@@ -12,6 +12,7 @@ import { donateBody, receiptBody, simulationBody } from '../views/pages/pagament
 import { CATEGORY_IDS, DISTRICTS, LIMITS } from '../config/platform.js';
 import { adPage, breadcrumbs, faq } from '../seo/schema.js';
 import { manterBody, transparenciaBody } from '../views/pages/plataforma.js';
+import { accountBody, loginBody, registerBody } from '../views/pages/conta.js';
 import { comoFuncionaBody, condicoesBody, FAQ, privacidadeBody } from '../views/pages/info.js';
 
 export function send(req, res, { status = 200, ...view }) {
@@ -158,6 +159,20 @@ router.get('/condicoes', async (req, res) => {
     body: condicoesBody({ launch: await settings.launchStatus() }),
   });
 });
+
+router.get('/entrar', (req, res) => {
+  sendPrivate(req, res, { page: { title: 'Entrar', description: 'Entrar na sua conta Amparo.' }, body: loginBody(), scripts: ['auth'] });
+});
+
+router.get('/registar', (req, res) => {
+  sendPrivate(req, res, { page: { title: 'Criar conta', description: 'Criar uma conta para pedir ajuda ou doar.' }, body: registerBody(), scripts: ['auth'] });
+});
+
+for (const path of ['/conta', '/conta/novo-pedido']) {
+  router.get(path, (req, res) => {
+    sendPrivate(req, res, { page: { title: 'A minha conta', description: 'Os seus pedidos, mensagens, doações e dados.' }, body: accountBody(), scripts: ['conta'] });
+  });
+}
 
 const KINDS = ['doacao', 'plataforma'];
 
