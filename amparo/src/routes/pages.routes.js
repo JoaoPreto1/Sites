@@ -13,6 +13,7 @@ import { CATEGORY_IDS, DISTRICTS, LIMITS } from '../config/platform.js';
 import { adPage, breadcrumbs, faq } from '../seo/schema.js';
 import { manterBody, transparenciaBody } from '../views/pages/plataforma.js';
 import { accountBody, loginBody, registerBody } from '../views/pages/conta.js';
+import { staffLoginBody, staffPanelBody } from '../views/pages/gestao.js';
 import { comoFuncionaBody, condicoesBody, FAQ, privacidadeBody } from '../views/pages/info.js';
 
 export function send(req, res, { status = 200, ...view }) {
@@ -173,6 +174,15 @@ for (const path of ['/conta', '/conta/novo-pedido']) {
     sendPrivate(req, res, { page: { title: 'A minha conta', description: 'Os seus pedidos, mensagens, doações e dados.' }, body: accountBody(), scripts: ['conta'] });
   });
 }
+
+// Gestão: fora do menu, do sitemap e do robots.txt, e nunca indexada
+router.get('/gestao', (req, res) => {
+  sendPrivate(req, res, { page: { title: 'Gestão', description: 'Acesso da equipa.' }, body: staffLoginBody(), scripts: ['gestao'], chrome: false, bodyClass: 'is-staff' });
+});
+
+router.get('/gestao/painel', (req, res) => {
+  sendPrivate(req, res, { page: { title: 'Painel da gestão', description: 'Painel da equipa.' }, body: staffPanelBody(), scripts: ['gestao'], chrome: false, bodyClass: 'is-staff' });
+});
 
 const KINDS = ['doacao', 'plataforma'];
 

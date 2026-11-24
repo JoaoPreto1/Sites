@@ -62,13 +62,13 @@ export const staff = [
 const VIS = { alias: true, district: true, deadline: true, proofs: true, donors: true };
 
 const ad = (data) => ({
-  visibility: { ...VIS, ...data.visibility },
   updates: [],
   reviews: [],
   privateNote: '',
   example: true,
   closedAt: null,
   ...data,
+  visibility: { ...VIS, ...data.visibility },
 });
 
 export const ads = [
