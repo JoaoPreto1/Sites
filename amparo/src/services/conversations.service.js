@@ -9,11 +9,11 @@ const firstName = (name = '') => name.split(' ')[0];
 
 export async function ask(userId, adId, question) {
   const ad = await ads.findById(adId);
-  if (!ad || ad.status !== 'ativo') throw new HttpError(400, 'Este anúncio não está a receber pedidos de informação');
-  if (ad.ownerId === userId) throw new HttpError(400, 'Este anúncio é seu');
+  if (!ad || ad.status !== 'ativo') throw new HttpError(400, 'Este pedido não está a receber pedidos de informação');
+  if (ad.ownerId === userId) throw new HttpError(400, 'Este pedido é seu');
 
   const open = await conversations.findOne((c) => c.adId === adId && c.askerId === userId && ['pendente', 'aberta'].includes(c.status));
-  if (open) throw new HttpError(409, 'Já tem um pedido aberto para este anúncio. Continue nessa conversa na sua conta.');
+  if (open) throw new HttpError(409, 'Já tem um pedido aberto para este pedido. Continue nessa conversa na sua conta.');
 
   const conversation = await conversations.create({ adId, askerId: userId, ownerId: ad.ownerId, status: 'pendente', updatedAt: new Date().toISOString() });
   const masked = await post(conversation, userId, question);
@@ -44,8 +44,8 @@ async function view(c, userId) {
     status: c.status,
     role,
     ad: { id: ad.id, title: ad.title, slug: ad.slug },
-    // Quem pergunta vê só o nome que o anúncio mostra; quem criou o anúncio vê só o primeiro nome de quem pergunta
-    other: role === 'dono' ? firstName(asker?.name) || 'Pessoa' : ad.visibility.alias && ad.alias ? ad.alias : 'Quem criou o anúncio',
+    // Quem pergunta vê só o nome que o pedido mostra; quem criou o pedido vê só o primeiro nome de quem pergunta
+    other: role === 'dono' ? firstName(asker?.name) || 'Pessoa' : ad.visibility.alias && ad.alias ? ad.alias : 'Quem criou o pedido',
     messages: list
       .sort((a, b) => a.createdAt.localeCompare(b.createdAt))
       .map((m) => ({
@@ -75,15 +75,15 @@ export async function get(userId, id) {
 export async function reply(userId, id, text) {
   const c = await participant(userId, id);
   if (c.status === 'recusada' || c.status === 'fechada') throw new HttpError(400, 'Esta conversa está fechada');
-  if (c.status === 'pendente' && c.ownerId !== userId) throw new HttpError(400, 'Aguarde que quem criou o anúncio aceite responder');
+  if (c.status === 'pendente' && c.ownerId !== userId) throw new HttpError(400, 'Aguarde que quem criou o pedido aceite responder');
   if (c.status === 'pendente') await conversations.update(id, { status: 'aberta' });
   return { masked: await post(c, userId, text) };
 }
 
-// Quem criou o anúncio decide: recusar (com ou sem mensagem), fechar, ou partilhar uma prova sua só com esta pessoa
+// Quem criou o pedido decide: recusar (com ou sem mensagem), fechar, ou partilhar uma prova sua só com esta pessoa
 export async function decline(userId, id, text) {
   const c = await participant(userId, id);
-  if (c.ownerId !== userId) throw new HttpError(403, 'Só quem criou o anúncio pode recusar');
+  if (c.ownerId !== userId) throw new HttpError(403, 'Só quem criou o pedido pode recusar');
   if (text) await post(c, userId, text);
   await messages.create({ conversationId: id, authorId: userId, text: 'Pedido recusado. Nenhum dado privado foi partilhado.', system: true, masked: false });
   await conversations.update(id, { status: 'recusada', updatedAt: new Date().toISOString() });
@@ -97,7 +97,7 @@ export async function close(userId, id) {
 
 export async function shareDocument(userId, id, documentId) {
   const c = await participant(userId, id);
-  if (c.ownerId !== userId) throw new HttpError(403, 'Só quem criou o anúncio pode partilhar provas');
+  if (c.ownerId !== userId) throw new HttpError(403, 'Só quem criou o pedido pode partilhar provas');
   if (c.status === 'recusada' || c.status === 'fechada') throw new HttpError(400, 'Esta conversa está fechada');
   const doc = await documents.findById(documentId);
   if (!doc || doc.ownerId !== userId || doc.adId !== c.adId) throw notFound('Prova');

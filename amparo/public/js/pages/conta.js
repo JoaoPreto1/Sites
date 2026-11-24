@@ -26,6 +26,7 @@ function init() {
       const on = t.getAttribute('aria-controls') === id;
       t.setAttribute('aria-selected', String(on));
       document.getElementById(t.getAttribute('aria-controls')).hidden = !on;
+      if (on) t.scrollIntoView({ block: 'nearest', inline: 'nearest' });
     });
     if (push) history.replaceState(null, '', id === 'novo' ? '/conta/novo-pedido' : `/conta#${id}`);
   };

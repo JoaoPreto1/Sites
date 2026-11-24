@@ -39,7 +39,7 @@ export async function platformFund() {
   };
 }
 
-// Números agregados para a página de transparência: nenhum nome, nenhum anúncio identificado
+// Números agregados para a página de transparência: nenhum nome, nenhum pedido identificado
 export async function transparency() {
   const [allAds, confirmed, delivered, fund] = await Promise.all([
     ads.findAll((a) => a.status !== 'em_analise'),

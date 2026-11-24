@@ -31,6 +31,8 @@ export const env = {
     email: (process.env.OWNER_EMAIL || (isProduction ? '' : 'dono@exemplo.pt')).toLowerCase(),
     password: secret('OWNER_PASSWORD', 'amparo-dono-2026'),
   },
+  // Só para testar a versão de produção localmente sem proxy HTTPS
+  forceHttps: isProduction && process.env.FORCE_HTTPS !== 'false',
   paymentProvider: process.env.PAYMENT_PROVIDER || 'demo',
   storageDir: process.env.STORAGE_DIR ? resolve(process.env.STORAGE_DIR) : fileURLToPath(new URL('../../storage', import.meta.url)),
 };

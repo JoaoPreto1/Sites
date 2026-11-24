@@ -53,7 +53,7 @@ export async function listRequests() {
   );
 }
 
-// Elimina a conta: apaga provas e mensagens, fecha os anúncios e tira o nome das doações.
+// Elimina a conta: apaga provas e mensagens, fecha os pedidos e tira o nome das doações.
 // Os registos de pagamento ficam sem dados pessoais, porque podem ter de ser guardados por obrigação legal.
 export async function processDeletion(requestId, staffMember) {
   const request = await dataRequests.findById(requestId);
@@ -70,7 +70,7 @@ async function anonymize(userId) {
       closedAt: ad.closedAt ?? new Date().toISOString(),
       alias: '',
       privateNote: '',
-      story: 'Este anúncio foi retirado a pedido de quem o criou.',
+      story: 'Este pedido foi retirado a pedido de quem o criou.',
       visibility: { ...ad.visibility, alias: false, district: false },
     });
   }
@@ -85,7 +85,7 @@ async function anonymize(userId) {
   await users.update(userId, { name: 'Conta eliminada', email: `eliminada-${userId}@invalid`, passwordHash: '', deletedAt: new Date().toISOString() });
 }
 
-// Corre uma vez por dia: apaga provas de anúncios fechados há mais tempo do que o prazo
+// Corre uma vez por dia: apaga provas de pedidos fechados há mais tempo do que o prazo
 export async function purgeExpired() {
   const limit = Date.now() - RETENTION.documentsAfterCloseDays * DAY;
   const closed = await ads.findAll((a) => ['concluido', 'recusado'].includes(a.status) && a.closedAt && new Date(a.closedAt).getTime() < limit);

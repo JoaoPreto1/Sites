@@ -27,7 +27,7 @@ const reportRules = [
 const askRules = [text('question', { min: 10, max: 1000, message: 'Escreva a pergunta (10 a 1000 caracteres)' })];
 
 const quoteRules = [
-  body('adId', 'Anúncio em falta').isString().isLength({ max: 80 }),
+  body('adId', 'Pedido em falta').isString().isLength({ max: 80 }),
   amount('amount', LIMITS.donationMinCents, LIMITS.donationMaxCents, 'Escolha um valor entre 1 € e 1000 €'),
   flag('coverFee'),
 ];
@@ -51,7 +51,7 @@ router.get('/anuncios', validate(listRules, 'query'), async (req, res) => {
 
 router.get('/anuncios/:slug', async (req, res) => {
   const ad = await adsService.findPublicBySlug(req.params.slug);
-  if (!ad) throw notFound('Anúncio');
+  if (!ad) throw notFound('Pedido');
   res.json({ ad });
 });
 

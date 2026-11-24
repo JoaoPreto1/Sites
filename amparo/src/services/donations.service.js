@@ -10,7 +10,7 @@ import { isDemo, provider } from './payments/index.js';
 // Doar para um anúncio: o resumo é calculado aqui e é o mesmo que a pessoa vê antes de confirmar
 export async function quote({ adId, amountCents, coverFee }) {
   const ad = await ads.findById(adId);
-  if (!ad || ad.status !== 'ativo') throw new HttpError(400, 'Este anúncio não está a receber doações');
+  if (!ad || ad.status !== 'ativo') throw new HttpError(400, 'Este pedido não está a receber doações');
 
   const fees = await settings.fees();
   const remaining = await adsService.remaining(adId);
@@ -36,12 +36,12 @@ const displayName = (name) => maskSensitive(String(name ?? '').trim().slice(0, 4
 
 export async function start(userId, { adId, amountCents, coverFee, showName, publicName }) {
   const ad = await ads.findById(adId);
-  if (!ad) throw notFound('Anúncio');
-  if (ad.ownerId === userId) throw new HttpError(400, 'Não pode doar para o seu próprio anúncio');
+  if (!ad) throw notFound('Pedido');
+  if (ad.ownerId === userId) throw new HttpError(400, 'Não pode doar para o seu próprio pedido');
 
   const q = await quote({ adId, amountCents, coverFee });
   if (q.toAdCents <= 0) throw new HttpError(400, 'O montante não chega para cobrir a comissão');
-  if (q.exceeds) throw new HttpError(400, `Este anúncio só precisa de mais ${(q.remainingCents / 100).toFixed(2).replace('.', ',')} €`);
+  if (q.exceeds) throw new HttpError(400, `Este pedido só precisa de mais ${(q.remainingCents / 100).toFixed(2).replace('.', ',')} €`);
 
   const user = await users.findById(userId);
   const donation = await donations.create({
@@ -95,8 +95,8 @@ export async function simulate(kind, id, userId, outcome) {
   if (kind === 'doacao' && outcome === 'concluir') {
     const remaining = await adsService.remaining(item.adId);
     if (item.amountCents > remaining) {
-      await donations.update(id, { status: 'falhado', failure: 'O anúncio entretanto atingiu o montante' });
-      throw new HttpError(409, 'Entretanto o anúncio recebeu o que faltava. Nada foi cobrado.');
+      await donations.update(id, { status: 'falhado', failure: 'O pedido entretanto atingiu o montante' });
+      throw new HttpError(409, 'Entretanto o pedido recebeu o que faltava. Nada foi cobrado.');
     }
   }
 

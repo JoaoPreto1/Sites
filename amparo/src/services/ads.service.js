@@ -15,7 +15,7 @@ async function totals(adId) {
 
 const isImage = (mime) => mime?.startsWith('image/');
 
-// A única forma de um anúncio sair para o público: só passam os campos escolhidos por quem o criou.
+// A única forma de um pedido sair para o público: só passam os campos escolhidos por quem o criou.
 // Nunca inclui o dono, a nota privada, as notas da moderação nem os ficheiros das provas privadas.
 export async function publicView(ad) {
   const { raised, list } = await totals(ad.id);
@@ -124,7 +124,7 @@ export async function create(ownerId, data) {
 
 export async function ownedBy(ownerId, id) {
   const ad = await ads.findById(id);
-  if (!ad || ad.ownerId !== ownerId) throw notFound('Anúncio');
+  if (!ad || ad.ownerId !== ownerId) throw notFound('Pedido');
   return ad;
 }
 
@@ -154,7 +154,7 @@ export async function listOwned(ownerId) {
 
 export async function update(ownerId, id, data) {
   const ad = await ownedBy(ownerId, id);
-  if (!EDITABLE.has(ad.status)) throw new HttpError(400, 'Este anúncio já não pode ser alterado');
+  if (!EDITABLE.has(ad.status)) throw new HttpError(400, 'Este pedido já não pode ser alterado');
 
   const next = {
     title: data.title,
@@ -167,19 +167,19 @@ export async function update(ownerId, id, data) {
     visibility: cleanVisibility(data.visibility),
     privateNote: data.privateNote ?? ad.privateNote,
   };
-  // Mudar o que o público vê obriga a nova moderação; o anúncio sai do ar até ser aprovado
+  // Mudar o que o público vê obriga a nova moderação; o pedido sai do ar até ser aprovado
   return ads.update(id, { ...next, slug: await uniqueSlug(next.title, id), flags: scan(next), status: 'em_analise' });
 }
 
 export async function close(ownerId, id) {
   const ad = await ownedBy(ownerId, id);
-  if (ad.status === 'concluido' || ad.status === 'recusado') throw new HttpError(400, 'Este anúncio já está fechado');
+  if (ad.status === 'concluido' || ad.status === 'recusado') throw new HttpError(400, 'Este pedido já está fechado');
   return ads.update(id, { status: 'concluido', closedAt: new Date().toISOString() });
 }
 
 export async function addUpdate(ownerId, id, text) {
   const ad = await ownedBy(ownerId, id);
-  if (ad.status !== 'ativo') throw new HttpError(400, 'Só pode publicar atualizações num anúncio ativo');
+  if (ad.status !== 'ativo') throw new HttpError(400, 'Só pode publicar atualizações num pedido ativo');
   const masked = maskSensitive(text);
   await ads.update(id, { updates: [...ad.updates, { at: new Date().toISOString(), text: masked.text }] });
   return { masked: masked.changed };
@@ -222,7 +222,7 @@ export async function listForModeration(status = 'em_analise') {
 
 export async function review(id, staffMember, { decision, note }) {
   const ad = await ads.findById(id);
-  if (!ad) throw notFound('Anúncio');
+  if (!ad) throw notFound('Pedido');
 
   const status = { aprovar: 'ativo', alteracoes: 'alteracoes', recusar: 'recusado', suspender: 'suspenso', reativar: 'ativo' }[decision];
   const allowed = {
@@ -232,7 +232,7 @@ export async function review(id, staffMember, { decision, note }) {
     suspender: ['ativo'],
     reativar: ['suspenso'],
   }[decision];
-  if (!allowed.includes(ad.status)) throw new HttpError(400, `Não é possível ${decision} um anúncio "${AD_STATUS[ad.status]}"`);
+  if (!allowed.includes(ad.status)) throw new HttpError(400, `Não é possível ${decision} um pedido "${AD_STATUS[ad.status]}"`);
 
   return ads.update(id, {
     status,

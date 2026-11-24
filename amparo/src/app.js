@@ -17,7 +17,7 @@ app.disable('x-powered-by');
 // Atrás de um proxy (nginx, Render, Fly…) para o rate limit ver o IP real e o HTTPS ser detetado
 if (env.isProduction) app.set('trust proxy', 1);
 
-if (env.isProduction) {
+if (env.forceHttps) {
   app.use((req, res, next) => (req.secure ? next() : res.redirect(301, `https://${req.get('host')}${req.originalUrl}`)));
 }
 

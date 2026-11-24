@@ -4,7 +4,7 @@ import { HttpError, notFound } from '../utils/httpError.js';
 
 export async function create({ adId, reason, details }, reporterId = null) {
   const ad = await ads.findById(adId);
-  if (!ad || !['ativo', 'concluido'].includes(ad.status)) throw notFound('Anúncio');
+  if (!ad || !['ativo', 'concluido'].includes(ad.status)) throw notFound('Pedido');
   return reports.create({
     adId,
     reporterId,

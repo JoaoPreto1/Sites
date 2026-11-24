@@ -77,7 +77,7 @@ router.post('/anuncios/:id/provas', uploadLimiter, upload.single('file'), valida
 ]), async (req, res) => {
   const ad = await adsService.ownedBy(req.user.id, req.params.id);
   if (!req.file) throw new HttpError(400, 'Escolha um ficheiro');
-  if (['concluido', 'recusado'].includes(ad.status)) throw new HttpError(400, 'Este anúncio já está fechado');
+  if (['concluido', 'recusado'].includes(ad.status)) throw new HttpError(400, 'Este pedido já está fechado');
   const doc = await docs.store({
     ownerId: req.user.id,
     adId: ad.id,

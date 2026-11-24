@@ -97,7 +97,7 @@ export async function ensureStorage() {
 
 export async function store({ ownerId, adId, description, shareRequested, file }) {
   const existing = await documents.findAll((d) => d.adId === adId);
-  if (existing.length >= LIMITS.documentsPerAd) throw new HttpError(400, `Cada anúncio pode ter no máximo ${LIMITS.documentsPerAd} provas`);
+  if (existing.length >= LIMITS.documentsPerAd) throw new HttpError(400, `Cada pedido pode ter no máximo ${LIMITS.documentsPerAd} provas`);
 
   const { mime, ext, data, metadataRemoved } = clean(file.buffer);
   const id = randomUUID();

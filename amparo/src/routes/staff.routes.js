@@ -158,9 +158,9 @@ router.post(
   async (req, res) => {
     const { adId, amount: cents, method, note } = req.valid.body;
     const [ad] = await adsService.listForModeration('todos').then((l) => l.filter((a) => a.id === adId));
-    if (!ad) throw notFound('Anúncio');
+    if (!ad) throw notFound('Pedido');
     const already = (await payouts.findAll((p) => p.adId === adId)).reduce((s, p) => s + p.cents, 0);
-    if (already + cents > ad.raisedCents) throw new HttpError(400, `Só há ${euros(ad.raisedCents - already)} por entregar neste anúncio`);
+    if (already + cents > ad.raisedCents) throw new HttpError(400, `Só há ${euros(ad.raisedCents - already)} por entregar neste pedido`);
     const payout = await payouts.create({ adId, cents, method: isDemo ? `${method} (simulado)` : method, note: note ?? '', staffId: req.staff.id });
     await audit.record(req, 'entrega.registar', adId, `${euros(cents)} · ${method}`);
     res.status(201).json({ payout });
