@@ -65,7 +65,7 @@ canvas.luz.acesa { opacity: 1; }
   #menu a { font: italic 300 2.4rem var(--serif); }
   .menu-aberto #menu { opacity: 1; visibility: visible; }
   .menu-aberto .menu-btn span:first-child { transform: translateY(3px) rotate(45deg); }
-  .menu-aberto .menu-btn span:last-child { transform: translateY(-3px) rotate(-45deg); }
+  .menu-aberto .menu-btn span:nth-child(2) { transform: translateY(-3px) rotate(-45deg); }
 }
 
 /* blocos de conteúdo */
@@ -83,7 +83,7 @@ p { margin: 0 0 1em; }
 .chip:hover { background: rgba(255, 248, 240, .16); }
 
 /* cabeçalho das páginas interiores */
-.cabeca { min-height: 64vh; display: grid; align-content: end; max-width: var(--largura); margin: 0 auto; padding: 140px var(--lado) 40px; }
+.cabeca { min-height: 54vh; display: grid; align-content: end; max-width: var(--largura); margin: 0 auto; padding: 140px var(--lado) 40px; }
 .cabeca h1 { font-size: clamp(3.4rem, 9vw, 8rem); margin: 14px 0 16px; }
 
 /* rodapé */
@@ -246,3 +246,6 @@ fieldset.campo { border: 0; padding: 0; margin: 0; }
 .perdido h1 { font-size: clamp(4rem, 12vw, 9rem); }
 .perdido p { color: var(--suave); max-width: 420px; margin: 10px auto 26px; }
 .respira h1 .etiqueta { font: 400 .76rem/1.6 var(--sans); letter-spacing: .26em; }
+.faixa--colada { padding-top: 0; }
+.exercicio .intro { text-align: center; margin: 14px auto 0; }
+@media (max-width: 760px) { .exercicio .intro { font-size: 1rem; } }
