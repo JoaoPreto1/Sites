@@ -10,7 +10,9 @@ import { homeBody } from '../views/pages/home.js';
 import { detailBody, listBody } from '../views/pages/pedidos.js';
 import { donateBody, receiptBody, simulationBody } from '../views/pages/pagamentos.js';
 import { CATEGORY_IDS, DISTRICTS, LIMITS } from '../config/platform.js';
-import { adPage, breadcrumbs } from '../seo/schema.js';
+import { adPage, breadcrumbs, faq } from '../seo/schema.js';
+import { manterBody, transparenciaBody } from '../views/pages/plataforma.js';
+import { comoFuncionaBody, condicoesBody, FAQ, privacidadeBody } from '../views/pages/info.js';
 
 export function send(req, res, { status = 200, ...view }) {
   res.status(status).type('html').set('Cache-Control', 'no-cache').send(documentHtml({ ...view, path: req.path }));
@@ -105,6 +107,55 @@ router.get('/doar/:slug', async (req, res, next) => {
     page: { title: `Doar: ${ad.title}`, description: 'Resumo da doação antes de confirmar.' },
     body: donateBody({ ad, cents, launch, fees: s.fees, demo: isDemo }),
     scripts: ['doar'],
+  });
+});
+
+router.get('/manter', async (req, res) => {
+  send(req, res, {
+    page: {
+      title: 'Manter a plataforma',
+      description: 'Quanto custa manter a Amparo a funcionar, quanto foi recebido este mês, para quantos meses chega o saldo e como contribuir, separado das doações para pedidos.',
+      schema: [breadcrumbs([['Início', '/'], ['Manter a plataforma', '/manter']])],
+    },
+    body: manterBody({ fund: await fund.platformFund(), demo: isDemo }),
+    scripts: ['manter'],
+  });
+});
+
+router.get('/transparencia', async (req, res) => {
+  const [t, launch, s] = await Promise.all([fund.transparency(), settings.launchStatus(), settings.get()]);
+  send(req, res, {
+    page: {
+      title: 'Transparência',
+      description: 'Totais agregados das doações recebidas e entregues, comissões, fundo da plataforma e a lista do que falta definir antes de aceitar dinheiro real.',
+      schema: [breadcrumbs([['Início', '/'], ['Transparência', '/transparencia']])],
+    },
+    body: transparenciaBody({ t, launch, fees: s.fees, demo: isDemo }),
+  });
+});
+
+router.get('/como-funciona', async (req, res) => {
+  send(req, res, {
+    page: {
+      title: 'Como funciona',
+      description: 'Como pedir ajuda, como funciona a moderação, como doar, que comissões existem, como pedir mais informação sobre um pedido e como denunciar.',
+      schema: [faq(FAQ), breadcrumbs([['Início', '/'], ['Como funciona', '/como-funciona']])],
+    },
+    body: comoFuncionaBody({ fees: await settings.fees() }),
+  });
+});
+
+router.get('/privacidade', (req, res) => {
+  send(req, res, {
+    page: { title: 'Privacidade e segurança', description: 'Que dados pessoais a Amparo guarda, para quê, quem os pode ver e durante quanto tempo, os seus direitos e as medidas de segurança.' },
+    body: privacidadeBody(),
+  });
+});
+
+router.get('/condicoes', async (req, res) => {
+  send(req, res, {
+    page: { title: 'Condições de utilização', description: 'Regras para pedir ajuda e doar na Amparo, e os pontos que ainda estão por definir antes do lançamento.' },
+    body: condicoesBody({ launch: await settings.launchStatus() }),
   });
 });
 
