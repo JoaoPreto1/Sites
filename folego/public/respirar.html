@@ -1,0 +1,62 @@
+<!doctype html>
+<html lang="pt-PT">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Respirar connosco · Exercício guiado · Fôlego</title>
+<meta name="description" content="Um exercício de respiração guiado no browser: coerência, caixa, 4-7-8 ou calma, durante um, três ou cinco minutos. A luz do ecrã respira ao teu ritmo.">
+<link rel="canonical" href="https://folego.pt/respirar">
+<meta name="theme-color" content="#140f24">
+<meta property="og:type" content="website">
+<meta property="og:locale" content="pt_PT">
+<meta property="og:site_name" content="Fôlego">
+<meta property="og:title" content="Respirar connosco · Fôlego">
+<meta property="og:description" content="Escolhe um ritmo e deixa a luz guiar-te durante uns minutos.">
+<meta property="og:url" content="https://folego.pt/respirar">
+<meta property="og:image" content="https://folego.pt/img/og.png">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="icon" href="/favicon.svg" type="image/svg+xml">
+<link rel="preload" href="/fonts/fraunces-italico.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="/fonts/manrope.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="stylesheet" href="/css/site.css">
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"HowTo","name":"Respiração em caixa","description":"Exercício de respiração em quatro tempos iguais para acalmar.","totalTime":"PT3M","step":[{"@type":"HowToStep","text":"Inspira pelo nariz durante quatro segundos."},{"@type":"HowToStep","text":"Segura o ar durante quatro segundos."},{"@type":"HowToStep","text":"Expira pela boca durante quatro segundos."},{"@type":"HowToStep","text":"Fica sem ar durante quatro segundos e recomeça."}]}
+</script>
+</head>
+<body>
+<a class="salto" href="#conteudo">Saltar para o conteúdo</a>
+<canvas class="luz" data-tom="noite" aria-hidden="true"></canvas>
+<div class="veu" aria-hidden="true"></div>
+<header class="topo">
+  <a class="logo" href="/" aria-label="Fôlego, página inicial">fôlego</a>
+  <nav id="menu" aria-label="Principal"><a href="/aulas">Aulas</a><a href="/respirar" aria-current="page">Respirar connosco</a><a href="/retiros">Retiros</a></nav>
+  <a class="btn" href="/marcar">Primeira aula</a>
+  <button class="menu-btn" type="button" aria-expanded="false" aria-controls="menu"><span></span><span></span><span class="sr">Abrir o menu</span></button>
+</header>
+
+<main id="conteudo" class="exercicio">
+  <div>
+    <h1>Respira connosco.</h1>
+    <p class="intro" id="explica">Escolhe um ritmo e quanto tempo tens. A bola e a luz do ecrã enchem quando inspiras e esvaziam quando expiras.</p>
+  </div>
+  <div class="palco">
+    <div class="bola" id="bola"><span><span class="fase" id="fase" aria-live="polite">pronto?</span><span class="conta" id="conta" aria-hidden="true">3 minutos</span></span></div>
+  </div>
+  <div class="comandos">
+    <div class="ritmos" id="ritmos" role="group" aria-label="Ritmo"></div>
+    <div class="tempos" id="tempos" role="group" aria-label="Duração"></div>
+    <button class="btn" id="comecar" type="button">Começar</button>
+    <p class="feito" id="feito" aria-live="polite"></p>
+  </div>
+</main>
+
+<footer class="rodape">
+  <div><a class="logo" href="/">fôlego</a><p>Rua das Gaivotas, 12 · Cascais<br>ola@folego.pt</p></div>
+  <div><h2>O estúdio</h2><ul><li><a href="/aulas">Horário</a></li><li><a href="/respirar">Respirar connosco</a></li><li><a href="/retiros">Retiros</a></li><li><a href="/marcar">Primeira aula</a></li></ul></div>
+  <div><h2>Antes de começar</h2><ul><li>Senta-te com as costas direitas.</li><li>Se ficares tonto, para e respira normalmente.</li></ul></div>
+  <p class="aviso">Site de demonstração: o Fôlego, as professoras, a morada e o email são fictícios. Este exercício não substitui conselho médico. © <span data-ano>2026</span></p>
+</footer>
+<script type="module" src="/js/site.js"></script>
+<script type="module" src="/js/pages/respirar.js"></script>
+</body>
+</html>
