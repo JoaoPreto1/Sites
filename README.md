@@ -4,7 +4,7 @@
 
 **Um site completo de cada vez, cada um com a data em que foi feito. Meta: 3 sites por semana.**
 
-![Sites feitos](https://img.shields.io/badge/sites_feitos-8-ff5a36?style=flat-square)
+![Sites feitos](https://img.shields.io/badge/sites_feitos-9-ff5a36?style=flat-square)
 ![Meta](https://img.shields.io/badge/meta-3_por_semana-1f8a4c?style=flat-square)
 ![Node.js](https://img.shields.io/badge/Node.js-22+-339933?style=flat-square&logo=nodedotjs&logoColor=white)
 ![Express](https://img.shields.io/badge/Express-5-000000?style=flat-square&logo=express&logoColor=white)
@@ -23,6 +23,7 @@ Três sites por semana, de segunda a domingo.
 
 | Semana | Sites | Meta | Estado |
 |---|---|:---:|---|
+| 23 a 29 nov 2026 | Amparo | 1 / 3 | 🔄 Em curso |
 | 16 a 22 nov 2026 | Bairro, Fechadura, Planta, Freixo | 4 / 3 | ✅ Cumprida |
 | 9 a 15 nov 2026 | Maré, Lente Studio, Cepa, Rotação | 4 / 3 | ✅ Cumprida |
 
@@ -31,6 +32,14 @@ Três sites por semana, de segunda a domingo.
 O mais recente primeiro.
 
 <table>
+  <tr>
+    <td width="50%"><a href="amparo/"><img src="amparo/docs/capa.jpg" alt="Amparo" width="100%"></a></td>
+    <td>
+      <p>📅 <strong>Terça, 24 nov 2026</strong></p>
+      <h3><a href="amparo/">Amparo</a></h3>
+      <p>Plataforma de doações entre pessoas em Portugal, desenhada como um talão: a página inicial é a conta da semana, com cada pedido de ajuda (renda, luz, água, comida, saúde, transportes, escola) como uma linha e o que ainda falta. A mesma conta serve para pedir e para doar. Pedidos moderados, dados pessoais e provas sempre privados, pedidos de informação dentro da plataforma, fundo separado para manter o site (40 €/mês e meses cobertos), transparência agregada e uma gestão à parte com credenciais e permissões por funcionário. Demonstração: pagamentos só simulados e o que falta definir antes de aceitar dinheiro real fica à vista.</p>
+    </td>
+  </tr>
   <tr>
     <td width="50%"><a href="freixo/"><img src="freixo/docs/capa.jpg" alt="Freixo de Espada à Cinta" width="100%"></a></td>
     <td>
