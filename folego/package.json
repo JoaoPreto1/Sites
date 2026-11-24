@@ -1,0 +1,11 @@
+{
+  "name": "folego",
+  "version": "1.0.0",
+  "description": "Fôlego, estúdio de yoga e respiração (fictício). Só frontend: páginas estáticas com uma luz em WebGL que respira.",
+  "type": "module",
+  "private": true,
+  "engines": { "node": ">=22" },
+  "scripts": {
+    "start": "node servidor.mjs"
+  }
+}
