@@ -1,0 +1,77 @@
+<!doctype html>
+<html lang="pt-PT">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Marcar a primeira aula · Fôlego, yoga em Cascais</title>
+<meta name="description" content="Marca a tua primeira aula no Fôlego, oferecida. Escolhe a aula no horário da semana, diz-nos o teu nível e se tens alguma lesão.">
+<link rel="canonical" href="https://folego.pt/marcar">
+<meta name="theme-color" content="#140f24">
+<meta property="og:type" content="website">
+<meta property="og:locale" content="pt_PT">
+<meta property="og:site_name" content="Fôlego">
+<meta property="og:title" content="Marcar a primeira aula · Fôlego">
+<meta property="og:description" content="A primeira aula é oferecida. Escolhe o dia e aparece dez minutos antes.">
+<meta property="og:url" content="https://folego.pt/marcar">
+<meta property="og:image" content="https://folego.pt/img/og.png">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="icon" href="/favicon.svg" type="image/svg+xml">
+<link rel="preload" href="/fonts/fraunces-italico.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="/fonts/manrope.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="stylesheet" href="/css/site.css">
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Início","item":"https://folego.pt/"},{"@type":"ListItem","position":2,"name":"Primeira aula","item":"https://folego.pt/marcar"}]}
+</script>
+</head>
+<body>
+<a class="salto" href="#conteudo">Saltar para o conteúdo</a>
+<canvas class="luz" data-tom="rosa" aria-hidden="true"></canvas>
+<div class="veu" aria-hidden="true"></div>
+<header class="topo">
+  <a class="logo" href="/" aria-label="Fôlego, página inicial">fôlego</a>
+  <nav id="menu" aria-label="Principal"><a href="/aulas">Aulas</a><a href="/respirar">Respirar connosco</a><a href="/retiros">Retiros</a></nav>
+  <a class="btn" href="/marcar" aria-current="page">Primeira aula</a>
+  <button class="menu-btn" type="button" aria-expanded="false" aria-controls="menu"><span></span><span></span><span class="sr">Abrir o menu</span></button>
+</header>
+
+<main id="conteudo">
+  <section class="cabeca">
+    <span class="etiqueta">Oferecida, sem compromisso</span>
+    <h1 id="titulo">A primeira aula.</h1>
+    <p class="intro">Escolhe o dia, diz-nos como estás e aparece dez minutos antes. Não precisas de trazer nada.</p>
+  </section>
+  <section class="faixa faixa--colada marcar">
+    <div>
+      <h2>O que levar</h2>
+      <ul class="levar">
+        <li>Roupa com que te mexas à vontade. Fazemos a aula descalços.</li>
+        <li>Uma garrafa de água. Os tapetes, as mantas e os blocos são nossos.</li>
+        <li>Se tiveres uma lesão ou estiveres grávida, diz-nos aqui ao lado: a professora prepara alternativas.</li>
+      </ul>
+    </div>
+    <div id="caixa">
+      <form class="formulario vidro" id="form" novalidate aria-describedby="nota">
+        <p class="nota" id="nota">Esta versão do site é só a parte visual: o pedido fica guardado apenas neste browser e ninguém o recebe.</p>
+        <div class="campo"><label for="aula">Que aula?</label><select id="aula" name="aula" required aria-describedby="e-aula"></select><span class="erro" id="e-aula"></span></div>
+        <div class="campo"><label for="nome">Como te chamas?</label><input id="nome" name="nome" autocomplete="name" required maxlength="80" aria-describedby="e-nome"><span class="erro" id="e-nome"></span></div>
+        <div class="campo"><label for="email">Email</label><input id="email" name="email" type="email" autocomplete="email" required maxlength="120" aria-describedby="d-email e-email"><small id="d-email">Só para te lembrarmos da aula na véspera.</small><span class="erro" id="e-email"></span></div>
+        <fieldset class="campo"><legend>Já fizeste yoga?</legend><div class="niveis"><label><input type="radio" name="nivel" value="nunca" checked> Nunca</label><label><input type="radio" name="nivel" value="pouco"> Um pouco</label><label><input type="radio" name="nivel" value="muito"> Faço há anos</label></div></fieldset>
+        <div class="campo"><label for="notas">Alguma lesão, dor ou gravidez? <small>(opcional)</small></label><textarea id="notas" name="notas" maxlength="500"></textarea></div>
+        <label class="aceito"><input type="checkbox" id="aceito" name="aceito" required aria-describedby="e-aceito"> <span>Aceito que o Fôlego guarde estes dados até à aula, só para a organizar.</span></label>
+        <span class="erro" id="e-aceito"></span>
+        <button class="btn" type="submit">Marcar a aula</button>
+      </form>
+    </div>
+  </section>
+</main>
+
+<footer class="rodape">
+  <div><a class="logo" href="/">fôlego</a><p>Rua das Gaivotas, 12 · Cascais<br>ola@folego.pt</p></div>
+  <div><h2>O estúdio</h2><ul><li><a href="/aulas">Horário</a></li><li><a href="/respirar">Respirar connosco</a></li><li><a href="/retiros">Retiros</a></li><li><a href="/marcar">Primeira aula</a></li></ul></div>
+  <div><h2>Aberto</h2><ul><li>Segunda a sexta · 7h00–21h30</li><li>Sábado e domingo · 9h30–13h00</li></ul></div>
+  <p class="aviso">Site de demonstração: o Fôlego, as professoras, a morada e o email são fictícios. © <span data-ano>2026</span></p>
+</footer>
+<script type="module" src="/js/site.js"></script>
+<script type="module" src="/js/pages/marcar.js"></script>
+</body>
+</html>
