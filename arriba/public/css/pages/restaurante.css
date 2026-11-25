@@ -1,0 +1,13 @@
+.rest { display: grid; grid-template-columns: 1fr 1.1fr; gap: 64px; align-items: start; }
+.rest__ementa .ementa { background: var(--verde); color: var(--papel); }
+.rest__nota { color: var(--suave); margin-top: 18px; font-size: 15px; }
+.rest__fotos { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+.rest__fotos img { width: 100%; height: 240px; object-fit: cover; }
+.rest__fotos img:first-child { grid-column: 1 / -1; height: 380px; }
+.tres--texto img { height: 260px; }
+
+@media (max-width: 820px) {
+  .rest { grid-template-columns: 1fr; gap: 32px; }
+  .rest__fotos img { height: 150px; }
+  .rest__fotos img:first-child { height: 260px; }
+}
