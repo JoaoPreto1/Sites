@@ -1,0 +1,61 @@
+/* Os blocos desenhados (os mesmos da pilha, parados) */
+.svc-blk { --u: 1; display: grid; place-content: center; text-align: center; border: 4px solid var(--ink); box-shadow: 8px 8px 0 var(--ink); font-family: var(--font-tight); font-weight: 900; text-transform: uppercase; line-height: 0.9; text-decoration: none; transition: transform 0.25s cubic-bezier(0.3, 1.6, 0.5, 1); }
+.svc-blk b { font-weight: inherit; font-size: calc(3rem * var(--u)); }
+.svc-blk span { font-family: var(--font); font-size: 0.75rem; font-weight: 700; letter-spacing: 0.14em; margin-top: 10px; }
+.svc-blk--pill { width: 340px; height: 160px; border-radius: 999px; font-stretch: 62%; }
+.svc-blk--square { width: 240px; height: 240px; font-stretch: 70%; }
+.svc-blk--circle { width: 230px; height: 230px; border-radius: 50%; box-shadow: 8px 8px 0 var(--red); }
+.svc-blk--circle b { font-size: calc(2.2rem * var(--u)); }
+.svc-blk--arch { width: 320px; height: 160px; border-radius: 160px 160px 0 0; font-stretch: 62%; padding-top: 30px; }
+.svc-blk--tall { width: 200px; height: 260px; border-radius: 0 0 100px 100px; font-stretch: 80%; }
+.svc-blk--tall b { font-size: calc(2.4rem * var(--u)); }
+.svc-blk--red { background: var(--red); color: #fff; }
+.svc-blk--blue { background: var(--blue); color: #fff; }
+.svc-blk--ink { background: var(--ink); color: var(--yellow); }
+.svc-blk--yellow { background: var(--yellow); }
+.svc-blk--pink { background: var(--pink); }
+
+.svc-list { display: grid; gap: clamp(56px, 8vw, 96px); padding-bottom: 60px; }
+.svc { display: grid; grid-template-columns: 380px minmax(0, 1fr); gap: clamp(28px, 5vw, 72px); align-items: center; }
+.svc--r { grid-template-columns: minmax(0, 1fr) 380px; }
+.svc--r .svc__shape { order: 2; }
+.svc__shape { display: grid; place-items: center; min-height: 280px; }
+.svc:nth-child(odd) .svc-blk { transform: rotate(-4deg); }
+.svc:nth-child(even) .svc-blk { transform: rotate(3deg); }
+.svc__shape:hover .svc-blk { transform: rotate(0) translateY(-8px); }
+.svc h2 { font-size: clamp(3rem, 7vw, 6rem); }
+.svc h2 a { text-decoration: none; }
+.svc__lead { font-size: 1.2rem; margin: 16px 0 20px; max-width: 58ch; }
+.svc__inc { display: flex; flex-wrap: wrap; gap: 8px; }
+.svc__inc li { border: 2px solid var(--ink); padding: 5px 12px; font-weight: 650; font-size: 0.92rem; background: var(--paper); }
+.svc__facts { display: flex; flex-wrap: wrap; gap: 10px 36px; margin: 22px 0; }
+.svc__facts b { display: block; font-size: 0.72rem; letter-spacing: 0.14em; text-transform: uppercase; color: var(--ink-2); }
+.svc__facts span { font-weight: 750; }
+.svc-note { border-top: 3px solid var(--ink); padding-top: 18px; color: var(--ink-2); max-width: 70ch; }
+
+.svc-head { display: grid; grid-template-columns: minmax(0, 1fr) auto; gap: 40px; align-items: center; padding-top: clamp(28px, 6vw, 72px); padding-bottom: 40px; }
+.svc-head .display { font-size: clamp(4rem, 13vw, 11rem); margin-top: 14px; }
+.svc-head__sub { display: block; font-family: var(--font); font-size: 1rem; font-stretch: 100%; letter-spacing: 0.18em; margin-top: 12px; }
+.svc-head .lead { max-width: 560px; margin-top: 18px; font-size: 1.2rem; }
+.svc-head__acts { margin-top: 26px; }
+.svc-blk--big { --u: 1.35; transform: rotate(-5deg) scale(1.25); margin-right: 40px; }
+.svc-detail { display: grid; grid-template-columns: 1.2fr 1fr; gap: 28px; }
+.svc-box { border: 3px solid var(--ink); background: var(--paper); padding: 26px 28px; box-shadow: var(--shadow); }
+.svc-box h2 { font-size: 0.8rem; letter-spacing: 0.16em; text-transform: uppercase; margin-bottom: 16px; }
+.svc-box dl { display: grid; gap: 14px; }
+.svc-box dt { font-size: 0.75rem; font-weight: 800; letter-spacing: 0.1em; text-transform: uppercase; color: var(--ink-2); }
+.svc-box dd { font-weight: 750; font-size: 1.05rem; }
+.other-svc { display: flex; flex-wrap: wrap; gap: 26px; align-items: flex-end; justify-content: center; padding-bottom: 40px; }
+.svc-blk--mini { --u: 0.6; transform: scale(0.6); margin: -40px -50px; }
+.svc-blk--mini:hover { transform: scale(0.64) rotate(-4deg); }
+@media (max-width: 900px) {
+  .svc, .svc--r { grid-template-columns: 1fr; }
+  .svc--r .svc__shape { order: 0; }
+  .svc__shape { min-height: 0; justify-content: start; }
+  .svc-head, .svc-detail { grid-template-columns: 1fr; }
+  .svc-blk--big { transform: rotate(-5deg); margin: 10px 0 20px; }
+}
+@media (max-width: 420px) {
+  .svc-blk--pill { width: 290px; height: 136px; }
+  .svc-blk--arch { width: 280px; height: 140px; }
+}
