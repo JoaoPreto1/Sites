@@ -36,13 +36,13 @@ export const arrow = '<svg class="arr" width="20" height="20" viewBox="0 0 24 24
 // Etiqueta de serviço com a forma e a cor do bloco correspondente
 export const chip = (category, label) => `<span class="chip chip--${esc(category)}"><i aria-hidden="true"></i>${esc(label)}</span>`;
 
-export function workCard(w, { eager = false, sizes } = {}) {
+export function workCard(w, { eager = false, sizes, level = 3 } = {}) {
   return `<article class="card card--${esc(w.category)}">
     <a class="card__link" href="/trabalhos/${esc(w.slug)}">
       <div class="card__img">${picture(w.cover, { alt: `${w.client}: ${w.title}`, eager, sizes: sizes ?? '(max-width: 700px) 92vw, (max-width: 1100px) 46vw, 31vw' })}</div>
       <div class="card__txt">
         <p class="card__meta">${chip(w.category, w.categoryLabel)}<span>${esc(w.client)} · ${w.year}</span></p>
-        <h3>${esc(w.title)}</h3>
+        <h${level} class="card__title">${esc(w.title)}</h${level}>
       </div>
     </a>
   </article>`;

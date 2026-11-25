@@ -97,7 +97,7 @@
 .card__txt { padding-top: 16px; }
 .card__meta { display: flex; flex-wrap: wrap; gap: 6px 14px; align-items: center; font-size: 0.85rem; color: var(--ink-2); margin-bottom: 6px; }
 .card__meta .chip { color: var(--ink); }
-.card h3 { font-size: 1.35rem; font-weight: 800; font-stretch: 90%; line-height: 1.15; }
+.card__title { font-size: 1.35rem; font-weight: 800; font-stretch: 90%; line-height: 1.15; }
 @media (max-width: 1100px) { .cards { grid-template-columns: repeat(2, 1fr); } }
 @media (max-width: 700px) { .cards { grid-template-columns: 1fr; gap: 36px; } }
 
@@ -147,6 +147,7 @@ fieldset { border: 0; padding: 0; min-width: 0; }
 .foot-cta { display: flex; justify-content: space-between; align-items: end; gap: 28px; flex-wrap: wrap; padding-bottom: 48px; border-bottom: 2px solid #ffffff33; }
 .foot-cta__big { font-family: var(--font-tight); font-weight: 900; font-stretch: 66%; text-transform: uppercase; font-size: clamp(2.4rem, 6vw, 5rem); line-height: 0.9; }
 .site-foot .btn { border-color: var(--bg); box-shadow: 4px 4px 0 var(--red); }
+.site-foot .btn--yellow { color: var(--ink); }
 .foot-grid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 32px; padding: 40px 0; }
 .fh { font-size: 0.75rem; letter-spacing: 0.16em; text-transform: uppercase; margin-bottom: 14px; color: var(--yellow); }
 .foot-grid ul { display: grid; gap: 6px; }

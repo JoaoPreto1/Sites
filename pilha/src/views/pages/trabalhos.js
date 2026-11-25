@@ -12,7 +12,7 @@ export function worksBody({ works, category, counts }) {
   <nav class="filters" aria-label="Filtrar por serviço">${filters
     .map(([slug, label, n]) => `<a class="filter filter--${slug || 'tudo'}" href="/trabalhos${slug ? `?tipo=${slug}` : ''}"${(category ?? '') === slug ? ' aria-current="page"' : ''}><i aria-hidden="true"></i>${label}<span>${n}</span></a>`)
     .join('')}</nav>
-  ${works.length ? `<div class="cards">${works.map((w, i) => workCard(w, { eager: i < 2 })).join('')}</div>` : '<p class="empty">Ainda não há trabalhos publicados neste bloco.</p>'}
+  ${works.length ? `<div class="cards">${works.map((w, i) => workCard(w, { eager: i < 2, level: 2 })).join('')}</div>` : '<p class="empty">Ainda não há trabalhos publicados neste bloco.</p>'}
 </section>`;
 }
 
