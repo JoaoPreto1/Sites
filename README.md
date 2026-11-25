@@ -4,7 +4,7 @@
 
 **Um site completo de cada vez, cada um com a data em que foi feito. Meta: 3 sites por semana.**
 
-![Sites feitos](https://img.shields.io/badge/sites_feitos-10-ff5a36?style=flat-square)
+![Sites feitos](https://img.shields.io/badge/sites_feitos-11-ff5a36?style=flat-square)
 ![Meta](https://img.shields.io/badge/meta-3_por_semana-1f8a4c?style=flat-square)
 ![Node.js](https://img.shields.io/badge/Node.js-22+-339933?style=flat-square&logo=nodedotjs&logoColor=white)
 ![Express](https://img.shields.io/badge/Express-5-000000?style=flat-square&logo=express&logoColor=white)
@@ -23,7 +23,7 @@ Três sites por semana, de segunda a domingo.
 
 | Semana | Sites | Meta | Estado |
 |---|---|:---:|---|
-| 23 a 29 nov 2026 | Amparo, Fôlego | 2 / 3 | 🔄 Em curso |
+| 23 a 29 nov 2026 | Amparo, Fôlego, Pilha | 3 / 3 | ✅ Cumprida |
 | 16 a 22 nov 2026 | Bairro, Fechadura, Planta, Freixo | 4 / 3 | ✅ Cumprida |
 | 9 a 15 nov 2026 | Maré, Lente Studio, Cepa, Rotação | 4 / 3 | ✅ Cumprida |
 
@@ -32,6 +32,14 @@ Três sites por semana, de segunda a domingo.
 O mais recente primeiro.
 
 <table>
+  <tr>
+    <td width="50%"><a href="pilha/"><img src="pilha/docs/capa.jpg" alt="Pilha" width="100%"></a></td>
+    <td>
+      <p>📅 <strong>Quarta, 25 nov 2026</strong></p>
+      <h3><a href="pilha/">Pilha</a></h3>
+      <p>Estúdio de marcas e sites (fictício) em Lisboa. Na página inicial, por baixo de “Atira-nos um problema.”, os serviços são blocos coloridos de formas diferentes (Marcas, Sites, Movimento, Rótulos, Livros, “Fala connosco” e “?”) que caem do topo com física a sério (Matter.js), ficam empilhados no chão e se arrastam e atiram; um toque abre o serviço ou um trabalho ao calhas. Trabalhos com filtro por bloco, serviços, estúdio, diário e um briefing onde se escolhem os blocos. Área de cliente com as fases do projeto, provas para aprovar e mensagens, e painel do estúdio para pedidos, projetos, trabalhos e diário. Lighthouse 97 a 100.</p>
+    </td>
+  </tr>
   <tr>
     <td width="50%"><a href="folego/"><img src="folego/docs/capa.jpg" alt="Fôlego" width="100%"></a></td>
     <td>
