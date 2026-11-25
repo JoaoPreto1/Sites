@@ -4,7 +4,7 @@
 
 **Um site completo de cada vez, cada um com a data em que foi feito. Meta: 3 sites por semana.**
 
-![Sites feitos](https://img.shields.io/badge/sites_feitos-9-ff5a36?style=flat-square)
+![Sites feitos](https://img.shields.io/badge/sites_feitos-10-ff5a36?style=flat-square)
 ![Meta](https://img.shields.io/badge/meta-3_por_semana-1f8a4c?style=flat-square)
 ![Node.js](https://img.shields.io/badge/Node.js-22+-339933?style=flat-square&logo=nodedotjs&logoColor=white)
 ![Express](https://img.shields.io/badge/Express-5-000000?style=flat-square&logo=express&logoColor=white)
@@ -23,7 +23,7 @@ Três sites por semana, de segunda a domingo.
 
 | Semana | Sites | Meta | Estado |
 |---|---|:---:|---|
-| 23 a 29 nov 2026 | Amparo | 1 / 3 | 🔄 Em curso |
+| 23 a 29 nov 2026 | Amparo, Fôlego | 2 / 3 | 🔄 Em curso |
 | 16 a 22 nov 2026 | Bairro, Fechadura, Planta, Freixo | 4 / 3 | ✅ Cumprida |
 | 9 a 15 nov 2026 | Maré, Lente Studio, Cepa, Rotação | 4 / 3 | ✅ Cumprida |
 
@@ -32,6 +32,14 @@ Três sites por semana, de segunda a domingo.
 O mais recente primeiro.
 
 <table>
+  <tr>
+    <td width="50%"><a href="folego/"><img src="folego/docs/capa.jpg" alt="Fôlego" width="100%"></a></td>
+    <td>
+      <p>📅 <strong>Quarta, 25 nov 2026</strong></p>
+      <h3><a href="folego/">Fôlego</a></h3>
+      <p>Estúdio de yoga e respiração (fictício), só a parte visual. O fundo de todas as páginas é uma luz líquida feita com um shader de WebGL que respira num ciclo de oito segundos, com a palavra a trocar entre inspira e expira. Horário dos próximos sete dias com filtros e lugares livres, um exercício de respiração guiado que comanda a luz do ecrã (caixa, coerência, calma e 4-7-8), retiros com o programa de cada dia e marcação da primeira aula. Lighthouse 99 a 100 em todas as páginas.</p>
+    </td>
+  </tr>
   <tr>
     <td width="50%"><a href="amparo/"><img src="amparo/docs/capa.jpg" alt="Amparo" width="100%"></a></td>
     <td>
