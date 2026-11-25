@@ -4,7 +4,7 @@
 
 **Um site completo de cada vez, cada um com a data em que foi feito. Meta: 3 sites por semana.**
 
-![Sites feitos](https://img.shields.io/badge/sites_feitos-11-ff5a36?style=flat-square)
+![Sites feitos](https://img.shields.io/badge/sites_feitos-12-ff5a36?style=flat-square)
 ![Meta](https://img.shields.io/badge/meta-3_por_semana-1f8a4c?style=flat-square)
 ![Node.js](https://img.shields.io/badge/Node.js-22+-339933?style=flat-square&logo=nodedotjs&logoColor=white)
 ![Express](https://img.shields.io/badge/Express-5-000000?style=flat-square&logo=express&logoColor=white)
@@ -23,7 +23,7 @@ Três sites por semana, de segunda a domingo.
 
 | Semana | Sites | Meta | Estado |
 |---|---|:---:|---|
-| 23 a 29 nov 2026 | Amparo, Fôlego, Pilha | 3 / 3 | ✅ Cumprida |
+| 23 a 29 nov 2026 | Amparo, Fôlego, Pilha, Arriba | 4 / 3 | ✅ Cumprida |
 | 16 a 22 nov 2026 | Bairro, Fechadura, Planta, Freixo | 4 / 3 | ✅ Cumprida |
 | 9 a 15 nov 2026 | Maré, Lente Studio, Cepa, Rotação | 4 / 3 | ✅ Cumprida |
 
@@ -32,6 +32,14 @@ Três sites por semana, de segunda a domingo.
 O mais recente primeiro.
 
 <table>
+  <tr>
+    <td width="50%"><a href="arriba/"><img src="arriba/docs/capa.jpg" alt="Arriba" width="100%"></a></td>
+    <td>
+      <p>📅 <strong>Quarta, 25 nov 2026</strong></p>
+      <h3><a href="arriba/">Arriba</a></h3>
+      <p>Hotel de 14 quartos em Sagres (fictício). A página inicial é o quadro de chaves da receção em 3D (three.js): chaves de latão com porta-chaves gravados, presas em ganchos numa tábua de nogueira. As chaves penduradas são os quartos livres nas datas escolhidas; tirar uma do quadro abre a ficha do quarto e leva à reserva. Quartos com galeria e calendário de disponibilidade, restaurante com a ementa do dia, reservas com conta de hóspede (hora de chegada, pedidos e cancelamento até 7 dias antes) e painel da receção com o quadro desta noite, chegadas, saídas, pedidos, ementa e preços. Lighthouse 96 a 100.</p>
+    </td>
+  </tr>
   <tr>
     <td width="50%"><a href="pilha/"><img src="pilha/docs/capa.jpg" alt="Pilha" width="100%"></a></td>
     <td>
