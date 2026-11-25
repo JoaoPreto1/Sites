@@ -2,6 +2,7 @@ import { Router } from 'express';
 import { absolute } from '../seo/head.js';
 import { serviceBySlug } from '../config/site.js';
 import { contactBody } from '../views/pages/contacto.js';
+import { clientBody, loginBody, panelBody } from '../views/pages/conta.js';
 import { aboutPage, article, breadcrumbs, contactPage, creativeWork, itemList, service as serviceSchema, studio, website } from '../seo/schema.js';
 import { entryBySlug, publishedEntries, publishedWorks, randomWork, workBySlug } from '../services/content.service.js';
 import { entryBody, journalBody, studioBody } from '../views/pages/estudio.js';
@@ -185,6 +186,19 @@ router.get('/contacto', (req, res) => {
     body: contactBody({ preselect: bloco }),
     scripts: ['contacto'],
   });
+});
+
+// Páginas privadas: o HTML é só a moldura, os dados chegam pela API com o token
+router.get('/entrar', (req, res) => {
+  sendPrivate(req, res, { page: { title: 'Entrar', description: 'Entrar na área de cliente ou no painel do estúdio.' }, body: loginBody(), scripts: ['entrar'] });
+});
+
+router.get('/cliente', (req, res) => {
+  sendPrivate(req, res, { page: { title: 'Área de cliente', description: 'Acompanhar o projeto, aprovar provas e falar com o estúdio.' }, body: clientBody(), scripts: ['cliente'] });
+});
+
+router.get('/painel', (req, res) => {
+  sendPrivate(req, res, { page: { title: 'Painel do estúdio', description: 'Pedidos, projetos, trabalhos e diário.' }, body: panelBody(), scripts: ['painel'] });
 });
 
 export default router;
