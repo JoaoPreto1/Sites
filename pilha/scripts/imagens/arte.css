@@ -1,0 +1,53 @@
+@font-face { font-family: 'Archivo'; src: url('../../public/fonts/archivo.woff2') format('woff2'); font-weight: 400 900; font-stretch: 62% 125%; }
+* { box-sizing: border-box; margin: 0; }
+html, body { width: 1200px; height: 900px; overflow: hidden; background: #efe8da; }
+.scene { position: relative; width: 1200px; height: 900px; overflow: hidden; font-family: 'Archivo', sans-serif; color: #141210; }
+.abs { position: absolute; }
+.dots { position: absolute; inset: 0; background-image: radial-gradient(#0000001f 1.2px, transparent 1.4px); background-size: 24px 24px; }
+.grain::after { content: ''; position: absolute; inset: 0; background-image: radial-gradient(#ffffff14 1px, transparent 1px), radial-gradient(#00000012 1px, transparent 1px); background-size: 5px 5px, 7px 7px; background-position: 0 0, 2px 3px; pointer-events: none; }
+.t { font-weight: 900; text-transform: uppercase; line-height: 0.85; letter-spacing: -0.01em; }
+.c62 { font-stretch: 62%; } .c70 { font-stretch: 70%; } .c80 { font-stretch: 80%; } .c100 { font-stretch: 100%; } .c125 { font-stretch: 125%; }
+.shadow { box-shadow: 14px 16px 0 #14121022; }
+.hard { box-shadow: 10px 10px 0 #141210; }
+.ink-b { border: 5px solid #141210; }
+
+/* Lata de conserva vista de cima */
+.can { position: absolute; border-radius: 34px; border: 6px solid #141210; overflow: hidden; display: flex; flex-direction: column; justify-content: space-between; padding: 26px 30px; box-shadow: 16px 18px 0 #14121030; }
+.can::before { content: ''; position: absolute; inset: 12px; border-radius: 24px; border: 3px solid #14121055; pointer-events: none; }
+.can .num { font-weight: 900; font-stretch: 62%; line-height: 0.78; }
+.can .fish { font-weight: 900; font-stretch: 100%; letter-spacing: 0.12em; text-transform: uppercase; font-size: 22px; }
+.can .small { font-size: 15px; font-weight: 600; letter-spacing: 0.08em; text-transform: uppercase; }
+.ring { position: absolute; width: 70px; height: 44px; border: 6px solid #141210; border-radius: 30px; background: #cfc8bb; }
+
+/* Livros */
+.book { position: absolute; border: 5px solid #141210; padding: 34px 30px; display: flex; flex-direction: column; justify-content: space-between; box-shadow: 14px 16px 0 #14121040; }
+.book .ti { font-weight: 900; font-stretch: 62%; text-transform: uppercase; line-height: 0.8; }
+.book .au { font-weight: 700; font-size: 18px; letter-spacing: 0.1em; text-transform: uppercase; }
+.spine { position: absolute; bottom: 120px; border: 5px solid #141210; display: flex; align-items: center; justify-content: center; }
+.spine span { writing-mode: vertical-rl; transform: rotate(180deg); font-weight: 900; font-stretch: 70%; text-transform: uppercase; font-size: 30px; letter-spacing: 0.02em; }
+
+/* Ecrãs */
+.browser { position: absolute; background: #fff; border: 5px solid #141210; box-shadow: 18px 20px 0 #141210; overflow: hidden; }
+.browser .bar { height: 44px; border-bottom: 5px solid #141210; display: flex; align-items: center; gap: 10px; padding: 0 16px; background: #efe8da; }
+.browser .bar i { width: 14px; height: 14px; border-radius: 50%; border: 3px solid #141210; }
+.browser .bar b { margin-left: 18px; flex: 1; height: 22px; border: 3px solid #141210; border-radius: 12px; background: #fff; font: 600 12px Archivo; display: flex; align-items: center; padding-left: 12px; }
+.browser .page { position: absolute; inset: 44px 0 0; }
+.phone { position: absolute; border: 6px solid #141210; border-radius: 42px; background: #141210; padding: 12px; box-shadow: 16px 18px 0 #14121040; }
+.phone .scr { width: 100%; height: 100%; border-radius: 30px; overflow: hidden; position: relative; background: #fff; }
+.ui-line { height: 12px; border-radius: 6px; background: #14121022; margin: 10px 0; }
+.ui-btn { display: inline-flex; align-items: center; justify-content: center; height: 46px; padding: 0 20px; border: 4px solid #141210; font-weight: 900; font-size: 16px; text-transform: uppercase; letter-spacing: 0.04em; }
+
+/* Garrafas */
+.bottle { position: absolute; }
+.label { position: absolute; display: flex; flex-direction: column; align-items: center; justify-content: center; text-align: center; border: 4px solid #141210; }
+
+/* Carimbos */
+.stamp { position: absolute; border: 8px solid currentColor; border-radius: 50%; display: grid; place-items: center; mix-blend-mode: multiply; opacity: 0.88; }
+
+/* Fotogramas */
+.frame { position: absolute; border: 5px solid #141210; overflow: hidden; }
+.tc { position: absolute; font: 700 16px 'Archivo'; letter-spacing: 0.1em; color: #fff; background: #141210; padding: 6px 10px; }
+
+/* Esboços a lápis */
+.sketch { position: absolute; border: 3px dashed #4a443c; border-radius: 30px; background: #fbf7ef; }
+.pencil { font-family: 'Archivo'; font-weight: 500; font-style: italic; color: #4a443c; }

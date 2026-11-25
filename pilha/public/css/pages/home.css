@@ -1,0 +1,133 @@
+/* ---------- A pilha ---------- */
+.stage {
+  --s: 1;
+  position: relative;
+  height: calc(100svh - 84px);
+  min-height: 640px;
+  max-height: 1100px;
+  overflow: hidden;
+  isolation: isolate;
+}
+.hero { position: relative; z-index: 1; padding-top: 3vh; pointer-events: none; }
+.hero__title { font-size: clamp(3.9rem, 9.4vw, 9.6rem); max-width: 10ch; }
+.hero__lead { margin-top: 24px; max-width: 390px; font-size: 1.08rem; line-height: 1.45; }
+.hint { display: inline-flex; gap: 10px; align-items: center; margin-top: 18px; font-size: 0.8rem; font-weight: 800; text-transform: uppercase; letter-spacing: 0.14em; }
+.hint i { width: 28px; height: 2px; background: var(--ink); }
+.table-now { position: absolute; z-index: 1; right: var(--gutter); top: 4vh; width: 240px; text-align: right; font-size: 0.88rem; line-height: 1.5; }
+.table-now b { display: block; font-size: 0.7rem; letter-spacing: 0.16em; text-transform: uppercase; margin-bottom: 6px; }
+.floor { position: absolute; left: 0; right: 0; bottom: 0; height: 6px; background: var(--ink); z-index: 3; }
+
+.pile { position: absolute; inset: 0; z-index: 4; pointer-events: none; margin: 0; }
+.pile li { display: contents; }
+.blk {
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: calc(var(--w) * var(--s) * 1px);
+  height: calc(var(--h) * var(--s) * 1px);
+  display: grid;
+  place-content: center;
+  text-align: center;
+  font-family: var(--font-tight);
+  font-weight: 900;
+  text-transform: uppercase;
+  line-height: 0.9;
+  font-size: calc(var(--fs) * var(--s) * 1rem);
+  text-decoration: none;
+  border: calc(3px * var(--s) + 0.5px) solid var(--ink);
+  box-shadow: calc(6px * var(--s)) calc(6px * var(--s)) 0 var(--ink);
+  cursor: grab;
+  user-select: none;
+  -webkit-user-select: none;
+  -webkit-user-drag: none;
+  -webkit-tap-highlight-color: transparent;
+  touch-action: none;
+  pointer-events: auto;
+  will-change: transform;
+}
+.blk:active { cursor: grabbing; }
+.blk b { font-weight: inherit; display: block; }
+.blk span { display: block; font-family: var(--font); font-size: max(0.6rem, calc(0.72rem * var(--s))); font-weight: 700; letter-spacing: 0.14em; margin-top: calc(10px * var(--s)); font-stretch: 100%; }
+.blk:focus-visible { outline: 4px solid var(--ink); outline-offset: 5px; }
+
+.blk--pill { border-radius: 999px; font-stretch: 62%; }
+.blk--square { font-stretch: 70%; }
+.blk--circle { border-radius: 50%; font-stretch: 100%; box-shadow: calc(6px * var(--s)) calc(6px * var(--s)) 0 var(--red); }
+.blk--arch { border-radius: calc(150px * var(--s)) calc(150px * var(--s)) 0 0; font-stretch: 62%; padding-top: calc(36px * var(--s)); }
+.blk--tall { border-radius: 0 0 calc(95px * var(--s)) calc(95px * var(--s)); font-stretch: 80%; }
+.blk--rect { font-family: var(--font); font-stretch: 112%; }
+.blk--rounded { border-radius: calc(18px * var(--s)); font-family: var(--font); font-stretch: 100%; }
+
+.blk--red { background: var(--red); color: #fff; }
+.blk--blue { background: var(--blue); color: #fff; }
+.blk--ink { background: var(--ink); color: var(--yellow); }
+.blk--yellow { background: var(--yellow); color: var(--ink); }
+.blk--pink { background: var(--pink); color: var(--ink); }
+.blk--green { background: var(--green); color: #fff; }
+.blk--white { background: #fff; color: var(--ink); }
+
+/* Com JavaScript, os blocos esperam pelo motor de física para cair do topo */
+@media (scripting: enabled) {
+  .stage:not(.is-live):not(.is-static) .blk { visibility: hidden; }
+}
+/* Sem JavaScript (ou se o motor falhar), a pilha fica arrumada no chão */
+@media (scripting: none) {
+  .pile { display: flex; flex-wrap: wrap-reverse; align-items: flex-end; justify-content: center; gap: 0 6px; top: auto; bottom: 6px; padding: 0 var(--gutter); }
+  .pile .blk { position: relative; }
+}
+.stage.is-static .pile { display: flex; flex-wrap: wrap-reverse; align-items: flex-end; justify-content: center; gap: 0 6px; top: auto; bottom: 6px; padding: 0 var(--gutter); }
+.stage.is-static .blk { position: relative; }
+
+.restack { position: absolute; z-index: 5; right: var(--gutter); bottom: 22px; font-size: 0.75rem; font-weight: 800; letter-spacing: 0.12em; text-transform: uppercase; background: var(--paper); border: 2px solid var(--ink); padding: 8px 12px; cursor: pointer; box-shadow: 3px 3px 0 var(--ink); opacity: 0; transition: opacity 0.3s; }
+.restack:focus-visible, .stage:hover .restack { opacity: 1; }
+.restack[hidden] { display: none; }
+
+.tip { position: absolute; z-index: 6; left: 0; top: 0; background: var(--ink); color: var(--bg); font-size: 0.72rem; font-weight: 800; padding: 7px 11px; letter-spacing: 0.12em; text-transform: uppercase; pointer-events: none; white-space: nowrap; }
+.tip[hidden] { display: none; }
+
+@media (max-width: 900px) {
+  .table-now { display: none; }
+}
+@media (max-width: 700px) {
+  .stage { height: calc(100svh - 76px); min-height: 600px; }
+  .hero { padding-top: 2vh; }
+  .hero__title { font-size: clamp(3.6rem, 18vw, 5.2rem); }
+  .hero__lead { font-size: 0.98rem; max-width: 330px; margin-top: 18px; }
+  .restack { opacity: 1; top: auto; bottom: auto; top: 12px; }
+}
+
+/* ---------- Fita de serviços ---------- */
+.ticker { background: var(--ink); color: var(--bg); overflow: hidden; border-block: 3px solid var(--ink); }
+.ticker__run { display: flex; align-items: center; gap: 28px; width: max-content; padding: 16px 0; animation: run 38s linear infinite; }
+.ticker span { font-family: var(--font-tight); font-weight: 900; font-stretch: 66%; text-transform: uppercase; font-size: 2.2rem; line-height: 1; }
+.ticker i { display: block; width: 30px; height: 30px; border: 2px solid var(--bg); flex: none; }
+.ticker .t-pill { background: var(--red); border-radius: 99px; width: 52px; }
+.ticker .t-square { background: var(--blue); }
+.ticker .t-circle { background: var(--yellow); border-radius: 50%; }
+.ticker .t-arch { background: var(--yellow); border-radius: 30px 30px 0 0; width: 44px; height: 22px; }
+.ticker .t-tall { background: var(--pink); border-radius: 0 0 14px 14px; width: 24px; height: 34px; }
+@keyframes run { to { transform: translateX(-50%); } }
+
+/* ---------- Como se pega num problema ---------- */
+.how { display: grid; grid-template-columns: minmax(0, 0.9fr) minmax(0, 1.1fr); gap: 48px; align-items: start; }
+.how .display { font-size: clamp(3rem, 7vw, 6.4rem); }
+.how__steps { list-style: none; padding: 0; display: grid; gap: 18px; counter-reset: s; }
+.how__steps li { counter-increment: s; position: relative; padding: 22px 24px 22px 88px; border: 3px solid var(--ink); background: var(--paper); box-shadow: var(--shadow); font-size: 1.05rem; }
+.how__steps li::before { content: counter(s); position: absolute; left: 20px; top: 18px; width: 48px; height: 48px; display: grid; place-items: center; font-weight: 900; font-size: 1.4rem; border: 3px solid var(--ink); }
+.how__steps li:nth-child(1)::before { background: var(--red); color: #fff; border-radius: 99px; }
+.how__steps li:nth-child(2)::before { background: var(--blue); color: #fff; }
+.how__steps li:nth-child(3)::before { background: var(--yellow); border-radius: 24px 24px 0 0; }
+.how__steps li:nth-child(4)::before { background: var(--pink); border-radius: 0 0 24px 24px; }
+.how__steps li:nth-child(even) { margin-left: 28px; }
+.how__steps b { display: block; font-size: 1.3rem; font-stretch: 90%; }
+@media (max-width: 900px) { .how { grid-template-columns: 1fr; } .how__steps li:nth-child(even) { margin-left: 0; } }
+
+/* ---------- Do diário ---------- */
+.diary-strip { display: grid; grid-template-columns: repeat(3, 1fr); border-top: 3px solid var(--ink); }
+.diary-strip li + li { border-left: 3px solid var(--ink); }
+.diary-strip a { display: grid; gap: 10px; padding: 26px 24px 30px; text-decoration: none; height: 100%; transition: background 0.2s; }
+.diary-strip a:hover { background: var(--yellow); }
+.ds__meta { font-size: 0.75rem; font-weight: 800; letter-spacing: 0.12em; text-transform: uppercase; }
+.ds__title { font-size: 1.45rem; font-weight: 800; font-stretch: 85%; line-height: 1.1; }
+.ds__ex { color: var(--ink-2); font-size: 0.98rem; }
+@media (max-width: 900px) { .diary-strip { grid-template-columns: 1fr; } .diary-strip li + li { border-left: 0; border-top: 3px solid var(--ink); } }
