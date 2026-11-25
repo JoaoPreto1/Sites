@@ -34,7 +34,7 @@ export function homeBody({ featured, onTable, entries }) {
   <div class="wrap hero">
     <h1 class="display hero__title" id="titulo">Atira-nos<br>um <em>problema.</em></h1>
     <p class="hero__lead">Estúdio de marcas e sites em Lisboa. Tudo o que fazemos está aí no chão: pega num bloco e ele abre o trabalho.</p>
-    <p class="hint" aria-hidden="true"><i></i>arrasta, atira, empilha</p>
+    <p class="hero__hint" aria-hidden="true"><i></i>arrasta, atira, empilha</p>
     <p class="sr-only">Cada bloco da pilha é um link para um serviço. Com o rato ou com o dedo, os blocos podem ser arrastados e atirados.</p>
   </div>
   <aside class="table-now" aria-label="Em que estamos a trabalhar"><b>Agora em cima da mesa</b>${table}</aside>

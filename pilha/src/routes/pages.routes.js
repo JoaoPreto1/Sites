@@ -1,7 +1,8 @@
 import { Router } from 'express';
 import { absolute } from '../seo/head.js';
 import { serviceBySlug } from '../config/site.js';
-import { aboutPage, article, breadcrumbs, creativeWork, itemList, service as serviceSchema, studio, website } from '../seo/schema.js';
+import { contactBody } from '../views/pages/contacto.js';
+import { aboutPage, article, breadcrumbs, contactPage, creativeWork, itemList, service as serviceSchema, studio, website } from '../seo/schema.js';
 import { entryBySlug, publishedEntries, publishedWorks, randomWork, workBySlug } from '../services/content.service.js';
 import { entryBody, journalBody, studioBody } from '../views/pages/estudio.js';
 import { serviceBody, servicesBody } from '../views/pages/servicos.js';
@@ -169,6 +170,20 @@ router.get('/diario/:slug', async (req, res, next) => {
       schema: [article(data.entry), breadcrumbs([['Início', '/'], ['Diário', '/diario'], [data.entry.title, `/diario/${data.entry.slug}`]])],
     },
     body: entryBody(data),
+  });
+});
+
+router.get('/contacto', (req, res) => {
+  const bloco = typeof req.query.bloco === 'string' && serviceBySlug(req.query.bloco) ? req.query.bloco : null;
+  send(req, res, {
+    page: {
+      title: 'Contacto e pedido de orçamento',
+      description: 'Atira-nos um problema: escolhe os blocos (marca, site, movimento, rótulos, livros), conta o que se passa e respondemos em dois dias úteis.',
+      path: '/contacto',
+      schema: [contactPage(), breadcrumbs([['Início', '/'], ['Contacto', '/contacto']])],
+    },
+    body: contactBody({ preselect: bloco }),
+    scripts: ['contacto'],
   });
 });
 

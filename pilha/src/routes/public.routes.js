@@ -2,9 +2,10 @@ import { Router } from 'express';
 import { BUDGET_KEYS, SERVICE_SLUGS } from '../config/site.js';
 import { antiBot, briefLimiter } from '../middleware/limits.js';
 import { validate } from '../middleware/validate.js';
+import { HttpError } from '../utils/httpError.js';
 import * as briefsService from '../services/briefs.service.js';
 import { publishedEntries, publishedWorks } from '../services/content.service.js';
-import { body, email, isoDay, oneOf, optionalText, query, text } from '../validation/common.js';
+import { body, email, flag, isoDay, oneOf, optionalText, query, text } from '../validation/common.js';
 
 const router = Router();
 
@@ -20,7 +21,8 @@ const briefRules = [
   text('name', { min: 2, max: 80, message: 'Diga-nos o seu nome' }),
   email(),
   optionalText('company', 80),
-  body('services', 'Escolha pelo menos um bloco').isArray({ min: 1, max: SERVICE_SLUGS.length }),
+  body('services', 'Escolha pelo menos um bloco').isArray({ max: SERVICE_SLUGS.length }),
+  flag('unsure'),
   body('services.*', 'Serviço inválido').isIn(SERVICE_SLUGS),
   oneOf('budget', BUDGET_KEYS, 'Escolha um orçamento aproximado'),
   isoDay('deadline'),
@@ -31,6 +33,8 @@ const briefRules = [
 router.post('/briefing', briefLimiter, antiBot, validate(briefRules), async (req, res) => {
   const { consent, ...data } = req.valid.body;
   data.services = [...new Set(data.services)];
+  data.unsure = !!data.unsure;
+  if (!data.services.length && !data.unsure) throw new HttpError(400, 'Há campos por corrigir', [{ field: 'services', message: 'Escolha pelo menos um bloco, ou o "?" se ainda não sabe' }]);
   data.deadline = data.deadline ?? '';
   data.company = data.company ?? '';
   res.status(201).json(await briefsService.submit(data));
