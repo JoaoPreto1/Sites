@@ -1,0 +1,53 @@
+/* ---------- Lista ---------- */
+.works { padding-bottom: 80px; }
+.filters { display: flex; flex-wrap: wrap; gap: 12px; margin-bottom: 44px; }
+.filter { display: inline-flex; align-items: center; gap: 10px; min-height: 46px; padding: 8px 16px; border: 3px solid var(--ink); background: var(--paper); font-weight: 800; text-decoration: none; box-shadow: 3px 3px 0 var(--ink); transition: transform 0.15s, box-shadow 0.15s; }
+.filter:hover { transform: translate(-2px, -2px); box-shadow: 5px 5px 0 var(--ink); }
+.filter span { font-size: 0.78rem; font-weight: 700; background: var(--ink); color: var(--bg); padding: 1px 7px; border-radius: 99px; }
+.filter i { width: 18px; height: 14px; border: 2px solid var(--ink); flex: none; }
+.filter--tudo i { display: none; }
+.filter--marcas i { background: var(--red); border-radius: 99px; width: 22px; }
+.filter--sites i { background: var(--blue); width: 15px; height: 15px; }
+.filter--movimento i { background: var(--ink); border-radius: 50%; width: 15px; height: 15px; }
+.filter--rotulos i { background: var(--yellow); border-radius: 12px 12px 0 0; height: 11px; }
+.filter--livros i { background: var(--pink); border-radius: 0 0 8px 8px; width: 12px; height: 16px; }
+.filter[aria-current='page'] { background: var(--ink); color: var(--bg); box-shadow: 3px 3px 0 var(--red); }
+.filter[aria-current='page'] span { background: var(--bg); color: var(--ink); }
+.filter[aria-current='page'] i { border-color: var(--bg); }
+
+/* ---------- Página de um trabalho ---------- */
+.work__head { padding-top: clamp(24px, 5vw, 56px); }
+.work__chip { margin: 6px 0 14px; }
+.work__title { font-size: clamp(3rem, 8vw, 7.6rem); max-width: 14ch; }
+.work__meta { display: grid; grid-template-columns: repeat(4, minmax(0, max-content)); gap: 12px 48px; margin: 34px 0 36px; padding-top: 18px; border-top: 3px solid var(--ink); }
+.work__meta dt { font-size: 0.72rem; font-weight: 800; letter-spacing: 0.14em; text-transform: uppercase; color: var(--ink-2); }
+.work__meta dd { font-weight: 700; font-size: 1.05rem; }
+.work__cover img { width: 100%; border: 3px solid var(--ink); box-shadow: 10px 10px 0 var(--ink); }
+.work__cover--marcas img { box-shadow: 10px 10px 0 var(--red); }
+.work__cover--sites img { box-shadow: 10px 10px 0 var(--blue); }
+.work__cover--rotulos img { box-shadow: 10px 10px 0 var(--yellow); }
+.work__cover--livros img { box-shadow: 10px 10px 0 var(--pink); }
+.work__body { display: grid; grid-template-columns: minmax(0, 0.9fr) minmax(0, 1.1fr); gap: 48px; padding-top: clamp(40px, 7vw, 88px); padding-bottom: clamp(32px, 5vw, 64px); }
+.work__summary { font-size: clamp(1.4rem, 2.6vw, 2rem); font-weight: 800; font-stretch: 85%; line-height: 1.15; }
+.prose { display: grid; gap: 1.1em; font-size: 1.1rem; max-width: 62ch; }
+.work__gallery { display: grid; grid-template-columns: 1fr 1fr; gap: 32px; }
+.work__shot img { width: 100%; border: 3px solid var(--ink); box-shadow: var(--shadow); }
+.work__shot--0 { transform: rotate(-1deg); }
+.work__shot--1 { transform: rotate(1.2deg) translateY(40px); }
+.work__next { display: grid; grid-template-columns: 1fr 2fr; gap: 20px; padding-top: clamp(70px, 10vw, 120px); }
+.next-blk { display: flex; flex-direction: column; justify-content: center; gap: 4px; min-height: 150px; padding: 22px 30px; border: 3px solid var(--ink); box-shadow: var(--shadow); text-decoration: none; background: var(--paper); position: relative; transition: transform 0.2s cubic-bezier(0.3, 1.6, 0.5, 1); }
+.next-blk:hover { transform: translate(-3px, -4px) rotate(-0.6deg); }
+.next-blk span { font-size: 0.75rem; font-weight: 800; letter-spacing: 0.14em; text-transform: uppercase; }
+.next-blk b { font-family: var(--font-tight); font-weight: 900; font-stretch: 66%; text-transform: uppercase; font-size: clamp(2.2rem, 5vw, 4rem); line-height: 0.9; }
+.next-blk .arr { position: absolute; right: 26px; top: 50%; width: 40px; height: 40px; translate: 0 -50%; }
+.next-blk--marcas { background: var(--red); color: #fff; border-radius: 999px; padding-left: 48px; }
+.next-blk--sites { background: var(--blue); color: #fff; }
+.next-blk--movimento { background: var(--ink); color: var(--yellow); box-shadow: 6px 6px 0 var(--red); }
+.next-blk--rotulos { background: var(--yellow); border-radius: 90px 90px 0 0; padding-top: 34px; }
+.next-blk--livros { background: var(--pink); border-radius: 0 0 70px 70px; }
+@media (max-width: 800px) {
+  .work__meta { grid-template-columns: 1fr 1fr; }
+  .work__body, .work__gallery, .work__next { grid-template-columns: 1fr; }
+  .work__shot--1 { transform: rotate(1deg); }
+  .work__cover img { box-shadow: 6px 6px 0 var(--ink); }
+}
