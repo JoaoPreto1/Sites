@@ -16,8 +16,12 @@ if (botao && menu) {
 const tela = document.querySelector('canvas.luz');
 if (tela) {
   const acender = () => import('./luz.js').then(({ iniciarLuz }) => iniciarLuz(tela));
-  const quando = window.requestIdleCallback || ((f) => setTimeout(f, 200));
-  if (document.readyState === 'complete') quando(acender); else addEventListener('load', () => quando(acender));
+  // até lá fica o gradiente do CSS; a luz entra devagar uns segundos depois, ou logo ao primeiro toque
+  let feito = false;
+  const uma = () => { if (!feito) { feito = true; acender(); } };
+  const depois = () => setTimeout(uma, 2500);
+  if (document.readyState === 'complete') depois(); else addEventListener('load', depois);
+  ['pointerdown', 'keydown', 'scroll'].forEach((ev) => addEventListener(ev, uma, { once: true, passive: true }));
 }
 
 document.querySelectorAll('[data-ano]').forEach((el) => (el.textContent = new Date().getFullYear()));

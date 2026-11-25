@@ -249,3 +249,4 @@ fieldset.campo { border: 0; padding: 0; margin: 0; }
 .faixa--colada { padding-top: 0; }
 .exercicio .intro { text-align: center; margin: 14px auto 0; }
 @media (max-width: 760px) { .exercicio .intro { font-size: 1rem; } }
+#dias, #lista { min-height: 100vh; }
