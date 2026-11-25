@@ -32,7 +32,7 @@ const linha = (ritmo) => {
   for (let x = 2; x <= 298; x += 4) d += ` L${x} ${(23 - Math.sin((x / 296) * Math.PI * 2 * ondas) * amp * (ritmo === 3 ? Math.abs(Math.sin(x / 20)) : 1)).toFixed(1)}`;
   return `<svg viewBox="0 0 300 46" preserveAspectRatio="none" aria-hidden="true"><path d="${d}"/></svg>`;
 };
-const nomeRitmo = ['quieta', 'lenta', 'contínua', 'aquece'];
+const nomeRitmo = ['quieto', 'lento', 'contínuo', 'que aquece'];
 document.getElementById('tipos').innerHTML = Object.entries(AULAS).map(([id, a]) => `
   <a class="tipo vidro" href="/aulas?tipo=${id}">${linha(a.ritmo)}<small>ritmo ${nomeRitmo[a.ritmo]}</small><h3>${a.nome}</h3><p>${a.resumo}</p></a>`).join('');
 
