@@ -52,11 +52,11 @@ export const ROOM_TYPES = [
     price: 145,
     size: 26,
     bed: 'Duas camas de 90 ou casal de 160',
-    view: 'Pátio das roseiras',
+    view: 'Pátio e mar ao fundo',
     outside: 'Porta para o pátio',
     guests: 3,
     pets: true,
-    photos: ['qazulejo', 'rosas', 'qcadeiras'],
+    photos: ['qcadeiras', 'rosas', 'terraco2'],
     lead: 'Rés-do-chão, com porta envidraçada para o pátio das roseiras.',
     text: 'São os quartos mais práticos para quem chega com pranchas, bicicletas ou um cão: a porta abre direta para o pátio e há um duche de água doce lá fora. As camas juntam-se ou separam-se como preferir.',
     features: ['Entrada direta pelo pátio', 'Aceita cães (sem custo)', 'Duche exterior', 'Camas que se juntam ou separam', 'Lugar para pranchas e bicicletas'],
@@ -71,7 +71,7 @@ export const ROOM_TYPES = [
     view: 'Dunas',
     outside: 'Janela',
     guests: 2,
-    photos: ['qbranco', 'quarto', 'arcosbrancos'],
+    photos: ['arcosbrancos', 'quarto', 'qbranco'],
     lead: 'Os mais pequenos e os mais claros.',
     text: 'Paredes caiadas, chão de madeira, uma cadeira, uma janela para as dunas e tudo o que é preciso para dormir bem. Bons para uma ou duas noites de passagem pela costa.',
     features: ['Chão de madeira', 'Janela para as dunas', 'Duche', 'Secretária pequena', 'Os mais silenciosos da casa'],
@@ -82,6 +82,9 @@ export const typeBySlug = (slug) => ROOM_TYPES.find((t) => t.slug === slug);
 export const ROOMS = ROOM_TYPES.flatMap((t) => t.rooms.map((num) => ({ num, type: t.slug }))).sort((a, b) => a.num.localeCompare(b.num));
 export const ROOM_NUMS = ROOMS.map((r) => r.num);
 export const typeOfRoom = (num) => typeBySlug(ROOMS.find((r) => r.num === num)?.type);
+
+// Fotografias que aparecem em ecrã inteiro: também existem com 1920 px
+export const BIG_PHOTOS = ['costa', 'qmar', 'qmadeira', 'piscina', 'petiscos', 'baia', 'falesia', 'arcosbrancos', 'terraco2', 'pordosol'];
 
 // Textos alternativos das fotografias (public/img/fotos/<nome>-480|800|1200.webp)
 export const PHOTO_ALT = {

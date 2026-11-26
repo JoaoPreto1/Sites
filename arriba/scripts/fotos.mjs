@@ -1,7 +1,10 @@
-// Descarrega as fotografias do Unsplash em webp, já recortadas a 4:3, em três larguras (480, 800 e 1200).
+// Descarrega as fotografias do Unsplash em webp, já recortadas a 4:3, em três larguras (480, 800 e 1200)
+// e 1920 nas que aparecem em ecrã inteiro. Todas levam o mesmo tratamento de cor (menos saturação, um pouco de sépia),
+// para parecerem do mesmo fotógrafo.
 // Uso: npm run fotos   (só é preciso correr uma vez; as imagens ficam em public/img/fotos)
 import { mkdirSync, writeFileSync, existsSync } from 'node:fs';
 import { fileURLToPath } from 'node:url';
+import { BIG_PHOTOS as GRANDES } from '../src/config/site.js';
 
 const dir = fileURLToPath(new URL('../public/img/fotos/', import.meta.url));
 mkdirSync(dir, { recursive: true });
@@ -20,11 +23,13 @@ export const FOTOS = {
   petiscos: '1782174177406-d36704027953', jantar: '1768497262022-2afdf6b1266f', massagem: '1768507423533-b87b62769758',
 };
 
+const COR = 'sat=-25&con=5&exp=-1&sepia=6';
+
 for (const [nome, id] of Object.entries(FOTOS)) {
-  for (const w of [480, 800, 1200]) {
+  for (const w of GRANDES.includes(nome) ? [480, 800, 1200, 1920] : [480, 800, 1200]) {
     const file = `${dir}${nome}-${w}.webp`;
     if (existsSync(file) && !process.env.REFAZER) continue;
-    const url = `https://images.unsplash.com/photo-${id}?w=${w}&h=${Math.round((w * 3) / 4)}&fit=crop&fm=webp&q=${w > 800 ? 50 : w > 480 ? 55 : 60}`;
+    const url = `https://images.unsplash.com/photo-${id}?w=${w}&h=${Math.round((w * 3) / 4)}&fit=crop&fm=webp&q=${w > 1200 ? 45 : w > 800 ? 50 : w > 480 ? (GRANDES.includes(nome) ? 44 : 55) : 60}&${COR}`;
     const res = await fetch(url);
     if (!res.ok) throw new Error(`${nome}: ${res.status}`);
     writeFileSync(file, Buffer.from(await res.arrayBuffer()));
@@ -32,5 +37,5 @@ for (const [nome, id] of Object.entries(FOTOS)) {
   console.log('ok', nome);
 }
 // Imagem de partilha (1200 × 630)
-const og = await fetch(`https://images.unsplash.com/photo-${FOTOS.falesia}?w=1200&h=630&fit=crop&fm=jpg&q=78`);
+const og = await fetch(`https://images.unsplash.com/photo-${FOTOS.costa}?w=1200&h=630&fit=crop&fm=jpg&q=78&${COR}`);
 writeFileSync(fileURLToPath(new URL('../public/img/og.jpg', import.meta.url)), Buffer.from(await og.arrayBuffer()));
