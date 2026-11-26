@@ -1,13 +1,65 @@
-.rest { display: grid; grid-template-columns: 1fr 1.1fr; gap: 64px; align-items: start; }
-.rest__ementa .ementa { background: var(--verde); color: var(--papel); }
-.rest__nota { color: var(--suave); margin-top: 18px; font-size: 15px; }
-.rest__fotos { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
-.rest__fotos img { width: 100%; height: 240px; object-fit: cover; }
-.rest__fotos img:first-child { grid-column: 1 / -1; height: 380px; }
-.tres--texto img { height: 260px; }
+.rest { padding-top: 130px; padding-bottom: 110px; align-items: start; }
+.rest__tx { grid-column: 2 / 7; }
+.rest__lead { font-size: 36px; line-height: 1.2; margin-bottom: 30px; }
+.rest__tx > p.c { max-width: 480px; }
+.rest__ementa { grid-column: 8 / 12; }
+.rest__n { font-size: 12px; color: var(--cinza); margin-top: 14px; }
+.rest-fotos { padding-bottom: 150px; align-items: start; }
+.rest-fotos__a { grid-column: 2 / 6; aspect-ratio: 4 / 5; }
+.rest-fotos__b { grid-column: 7 / 13; aspect-ratio: 4 / 3; margin-top: 120px; }
+.horas { row-gap: 48px; }
+.horas article { grid-column: span 4; }
+.horas .foto-r { aspect-ratio: 4 / 3; margin-bottom: 18px; }
+.horas__h { font-size: 12px; color: var(--cinza); padding-bottom: 12px; border-bottom: 1px solid var(--linha); margin-bottom: 18px; }
+.horas h3 { font-size: 34px; margin-bottom: 10px; }
+.horas article > p:last-child { color: var(--cinza); }
 
-@media (max-width: 820px) {
-  .rest { grid-template-columns: 1fr; gap: 32px; }
-  .rest__fotos img { height: 150px; }
-  .rest__fotos img:first-child { height: 260px; }
+/* a casa, sagres e como chegar */
+.abre-pg .abre__p { margin-bottom: 0; }
+.abre-pg__t { margin-top: 56px; }
+.abre-pg__t p { grid-column: span 3; }
+.abre-pg__t p:first-child { grid-column: 4 / 7; }
+.espaco { align-items: center; margin-bottom: 130px; }
+.espaco__im { grid-column: 1 / 8; aspect-ratio: 7 / 5; }
+.espaco__tx { grid-column: 9 / 12; }
+.espaco--inv .espaco__im { grid-column: 6 / 13; grid-row: 1; }
+.espaco--inv .espaco__tx { grid-column: 2 / 5; grid-row: 1; }
+.espaco h2 { font-size: 56px; margin-bottom: 18px; }
+.incluido__l { row-gap: 0; }
+.incluido__l li { grid-column: span 3; border-top: 1px solid #ffffff2a; padding-top: 20px; }
+.incluido__l b { display: block; font: 400 30px var(--serif); margin-bottom: 8px; }
+.incluido__l span { font-size: 14px; color: #ece6dba6; }
+.sg-pg__g { row-gap: 70px; align-items: start; }
+.lugar { grid-column: span 4; }
+.lugar--baixo { margin-top: 90px; }
+.lugar__im { aspect-ratio: 4 / 5; margin-bottom: 20px; }
+.lugar h3 { font-size: 38px; margin-bottom: 10px; }
+.lugar .q__n { margin-bottom: 18px; }
+.chegar-pg { align-items: start; }
+.chegar-pg__tx { grid-column: 2 / 7; }
+.chegar-pg__tx .abre__p { font-size: 34px; margin-bottom: 44px; }
+.chegar-pg__n { margin: 34px 0 20px; max-width: 460px; }
+.mapa { grid-column: 8 / 13; aspect-ratio: 5 / 6; position: relative; overflow: hidden; }
+.mapa svg { position: absolute; inset: 0; width: 100%; height: 100%; }
+
+@media (max-width: 760px) {
+  .rest { padding-top: 64px; padding-bottom: 64px; }
+  .rest__tx, .rest__ementa { grid-column: 1 / -1; }
+  .rest__lead { font-size: 28px; }
+  .rest__ementa { margin-top: 40px; }
+  .rest-fotos { padding-bottom: 84px; }
+  .rest-fotos__a { grid-column: 1 / 4; }
+  .rest-fotos__b { grid-column: 2 / 5; margin-top: 12px; }
+  .horas article { grid-column: 1 / -1; }
+  .abre-pg__t p, .abre-pg__t p:first-child { grid-column: 1 / -1; margin-bottom: 16px; }
+  .espaco, .espaco--inv { margin-bottom: 72px; }
+  .espaco__im, .espaco--inv .espaco__im { grid-column: 1 / -1; grid-row: 1; }
+  .espaco__tx, .espaco--inv .espaco__tx { grid-column: 1 / -1; grid-row: 2; margin-top: 24px; }
+  .espaco h2 { font-size: 42px; }
+  .incluido__l li { grid-column: 1 / -1; padding-bottom: 18px; }
+  .lugar { grid-column: 1 / -1; }
+  .lugar--baixo { margin-top: 0; }
+  .chegar-pg__tx, .mapa { grid-column: 1 / -1; }
+  .chegar-pg__tx .abre__p { font-size: 27px; }
+  .mapa { margin-top: 48px; }
 }

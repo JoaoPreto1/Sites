@@ -2,12 +2,13 @@ import { Router } from 'express';
 import { validationResult } from 'express-validator';
 import { ROOM_NUMS, ROOM_TYPES, typeBySlug } from '../config/site.js';
 import { absolute } from '../seo/head.js';
-import { breadcrumbs, hotel, hotelRoom, itemList, restaurant, website } from '../seo/schema.js';
+import { aboutPage, breadcrumbs, hotel, hotelRoom, itemList, restaurant, website } from '../seo/schema.js';
 import * as booking from '../services/booking.service.js';
 import { dayShort } from '../utils/dates.js';
 import { documentHtml, preloadPhoto } from '../views/document.js';
 import { initialData } from '../views/html.js';
-import { guestBody, deskBody, loginBody, registerBody } from '../views/pages/conta.js';
+import { arrivalBody, houseBody, sagresBody } from '../views/pages/casa.js';
+import { deskBody, guestBody, loginBody, registerBody } from '../views/pages/conta.js';
 import { homeBody, homeDescription } from '../views/pages/home.js';
 import { roomBody, roomsBody } from '../views/pages/quartos.js';
 import { bookingBody } from '../views/pages/reservar.js';
@@ -21,14 +22,16 @@ export function send(req, res, { status = 200, ...view }) {
 // Páginas privadas: nunca indexadas nem guardadas em cache partilhada
 function sendPrivate(req, res, view) {
   res.set({ 'X-Robots-Tag': 'noindex, nofollow', 'Cache-Control': 'no-store' });
-  res.status(200).type('html').send(documentHtml({ ...view, page: { ...view.page, noindex: true }, path: req.path }));
+  res.status(200).type('html').send(documentHtml({ solid: true, bodyClass: 'solido', ...view, page: { ...view.page, noindex: true }, path: req.path }));
 }
 
 export function notFoundPage(req, res) {
   send(req, res, {
     status: 404,
+    solid: true,
+    bodyClass: 'solido',
     page: { title: 'Página não encontrada', description: 'Esta página não existe.', noindex: true },
-    body: `<section class="porta"><div class="cx porta__g"><div class="porta__t"><p class="rot">Erro 404</p><h1>Este gancho está vazio.</h1><p>A página que procura mudou de sítio ou nunca existiu.</p><p class="sessao__acoes"><a class="btn btn--verde" href="/">Voltar à receção</a><a class="btn btn--linha" href="/quartos">Ver os quartos</a></p></div><div class="porta__chave" aria-hidden="true"><img src="/img/chave.webp" width="600" height="900" alt="" decoding="async"></div></div></section>`,
+    body: `<section class="porta"><div class="porta__t"><p class="e c">Erro 404</p><h1>Este gancho<br><em>está vazio.</em></h1><p class="porta__lead">A página que procura mudou de sítio ou nunca existiu.</p><p class="res-pg__acoes"><a class="bt" href="/">Voltar ao início</a><a class="bt bt--linha" href="/quartos">Ver os quartos</a></p></div><div class="porta__im" aria-hidden="true"><img src="/img/chave.webp" width="960" height="1200" alt="" decoding="async"></div></section>`,
   });
 }
 
@@ -38,13 +41,14 @@ async function stayFromQuery(req) {
   const ok = validationResult(req).isEmpty();
   const stay = ok ? toStay(req.query) : {};
   try {
-    return { a: await booking.availability({ ...stay, guests: stay.guests ? Number(stay.guests) : undefined }), warning: ok ? null : 'datas' };
+    return { a: await booking.availability({ ...stay, guests: stay.guests ? Number(stay.guests) : undefined }), warning: !ok };
   } catch {
-    return { a: await booking.availability({}), warning: 'datas' };
+    return { a: await booking.availability({}), warning: true };
   }
 }
 
-const warningBox = (w) => (w ? '<p class="aviso cx" role="status">As datas que escolheu não são válidas. Mostramos o próximo fim de semana.</p>' : '');
+const warningBox = (w) => (w ? '<p class="aviso" role="status">As datas que escolheu não são válidas. Mostramos o próximo fim de semana.</p>' : '');
+const heroPreload = (name) => [preloadPhoto(name, '100vw')];
 
 const router = Router();
 
@@ -53,7 +57,7 @@ router.get('/robots.txt', (req, res) => {
 });
 
 router.get('/sitemap.xml', (req, res) => {
-  const urls = ['/', '/quartos', ...ROOM_TYPES.map((t) => `/quartos/${t.slug}`), '/restaurante'];
+  const urls = ['/', '/quartos', ...ROOM_TYPES.map((t) => `/quartos/${t.slug}`), '/a-casa', '/restaurante', '/sagres', '/como-chegar'];
   res.type('application/xml').send(`<?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 ${urls.map((p) => `  <url><loc>${absolute(p)}</loc></url>`).join('\n')}
@@ -63,38 +67,36 @@ ${urls.map((p) => `  <url><loc>${absolute(p)}</loc></url>`).join('\n')}
 router.get('/', async (req, res) => {
   const { a, warning } = await stayFromQuery(req);
   const [menu, table] = await Promise.all([booking.currentMenu(), booking.priceTable()]);
-  const hasQuery = Object.keys(req.query).length > 0;
   send(req, res, {
     page: { description: homeDescription(a), path: '/', schema: [website(), hotel(table)] },
     bodyClass: 'inicio',
-    preload: [
-      { href: '/img/quadro.webp', media: '(min-width: 821px)' },
-      { href: '/img/quadro-telemovel.webp', media: '(max-width: 820px)' },
-    ],
-    body: (hasQuery ? warningBox(warning) : '') + homeBody({ a, menu }),
-    data: initialData({ a, types: ROOM_TYPES.map((t) => ({ slug: t.slug, name: t.name, lead: t.lead, photo: t.photos[0] })) }),
+    preload: heroPreload('costa'),
+    body: warningBox(warning && Object.keys(req.query).length) + homeBody({ a, menu, table }),
+    data: initialData({ a }),
     scripts: ['inicio'],
   });
 });
 
 router.get('/quartos', async (req, res) => {
-  const { a } = await stayFromQuery(req);
+  const [{ a }, table] = await Promise.all([stayFromQuery(req), booking.priceTable()]);
   send(req, res, {
     page: {
       title: 'Quartos',
-      description: `Os 14 quartos do hotel Arriba em Sagres: Suite Farol, Falésia, Pátio e Duna, de ${Math.min(...a.types.map((t) => t.price))} € a ${Math.max(...a.types.map((t) => t.price))} € por noite com pequeno-almoço.`,
+      description: `Os 14 quartos do hotel Arriba em Sagres: Suite Farol, Falésia, Pátio e Duna, de ${Math.min(...Object.values(table))} € a ${Math.max(...Object.values(table))} € por noite com pequeno-almoço.`,
       path: '/quartos',
       schema: [breadcrumbs([['Início', '/'], ['Quartos', '/quartos']]), itemList('Quartos', ROOM_TYPES.map((t) => [t.name, `/quartos/${t.slug}`]))],
     },
-    preload: [preloadPhoto(ROOM_TYPES[0].photos[0], '(max-width: 820px) 100vw, 40vw')],
-    body: roomsBody({ a }),
+    preload: heroPreload('qmadeira'),
+    body: roomsBody({ a, table }),
   });
 });
 
 router.get('/quartos/:slug', async (req, res, next) => {
   const type = typeBySlug(req.params.slug);
   if (!type) return next();
-  const [{ a }, calendar, table] = await Promise.all([stayFromQuery(req), booking.typeCalendar(type.slug), booking.priceTable()]);
+  const [{ a }, table] = await Promise.all([stayFromQuery(req), booking.priceTable()]);
+  const start = `${a.checkIn.slice(0, 7)}-01`;
+  const calendar = await booking.nightsCalendar({ from: start, days: 62, type: type.slug, guests: 1 });
   send(req, res, {
     page: {
       title: `Quarto ${type.name}`,
@@ -103,33 +105,56 @@ router.get('/quartos/:slug', async (req, res, next) => {
       image: type.photos[0],
       schema: [hotelRoom(type, table[type.slug]), breadcrumbs([['Início', '/'], ['Quartos', '/quartos'], [type.name, `/quartos/${type.slug}`]])],
     },
-    preload: [preloadPhoto(type.photos[0], '(max-width: 820px) 100vw, 58vw')],
+    preload: heroPreload(type.photos[0]),
     body: roomBody({ type, price: table[type.slug], calendar, a, table }),
+    scripts: ['quarto'],
+  });
+});
+
+router.get('/a-casa', (req, res) => {
+  send(req, res, {
+    page: { title: 'A casa', description: 'Uma casa de pescadores em Sagres com piscina de água salgada, terraço coberto, sala e massagens por marcação. O que está incluído no preço.', schema: [aboutPage('/a-casa', 'A casa'), breadcrumbs([['Início', '/'], ['A casa', '/a-casa']])] },
+    preload: heroPreload('arcosbrancos'),
+    body: houseBody(),
+  });
+});
+
+router.get('/sagres', (req, res) => {
+  send(req, res, {
+    page: { title: 'Sagres à volta', description: 'O que fazer à volta do hotel Arriba: praia do Tonel e da Mareta, fortaleza de Sagres, cabo de São Vicente e saídas de barco, a pé ou de bicicleta.', schema: [breadcrumbs([['Início', '/'], ['Sagres', '/sagres']])] },
+    preload: heroPreload('pordosol'),
+    body: sagresBody(),
+  });
+});
+
+router.get('/como-chegar', (req, res) => {
+  send(req, res, {
+    page: { title: 'Como chegar', description: 'Como chegar ao hotel Arriba, em Sagres: 1h20 de Faro, 3h de Lisboa, estacionamento no pátio, entrada das 15h às 23h.', schema: [breadcrumbs([['Início', '/'], ['Como chegar', '/como-chegar']])] },
+    preload: heroPreload('falesia'),
+    body: arrivalBody(),
   });
 });
 
 router.get('/restaurante', async (req, res) => {
   const menu = await booking.currentMenu();
   send(req, res, {
-    page: {
-      title: 'Restaurante',
-      description: restaurantDescription(menu),
-      schema: [restaurant(menu), breadcrumbs([['Início', '/'], ['Restaurante', '/restaurante']])],
-    },
-    preload: [preloadPhoto('petiscos', '(max-width: 820px) 100vw, 46vw')],
+    page: { title: 'Restaurante', description: restaurantDescription(menu), schema: [restaurant(menu), breadcrumbs([['Início', '/'], ['Restaurante', '/restaurante']])] },
+    preload: heroPreload('petiscos'),
     body: restaurantBody({ menu }),
   });
 });
 
-// Reservar: a escolha da chave é pública; a confirmação pede sessão (feita pelo JavaScript com a API)
+// Reservar: escolher a chave é público; a confirmação pede sessão (feita pelo JavaScript com a API)
 router.get('/reservar', async (req, res) => {
   const { a, warning } = await stayFromQuery(req);
   const quarto = ROOM_NUMS.includes(req.query.quarto) ? req.query.quarto : null;
   const tipo = typeBySlug(req.query.tipo);
-  const chosen = quarto ?? (tipo && a.types.find((t) => t.slug === tipo.slug)?.free[0]) ?? null;
+  const chosen = (quarto && a.free.includes(quarto) && quarto) || (tipo && a.types.find((t) => t.slug === tipo.slug)?.free[0]) || (a.free.includes('03') ? '03' : a.free[0]) || null;
+  const nights = await booking.nightsCalendar({ from: `${a.checkIn.slice(0, 7)}-01`, days: 62, guests: a.guests });
   sendPrivate(req, res, {
     page: { title: 'Reservar', description: `Reservar um quarto no hotel Arriba de ${dayShort(a.checkIn)} a ${dayShort(a.checkOut)}.` },
-    body: warningBox(warning) + bookingBody({ a, chosen }),
+    body: warningBox(warning) + bookingBody({ a, chosen, nights }),
+    data: initialData({ a, chosen, types: ROOM_TYPES.map((t) => ({ slug: t.slug, name: t.name, photo: t.photos[0], size: t.size, bed: t.bed, view: t.view, guests: t.guests })) }),
     scripts: ['reservar'],
   });
 });
@@ -143,7 +168,7 @@ router.get('/criar-conta', (req, res) => {
 });
 
 router.get('/hospede', (req, res) => {
-  sendPrivate(req, res, { page: { title: 'As suas reservas', description: 'Reservas, hora de chegada e pedidos.' }, body: guestBody(), scripts: ['hospede'] });
+  sendPrivate(req, res, { page: { title: 'As suas estadias', description: 'Reservas, hora de chegada e pedidos.' }, body: guestBody(), scripts: ['hospede'] });
 });
 
 router.get('/rececao', (req, res) => {
