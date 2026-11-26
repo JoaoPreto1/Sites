@@ -27,7 +27,7 @@ abas.forEach((t, i) => {
   });
 });
 
-const acoes = (r) => (NEXT[r.status] ?? []).map(([s, label]) => `<button class="btn ${s === 'cancelada' ? 'btn--linha' : 'btn--verde'}" type="button" data-estado="${s}" data-id="${esc(r.id)}">${label}</button>`).join('');
+const acoes = (r) => (NEXT[r.status] ?? []).map(([s, label]) => `<button class="bt ${s === 'cancelada' ? 'bt--linha bt--sem' : 'bt--sem'}" type="button" data-estado="${s}" data-id="${esc(r.id)}">${label}</button>`).join('');
 const linhaHospede = (r, extra = '') => `<li><span><b>${esc(r.room)}</b> · ${esc(r.guestName)}<small>${esc(r.typeName)} · ${day(r.checkIn)} a ${day(r.checkOut)}${extra}</small></span><span class="acoes-linha">${acoes(r)}</span></li>`;
 
 // ---------- hoje ----------
@@ -42,7 +42,7 @@ async function hoje() {
         <p class="legenda"><span>Latão: chave no quadro</span><span>Tracejado: reservado, ainda não chegou</span><span>Vazio: hóspede em casa</span></p>
       </section>
       <section class="bloco" aria-labelledby="h-p"><h2 id="h-p">Pedidos por tratar <small>${d.requests.length}</small></h2>
-        ${d.requests.length ? `<ul class="lista-simples">${d.requests.map((q) => `<li><span><b>${esc(q.room)}</b> · ${esc(REQUESTS[q.kind] ?? q.kind)}<small>${day(q.date)} · ${esc(q.guestName)}${q.notes ? ` · ${esc(q.notes)}` : ''}</small></span><button class="btn btn--linha" type="button" data-pedido="${esc(q.id)}" data-para="feito">Feito</button></li>`).join('')}</ul>` : '<p class="vazio">Nada por tratar.</p>'}
+        ${d.requests.length ? `<ul class="lista-simples">${d.requests.map((q) => `<li><span><b>${esc(q.room)}</b> · ${esc(REQUESTS[q.kind] ?? q.kind)}<small>${day(q.date)} · ${esc(q.guestName)}${q.notes ? ` · ${esc(q.notes)}` : ''}</small></span><button class="bt bt--linha bt--sem" type="button" data-pedido="${esc(q.id)}" data-para="feito">Feito</button></li>`).join('')}</ul>` : '<p class="vazio">Nada por tratar.</p>'}
       </section>
     </div>
     <div>
@@ -73,7 +73,7 @@ async function reservas() {
 async function pedidos() {
   const { requests } = await api('/rececao/pedidos', { auth: true });
   $('#p-pedidos').innerHTML = `<section class="bloco"><h2>Todos os pedidos <small>${requests.length}</small></h2><ul class="lista-simples">${requests
-    .map((q) => `<li><span><b>${esc(q.room)}</b> · ${esc(REQUESTS[q.kind] ?? q.kind)} ${badge(q.status)}<small>${day(q.date)} · ${esc(q.guestName)}${q.notes ? ` · ${esc(q.notes)}` : ''}</small></span><button class="btn btn--linha" type="button" data-pedido="${esc(q.id)}" data-para="${q.status === 'feito' ? 'pendente' : 'feito'}">${q.status === 'feito' ? 'Reabrir' : 'Feito'}</button></li>`)
+    .map((q) => `<li><span><b>${esc(q.room)}</b> · ${esc(REQUESTS[q.kind] ?? q.kind)} ${badge(q.status)}<small>${day(q.date)} · ${esc(q.guestName)}${q.notes ? ` · ${esc(q.notes)}` : ''}</small></span><button class="bt bt--linha bt--sem" type="button" data-pedido="${esc(q.id)}" data-para="${q.status === 'feito' ? 'pendente' : 'feito'}">${q.status === 'feito' ? 'Reabrir' : 'Feito'}</button></li>`)
     .join('')}</ul></section>`;
 }
 
@@ -90,10 +90,10 @@ async function ementa() {
     <form class="bloco" data-ementa novalidate><h2>Ementa de hoje <small>aparece no site</small></h2>
       <p class="form-erro" data-erro role="alert" hidden></p>
       <div data-pratos>${(menu?.items ?? [{}]).map(pratoHtml).join('')}</div>
-      <p class="sessao__acoes"><button class="btn btn--linha" type="button" data-mais>Mais um prato</button><button class="btn btn--verde" type="submit">Publicar ementa</button></p>
+      <p class="sessao__acoes"><button class="bt bt--linha bt--sem" type="button" data-mais>Mais um prato</button><button class="bt bt--sem" type="submit">Publicar ementa</button></p>
     </form>
     <section class="bloco"><h2>Preço por noite <small>só para reservas novas</small></h2>
-      <ul class="precos">${prices.map((p) => `<li><span><b>${esc(p.name)}</b><small>Chaves ${p.rooms.join(', ')}</small></span><label class="campo"><span class="sr">Preço do ${esc(p.name)} em euros</span><input type="number" min="40" max="900" value="${p.price}" data-preco="${p.slug}"></label><button class="btn btn--linha" type="button" data-guardar-preco="${p.slug}">Guardar</button></li>`).join('')}</ul>
+      <ul class="precos">${prices.map((p) => `<li><span><b>${esc(p.name)}</b><small>Chaves ${p.rooms.join(', ')}</small></span><label class="campo"><span class="sr">Preço do ${esc(p.name)} em euros</span><input type="number" min="40" max="900" value="${p.price}" data-preco="${p.slug}"></label><button class="bt bt--linha bt--sem" type="button" data-guardar-preco="${p.slug}">Guardar</button></li>`).join('')}</ul>
     </section>
   </div>`;
 }

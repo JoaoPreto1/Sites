@@ -17,11 +17,11 @@ function estadia(r) {
     <div class="estadia__t">
       <div class="estadia__topo"><h2 id="t-${esc(r.id)}">${esc(r.typeName)}</h2>${badge(r.status)}</div>
       <p class="estadia__datas">${day(r.checkIn)} a ${day(r.checkOut)} · ${nights(r.nights)}</p>
-      <dl class="fichas"><div><dt>Código</dt><dd>${esc(r.code)}</dd></div><div><dt>Hóspedes</dt><dd>${r.guests}</dd></div><div><dt>Chegada</dt><dd>${esc(r.arrivalTime || '—')}</dd></div><div><dt>Total</dt><dd>${euros(r.total)}</dd></div></dl>
+      <dl class="specs"><div><dt>Código</dt><dd>${esc(r.code)}</dd></div><div><dt>Hóspedes</dt><dd>${r.guests}</dd></div><div><dt>Chegada</dt><dd>${esc(r.arrivalTime || '—')}</dd></div><div><dt>Total</dt><dd>${euros(r.total)}</dd></div></dl>
       ${r.notes ? `<p class="estadia__nota">Nota para a receção: ${esc(r.notes)}</p>` : ''}
       ${
         r.status === 'confirmada'
-          ? `<div class="estadia__acoes">${r.canCancel ? `<button class="btn btn--linha" type="button" data-cancelar="${esc(r.id)}">Cancelar reserva</button><span class="estadia__nota">Sem custos até ${day(r.cancelUntil)}.</span>` : `<span class="estadia__nota">O cancelamento sem custos terminou a ${day(r.cancelUntil)}. Para mudar alguma coisa, escreva para a receção.</span>`}</div>`
+          ? `<div class="estadia__acoes">${r.canCancel ? `<button class="bt bt--linha bt--sem" type="button" data-cancelar="${esc(r.id)}">Cancelar reserva</button><span class="estadia__nota">Sem custos até ${day(r.cancelUntil)}.</span>` : `<span class="estadia__nota">O cancelamento sem custos terminou a ${day(r.cancelUntil)}. Para mudar alguma coisa, escreva para a receção.</span>`}</div>`
           : ''
       }
       ${
@@ -29,13 +29,13 @@ function estadia(r) {
           ? `<div class="estadia__extra">
         <div>
           <form class="chegada" data-chegada="${esc(r.id)}" novalidate>
-            <h3 class="h4">A chegada</h3>
+            <h3 class="e">A chegada</h3>
             <label class="campo"><span>Hora prevista</span><select name="arrivalTime">${HOURS.map((h) => `<option${h === r.arrivalTime ? ' selected' : ''}>${h}</option>`).join('')}</select></label>
             <label class="campo"><span>Nota para a receção</span><input name="notes" maxlength="500" value="${esc(r.notes)}"></label>
             <p class="campo__erro" data-error="notes"></p>
-            <button class="btn btn--linha" type="submit">Guardar</button>
+            <button class="bt bt--linha bt--sem" type="submit">Guardar</button>
           </form>
-          <h3 class="h4" style="margin-top:28px">Pedidos</h3>
+          <h3 class="e" style="margin-top:32px">Pedidos</h3>
           ${r.requests.length ? `<ul class="pedidos">${r.requests.map((q) => `<li><span>${esc(REQUESTS[q.kind] ?? q.kind)}<small>${day(q.date)}${q.notes ? ` · ${esc(q.notes)}` : ''}</small></span>${badge(q.status)}</li>`).join('')}</ul>` : '<p class="estadia__nota">Ainda não fez pedidos para esta estadia.</p>'}
         </div>
         <div data-pedido="${esc(r.id)}" data-min="${minPedido}" data-max="${r.checkOut}"></div>
