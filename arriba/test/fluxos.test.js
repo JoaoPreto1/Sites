@@ -37,7 +37,7 @@ const deskToken = async () => (await login('rececao@arriba.exemplo', 'arriba-rec
 const { checkIn: F, checkOut: F2 } = nextWeekend();
 
 test('páginas públicas com SEO, JSON-LD do hotel e cabeçalhos de segurança', async () => {
-  for (const path of ['/', '/quartos', '/quartos/suite-farol', '/quartos/falesia', '/quartos/patio', '/quartos/duna', '/restaurante']) {
+  for (const path of ['/', '/quartos', '/quartos/suite-farol', '/quartos/falesia', '/quartos/patio', '/quartos/duna', '/a-casa', '/sagres', '/como-chegar', '/restaurante']) {
     const r = await call(path);
     assert.equal(r.status, 200, path);
     assert.match(r.data, /<link rel="canonical"/, path);
@@ -64,6 +64,13 @@ test('o quadro mostra as chaves livres para as datas', async () => {
   const tres = await call(`/api/disponibilidade?chegada=${F}&saida=${F2}&hospedes=3`);
   assert.deepEqual(tres.data.free, ['03', '04', '07', '09']);
   assert.equal((await call(`/api/disponibilidade?chegada=${F2}&saida=${F}`)).status, 400);
+  // Calendário de noites: chaves livres e preço mais baixo por noite
+  const cal = await call(`/api/calendario?desde=${F}&dias=2`);
+  assert.equal(cal.status, 200);
+  assert.deepEqual(cal.data.nights.map((n) => n.free), [8, 8]);
+  assert.equal(cal.data.nights[0].from, 130);
+  assert.equal((await call(`/api/calendario?desde=${F}&dias=1&tipo=suite-farol&hospedes=3`)).data.nights[0].free, 2);
+  assert.equal((await call('/api/calendario?dias=500')).status, 400);
   assert.equal((await call('/api/disponibilidade?chegada=ontem')).status, 400);
   assert.equal((await call(`/api/disponibilidade?chegada=${today()}&saida=${addDays(today(), 20)}`)).status, 400);
 });

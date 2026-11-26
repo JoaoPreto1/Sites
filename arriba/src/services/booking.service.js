@@ -68,6 +68,20 @@ export async function typeCalendar(slug, days = 35) {
   });
 }
 
+// Noite a noite: quantas chaves estão livres e o preço mais baixo entre elas (calendário da reserva)
+export async function nightsCalendar({ from = today(), days = 63, guests = 2, type } = {}) {
+  const start = from < today() ? today() : from;
+  const table = await priceTable();
+  const rooms = ROOMS.filter((r) => (!type || r.type === type) && typeBySlug(r.type).guests >= guests);
+  const active = await reservations.findAll((r) => ACTIVE.has(r.status) && r.checkOut > start);
+  return Array.from({ length: days }, (_, i) => {
+    const day = addDays(start, i);
+    const taken = new Set(active.filter((r) => overlaps(r, day, addDays(day, 1))).map((r) => r.room));
+    const free = rooms.filter((r) => !taken.has(r.num));
+    return { day, free: free.length, from: free.length ? Math.min(...free.map((r) => table[r.type])) : null };
+  });
+}
+
 export async function createReservation(user, { room, checkIn, checkOut, guests, arrivalTime = '', notes = '' }) {
   const type = typeOfRoom(room);
   if (!type) throw notFound('Quarto');

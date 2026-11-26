@@ -1,5 +1,6 @@
 import { Router } from 'express';
-import { body } from 'express-validator';
+import { body, query } from 'express-validator';
+import { isIsoDay } from '../utils/dates.js';
 import { requireRole, requireUser } from '../middleware/auth.js';
 import { bookingLimiter, writeLimiter } from '../middleware/limits.js';
 import { validate } from '../middleware/validate.js';
@@ -22,6 +23,23 @@ router.use('/auth', auth);
 router.get('/disponibilidade', validate(stayQuery, 'query'), async (req, res) => {
   res.json(await booking.availability(toStay(req.valid.query)));
 });
+
+router.get(
+  '/calendario',
+  validate(
+    [
+      query('desde', 'Data inválida').optional().isString().custom(isIsoDay),
+      query('dias', 'Entre 1 e 120 dias').optional().isInt({ min: 1, max: 120 }).toInt(),
+      query('hospedes', 'Entre 1 e 3 hóspedes').optional().isInt({ min: 1, max: 3 }).toInt(),
+      query('tipo', 'Tipo de quarto inválido').optional().isIn(ROOM_TYPES.map((t) => t.slug)),
+    ],
+    'query',
+  ),
+  async (req, res) => {
+    const q = req.valid.query;
+    res.json({ nights: await booking.nightsCalendar({ from: q.desde, days: q.dias, guests: q.hospedes, type: q.tipo }) });
+  },
+);
 
 router.get('/ementa', async (req, res) => {
   res.json({ menu: await booking.currentMenu() });
