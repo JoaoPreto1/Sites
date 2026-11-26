@@ -37,7 +37,7 @@ O mais recente primeiro.
     <td>
       <p>📅 <strong>Quarta, 25 nov 2026</strong></p>
       <h3><a href="arriba/">Arriba</a></h3>
-      <p>Hotel de 14 quartos em Sagres (fictício). A página inicial é o quadro de chaves da receção em 3D (three.js): chaves de latão com porta-chaves gravados, presas em ganchos numa tábua de nogueira. As chaves penduradas são os quartos livres nas datas escolhidas; tirar uma do quadro abre a ficha do quarto e leva à reserva. Quartos com galeria e calendário de disponibilidade, restaurante com a ementa do dia, reservas com conta de hóspede (hora de chegada, pedidos e cancelamento até 7 dias antes) e painel da receção com o quadro desta noite, chegadas, saídas, pedidos, ementa e preços. Lighthouse 96 a 100.</p>
+      <p>Hotel de 14 quartos em Sagres (fictício), com ar de revista de viagens: fotografias grandes, todas com o mesmo tratamento de cor, títulos em Instrument Serif e muito espaço em branco. Na receção, um quadro de chaves em 3D (three.js) mostra os quartos livres nas datas escolhidas: chaves de latão com porta-chaves gravados que balançam e saem do quadro. Páginas para cada quarto com calendário de noites livres, a casa, Sagres, como chegar e o restaurante com a ementa do dia. Reserva em três passos com calendário de preços, área do hóspede (hora de chegada, pedidos, cancelamento) e painel da receção. Lighthouse 95 a 100.</p>
     </td>
   </tr>
   <tr>
