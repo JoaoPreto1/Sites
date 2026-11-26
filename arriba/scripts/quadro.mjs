@@ -1,4 +1,4 @@
-// Gera as imagens do quadro de chaves (as que se veem antes do 3D carregar) a partir do próprio 3D.
+// Gera a imagem da chave 03 em grande plano (a que se vê antes do 3D carregar) a partir do próprio 3D.
 // Uso: npm run quadro   (precisa do Google Chrome instalado; CHROME=caminho para outro)
 import { spawn } from 'node:child_process';
 import { createServer } from 'node:http';
@@ -47,9 +47,7 @@ await send('Page.enable');
 
 // [ficheiro, largura, altura, escala, parâmetros]
 const jobs = [
-  ['quadro.webp', 1200, 1000, 1, '?e=03'],
-  ['quadro-telemovel.webp', 390, 460, 2, '?e=03'],
-  ['chave.webp', 400, 600, 1.5, '?livres=02,03,04&e=03&perto'],
+  ['chave.webp', 480, 600, 2, '?livres=02,03,04&e=03&perto'],
 ];
 for (const [file, width, height, scale, query] of jobs) {
   await send('Emulation.setDeviceMetricsOverride', { width, height, deviceScaleFactor: scale, mobile: false });

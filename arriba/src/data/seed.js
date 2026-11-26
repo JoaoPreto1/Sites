@@ -61,7 +61,7 @@ export const reservations = [
   booking('u-tiago', '01', addDays(t, -3), 3, 'em-casa', { arrivalTime: '18:30' }),
   booking('u-sofia', '04', addDays(t, -2), 3, 'em-casa'),
   booking('u-pedro', '09', addDays(t, -1), 2, 'em-casa', { notes: 'Trazemos um cão pequeno.' }),
-  booking('u-ana', '13', t, 2, 'confirmada', { arrivalTime: '21:00', notes: 'Chegamos tarde, depois do jantar.' }),
+  booking('u-ana', '13', t, 1, 'confirmada', { arrivalTime: '21:00', notes: 'Chegamos tarde, depois do jantar.' }),
   // O próximo fim de semana: seis quartos ocupados, oito chaves no quadro
   booking('u-helena', '05', F, 2, 'confirmada'),
   booking('u-jonas', '06', F, 3, 'confirmada', { guests: 1 }),

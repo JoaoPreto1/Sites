@@ -97,19 +97,20 @@ function placaGeo(w, h, r) {
 
 export function quadroDeChaves(canvas, { quartos, livres: livresIniciais, escolhido, aoEscolher = () => {}, perto = false }) {
   let livres = livresIniciais;
+  let forcar = 0; // quantas imagens desenhar mesmo sem nada a mexer (ao mudar de tamanho)
   const acaso = (num, k) => { const x = Math.sin(Number(num) * 12.9898 + k * 78.233) * 43758.5453; return x - Math.floor(x); };
   const reduzir = matchMedia('(prefers-reduced-motion: reduce)').matches;
   const renderer = new THREE.WebGLRenderer({ canvas, antialias: true, alpha: false, preserveDrawingBuffer: true });
-  renderer.setPixelRatio(Math.min(devicePixelRatio, 2));
-  renderer.toneMapping = THREE.ACESFilmicToneMapping; renderer.toneMappingExposure = 1.05;
+  renderer.setPixelRatio(Math.min(devicePixelRatio, 1.5));
+  renderer.toneMapping = THREE.ACESFilmicToneMapping; renderer.toneMappingExposure = 0.92;
   renderer.shadowMap.enabled = true; renderer.shadowMap.type = THREE.PCFSoftShadowMap;
-  const cena = new THREE.Scene(); cena.background = new THREE.Color('#14241f');
+  const cena = new THREE.Scene(); cena.background = new THREE.Color('#0f100e');
   const pmrem = new THREE.PMREMGenerator(renderer);
   cena.environment = pmrem.fromScene(estudio(), 0.02).texture; cena.environmentIntensity = 1;
   const camara = new THREE.PerspectiveCamera(26, 1, 1, 600);
 
-  const latao = new THREE.MeshPhysicalMaterial({ color: '#d2a965', metalness: 1, roughness: 0.3, roughnessMap: desgaste() });
-  const lataoEsc = new THREE.MeshPhysicalMaterial({ color: '#b9935a', metalness: 1, roughness: 0.34, roughnessMap: desgaste() });
+  const latao = new THREE.MeshPhysicalMaterial({ color: '#c4a979', metalness: 1, roughness: 0.32, roughnessMap: desgaste() });
+  const lataoEsc = new THREE.MeshPhysicalMaterial({ color: '#a98f63', metalness: 1, roughness: 0.36, roughnessMap: desgaste() });
   const ferro = new THREE.MeshStandardMaterial({ color: '#8a6a30', metalness: 1, roughness: 0.42 });
   const texMad = madeira(), texMadEsc = madeira(512, 256, true);
 
@@ -117,7 +118,7 @@ export function quadroDeChaves(canvas, { quartos, livres: livresIniciais, escolh
   let colunas = 7, linhas = 2;
   const SX = 9.2, SY = 16.5;
   const raiz = new THREE.Group(); cena.add(raiz);
-  const parede = new THREE.Mesh(new THREE.PlaneGeometry(400, 300), new THREE.MeshStandardMaterial({ color: '#1d332c', roughness: 0.95, envMapIntensity: 0.2 }));
+  const parede = new THREE.Mesh(new THREE.PlaneGeometry(400, 300), new THREE.MeshStandardMaterial({ color: '#141513', roughness: 0.95, envMapIntensity: 0.15 }));
   parede.position.z = -2.2; parede.receiveShadow = true; cena.add(parede);
 
   const geoFob = geoPortaChaves(), partesChave = geoChave();
@@ -135,12 +136,12 @@ export function quadroDeChaves(canvas, { quartos, livres: livresIniciais, escolh
       texto(g, 'ARRIBA', 0, -2.75, 0.62, '700'); texto(g, 'SAGRES', 0, -7.25, 0.36, '400');
       g.beginPath(); g.arc(0, 0, 0.62, 0, Math.PI * 2); g.lineWidth = 0.05; g.stroke();
     });
-    const m = new THREE.MeshPhysicalMaterial({ color: '#d8ae68', metalness: 1, roughness: 0.3, map: t.cor, bumpMap: t.relevo, bumpScale: 0.9, roughnessMap: t.rug });
+    const m = new THREE.MeshPhysicalMaterial({ color: '#c9ae80', metalness: 1, roughness: 0.3, map: t.cor, bumpMap: t.relevo, bumpScale: 0.9, roughnessMap: t.rug });
     fobsMat.set(num, m); return m;
   }
   function matPlaca(num) {
     const t = gravacao(geoPlaca.boundingBox, (g) => { texto(g, num, 0, 0.02, 1.25, '700'); g.lineWidth = 0.05; g.strokeRect(-1.55, -0.6, 3.1, 1.2); });
-    return new THREE.MeshPhysicalMaterial({ color: '#c9a062', metalness: 1, roughness: 0.3, map: t.cor, bumpMap: t.relevo, bumpScale: 0.8, roughnessMap: t.rug });
+    return new THREE.MeshPhysicalMaterial({ color: '#b89c6c', metalness: 1, roughness: 0.32, map: t.cor, bumpMap: t.relevo, bumpScale: 0.8, roughnessMap: t.rug });
   }
   const sombra = (m) => { m.castShadow = true; m.receiveShadow = true; return m; };
 
@@ -186,13 +187,14 @@ export function quadroDeChaves(canvas, { quartos, livres: livresIniciais, escolh
 
   // luz quente de cima, como um candeeiro de receção
   const foco = new THREE.SpotLight('#ffd9a8', 5.5, 0, 0.5, 1, 0);
-  foco.castShadow = true; foco.shadow.mapSize.set(2048, 2048); foco.shadow.bias = -0.0004; foco.shadow.normalBias = 0.02; foco.shadow.radius = 6;
+  foco.castShadow = true; foco.shadow.mapSize.set(1024, 1024); foco.shadow.bias = -0.0004; foco.shadow.normalBias = 0.02; foco.shadow.radius = 6;
   cena.add(foco, foco.target);
   cena.add(new THREE.HemisphereLight('#fff1dc', '#1b2a24', 0.2));
   const preenchimento = new THREE.DirectionalLight('#cfe0ff', 0.25); preenchimento.position.set(-40, -10, 60); cena.add(preenchimento);
 
   let dims, selecionada = null;
   function ajustar() {
+    forcar = 2;
     const w = canvas.clientWidth, h = canvas.clientHeight; if (!w || !h) return;
     const asp = w / h;
     const [c, l] = asp > 1.45 ? [7, 2] : asp > 0.75 ? [5, 3] : [4, 4];
@@ -246,15 +248,19 @@ export function quadroDeChaves(canvas, { quartos, livres: livresIniciais, escolh
   renderer.setAnimationLoop((agora) => {
     const dt = Math.min(0.05, (agora - antes) / 1000); antes = agora;
     if (!visivel && frames > 3) return;
+    let mexe = frames < 4 || forcar > 0;
+    if (forcar > 0) forcar -= 1;
     for (const k of chaves) {
       // pêndulo amortecido
       if (!reduzir) { k.vel += -k.ang * 18 * dt - k.vel * 2.2 * dt; k.ang += k.vel * dt * 8; }
-      k.p ??= 0; k.p += (k.t - k.p) * Math.min(1, dt * 5);
+      k.p ??= 0; k.p += (k.t - k.p) * Math.min(1, dt * 4.2);
+      if (Math.abs(k.t - k.p) > 0.0005 || Math.abs(k.vel) > 0.0004 || Math.abs(k.ang) > 0.0006) mexe = true;
       const p = k.p;
       v.copy(k.base); v.z += p * 20; v.y += p * 0.5; v.x += p * (k.base.x > 0 ? -2.5 : 2.5);
       k.grupo.position.copy(v);
       k.grupo.rotation.set(-p * 0.3, k.grupo.userData.giro * (1 - p) + p * 0.12, k.ang * (1 - p) + p * 0.06);
     }
+    if (!mexe) return;
     renderer.render(cena, camara);
     if (++frames === 3) pronto();
   });
