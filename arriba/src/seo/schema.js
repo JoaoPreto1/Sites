@@ -79,3 +79,11 @@ export const itemList = (name, items) => ({
   name,
   itemListElement: items.map(([label, path], i) => ({ '@type': 'ListItem', position: i + 1, name: label, url: absolute(path) })),
 });
+
+export const aboutPage = (path, name) => ({
+  '@context': 'https://schema.org',
+  '@type': 'AboutPage',
+  name: `${name} · ${SITE.name}`,
+  url: absolute(path),
+  about: { '@id': HOTEL_ID() },
+});
